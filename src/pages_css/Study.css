@@ -1,0 +1,134 @@
+.header_main_inner3 > a {
+    color: #17173D;
+    font-weight: bolder;
+    text-decoration-line: none;
+  }
+  .body_center a {
+    color: #17173D;
+    text-decoration-line: none;
+  }
+  hr {
+    border: 0px;
+    height: 5px;
+    background-color: rgb(219, 219, 219);
+  }
+  
+  .body_center {
+    width: 100%;
+    height: 1080px;
+    /* display: flex;
+    align-items: center; */
+    text-align: center;
+    background-color: white;
+  }
+  .body_center_main {
+    width: 1200px;
+    height: 1300px;
+  
+    display: flex;
+    align-items: center;
+  
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+  }
+  
+  #body_center_top {
+    width: 1200px;
+    height: 70px;
+    background-color: white;
+  }
+  #body_center_name {
+    width: 1200px;
+    height: 200px;
+    
+    /*가운데로 만들어줌*/
+    line-height: 250px;
+    text-align: center;
+  
+    color: #17173D;
+    font-size: 64px;
+    font-weight: bolder;
+    display: inline-block;
+  }
+  #body_center_search {
+    width: 1200px;
+    height: 50px;
+    line-height: 50px;
+  
+    /* text-align: right; */
+    /* align-items: right; */
+  
+    color: #17173D;
+    font-size: 30px;
+  }
+  .body_center_inner_search {
+    width: 200px;
+    height: 50px;
+    margin: 0 20px;
+  
+    display: flex;
+    float: right;
+  }
+  .body_center_inner_search1 {
+    width: 150px;
+    height: 50px;
+    margin: 0 20px;
+  
+    display: flex;
+    float: right;
+  }
+  #body_center_hashtag {
+    width: 1200px;
+    height: 50px;
+    color: #17173D;
+    font-size: 30px;
+    font-weight: bolder;
+  }
+  #body_center_list {
+    width: 1200px;
+    height: 920px; /*하나의 칸이 230px*/
+    color: #17173D;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+  
+  /* .App {
+    text-align: center;
+  } */
+  
+  /* .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  } */
+  
