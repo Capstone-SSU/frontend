@@ -57,7 +57,11 @@ import Nav from './pages/Nav';
 import Main from './pages/Main';
 import Lecture from './pages/Lecture';
 import Study from './pages/Study';
+import StudyAdd from './pages/StudyAdd';
+import StudyList from './pages/StudyList';
 import Loadmap from './pages/Loadmap';
+import LoadmapAdd from './pages/LoadmapAdd';
+import LoadmapList from './pages/LoadmapList';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -71,7 +75,11 @@ function App() {
           <Route path="/" exact={true} element={<Main/>} />
           <Route path='/lecture' element={<Lecture/>} />
           <Route path='/study' element={<Study/>} />
+          <Route path='/studyAdd' element={<StudyAdd/>} />
+          <Route path='/studyList' element={<StudyList/>} />
           <Route path='/loadmap' element={<Loadmap/>} />
+          <Route path='/loadmapAdd' element={<LoadmapAdd/>} />
+          <Route path='/loadmapList' element={<LoadmapList/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/mypage' element={<Mypage/>} />
           {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}

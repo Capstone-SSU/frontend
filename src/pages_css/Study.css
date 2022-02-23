@@ -92,6 +92,20 @@
     font-size: 18px;
     font-weight: bolder;
   }
+  #body_center_list2 {
+    width: 1200px;
+    height: 920px; /*하나의 칸이 230px*/
+    color: #17173D;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+  #body_center_add_circle {
+    width: 100px;
+    height: 100px;
+    position: absolute; right: 0px; bottom: 0px;
+    border-radius: 50%;
+    background-color: #3CD8D8;
+  }
   
   /* .App {
     text-align: center;

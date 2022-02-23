@@ -1,0 +1,111 @@
+#body_center_top {
+    width: 1200px;
+    height: 70px;
+    background-color: white;
+}
+
+#body_center_list {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: white;
+    background-color: #17173D;
+}
+#body_center_list_inner {
+    width: 50%;
+    text-align: left;
+    display: inline-block;
+}
+
+#body_center_list_inner_party {
+    width: 100%;
+    margin: 10px 10px;
+    text-align: right;
+}
+#body_center_list_inner_hashtag_peeple {
+    width: 100%;
+    margin: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+#body_center_list_inner_hashtag {
+    width: 90%;
+    text-align: left;
+}
+#body_center_list_inner_peeple {
+    width: 10%;
+    text-align: right;
+}
+#body_center_list_inner_onoff_location {
+    width: 100%;
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+}
+#body_center_list_inner_onoff {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 50%;
+    background-color: #3CD8D8;
+}
+#body_center_list_inner_location {
+    /* width: 10%; */
+    font-size: 22px;
+    margin: 0px 10px;
+    text-align: right;
+}
+#body_center_list_inner_title {
+    width: 100%;
+    margin: 30px 10px;
+    font-size: 30px;
+}
+#body_center_list_inner_description {
+    width: 100%;
+    margin: 30px 10px;
+    font-size: 22px;
+}
+
+
+
+#body_center_chat_list_inner_chat > hr {
+    height: 2px;
+}
+
+#body_center_chat_list {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+#body_center_chat_list_inner {
+    width: 60%;
+    text-align: center;
+    display: inline-block;
+}
+#body_center_chat_list_inner_write {
+    width: 100%;
+    height: 100px;
+    line-height: 150px;
+    text-align: right;
+}
+#body_center_chat_list_inner_chat {
+    width:100%;
+    height: auto;
+}
+#body_center_list_inner_profill {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 50%;
+    background-color: #3CD8D8;
+}
+#body_center_list_inner_description2 {
+    width: 100%;
+    margin: 20px 60px;
+    font-size: 22px;
+    text-align: left;
+}

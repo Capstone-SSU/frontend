@@ -1,0 +1,142 @@
+#loadmapList_body_center_inner {
+    width: 1200px;
+    height: 1080px;
+    text-align: center;
+    display: inline-block;
+    /* background-color: violet; */
+}
+
+#loadmapList_body_center_name_button {
+    /* width: 100%; */
+    margin: 10px 10px;
+    /* display: flex; */
+    /* float: right; */
+    text-align: right;
+    /* background-color: red; */
+}
+
+#loadmapList_circle0 {
+    width: 100px;
+    height: 100px;
+
+    left: 7.5%;
+    bottom: 83%;
+
+    position:absolute;
+    border-radius: 50%;
+    background-color: #3CD8D8;
+}
+#loadmapList_circle_last {
+    width: 30px;
+    height: 30px;
+
+    left: 40%;
+    bottom: 9%;
+
+    z-index: 998;
+    position:absolute;
+    border-radius: 50%;
+    background-color: #3CD8D8;
+}
+#loadmapList_body_center_inner_front {
+    width: 100px;
+    height: 1200px;
+    position: absolute;
+    text-align: center;
+    /* background-color: blueviolet; */
+}
+#loadmapList_body_center_inner_front_inner {
+    width: 10px;
+    height: 900px;
+    top: 15%;
+
+    z-index: 998;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    background-color: #3CD8D8;
+}
+
+#loadmapList_circle1 {
+    width: 60px;
+    height: 60px;
+
+    z-index: 999;
+    /* position:absolute; */
+    border-radius: 50%;
+    background-color: #3CD8D8;
+}
+#loadmapList_body_center_inner_box1 {
+    width: 98%;
+    height: 375px;
+    padding: 25px 0px 0px 25px;
+
+    display: flex;
+    font-size: 50px;
+    background-color: #17173D;
+}
+#loadmapList_body_center_inner_box2 {
+    width: 98%;
+    height: 375px;
+    padding: 25px 0px 0px 25px;
+
+    display: flex;
+    font-size: 50px;
+    background-color: gray;
+}
+
+
+#loadmapList_body_center_list_inner1 {
+    width: 45%;
+    /* display: flex; */
+    text-align: center;
+    /* background-color: red; */
+}
+#loadmapList_body_center_list_inner2 {
+    width: 50%;
+    padding: 20px;
+    /* text-align: left; */
+    /* display: inline-block; */
+    /* background-color: blue; */
+}
+#loadmapList_body_center_list_inner_picture {
+    width: 450px;
+    height: 350px;
+
+    text-align: center;
+    display: inline-block;
+    background-color: gray;
+}
+#loadmapList_body_center_list_inner_party {
+    width: 100%;
+    margin: 10px 10px;
+    text-align: right;
+}
+#loadmapList_body_center_list_inner_hashtag {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    color: white;
+}
+#loadmapList_body_center_list_inner_title {
+    width: 100%;
+    margin: 30px 10px;
+
+    text-align: left;
+    
+    font-size: 30px;
+    color: white;
+}
+#loadmapList_body_center_list_inner_description {
+    width: 100%;
+    margin: 30px 10px;
+
+    text-align: left;
+    font-size: 22px;
+    color: white;
+}
+
+#loadmapList_body_center_inner_update {
+    margin: 10px 10px;
+    text-align: right;
+}
