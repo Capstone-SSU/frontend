@@ -3,7 +3,7 @@
     font-weight: bolder;
     text-decoration-line: none;
   }
-  .body_center a {
+  #body_center a {
     color: #17173D;
     text-decoration-line: none;
   }
@@ -12,27 +12,25 @@
     height: 5px;
     background-color: rgb(219, 219, 219);
   }
-  
-  .body_center {
+  button {
+    width: 110px;
+    height: 38px;
+
+    border: 0;
+    outline: 0;
+
+    font-size: 20px;
+    font-weight: bolder;
+    color: #17173D;
+    background-color: #45AFBE;
+  }
+  #body_main {
     width: 100%;
-    height: 1080px;
-    /* display: flex;
-    align-items: center; */
+    height: auto;
+
     text-align: center;
     background-color: white;
   }
-  .body_center_main {
-    width: 1200px;
-    height: 1300px;
-  
-    display: flex;
-    align-items: center;
-  
-    display: inline-block;
-    text-align: center;
-    background-color: white;
-  }
-  
   #body_center_top {
     width: 1200px;
     height: 70px;
@@ -42,7 +40,6 @@
     width: 1200px;
     height: 200px;
     
-    /*가운데로 만들어줌*/
     line-height: 250px;
     text-align: center;
   
@@ -51,18 +48,25 @@
     font-weight: bolder;
     display: inline-block;
   }
-  #body_center_search {
+
+
+
+  #study_body_center_inner {
     width: 1200px;
+    height: auto;
+  
+    display: inline-block;
+  }
+  
+  #study_body_center_inner_search {
+    width: 100%;
     height: 50px;
     line-height: 50px;
-  
-    /* text-align: right; */
-    /* align-items: right; */
   
     color: #17173D;
     font-size: 30px;
   }
-  .body_center_inner_search {
+  .study_class_body_center_inner_search_searchCatagory {
     width: 200px;
     height: 50px;
     margin: 0 20px;
@@ -70,7 +74,7 @@
     display: flex;
     float: right;
   }
-  .body_center_inner_search1 {
+  #study_body_center_inner_search_location {
     width: 150px;
     height: 50px;
     margin: 0 20px;
@@ -78,33 +82,64 @@
     display: flex;
     float: right;
   }
-  #body_center_hashtag {
-    width: 1200px;
+
+  #study_body_center_hashtag {
+    width: 100%;
     height: 50px;
+
+    text-align: left;
+
     color: #17173D;
     font-size: 30px;
     font-weight: bolder;
   }
-  #body_center_list {
-    width: 1200px;
-    height: 920px; /*하나의 칸이 230px*/
+
+
+  
+  #study_body_center_inner_list {
+    width: 100%;
+    height: 1230px; /*하나의 칸이 230px*/
+    
     color: #17173D;
     font-size: 18px;
     font-weight: bolder;
   }
-  #body_center_list2 {
-    width: 1200px;
-    height: 920px; /*하나의 칸이 230px*/
-    color: #17173D;
+  #study_body_center_inner_list_individe1 {
+    width: 100%;
+    height: 220px;
+    padding: 10px 0px 0px 10px;
+    
     font-size: 18px;
     font-weight: bolder;
   }
-  #body_center_add_circle {
+  #study_body_center_inner_list hr {
+    height: 2px;
+  }
+
+
+
+  #study_body_center_add_circle {
     width: 100px;
     height: 100px;
     position: absolute; right: 0px; bottom: 0px;
     border-radius: 50%;
-    background-color: #3CD8D8;
+    background-color: #45AFBE;
+  }
+
+
+
+  #study_body_center_bottom_number1 {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+
+    border: 2px solid rgb(219, 219, 219);
+
+    font-size: 20px;
+    font-weight: bolder;
+    color: #17173D;
+    background-color: white;
   }
   
   /* .App {

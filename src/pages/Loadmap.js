@@ -4,7 +4,7 @@ import '../pages_css/Loadmap.css';
 
 const Loadmap = () => {
   return (
-    <div id='body_center'>
+    <div id='body_main'>
       <div id='body_center_top'></div>
       <div id='body_center_name'><Link to="/loadmap">로드맵</Link></div>
       <div id='loadmap_body_center_list'>
