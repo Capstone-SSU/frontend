@@ -1,0 +1,38 @@
+.body_box {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_card, .sub_card {
+    height:400px;
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.main_card {
+    height:470px;
+    background-color: #17173D;
+    color:white;
+}
+
+.text_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+#mainPicture {
+    margin-top:70px;
+    height:400px;
+}
+
+#subPicture {
+    height:300px;   
+}
