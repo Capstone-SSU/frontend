@@ -1,0 +1,82 @@
+#studiesAdd_hashtag {
+    width: 72%;
+    margin: 5px;
+
+    font-size: 22px;
+    text-align: left;
+}
+#studiesAdd_peeple {
+    width: 25%;
+    font-size: 22px;
+    
+    text-align: right;
+}
+#studiesAdd_onoff {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 50%;
+    background-color: #3CD8D8;
+}
+#studiesAdd_location {
+    width: 46%;
+    font-size: 22px;
+    margin: 0px 10px;
+    text-align: left;
+}
+#studiesAdd_study {
+    width: 47%;
+    font-size: 22px;
+    margin: 0px 10px;
+    text-align: left;
+}
+#studiesAdd_title {
+    width: 100%;
+    margin: 30px 20px;
+    font-size: 22px;
+    text-align: left;
+}
+#studiesAdd_description {
+    width: 100%;
+    margin: 30px 20px;
+
+    font-size: 22px;
+    text-align: left;
+}
+
+
+
+.studiesAdd_locationStudy > input {
+    width: 465px;
+    height: 50px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(219, 219, 219);
+}
+#studiesAdd_peeple > input {
+    width: 40px;
+    height: 50px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(219, 219, 219);
+}
+#studiesAdd_title > input {
+    width: 1110px;
+    height: 50px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(219, 219, 219);
+}
+#studiesAdd_description > input {
+    width: 1110px;
+    height: 470px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(219, 219, 219);
+}

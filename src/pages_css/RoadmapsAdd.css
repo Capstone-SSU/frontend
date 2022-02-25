@@ -1,0 +1,29 @@
+#roadmapsAdd_individe1 {
+    width: 480px;
+    height: 200px;
+}
+#roadmapsAdd_picture {
+    width: 200px;
+    height: 180px;
+    margin: 10px;
+
+    background-color: gray;
+}
+#roadmapsAdd_hashtag {
+    margin: 5px;
+
+    color: white;
+}
+#roadmapsAdd_title {
+    margin: 5px;
+
+    font-size: 22px;
+    font-weight: bolder;
+    color: white;
+}
+#roadmapsAdd_description {
+    margin: 5px;
+
+    font-size: 18px;
+    color: white;
+}

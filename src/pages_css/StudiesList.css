@@ -1,0 +1,74 @@
+#studiesList_onoff {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+
+    text-align: center;
+    
+    font-size: 25px;
+    font-weight: bolder;
+    border-radius: 50%;
+    color: #17173D;
+    background-color: #45AFBE;
+}
+#studiesList_location {
+    /* width: 10%; */
+    font-size: 22px;
+    margin: 0px 10px;
+    text-align: right;
+}
+#studiesList_title {
+    width: 100%;
+    margin: 30px 10px;
+    font-size: 30px;
+}
+#studiesList_description {
+    width: 100%;
+    margin: 30px 10px;
+    font-size: 22px;
+}
+
+
+
+#studiesList_mine_chatProfill {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 50%;
+    background-color: #45AFBE;
+}
+#studiesList_mine_chatNickname {
+    /* width: 10%; */
+    font-size: 22px;
+    margin: 0px 10px;
+    text-align: right;
+}
+
+
+
+#studiesList_chat > hr {
+    height: 2px;
+}
+#studiesList_chatProfill {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 50%;
+    background-color: #45AFBE;
+}
+#studiesList_chatNickname {
+    /* width: 10%; */
+    font-size: 22px;
+    margin: 0px 10px;
+    text-align: right;
+}
+#studiesList_chatDescription {
+    width: 100%;
+    margin: 20px 60px;
+    font-size: 22px;
+    text-align: left;
+}

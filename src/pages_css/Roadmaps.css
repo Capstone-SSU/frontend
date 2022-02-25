@@ -1,0 +1,54 @@
+#roadmaps_individe1 {
+    width: 370px;
+    height: auto;
+    margin: 5px;
+    padding: 0px 10px 0px 10px;
+
+    text-align: center;
+    display: inline-block;
+    color: white;
+    background-color: #17173D; /*white*/
+}
+#roadmaps_title1 {
+    width: 300px;
+    height: 50px;
+    margin: 45px 0px 30px 0px;
+
+    text-align: center;
+
+    font-size: 30px;
+    display: inline-block;
+}
+#roadmaps_language1_1 {
+    width: auto;
+    height: 20px;
+    padding: 0px 10px 18px 10px;
+
+    font-size: 25px;
+    color: #17173D;
+    border-radius: 10%;
+    background-color: rgb(219, 219, 219);
+}
+
+#roadmaps_individe2 {
+    width: 366px;
+    height: auto;
+    margin: 5px;
+    padding: 0px 10px 0px 10px;
+
+    text-align: center;
+    display: inline-block;
+
+    text-align: center;
+    display: inline-block;
+    border: 2px solid #17173D;
+    background-color: white; /*white*/
+}
+#roadmaps_title2 {
+    width: 300px;
+    height: 50px;
+
+    text-align: center;
+    display: inline-block;
+    background-color: red;
+}

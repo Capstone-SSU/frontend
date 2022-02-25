@@ -1,0 +1,177 @@
+  a {
+    color: #17173D;
+    font-weight: bolder;
+    text-decoration-line: none;
+  }
+  .header_main_inner3 > a {
+    color: #17173D;
+    font-weight: bolder;
+    text-decoration-line: none;
+  }
+  #body_center a {
+    color: #17173D;
+    text-decoration-line: none;
+  }
+  hr {
+    border: 0px;
+    height: 5px;
+    background-color: rgb(219, 219, 219);
+  }
+  button {
+    width: 110px;
+    height: 38px;
+
+    border: 0;
+    outline: 0;
+
+    font-size: 20px;
+    font-weight: bolder;
+    color: #17173D;
+    background-color: #45AFBE;
+  }
+  #body_main {
+    width: 100%;
+    height: auto;
+
+    text-align: center;
+    background-color: white;
+  }
+  #body_center_top {
+    width: 1200px;
+    height: 70px;
+    background-color: white;
+  }
+  #body_center_name {
+    width: 1200px;
+    height: 200px;
+    
+    line-height: 250px;
+    text-align: center;
+  
+    color: #17173D;
+    font-size: 64px;
+    font-weight: bolder;
+    display: inline-block;
+  }
+
+
+  
+  .studies_searchCatagory {
+    width: 200px;
+    height: 50px;
+    margin: 0 20px;
+  
+    display: flex;
+    float: right;
+  }
+
+
+  
+  #studies_list {
+    width: 100%;
+    height: 1230px;
+    
+    color: #17173D;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+  #studies_individe1 {
+    width: 100%;
+    height: 220px;
+    padding: 10px 0px 0px 10px;
+    
+    font-size: 18px;
+    font-weight: bolder;
+  }
+  #studies_list hr {
+    height: 2px;
+  }
+  #studies_onoff {
+    width: 50px; 
+    height: 50px; 
+    line-height: 50px; 
+    
+    font-size: 22px; 
+    border-radius: 50%; 
+    color: #17173D; 
+    background-color: #45AFBE; 
+  }
+  #studies_hashtag {
+    width: 1080px; 
+    height: 50px; 
+    line-height: 50px; 
+    
+    font-size: 22px; 
+    color: #17173D; 
+    text-align: left;
+  }
+  #studies_peaple {
+    font-size: 22px; 
+    color: #17173D;
+  }
+  #studies_title {
+    font-size: 30px; 
+    font-weight: bolder; 
+    color: #17173D;
+  }
+  #studies_description {
+    font-size: 22px;
+    color: #17173D;
+  }
+
+
+
+  #studies_number1 {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+
+    border: 2px solid rgb(219, 219, 219);
+
+    font-size: 20px;
+    font-weight: bolder;
+    color: #17173D;
+    background-color: white;
+  }
+  
+  /* .App {
+    text-align: center;
+  } */
+  
+  /* .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  } */
+  
