@@ -1,25 +1,40 @@
-.App {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.inner {
-    
-    margin-top:70px;
-}
-
-#mainLogo {
+#main_logo {
     width:150px;
-    margin-top:50px;
+    margin: 30px;
+    
+    text-align: center;
+    display: inline-block;
 }
 
-.input_label {
-    font-size: 18px;
+.main_emailPassword {
+    width: 100%;
+    margin: 20px 0px 20px 0px;
+
     font-weight: bolder;
+    text-align: left;
+}
+.main_emailPassword > div {
+    margin: 0px 0px 20px 0px;
+}
+.main_emailPassword > input{
+    width: 350px;
+    height: 30px;
+
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgb(219, 219, 219);
+
+    text-align: left;
 }
 
-#githubLogo {
-    width:40px;
+
+
+#main_login {
+    width: 350px;
+    margin: 0px 0px 10px 0px;
+}
+#main_githubLogo {
+    width: 30px;
+    height: 30px;
 }

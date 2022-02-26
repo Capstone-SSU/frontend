@@ -17,12 +17,13 @@
     height: 5px;
     background-color: rgb(219, 219, 219);
   }
-  button {
+  .button {
     width: 110px;
     height: 38px;
 
     border: 0;
     outline: 0;
+    
 
     font-size: 20px;
     font-weight: bolder;
