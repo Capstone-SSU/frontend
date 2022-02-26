@@ -1,0 +1,25 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.inner {
+    
+    margin-top:70px;
+}
+
+#mainLogo {
+    width:150px;
+    margin-top:50px;
+}
+
+.input_label {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#githubLogo {
+    width:40px;
+}
