@@ -3,7 +3,8 @@ import '../pages_css/Mypage.css';
 
 const Mypage = () => {
   return (
-    <div></div>
+    <div>
+    </div>
   );
 }
 

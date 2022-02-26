@@ -10,6 +10,7 @@ import RoadmapsAdd from './pages/RoadmapsAdd';
 import RoadmapsAdd2 from './pages/RoadmapsAdd2';
 import RoadmapsList from './pages/RoadmapsList';
 import Signin from './pages/Signin';
+import Signup from './pages/Signup';
 import Users from './pages/Users';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/roadmapsAdd2' element={<RoadmapsAdd2/>} />
           <Route path='/roadmapsList' element={<RoadmapsList/>} />
           <Route path='/signin' element={<Signin/>} />
+          <Route path='/signup' element={<Signup/>} />
           <Route path='/users' element={<Users/>} />
           {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}
         </Routes>

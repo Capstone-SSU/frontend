@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../pages_css/Main.css';
 import logo from '../logo.png';
 import mainPic from '../mainCoding.png';
 import subPic1 from '../subCoding1.png';
 import subPic2 from '../subCoding2.png';
 import subPic3 from '../subCoding3.png';
+import axios from 'axios';
+import $ from 'jquery';
+window.$ = $;
 
-const Main = () => {
+function Main () {
   return (
     <div className="App">
       <body>
