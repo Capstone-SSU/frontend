@@ -1,3 +1,33 @@
+#roadmapsAdd_mainTitle {
+    width: 100%;
+    margin: 30px 20px;
+    font-size: 22px;
+    text-align: left;
+}
+#roadmapsAdd_mainDescription {
+    width: 100%;
+    margin: 30px 20px;
+
+    font-size: 22px;
+    text-align: left;
+}
+#roadmapsAdd_mainTitle > input {
+    width: 800px;
+    height: 50px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(190, 190, 190);
+}
+#roadmapsAdd_mainDescription > input {
+    width: 800px;
+    height: 150px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(190, 190, 190);
+}
+
 #roadmapsAdd_individe1 {
     width: 480px;
     height: 200px;
@@ -26,4 +56,14 @@
 
     font-size: 18px;
     color: white;
+}
+
+
+
+.roadmapsAdd_box hr {
+    width: 500px;
+    background-color: #17173D;
+}
+.roadmapsAdd_individe1 hr {
+    background-color: #17173D;
 }

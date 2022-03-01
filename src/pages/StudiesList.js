@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../pages_css/StudiesList.css';
 
 const StudiesList = () => {
+    
   return (
     <div id="body_main">
         <div id="body_center_top"></div>
         <div style={{ width: '100%', height: 'auto', textAlign: 'center', color: 'white', backgroundColor: '#17173D', }}>
             <div style={{ width: '50%', textAlign: 'left', display: 'inline-block',}}>
-                <div style={{ width: '100%', margin: '10px 10px', textAlign: 'right', }}><button>참여하기</button></div>
+                <div style={{ width: '100%', margin: '10px 10px', textAlign: 'right', }}><button className="button">좋아요</button>5</div>
                 {/* <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>
                     <div id='studiesList_onoff'>프</div>
                     <div id='studiesList_location'>닉네임</div>
@@ -32,7 +33,7 @@ const StudiesList = () => {
 
         <div style={{ width: '60%', textAlign: 'center', display: 'inline-block', }}>
             <div style={{ width: '100%', height: '100px', lineHeight: '150px', textAlign: 'right', }}>
-                <button>댓글쓰기</button> {/* 취소 */}
+                <button className="button">댓글쓰기</button> {/* 취소 */}
             </div><hr/>
             <div style={{ width: '100%', height: 'auto', border: '3px solid rgb(219, 219, 219)', }}>
                 <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>

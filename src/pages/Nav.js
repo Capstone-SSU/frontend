@@ -13,7 +13,7 @@ function Nav() {
       console.log(localStorage.getItem('token'))
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
     }
-    axios.get('http://13.125.135.209:8080/temp-login-success', {
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
     }).then((response) => {});
   });
   return (

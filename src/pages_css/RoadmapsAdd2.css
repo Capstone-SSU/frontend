@@ -64,3 +64,13 @@
     font-size: 22px;
     color: white;
 }
+#roadmapsAdd2_description > input {
+    width: 500px;
+    height: 150px;
+
+    font-size: 22px;
+    text-align: left;
+
+    border: 0;
+    background-color: rgb(190, 190, 190);
+}

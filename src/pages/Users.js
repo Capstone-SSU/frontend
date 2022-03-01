@@ -12,17 +12,17 @@ const Users = () => {
     if (localStorage.getItem('token')) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     }
-    axios.get('http://13.125.135.209:8080/temp-login-success', {
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
     }).then((response) => { 
       console.log(response) 
-    });
+    }).catch((error) => { });
   });
 
   return (
     <div>
       <div id='body_center_top'></div>
       <button type="submit" id="users_login" className="button" onClick={() => {
-        axios.patch('http://13.125.135.209:8080/users/5', null, {
+        axios.patch('http://54.180.150.167:8080/users/5', null, {
           headers: {
               Authorization: 'Bearer '+ localStorage.getItem('token')
           }

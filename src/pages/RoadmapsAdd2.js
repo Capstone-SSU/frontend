@@ -23,7 +23,7 @@ const RoadmapsAdd2 = () => {
             </div>
 
             <div id='body_center_name'>
-                <input/>
+                나나나난 이것은 제목~
             </div>
             
             <div style={{ margin: '10px 10px', textAlign: 'right', }}><div style={{ width: '110px', height: '38px', }}></div></div>
@@ -39,8 +39,7 @@ const RoadmapsAdd2 = () => {
                     <div id="roadmapsAdd2_title">이것은 제목입니다.</div>
                     <hr/>
                     <div id="roadmapsAdd2_description">
-                        개천재가 쓴 내용입니다.<br/>
-                        나는야 개천재.
+                        <input/>
                     </div>
                 </div>
             </div>
@@ -65,11 +64,12 @@ const RoadmapsAdd2 = () => {
             <div class='roadmapsAdd2_flex'>
                 <div style={{ width: '100px', height: '35px', }}></div>
                 <div style={{ height: '35px', lineHeight: '80px', fontSize: '20px', color: '#17173D', fontWeight: 'bolder', }}>
-                    추천대상 | <input/>
+                    추천대상 | 
                 </div>
             </div>
             <div style={{ margin: '10px 10px', textAlign: 'right', }}>
-                <button><Link to='/roadmaps'>글추가</Link></button>
+            <button className="button"><Link to='/roadmaps'>취소</Link></button>
+                <button className="button"><Link to='/roadmaps'>글추가</Link></button>
             </div>
         </div>
     </div>

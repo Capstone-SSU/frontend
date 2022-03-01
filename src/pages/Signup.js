@@ -34,7 +34,7 @@ const Signup = () => {
         <input type='text' id="signup_nickname"/><button className="button">중복확인</button>
       </div>
       <button type="submit" id="signup_login" className="button" onClick={() => {
-        axios.post('http://13.125.135.209:8080/signin', {
+        axios.post('http://54.180.150.167:8080/signin', {
           email: 'hey2@naver.com',
           password: 'hey2pwd',
         }).then((response)=>{

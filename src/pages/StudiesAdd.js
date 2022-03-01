@@ -28,7 +28,7 @@ const StudiesAdd = () => {
 
           <div id="studiesAdd_description">내용 <input /></div>
 
-          <div style={{ width: '98%', margin: '10px 10px', textAlign: 'right', }}><button>글추가</button></div>
+          <div style={{ width: '98%', margin: '10px 10px', textAlign: 'right', }}><button className="button">글추가</button></div>
       </div>
     </div>
   );
