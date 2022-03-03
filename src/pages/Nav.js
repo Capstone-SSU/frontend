@@ -5,16 +5,15 @@ import logo from '../logo.png';
 import axios from "axios";
 
 var login = !(localStorage.getItem('token'))
-console.log(login)
 
 function Nav() {
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      console.log(localStorage.getItem('token'))
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
     }
-    axios.get('http://54.180.150.167:8080/temp-login-success', {
-    }).then((response) => {});
+    axios.get('http://54.180.150.167:8080/temp-login-success', {}, localStorage.getItem('token'), {
+    }).then((response) => {
+    }).catch();
   });
   return (
     <>

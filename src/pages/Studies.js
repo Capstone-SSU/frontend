@@ -14,115 +14,94 @@ function studiesF(list) {
   console.log(list)
   for (var i = 0; i < list.length; i++) {
     studies +=
-    "<Link to='/studies/studyId'>" +
-    "<div id='  #studies_individe1'>" +
-    "<div style={{ display: 'flex', }}>" +
-      "<div id='studies_onoff'>온</div>" +
-      "<div>" +
-        "<div style={{ height: '50px', display: 'flex', }}>" +
-          "<div id='studies_hashtag'>&nbsp;&nbsp;&nbsp;해시태그</div>" +
-          "<div>" +
-            "<div id='studies_peaple'>5/3</div>" +
-          "</div>" +
-        "</div>" +
-        "<div style={{ width: '100%', margin: '10px', textAlign: 'left', }}>" +
-          "<div id='studies_title'>이것은 제목입니다.</div>" +
-          "<div style={{ width: '100%', height: '20px'}}></div>" +
-          "<div id='studies_description'>" +
-          "</div>" +
-        "</div>" +
+    "<a href='/studies/"+ list[i].studyPostId +"'>" +
+    "<div id='studies_individe1'>" +
+      "<div id='body_flex' >" +
+        "<div id='studies_profill'>" + list[i].studyPostWriter.userProfileImg + "</div>" +
+        "<div id='studies_title'>" + list[i].studyTitle + "</div>" +
+        "<div id='studies_like'>" + list[i].studyLikeCount + "</div>" +
       "</div>" +
-    "</div>" +
+      "<div id='body_height'></div>" + 
+      "<div id='body_flex' >" +
+        "<div id='studies_together'>" + list[i].studyRecruitState + "</div>" + 
+        "<div id='studies_location'>" + list[i].studyLocation + "</div>" +
+        "<div id='studies_hashtag'>" + list[i].studyCategoryName + "</div>" +
+        "<div id='studies_date'>" + list[i].studyCreatedDate.slice(0, 10) + "</div>" +
+      "</div>" +
   "</div><hr/>" +
-    "</Link>"
+  "</a>"
+
     
   }
-  console.log(studies)
+
   return studies;
 }
 
 const Studies = () => {
   axios.get('http://54.180.150.167:8080/studies', {
-    email: $('#signin_email').val(),
-    password: $('#signin_password').val(),
+
   }).then((response)=>{
       const element = document.getElementById('studies_list')
       element.innerHTML = studiesF(response.data.data)
+      const element2 = document.getElementById('studies_count')
+      element2.innerHTML = "스터디 총 " + response.data.data.length + "개"
   }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
 
   return (
     <div id="body_main">
       <div id='body_center_top'></div>
-      <div id='body_center_name'><Link to="/studis">스터디</Link></div>
+      <div id='body_center_name' style={{ height: '130px', }}></div>
       
-      <div style={{ width: '1200px', height: 'auto', display: 'inline-block', }}>
+      <div style={{ width: '100%', height: '50px', lineHeight: '50px', color: '#17173D', fontSize: '22px', }}>
         
-        <div style={{ width: '100%', height: '50px', lineHeight: '50px', color: '#17173D', fontSize: '30px', }}>
-          <div className="studies_searchCatagory">
-            <input href='' />
-            <img src={search}/>
-          </div>
-          <div className="studies_searchCatagory"><a href=''>카테고리</a></div>
-          <div style={{ width: '150px', height: '50px', margin: '0 20px', display: 'flex', float: 'right', }}><a href=''>지역</a></div>
-        </div><hr/>
-
-        <div style={{width: '100%', height: '50px', textAlign: 'left', color: '#17173D', fontSize: '30px', fontWeight: 'bolder', }}>
-          해시태그
-        </div><hr/>
-
-        <div id='studies_list'>
+        <div style={{ width: '100%', backgroundColor: 'red'}}>
+          <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', }}></div>
+          <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}><a href=''>지역^</a></div>
+          <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}><a href=''>카테고리^</a></div>
           
-            {/* <div id='  #studies_individe1'>
+          <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'right', }}></div>
+          <div style={{ width: '500px', height: '50px', margin: '0 20px', padding: '0px 20px', float: 'right',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
+            <div className="studies_searchCatagory">
+              <input style={{ border: '0', }} placeholder='스터디를 입력하세요' />
+              <img src={search}/>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div style={{ height: '30px', }}></div>
+
+      <div style={{ width: '100%', height: 'auto', backgroundColor: 'rgb(240, 240, 240)', }}>
+        <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>
+          <Link to="/studiesAdd"><div style={{ height: '70px', lineHeight: '60px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }}>스터디글 작성하기</div></Link>
+          <div style={{ textAlign: 'left', display: 'flex', fontSize: '18px', fontWeight: 'bolder', }}>
+            <div id='studies_count' style={{ width: '150px',  }}>스터디 개수</div>
+            <div style={{ width:'70px', }}>최신순^</div>
+            <div style={{ width:'200px', }}>모집 중인 스터디만 보기</div>
+          </div>
+
+          <div id='studies_list'>
+          </div><hr/>
+
+          <div style={{ height: '100px', textAlign: 'center', }}></div>
+          <div style={{ height: '100px', textAlign: 'center', }}>
+            <div style={{ textAlign: 'center', display: 'inline-block', }}>
               <div style={{ display: 'flex', }}>
-
-                <div id='studies_onoff'>온</div>
-                <div>
-
-                  <div style={{ height: '50px', display: 'flex', }}>
-                    <div id='studies_hashtag'>&nbsp;&nbsp;&nbsp;해시태그</div>
-                    <div>
-                      <div id='studies_peaple'>5/3</div>
-                    </div>
-                  </div>
-
-                  <div style={{ width: '100%', margin: '10px', textAlign: 'left', }}>
-                    <div id='studies_title'>이것은 제목입니다.</div>
-                    <div style={{ width: '100%', height: '20px'}}></div>
-                    <div id='studies_description'>
-                        개천재가 쓴 내용입니다.<br/>
-                        나는야 개천재.
-                    </div>
-                  </div>
+                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
 
                 </div>
-
-              </div>
-            </div><hr/> */}
-        </div><hr/>
-
-        <div>
-          <Link to="/studiesAdd">
-            <div style={{ width: '100px', height: '100px', position: 'absolute', right: '0px', bottom: '0px', borderRadius: '50%', backgroundColor: '#45AFBE', }}>
-            </div>
-          </Link>
-        </div>
-
-        <div style={{ height: '100px', textAlign: 'center', }}></div>
-        <div style={{ height: '100px', textAlign: 'center', }}>
-          <div style={{ textAlign: 'center', display: 'inline-block', }}>
-            <div style={{ display: 'flex', }}>
-              <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
-
-              </div>
-              <div id='studies_number1'>1</div>
-              <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
-                
+                <div id='studies_number1'>1</div>
+                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
+                  
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
+
     </div>
   );
 }

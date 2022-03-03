@@ -1,74 +1,146 @@
-#studiesList_onoff {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-
-    text-align: center;
-    
-    font-size: 25px;
-    font-weight: bolder;
-    border-radius: 50%;
-    color: #17173D;
-    background-color: #45AFBE;
-}
-#studiesList_location {
-    /* width: 10%; */
-    font-size: 22px;
-    margin: 0px 10px;
-    text-align: right;
-}
 #studiesList_title {
-    width: 100%;
-    margin: 30px 10px;
-    font-size: 30px;
+    font-size: 35px;
+    font-weight: bolder;
 }
-#studiesList_description {
-    width: 100%;
-    margin: 30px 10px;
-    font-size: 22px;
+#studiesList_profill {
+    width: 50px; 
+    height: 50px; 
+    line-height: 50px; 
+    
+    font-size: 22px; 
+    border-radius: 50%; 
+    color: #17173D; 
+    background-color: #45AFBE; 
 }
+#studiesList_writeUsername {
+    width: auto; 
+    height: 50px; 
+    margin: 0px 0px 0px 10px;
+    line-height: 50px;
+    
+    font-size: 22px; 
+    border-radius: 50%; 
+    color: #17173D;
+}
+#studiesList_top {
+    margin: 15px 0px 20px 0px;
+}
+#studiesList_together {
+    width: auto;
+    height: 25px;
+    margin: 5px 7px 5px 7px;
+    padding: 3px 7px 3px 7px;
 
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #17173D;
+}
+#studiesList_like {
+    width: auto;
+    height: 25px;
+    margin: 5px 7px 5px 0px;
+    padding: 3px 7px 3px 7px;
 
-
-#studiesList_mine_chatProfill {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 22px;
-    border-radius: 50%;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
     background-color: #45AFBE;
 }
-#studiesList_mine_chatNickname {
-    /* width: 10%; */
-    font-size: 22px;
-    margin: 0px 10px;
-    text-align: right;
-}
 
-
-
-#studiesList_chat > hr {
-    height: 2px;
-}
-#studiesList_chatProfill {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 22px;
-    border-radius: 50%;
-    background-color: #45AFBE;
-}
-#studiesList_chatNickname {
-    /* width: 10%; */
-    font-size: 22px;
-    margin: 0px 10px;
-    text-align: right;
-}
-#studiesList_chatDescription {
+#studiesList_box {
     width: 100%;
-    margin: 20px 60px;
-    font-size: 22px;
+    height: auto;
+    padding: 20px 0px 20px 0px;
+
     text-align: left;
+    border-radius: 10px;
+    background-color: white;
+}
+#studiesList_box1 {
+    padding: 8px 20px 8px 20px;
+    color: rgb(150, 150, 150);
+    font-weight: bolder;
+}
+#studiesList_box2 {
+    padding: 8px 20px 8px 20px;
+}
+#studiesList_hr {
+    width: 1100px;
+    height: 1px;
+}
+#studiesList_content {
+    padding: 20px;
+    height: auto;
+}
+
+#studiesList_box3 {
+    width: 100%;
+    height: auto;
+    padding: 15px 0px 15px 0px;
+
+    text-align: left;
+    border-radius: 10px;
+    background-color: white;
+}
+#studiesList_box3 > input {
+    /* width: 1000px; */
+    height: 25px;
+    margin: 0px 10px 0px 25px;
+
+    border: 0;
+}
+#studiesList_box3 > button {
+    /* width: 1000px; */
+    height: 25px;
+    margin: 0px 10px 0px 25px;
+
+    border: 1px solid #17173D;
+    color: #17173D;
+    border-radius: 5px;
+    background-color: white;
+}
+
+
+
+#studiesList_individe2 {
+    margin: 20px 0px 0px 20px;
+}
+#studiesList_nestedComments {
+    margin: 10px 0px 0px 30px;
+}
+#studiesList_commentsProfill {
+    width: 30px; 
+    height: 30px; 
+    line-height: 30px; 
+    margin: 10px 0px 0px 0px;
+    
+    font-size: 16px; 
+    border-radius: 50%; 
+    color: #17173D; 
+    background-color: #45AFBE; 
+}
+#studiesList_commentsWriteUsername {
+    width: auto; 
+    height: 30px; 
+    margin: 10px 0px 0px 10px;
+    line-height: 30px;
+    
+    font-size: 16px; 
+    border-radius: 50%; 
+    color: #17173D;
+}
+#studiesList_commentsContent {
+    width: auto; 
+    height: 30px; 
+    margin: 10px 0px 0px 35px;
+    line-height: 30px;
+    
+    font-size: 16px; 
+    border-radius: 50%; 
+    color: #17173D;
+}
+#a {
+    width: 30px;
+    background-color: red;
 }
