@@ -84,16 +84,6 @@ function StudiesListCommentsF(list) {
 
         studiesList += "</div>"
     }
-    // for (var i = 0; i < list.length; i++) {
-    //     console.log(i)
-    //     studiesList +=
-    //     "<div id='studiesList_individe'>" +
-    //         "<div id='body_flex'>" +
-    //             "<div>" + list[i].commnetWriter.userProfile + "</div>" +
-    //             "<div>" + list[i].commentWriter.userNickname + "</div>" +
-    //         "</div>" +
-    //     "</div>"
-    // }
   
     return studiesList;
 }
@@ -101,14 +91,19 @@ function StudiesListCommentsF(list) {
 const StudiesList = () => {
     var current = ''
     current += String(decodeURI(window.location.href));
-    axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {}, localStorage.getItem('token'), {
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+        }
+        axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
 
-    }).then((response)=>{
-        const element = document.getElementById('studiesList_list')
-        element.innerHTML = StudiesListF(response.data.data)
-        const element2 = document.getElementById('studiesList_comments')
-        element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments)
-    }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
+        }, localStorage.getItem('token'),).then((response)=>{
+            const element = document.getElementById('studiesList_list')
+            element.innerHTML = StudiesListF(response.data.data)
+            const element2 = document.getElementById('studiesList_comments')
+            element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments)
+        }).catch((error) => { alert('스터디 페이지에 오류가 있습니다.') })
+    });
     
     return (
         <div id="body_main">
@@ -123,55 +118,7 @@ const StudiesList = () => {
                 </div>
 
             </div>
-            {/* <div style={{ width: '100%', height: 'auto', textAlign: 'center', color: 'white', backgroundColor: '#17173D', }}>
-                <div style={{ width: '50%', textAlign: 'left', display: 'inline-block',}}>
-                    <div style={{ width: '100%', margin: '10px 10px', textAlign: 'right', }}><button className="button">좋아요</button>5</div>
-
-                    <div style={{ width: '100%', margin: '10px 10px', display: 'flex', }}>
-                        <div style={{ width: '90%', textAlign: 'left', }}>해시태그</div>
-                        <div style={{ width: '10%', textAlign: 'right', }}>5/3</div>
-                    </div>
-                    <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>
-                        <div id='studiesList_onoff'>온</div>
-                        <div id='studiesList_location'>위치 | 스터디</div>
-                    </div>
-                    <div id="studiesList_title">이것은 제목입니다.</div>
-                    <hr/>
-                    <div id="studiesList_description">
-                        개천재가 쓴 내용입니다.<br/>
-                        나는야 개천재.
-                    </div>
-                </div>
-            </div>
-
-
-            <div style={{ width: '60%', textAlign: 'center', display: 'inline-block', }}>
-                <div style={{ width: '100%', height: '100px', lineHeight: '150px', textAlign: 'right', }}>
-                    <button className="button">댓글쓰기</button>
-                </div><hr/>
-                <div style={{ width: '100%', height: 'auto', border: '3px solid rgb(219, 219, 219)', }}>
-                    <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>
-                        <div id='studiesList_mine_chatProfill'>프</div>
-                        <div id='studiesList_mine_chatNickname'>닉네임</div>
-                    </div>
-                    <div id='studiesList_mine_chatDescription'>
-                        <input type='text' style={{ width: '100%', height: '50px', margin: '0px 0px 20px 0px', }}/>
-                    </div>
-                </div>
-
-                <div id='studiesList_chat'>
-                    <div id='studiesList_chatIndivide1'>
-                        <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>
-                            <div id='studiesList_chatProfill'>프</div>
-                            <div id='studiesList_chatNickname'>닉네임</div>
-                        </div>
-                        <div id='studiesList_chatDescription'>
-                            개천재가 쓴 내용입니다.<br/>
-                            나는야 개천재.
-                        </div>
-                    </div><hr/>
-                </div>
-            </div> */}
+            <div style={{ width: '100%', height: '70px', }}></div>
         </div>
     );
 }

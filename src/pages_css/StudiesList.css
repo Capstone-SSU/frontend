@@ -10,7 +10,7 @@
     font-size: 22px; 
     border-radius: 50%; 
     color: #17173D; 
-    background-color: #45AFBE; 
+    background-color: #45AFBE;
 }
 #studiesList_writeUsername {
     width: auto; 
@@ -126,14 +126,15 @@
     margin: 10px 0px 0px 10px;
     line-height: 30px;
     
-    font-size: 16px; 
-    border-radius: 50%; 
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 50%;
     color: #17173D;
 }
 #studiesList_commentsContent {
     width: auto; 
     height: 30px; 
-    margin: 10px 0px 0px 35px;
+    margin: 0px 0px 0px 35px;
     line-height: 30px;
     
     font-size: 16px; 

@@ -11,10 +11,13 @@ function Nav() {
     if (localStorage.getItem('token')) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
     }
-    axios.get('http://54.180.150.167:8080/temp-login-success', {}, localStorage.getItem('token'), {
-    }).then((response) => {
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
+    }, localStorage.getItem('token')).then((response) => {
     }).catch();
+    login = !(localStorage.getItem('token'))
   });
+  login = !(localStorage.getItem('token'))
+
   return (
     <>
         <div className="header_main">
