@@ -26,7 +26,7 @@ const RoadmapsList = () => {
                 나나나난 이것은 제목~
             </div>
             
-            <div style={{ margin: '10px 10px', textAlign: 'right', }}><button className="button">좋아요</button></div>
+            <div style={{ margin: '10px 10px', textAlign: 'right', }}><button>좋아요</button></div>
 
             <div id='roadmapsList_box1'>
                 <div style={{ width: '60px', height: '60px', }}></div>
@@ -69,7 +69,7 @@ const RoadmapsList = () => {
                 </div>
             </div>
             <div style={{ margin: '10px 10px', textAlign: 'right', }}>
-                <button className="button">수정하기</button>
+                <button>수정하기</button>
             </div>
         </div>
     </div>

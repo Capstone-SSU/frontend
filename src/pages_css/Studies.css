@@ -17,7 +17,7 @@
     height: 5px;
     background-color: rgb(240, 240, 240);
   }
-  .button {
+  button {
     width: 110px;
     height: 38px;
 
@@ -253,6 +253,24 @@
     font-weight: bolder;
     color: #17173D;
     background-color: white;
+  }
+
+
+
+  #studies_locationSearch {
+    width: 67px;
+  }
+  #studies_catagorySearch {
+    width: 110px;
+  }
+  .studies_search {
+    /* width: auto; */
+    border: 0;
+    font-size: 22px;  
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
 

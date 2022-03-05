@@ -93,8 +93,8 @@ const RoadmapsAdd = () => {
           </div>
 
           <div style={{ margin: '10px 0px 10px 0px', textAlign: 'right', }}>
-            <button className='button'><Link to='/roadmaps'>취소</Link></button>
-            <button className='button'><Link to='/roadmapsAdd2'>다음</Link></button>
+            <button><Link to='/roadmaps'>취소</Link></button>
+            <button><Link to='/roadmapsAdd2'>다음</Link></button>
           </div>
       </div>
     </div>

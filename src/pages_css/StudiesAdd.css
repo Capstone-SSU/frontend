@@ -18,16 +18,16 @@
     text-align: center;
     font-size: 25px;
     border-radius: 50%;
-    background-color: #3CD8D8;
+    background-color: #45AFBE;
 }
 #studiesAdd_location {
-    width: 46%;
+    width: 60%;
     font-size: 22px;
     margin: 0px 10px;
     text-align: left;
 }
-#studiesAdd_study {
-    width: 47%;
+#studiesAdd_category {
+    width: 60%;
     font-size: 22px;
     margin: 0px 10px;
     text-align: left;

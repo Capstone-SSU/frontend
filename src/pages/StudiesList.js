@@ -1,16 +1,46 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import '../pages_css/StudiesList.css';
+import like from '../like.png';
+import likeFill from '../likeFill.png';
 
 import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
 
-function StudiesListF(list) {
+// console.log(parseInt(current.split("/")[4]))
+// axios.delete('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
+
+// }, localStorage.getItem('token'),).then(()=>{
+// navigate('/studies')
+// }).catch((error) => { 
+// alert('스터디 글삭제 실패')
+// })
+
+function DeleteF() {
+    console.log("delete");
+}
+
+function Button(write) {
+    return (
+        <div id="body_flex">
+            { write ? 
+            <button id="studiesList_button">수정하기</button>:<button id="studiesList_button" onClick={DeleteF}>삭제하기</button>}
+        </div>
+        // '<div id="body_flex">' + 
+        //     '<button id="studiesList_button">수정하기</button>' +
+        //     '<button id="studiesList_button" onClick="' + DeleteF + '">삭제하기</button>' +
+        // '</div>'
+    );
+}
+
+function StudiesListF(list, studyId) {
+    // Button(list.isThisUserPostWriter)
     var studiesList = '';
-  
     studiesList +=
-    "<div id='studiesList_individe1'>" +
-        "<div>" + list.isThisUserPostWriter + "</div>" +
+    "<div id='studiesList_individe1'>" + Button() +
+        ( list.isThisUserPostWriter ?
+        '<div id="body_flex"><button id="studiesList_button">수정하기</button><button id="studiesList_button" onClick="' + DeleteF + '">삭제하기</button></div>' : '') +
         "<div id='body_flex' >" +
             "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
             "<div id='studiesList_profill'>" + list.studyPostWriter.userProfileImg + "</div>" +
@@ -37,7 +67,9 @@ function StudiesListF(list) {
                     "<div id='studiesList_box2'>" + list.studyMinReq + "~" + list.studyMaxReq + " 명</div>" +
                     "<div id='studiesList_box2'>" + list.studyCreatedDate.slice(0, 10) + "</div>" +
                 "</div>" +
-                "<div>" + list.isLikedByUser + list.likeCount + " | 신고하기</div>" +
+                "<div>" + 
+                (list.isLikedByUser ? '<img src="' + likeFill + '"/>' : '<img src="' + like + '"/>') + 
+                list.likeCount + " | <button>신고하기</button></div>" +
             "</div><hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
         "</div>" +
@@ -89,6 +121,7 @@ function StudiesListCommentsF(list) {
 }
 
 const StudiesList = () => {
+    const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
     useEffect(() => {
@@ -99,10 +132,12 @@ const StudiesList = () => {
 
         }, localStorage.getItem('token'),).then((response)=>{
             const element = document.getElementById('studiesList_list')
-            element.innerHTML = StudiesListF(response.data.data)
+            element.innerHTML = StudiesListF(response.data.data, parseInt(current.split("/")[4]))
             const element2 = document.getElementById('studiesList_comments')
             element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments)
-        }).catch((error) => { alert('스터디 페이지에 오류가 있습니다.') })
+        }).catch((error) => { 
+            navigate('/signin')
+        })
     });
     
     return (
@@ -119,6 +154,9 @@ const StudiesList = () => {
 
             </div>
             <div style={{ width: '100%', height: '70px', }}></div>
+            {/* <button onClick={() => {
+
+            }}>임시삭제</button> */}
         </div>
     );
 }
