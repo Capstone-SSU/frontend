@@ -150,7 +150,7 @@ const Studies = () => {
             </div>
             <div style={{ width: '720px', }}></div>
             
-            <label class="switch-button">
+            <label className="switch-button">
               <input id='studies_togetherTrue' type='checkbox' onClick={() => {
                 axios.get('http://54.180.150.167:8080/studies', {
                 }).then((response)=>{
@@ -160,7 +160,7 @@ const Studies = () => {
                     element2.innerHTML = "스터디 총 " + response.data.data.length + "개"
                 }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
               }}/>
-            <span class="onoff-switch"></span>
+            <span className="onoff-switch"></span>
           </label>
 
             <div style={{ width: '20px', height: '10px', }}></div><div style={{ width:'220px', }}>모집중인 스터디만 보기</div>

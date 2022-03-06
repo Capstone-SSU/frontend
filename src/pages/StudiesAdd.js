@@ -11,7 +11,7 @@ const StudiesAdd = () => {
   return (
     <div id='body_main'>
       <div id='body_center_top'></div>
-      <div id='body_center_name'><Link to="/studies">스터디</Link></div>
+      <div id='body_center_name'>스터디 추가</div>
 
       <div style={{ width: '1200px', height: '810px', display: 'inline-block', }}>
           <div style={{ width: '100%', margin: '10px 10px', display: 'flex', alignItems: 'center', }}>
@@ -25,8 +25,8 @@ const StudiesAdd = () => {
               <div id='studiesAdd_onoff'>온</div>
             </div> */}
 
-              <div id='studiesAdd_location' class='studiesAdd_locationStudy'>지역 <input id='studiesAdd_locationInput' /></div>
-              <div id='studiesAdd_category' class='studiesAdd_locationStudy'>카테고리 <input id='studiesAdd_categoryInput' /></div>
+              <div id='studiesAdd_location' className='studiesAdd_locationStudy'>지역 <input id='studiesAdd_locationInput' /></div>
+              <div id='studiesAdd_category' className='studiesAdd_locationStudy'>카테고리 <input id='studiesAdd_categoryInput' /></div>
           </div>
 
           <div id="studiesAdd_title">제목 <input id="studiesAdd_titleInput" /></div>

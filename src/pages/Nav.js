@@ -4,19 +4,31 @@ import '../pages_css/Nav.css';
 import logo from '../logo.png';
 import axios from "axios";
 
-var login = !(localStorage.getItem('token'))
+function SigninUserF(message) {
+  if (message === "로그인 성공")
+    return (
+      '<a href="/users">마이페이지</a>'
+    );
+  else
+    return (
+      '<a href="/signin">로그인</a>'
+    );
+}
 
 function Nav() {
+  // var login = !(localStorage.getItem('token'))
   useEffect(() => {
     if (localStorage.getItem('token')) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
     }
     axios.get('http://54.180.150.167:8080/temp-login-success', {
     }, localStorage.getItem('token')).then((response) => {
+      const element = document.getElementById('header_signinUsers')
+      element.innerHTML = SigninUserF(response.data.message)
     }).catch();
-    login = !(localStorage.getItem('token'))
+    // login = !(localStorage.getItem('token'))
   });
-  login = !(localStorage.getItem('token'))
+  // login = !(localStorage.getItem('token'))
 
   return (
     <>
@@ -29,7 +41,8 @@ function Nav() {
           </div>
           <div id="header_main_center2" className="header_main_inner"></div>
           <div id="header_main_login" className="header_main_inner">
-            <div className="header_main_inner3">{login ? <Link to="/signin">로그인</Link> : <Link to="/users">마이페이지</Link> }</div>
+          <div id='header_signinUsers' className="header_main_inner3"></div>
+            {/* <div id='header_signinUsers' className="header_main_inner3">{login ? <Link to="/signin">로그인</Link> : <Link to="/users">마이페이지</Link> }</div> */}
           </div>
         </div>
     </>

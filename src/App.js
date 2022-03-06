@@ -3,8 +3,9 @@ import Nav from './pages/Nav';
 import Main from './pages/Main';
 import Lectures from './pages/Lectures';
 import Studies from './pages/Studies';
-import StudiesAdd from './pages/StudiesAdd';
 import StudiesList from './pages/StudiesList';
+import StudiesAdd from './pages/StudiesAdd';
+import StudiesUpdate from './pages/StudiesUpdate';
 import Roadmaps from './pages/Roadmaps';
 import RoadmapsAdd from './pages/RoadmapsAdd';
 import RoadmapsAdd2 from './pages/RoadmapsAdd2';
@@ -23,8 +24,9 @@ function App() {
           <Route path="/" exact={true} element={<Main/>} />
           <Route path='/lectures' element={<Lectures/>} />
           <Route path='/studies' element={<Studies/>} />
-          <Route path='/studiesAdd' element={<StudiesAdd/>} />
           <Route path='/studies/:studyId' element={<StudiesList/>} />
+          <Route path='/studiesAdd' element={<StudiesAdd/>} />
+          <Route path='/studiesUpdate/:studyId' element={<StudiesUpdate/>} />
           <Route path='/roadmaps' element={<Roadmaps/>} />
           <Route path='/roadmapsAdd' element={<RoadmapsAdd/>} />
           <Route path='/roadmapsAdd2' element={<RoadmapsAdd2/>} />
