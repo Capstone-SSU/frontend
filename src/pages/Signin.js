@@ -46,10 +46,9 @@ const LoginForm = () => {
           email: $('#signin_email').val(),
           password: $('#signin_password').val(),
         }).then((response)=>{
-          console.log(response)
           localStorage.setItem('token', response.data.data.jwtToken)
           if (response.data.message === "로그인 성공") {
-            navigate("/?token=" + response.data.data.jwtToken);
+            navigate("/");
           }
         }).catch((error) => { alert('로그인 실패') })
       }}>로그인</button>

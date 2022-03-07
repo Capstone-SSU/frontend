@@ -39,8 +39,12 @@ const StudiesAdd = () => {
                 alert('모집 최대인원이 모집 최소인원보다 작을 수 없습니다')
                 return
               }
-              if ($('#studiesAdd_titleInput').val()==='' || $('#studiesAdd_descriptionInput').val()==='' || $('#studiesAdd_locationInput').val()==='' || $('#studiesAdd_categoryInput').val()==='' || $('#studiesAdd_max').val()==='' || $('#studiesAdd_max').val()===0 || $('#studiesAdd_min').val()==='' || $('#studiesAdd_min').val()===0) {
+              if ($('#studiesAdd_titleInput').val()==='' || $('#studiesAdd_descriptionInput').val()==='' || $('#studiesAdd_locationInput').val()==='' || $('#studiesAdd_categoryInput').val()==='' || $('#studiesAdd_max').val()==='' || $('#studiesAdd_min').val()==='') {
                 alert('빈 칸이 있습니다')
+                return
+              }
+              if ($('#studiesAdd_max').val()==='0' || $('#studiesAdd_min').val()==='0') {
+                alert('인원은 1명 이상이어야 합니다')
                 return
               }
               axios.post('http://54.180.150.167:8080/studies', {

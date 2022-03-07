@@ -24,6 +24,82 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script src='http://code.jquery.com/jquery-latest.min.js'></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function NestedCommentsF(a) {
+        console.log(a)
+        if ($('#studiesList_nestedcommnetsAdd2'+a).css("display") === "none"){
+          $('#studiesList_nestedcommnetsAdd2'+a).show()
+        }
+        else
+          $('#studiesList_nestedcommnetsAdd2'+a).hide()
+      }
+      function NestedCommentsAddF(a, studyId) {
+        console.log(a + " " + studyId)
+        if (localStorage.getItem('token')) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+        }
+        // $.ajax({
+        //   type: "DELETE",
+        //   url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
+        //   beforeSend: function (xhr) {
+        //       xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+        //   },
+        //   success: ()=>{ location.replace("/studies/" + studyId) },
+        //   error: ()=>{ alert('스터디 댓글삭제 실패') },
+        // })
+      }
+      function CommentsUpdate2F(a, studyId) {
+        if ($('#studiesList_commentsContent'+a).css("display") === "none"){
+          $('#studiesList_commentsContent'+a).show()
+          $('#studiesList_commentsContentUpdateInput'+a).hide()
+          $('#studiesList_commentsContentUpdatebutton'+a).hide()
+        }
+        else{
+          $('#studiesList_commentsContent'+a).hide()
+          $('#studiesList_commentsContentUpdateInput'+a).show()
+          $('#studiesList_commentsContentUpdatebutton'+a).show()
+        }
+      }
+      function CommentsUpdateF(a, studyId) {
+        console.log(a + " " + studyId)
+        console.log(String($('#studiesList_commentsContentUpdateInput'+a).val()))
+        let obj = {
+          "content" : $('#studiesList_commentsContentUpdateInput'+a).val(),
+        };
+        
+        if (localStorage.getItem('token')) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+        }
+        $.ajax({
+          type: "PATCH",
+          url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
+          data: JSON.stringify(obj),
+          dataType : "json",
+          contentType: "application/json",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/studies/" + studyId) },
+          error: ()=>{ alert('스터디 댓글수정 실패') },
+        })
+      }
+      function CommentsDeleteF(a, studyId) {
+        if (localStorage.getItem('token')) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+        }
+        $.ajax({
+          type: "DELETE",
+          url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/studies/" + studyId) },
+          error: ()=>{ alert('스터디 댓글삭제 실패') },
+        })
+      }
+    </script>
     <title>React App</title>
   </head>
   <body>

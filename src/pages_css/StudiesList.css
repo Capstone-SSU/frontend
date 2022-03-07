@@ -66,7 +66,8 @@
     font-weight: bolder;
 }
 #studiesList_box2 {
-    padding: 8px 740px 8px 20px;
+    width: 800px;
+    padding: 8px 0px 8px 20px;
 }
 #studiesList_hr {
     width: 1100px;
@@ -147,6 +148,12 @@
 #a {
     width: 30px;
     background-color: red;
+}
+
+
+
+#studiesList_nestedcommnetsAddMain {
+    display: none;
 }
 
 

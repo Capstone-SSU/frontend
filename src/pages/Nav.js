@@ -25,8 +25,8 @@ function Nav() {
     }, localStorage.getItem('token')).then((response) => {
       const element = document.getElementById('header_signinUsers')
       element.innerHTML = SigninUserF(response.data.message)
+      console.log(response.data.message)
     }).catch();
-    // login = !(localStorage.getItem('token'))
   });
   // login = !(localStorage.getItem('token'))
 
@@ -41,8 +41,8 @@ function Nav() {
           </div>
           <div id="header_main_center2" className="header_main_inner"></div>
           <div id="header_main_login" className="header_main_inner">
-          <div id='header_signinUsers' className="header_main_inner3"></div>
-            {/* <div id='header_signinUsers' className="header_main_inner3">{login ? <Link to="/signin">로그인</Link> : <Link to="/users">마이페이지</Link> }</div> */}
+          <div id='header_signinUsers' className="header_main_inner3"><a href="/signin">로그인</a></div>
+            {/* <div className="header_main_inner3">{login ? <Link to="/signin">로그인</Link> : <Link to="/users">마이페이지</Link> }</div> */}
           </div>
         </div>
     </>
