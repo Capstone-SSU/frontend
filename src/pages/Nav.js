@@ -16,8 +16,7 @@ function SigninUserF(message) {
 }
 
 function Nav() {
-  // var login = !(localStorage.getItem('token'))
-  useEffect(() => {
+  // useEffect(() => {
     if (localStorage.getItem('token')) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
     }
@@ -27,8 +26,8 @@ function Nav() {
       element.innerHTML = SigninUserF(response.data.message)
       console.log(response.data.message)
     }).catch();
-  });
-  // login = !(localStorage.getItem('token'))
+  
+  // });
 
   return (
     <>

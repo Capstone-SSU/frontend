@@ -162,3 +162,24 @@
     width: 100px;
     margin: 5px;
 }
+
+/* #studiesList_blank {
+
+} */
+#studiesList_bar {
+    width: 2px;
+    height: 32px;
+
+    background-color: #17173D;
+}
+#studiesList_bar div {
+    width: 2px;
+    height: 6px;
+    background-color: rgb(240, 240, 240);
+}
+#studiesList_update,#studiesList_delete {
+    width: 50px;
+    
+    font-size: 18px;
+    background-color: rgb(0, 0, 0, 0);
+}

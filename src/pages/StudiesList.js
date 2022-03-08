@@ -9,12 +9,11 @@ import $ from 'jquery';
 window.$ = $;
 
 function StudiesListF(list) {
-    console.log(list)
     var studiesList = '';
     studiesList +=
     "<div id='studiesList_individe1'>" +
         ( list.isThisUserPostWriter ?
-        '<div id="body_flex"><button id="studiesList_update">수정하기</button><button id="studiesList_delete">삭제하기</button></div>' : '') +
+        '<div id="studiesList_blank"></div><div id="body_flex"><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
         "<div id='body_flex' >" +
             "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
             "<div id='studiesList_profill'>" + list.studyPostWriter.userProfileImg + "</div>" +
@@ -43,7 +42,7 @@ function StudiesListF(list) {
                 "</div>" +
                 "<div>" + 
                 // <img src="' + likeFill + '"/>
-                (list.isLikedByUser ? '<button>좋아요</button>' : '<button id="studiesList_like2">버튼</button>') + 
+                (list.isLikedByUser ? '<img src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
                 list.likeCount + " | <button id='studiesList_reports'>신고하기</button></div>" +
             "</div><hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
@@ -147,15 +146,17 @@ const StudiesList = () => {
                 })
             }
 
-            // document.getElementById('studiesList_like2').onclick = function () {
-            //     axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/likes', {
+            if (!response.data.data.isLikedByUser) {
+                document.getElementById('studiesList_like2').onclick = function () {
+                    axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/likes', {
 
-            //     }, localStorage.getItem('token'),).then(()=>{
-            //         navigate('/studies/' + parseInt(current.split("/")[4]))
-            //     }).catch((error) => { 
-            //         alert('스터디 글좋아요 실패')
-            //     })
-            // }
+                    }, localStorage.getItem('token'),).then(()=>{
+                        navigate('/studies/' + parseInt(current.split("/")[4]))
+                    }).catch((error) => { 
+                        alert('스터디 글좋아요 실패')
+                    })
+                }
+            }
 
 
             if (response.data.data.studyComments != []) {
