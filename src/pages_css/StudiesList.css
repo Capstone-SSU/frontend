@@ -6,9 +6,9 @@
     font-weight: bolder;
 }
 #studiesList_profill {
-    width: 50px; 
-    height: 50px; 
-    line-height: 50px; 
+    width: 48px; 
+    height: 48px; 
+    line-height: 48px; 
     
     font-size: 22px; 
     border-radius: 50%; 
@@ -66,7 +66,7 @@
     font-weight: bolder;
 }
 #studiesList_box2 {
-    width: 800px;
+    width: 860px;
     padding: 8px 0px 8px 20px;
 }
 #studiesList_hr {
@@ -125,25 +125,38 @@
     background-color: #45AFBE; 
 }
 #studiesList_commentsWriteUsername {
-    width: auto; 
+    width: 890px; 
     height: 30px; 
-    margin: 10px 0px 0px 10px;
+    margin: 10px 0px 0px 15px;
     line-height: 30px;
-    
+    text-align: left;
+
     font-size: 16px;
     font-weight: bolder;
-    border-radius: 50%;
     color: #17173D;
+    /* background-color: red; */
 }
 #studiesList_commentsContent {
-    width: auto; 
-    height: 30px; 
-    margin: 0px 0px 0px 35px;
+    width: 1070px; 
+    height: auto; 
+    margin: 5px 0px 0px 45px;
     line-height: 30px;
+    text-align: left;
     
-    font-size: 16px; 
-    border-radius: 50%; 
+    font-size: 16px;
     color: #17173D;
+
+}
+#studiesList_UcommentsContentUpdatebutton {
+    width: 1000px;
+    height: 30px;
+    display: flex;
+
+    background-color: white;
+}
+#studiesList_commentsContentUpdatebutton {
+    
+    text-align: left;
 }
 #a {
     width: 30px;
@@ -164,7 +177,8 @@
 }
 
 /* #studiesList_blank {
-
+    width: 1080px;
+    height: 50px;
 } */
 #studiesList_bar {
     width: 2px;
@@ -178,8 +192,92 @@
     background-color: rgb(240, 240, 240);
 }
 #studiesList_update,#studiesList_delete {
-    width: 50px;
+    width: 60px;
+    margin: 0px 0px 10px 0px;
     
-    font-size: 18px;
+    font-size: 20px;
     background-color: rgb(0, 0, 0, 0);
+}
+#studiesList_commnetsAddInput {
+    width: 1010px;
+}
+#studiesList_commentsAddButton {
+    width: 50px;
+    font-size: 16px;
+}
+#studiesList_font {
+    font-size: 20px;
+}
+#studiesList_font2 {
+    height: 4px;
+}
+#studiesList_like1, #studiesList_like2 {
+    width: 28px;
+    height: 28px;
+    margin: 5px 0px 0px 0px;
+    /* background-color: red; */
+}
+#studiesList_reports {
+    width: 88px;
+    font-size: 18px;
+    /* background-color: red; */
+    background-color: rgb(0, 0, 0, 0);
+}
+
+
+
+#studiesList_commentsContent1 {
+    width: 1070px;
+    height: 50px;
+    /* line-height: 50px; */
+
+    text-align: left;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+
+#studiesList_bar2 {
+    width: 1px;
+    height: 30px;
+    background-color: #17173D;
+}
+#studiesList_bar2 > div {
+    width: 1px;
+    height: 8px;
+    background-color: rgb(240, 240, 240);
+}
+#studiesList_nestedcommentsAdd, #studiesList_commentsUpdate, #studiesList_commentsDelete, #studiesList_commentsReports {
+    width: 45px;
+    font-size: 15px;
+    background-color: rgb(0, 0, 0, 0);
+}
+
+#studiesList_nestedcommnetsAdd2_1 {
+    width: 40px;
+    height: 10px;
+}
+#studiesList_nestedcommnetsAdd2 > input {
+    width: 970px;
+    margin: 15px;
+    border: 0;
+}
+#studiesList_nestedcommnetsAdd2 {
+    width: 1070px;
+    height: 50px;
+    line-height: 50px;
+
+    text-align: left;
+    border-radius: 10px;
+    background-color: white;
+}
+#studiesList_commentsNestedContentUpdatebutton {
+    width: 50px;
+    height: 27px;
+    font-size: 15px;
+
+    border: 1px solid #17173D;
+    border-radius: 5px;
+    background-color: white;
 }

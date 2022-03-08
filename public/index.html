@@ -29,7 +29,6 @@
     <script>
 
       function NestedCommentsF(a) {
-        console.log(a)
         if ($('#studiesList_nestedcommnetsAdd2'+a).css("display") === "none"){
           $('#studiesList_nestedcommnetsAdd2'+a).show()
         }
@@ -37,35 +36,48 @@
           $('#studiesList_nestedcommnetsAdd2'+a).hide()
       }
       function NestedCommentsAddF(a, studyId) {
-        console.log(a + " " + studyId)
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
         }
-        // $.ajax({
-        //   type: "DELETE",
-        //   url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
-        //   beforeSend: function (xhr) {
-        //       xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-        //   },
-        //   success: ()=>{ location.replace("/studies/" + studyId) },
-        //   error: ()=>{ alert('스터디 댓글삭제 실패') },
-        // })
+        $.ajax({
+          type: "POST",
+          url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
+          data: JSON.stringify({
+            "commnetContent" : $('#studiesList_nestedcommnetsAddInput' + a).val(),
+            "commentClass" : 1,
+            "commentParentId": a,
+          }),
+          dataType : "json",
+          contentType: "application/json",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/studies/" + studyId) },
+          error: ()=>{ alert('스터디 대댓글추가 실패') },
+        })
       }
       function CommentsUpdate2F(a, studyId) {
+        console.log($('#studiesList_commentsContent'+a).css("display"))
         if ($('#studiesList_commentsContent'+a).css("display") === "none"){
           $('#studiesList_commentsContent'+a).show()
+
+          $('#studiesList_UcommentsContent').hide()
           $('#studiesList_commentsContentUpdateInput'+a).hide()
           $('#studiesList_commentsContentUpdatebutton'+a).hide()
+          $('#studiesList_UcommentsContentUpdateInput').hide()
+          $('#studiesList_UcommentsContentUpdatebutton').hide()
         }
         else{
           $('#studiesList_commentsContent'+a).hide()
+
+          $('#studiesList_UcommentsContent').show()
           $('#studiesList_commentsContentUpdateInput'+a).show()
           $('#studiesList_commentsContentUpdatebutton'+a).show()
+          $('#studiesList_UcommentsContentUpdateInput').show()
+          $('#studiesList_UcommentsContentUpdatebutton').show()
         }
       }
       function CommentsUpdateF(a, studyId) {
-        console.log(a + " " + studyId)
-        console.log(String($('#studiesList_commentsContentUpdateInput'+a).val()))
         let obj = {
           "content" : $('#studiesList_commentsContentUpdateInput'+a).val(),
         };
@@ -101,10 +113,11 @@
         })
       }
       function CommentsReportF(a, studyId) {
+        var input = prompt('신고사유', '');
         $.ajax({
           type: "POST",
           url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a + "/reports",
-          data: JSON.stringify({ "reportContent" : "" }),
+          data: JSON.stringify({ "reportContent" : input }),
           dataType : "json",
           contentType: "application/json",
           beforeSend: function (xhr) {
@@ -115,6 +128,7 @@
         })
       }
       function NestedCommentsReportF() {
+        var input = prompt('신고사유', '');
         console.log("nestedReport")
       }
     </script>
