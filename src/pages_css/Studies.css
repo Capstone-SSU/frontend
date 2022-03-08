@@ -170,7 +170,7 @@
     text-align: left;
     overflow:hidden;
     text-overflow:ellipsis;
-    /* white-space:nowrap; */
+    white-space:nowrap;
 
     font-size: 25px; 
     font-weight: bolder; 

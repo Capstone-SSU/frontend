@@ -99,6 +99,23 @@
           error: ()=>{ alert('스터디 댓글삭제 실패') },
         })
       }
+      function CommentsReportF(a, studyId) {
+        $.ajax({
+          type: "POST",
+          url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a + "/reports",
+          data: JSON.stringify({ "reportContent" : "" }),
+          dataType : "json",
+          contentType: "application/json",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/studies/" + studyId) },
+          error: ()=>{ alert('스터디 댓글신고 실패') },
+        })
+      }
+      function NestedCommentsReportF() {
+        console.log("nestedReport")
+      }
     </script>
     <title>React App</title>
   </head>

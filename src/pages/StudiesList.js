@@ -8,22 +8,8 @@ import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
 
-
-
-// function ButtonUpdateF() {
-//     return (
-//         '<button id="studiesList_button">수정하기</button>'
-//     );
-// }
-// function ButtonDeleteF() {
-//     return (
-//         '<button id="studiesList_button">삭제하기</button>'
-//     );
-// }
-
-
 function StudiesListF(list) {
-    // Button(list.isThisUserPostWriter)
+    console.log(list)
     var studiesList = '';
     studiesList +=
     "<div id='studiesList_individe1'>" +
@@ -56,8 +42,9 @@ function StudiesListF(list) {
                     "<div id='studiesList_box2'>" + list.studyCreatedDate.slice(0, 10) + "</div>" +
                 "</div>" +
                 "<div>" + 
-                (list.isLikedByUser ? '<img src="' + likeFill + '"/>' : '<img src="' + like + '"/>') + 
-                list.likeCount + " | <button>신고하기</button></div>" +
+                // <img src="' + likeFill + '"/>
+                (list.isLikedByUser ? '<button>좋아요</button>' : '<button id="studiesList_like2">버튼</button>') + 
+                list.likeCount + " | <button id='studiesList_reports'>신고하기</button></div>" +
             "</div><hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
         "</div>" +
@@ -69,7 +56,6 @@ function StudiesListF(list) {
 }
 
 function StudiesListCommentsF(list, studyId) {
-    console.log(list)
     var studiesList = '';
     for(var i = 0; i< list.length; i++) {
         studiesList +=
@@ -80,7 +66,7 @@ function StudiesListCommentsF(list, studyId) {
                 '<button id="studiesList_nestedcommentsAdd" onClick="NestedCommentsF('+list[i].studyCommentId+')">댓글</button>' +
                 (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsUpdate" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + studyId +')">수정</button>' : "<button></button>") +
                 (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsDelete" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + studyId +')">삭제</button>' : "<button></button>") +
-                "<button>신고</button>" +
+                '<button onClick="CommentsReportF('+list[i].studyCommentId+"," + studyId +')">신고</button>' +
             "</div>" +
             "<div id='body_flex'>" +
                 "<div id='studiesList_commentsContent" + list[i].studyCommentId + "'>" + list[i].commentContent + "</div>" +
@@ -102,7 +88,7 @@ function StudiesListCommentsF(list, studyId) {
                     "<div id='body_flex'>" +
                         "<div id='studiesList_commentsProfill'>" + list[i].nestedComments[j].commentWriter.userProfileImg + "</div>" +
                         "<div id='studiesList_commentsWriteUsername'>" + list[i].nestedComments[j].commentWriter.userNickname + "</div>" +
-                        "<button>신고</button>" +
+                        '<button onClick="NestedCommentsReportF('+')">신고</button>' +
                     "</div>" +
                 "</div>" +
                 "<div id='body_flex'>" +
@@ -136,13 +122,11 @@ const StudiesList = () => {
             element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments, parseInt(current.split("/")[4]))
 
             if (response.data.data.isThisUserPostWriter) {
-                const element3 = document.getElementById('studiesList_update')
-                element3.onclick = function () {
+                document.getElementById('studiesList_update').onclick = function () {
                     navigate('/studiesUpdate/' + parseInt(current.split("/")[4]))
                 }
 
-                const element4 = document.getElementById('studiesList_delete')
-                element4.onclick = function () {
+                document.getElementById('studiesList_delete').onclick = function () {
                     axios.delete('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
 
                     }, localStorage.getItem('token'),).then(()=>{
@@ -153,6 +137,27 @@ const StudiesList = () => {
                 }
             }
 
+            document.getElementById('studiesList_reports').onclick = function () {
+                axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/reports', {
+                    "reportContent": ""
+                }, localStorage.getItem('token'),).then(()=>{
+                    navigate('/studies/' + parseInt(current.split("/")[4]))
+                }).catch((error) => { 
+                    alert('스터디 글신고 실패')
+                })
+            }
+
+            // document.getElementById('studiesList_like2').onclick = function () {
+            //     axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/likes', {
+
+            //     }, localStorage.getItem('token'),).then(()=>{
+            //         navigate('/studies/' + parseInt(current.split("/")[4]))
+            //     }).catch((error) => { 
+            //         alert('스터디 글좋아요 실패')
+            //     })
+            // }
+
+
             if (response.data.data.studyComments != []) {
                 for (var i = 0; i < response.data.data.studyComments.length; i++) {
                     $('#studiesList_nestedcommnetsAdd2' + response.data.data.studyComments[i].studyCommentId).hide()
@@ -162,8 +167,10 @@ const StudiesList = () => {
                 }
             }
             
-        }).catch((error) => { 
+        }).catch((error) => {
+            console.log(error)
             alert('로그인 해주세요')
+            navigate('/studies')
         })
     });
     
