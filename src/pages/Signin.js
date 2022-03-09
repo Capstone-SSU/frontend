@@ -48,6 +48,7 @@ const LoginForm = () => {
         }).then((response)=>{
           localStorage.setItem('token', response.data.data.jwtToken)
           if (response.data.message === "로그인 성공") {
+            window.location.reload();
             navigate("/");
           }
         }).catch((error) => { alert('로그인 실패') })
