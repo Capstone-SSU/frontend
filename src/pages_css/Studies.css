@@ -154,7 +154,7 @@
     height: 2px;
   }
   #studies_profill {
-    width: 50px; 
+    width: 50px;
     height: 50px; 
     line-height: 50px;
     
@@ -165,7 +165,7 @@
   }
   #studies_title {
     /* width: 82%; */
-    width: 930px;
+    width: 990px;
     margin: 5px 0px 0px 20px;
     text-align: left;
     overflow:hidden;
@@ -177,11 +177,20 @@
     color: #17173D;
   }
   #studies_like {
-    /* width: 10%; */
-    margin: 5px 0px 0px 20px;
+    width: 50px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0px 0px 0px 20px;
+
+    display: flex;
 
     font-size: 22px;
     text-align: center;
+  }
+  #studies_like1 {
+    width: 28px;
+    height: 28px;
+    margin: 5px 0px 0px 0px;
   }
   #studies_together {
     width: auto;
@@ -260,7 +269,7 @@
   #studies_locationSearch {
     width: 67px;
   }
-  #studies_catagorySearch {
+  #studies_categorySearch {
     width: 110px;
   }
   .studies_search {

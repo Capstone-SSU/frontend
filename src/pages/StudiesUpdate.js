@@ -42,8 +42,43 @@ const StudiesUpdate = () => {
           
           <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>
 
-              <div id='studiesUpdate_location' className='studiesUpdate_locationStudy'>지역 <input id='studiesUpdate_locationInput' /></div>
-              <div id='studiesUpdate_category' className='studiesUpdate_locationStudy'>카테고리 <input id='studiesUpdate_categoryInput' /></div>
+            <div style={{ width: '38px', height: '50px', display: 'flex', float: 'left', }}></div>
+
+            <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
+              <select id='studiesUpdate_locationInput' className='studiesUpdate_input'>
+                <option>지역</option>
+                <option value='서울'>서울</option>
+                <option value='경기'>경기</option>
+                <option value='인천'>인천</option>
+                <option value='대구'>대구</option>
+                <option value='광주'>광주</option>
+                <option value='대전'>대전</option>
+                <option value='울산'>울산</option>
+                <option value='세종'>세종</option>
+                <option value='강원'>강원</option>
+                <option value='충북'>충북</option>
+                <option value='충남'>충남</option>
+                <option value='전북'>전북</option>
+                <option value='전남'>전남</option>
+                <option value='경북'>경북</option>
+                <option value='경남'>경남</option>
+                <option value='부산'>부산</option>
+                <option value='제주'>제주</option>
+              </select>
+            </div>
+            <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
+            <select id='studiesUpdate_categoryInput' className='studiesUpdate_input'>
+              <option>카테고리</option>
+              <option value='모각코'>모각코</option>
+              <option value='코딩테스트'>코딩테스트</option>
+              <option value='사이드 프로젝트'>사이드 프로젝트</option>
+              <option value='공모전'>공모전</option>
+              <option value='프로그래밍언어'>프로그래밍언어</option>
+              <option value='강의완독'>강의완독</option>
+              <option value='로드맵공략'>로드맵공략</option>
+              <option value='자격증'>자격증</option>
+            </select>
+            </div>
           </div>
 
           <div id="studiesUpdate_title">제목 <input id="studiesUpdate_titleInput" /></div>
@@ -56,7 +91,7 @@ const StudiesUpdate = () => {
                 alert('모집 최대인원이 모집 최소인원보다 작을 수 없습니다')
                 return
               }
-              if ($('#studiesUpdate_titleInput').val()==='' || $('#studiesUpdate_descriptionInput').val()==='' || $('#studiesUpdate_locationInput').val()==='' || $('#studiesUpdate_categoryInput').val()==='' || $('#studiesUpdate_max').val()==='' || $('#studiesUpdate_max').val()===0 || $('#studiesUpdate_min').val()==='' || $('#studiesUpdate_min').val()===0) {
+              if ($('#studiesUpdate_titleInput').val()==='' || $('#studiesUpdate_descriptionInput').val()==='' || $('#studiesUpdate_locationInput').val()==='지역' || $('#studiesUpdate_categoryInput').val()==='카테고리' || $('#studiesUpdate_max').val()==='' || $('#studiesUpdate_max').val()===0 || $('#studiesUpdate_min').val()==='' || $('#studiesUpdate_min').val()===0) {
                 alert('빈 칸이 있습니다')
                 return
               }

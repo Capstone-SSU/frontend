@@ -28,9 +28,9 @@ function App() {
           <Route path='/studiesAdd' element={<StudiesAdd/>} />
           <Route path='/studiesUpdate/:studyId' element={<StudiesUpdate/>} />
           <Route path='/roadmaps' element={<Roadmaps/>} />
+          <Route path='/roadmaps/:roadmapsId' element={<RoadmapsList/>} />
           <Route path='/roadmapsAdd' element={<RoadmapsAdd/>} />
           <Route path='/roadmapsAdd2' element={<RoadmapsAdd2/>} />
-          <Route path='/roadmapsList' element={<RoadmapsList/>} />
           <Route path='/signin' element={<Signin/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/users' element={<Users/>} />

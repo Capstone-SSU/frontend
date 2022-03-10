@@ -25,9 +25,7 @@ function StudiesF(list) {
         "<div id='body_flex' >" +
           "<div id='studies_profill'>" + list[i].studyPostWriter.userProfileImg + "</div>" +
           "<div id='studies_title'>" + list[i].studyTitle + "</div>" +
-          // "<img src={" + like + "}/>" +
-
-          "<div id='studies_like'>좋아요 " + list[i].studyLikeCount + "</div>" +
+          '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].studyLikeCount + '</div>' +
         "</div>" +
         "<div id='body_height'></div>" + 
         "<div id='studies_together'>" + list[i].studyRecruitState + "</div>" + 
@@ -45,8 +43,8 @@ function StudiesF(list) {
 
 function SearchF() {
   var link = '?'
-  if ($('#studies_catagorySearch').val() != '카테고리') 
-    link += 'category='+ $('#studies_catagorySearch').val() +'&'
+  if ($('#studies_categorySearch').val() != '카테고리') 
+    link += 'category='+ $('#studies_categorySearch').val() +'&'
   if ($('#studies_searchSearch').val() != '') {
     var search = $('#studies_searchSearch').val().split(" ");
     link += "keyword="+ search[0] +"%20"
@@ -90,20 +88,39 @@ const Studies = () => {
         <div style={{ width: '100%', backgroundColor: 'red'}}>
           <div style={{ width: 'auto', height: '50px', margin: '0px 120px', padding: '0px 20px', display: 'flex', float: 'left', }}></div>
           <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
-              {/* <img id='studies_imgL' src={allowB} onClick={AllowLF}/> */}
               <select id='studies_locationSearch' className='studies_search'>
                 <option>지역</option>
                 <option value='서울'>서울</option>
-                <option value='경기도'>경기도</option>
+                <option value='경기'>경기</option>
                 <option value='인천'>인천</option>
+                <option value='대구'>대구</option>
+                <option value='광주'>광주</option>
+                <option value='대전'>대전</option>
+                <option value='울산'>울산</option>
+                <option value='세종'>세종</option>
+                <option value='강원'>강원</option>
+                <option value='충북'>충북</option>
+                <option value='충남'>충남</option>
+                <option value='전북'>전북</option>
+                <option value='전남'>전남</option>
+                <option value='경북'>경북</option>
+                <option value='경남'>경남</option>
+                <option value='부산'>부산</option>
+                <option value='제주'>제주</option>
               </select>
           </div>
 
           <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
-            <select id='studies_catagorySearch' className='studies_search'>
+            <select id='studies_categorySearch' className='studies_search'>
               <option>카테고리</option>
               <option value='모각코'>모각코</option>
+              <option value='코딩테스트'>코딩테스트</option>
+              <option value='사이드 프로젝트'>사이드 프로젝트</option>
+              <option value='공모전'>공모전</option>
               <option value='프로그래밍언어'>프로그래밍언어</option>
+              <option value='강의완독'>강의완독</option>
+              <option value='로드맵공략'>로드맵공략</option>
+              <option value='자격증'>자격증</option>
             </select>
             {/* <Link to=''>
               카테고리
@@ -130,15 +147,15 @@ const Studies = () => {
       <div style={{ height: '30px', }}></div>
 
       <div style={{ width: '100%', height: 'auto', backgroundColor: 'rgb(240, 240, 240)', }}>
-          <div style={{ display: 'flex', }}>
-            <img src={write} style={{ margin: '16px 0px 30px 330px', height: '30px', }}/>
-            <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
-              if(!localStorage.getItem('token')) navigate('/signin')
-              else navigate('/studiesAdd')
-            }}>
-              스터디글 작성하기
-            </div>
+        <div style={{ display: 'flex', }}>
+          <img src={write} style={{ margin: '16px 0px 30px 330px', height: '30px', }}/>
+          <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
+            if(!localStorage.getItem('token')) navigate('/signin')
+            else navigate('/studiesAdd')
+          }}>
+            스터디글 작성하기
           </div>
+        </div>
         
         <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>
           
@@ -152,16 +169,16 @@ const Studies = () => {
             
             <label className="switch-button">
               <input id='studies_togetherTrue' type='checkbox' onClick={() => {
-                axios.get('http://54.180.150.167:8080/studies', {
-                }).then((response)=>{
-                    const element = document.getElementById('studies_list')
-                    element.innerHTML = StudiesF(response.data.data)
-                    const element2 = document.getElementById('studies_count')
-                    element2.innerHTML = "스터디 총 " + response.data.data.length + "개"
-                }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
-              }}/>
-            <span className="onoff-switch"></span>
-          </label>
+                  axios.get('http://54.180.150.167:8080/studies', {
+                  }).then((response)=>{
+                      const element = document.getElementById('studies_list')
+                      element.innerHTML = StudiesF(response.data.data)
+                      const element2 = document.getElementById('studies_count')
+                      element2.innerHTML = "스터디 총 " + response.data.data.length + "개"
+                  }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
+                }}/>
+              <span className="onoff-switch"></span>
+            </label>
 
             <div style={{ width: '20px', height: '10px', }}></div><div style={{ width:'220px', }}>모집중인 스터디만 보기</div>
           </div>

@@ -1,16 +1,14 @@
   
-  .roadmap_searchCatagory {
-    width: 200px;
+  .roadmaps_searchCatagory {
+    width: 400px;
     height: 50px;
-    margin: 0 20px;
   
     display: flex;
-    float: right;
   }
 
 
   
-  #roadmap_list {
+  #roadmaps_list {
     width: 100%;
     height: 1230px;
     
@@ -19,9 +17,9 @@
     font-weight: bolder;
   }
 
-  #roadmap_individe1 {
+  #roadmaps_individe1 {
     width: 100%;
-    height: auto;
+    height: 210px;
     margin: 15px 0px 0px 0px;
     padding: 15px 0px 15px 10px;
     
@@ -31,7 +29,72 @@
     box-shadow: 3px 3px 3px gray;
     background-color: white;
   }
-  #roadmap_list hr {
+  #roadmaps_title {
+    width: 1040px;
+    margin: 5px 0px 0px 20px;
+
+    display: flex;
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size: 25px; 
+    font-weight: bolder; 
+    color: #17173D;
+  }
+  #roadmaps_company {
+    margin: 0px 0px 0px 10px;
+    padding: 0px 20px;
+
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 20px;
+    color: white;
+    background-color: #45AFBE;
+  }
+  #roadmaps_lectureThumbnails {
+    width: 135px;
+    height: 100px;
+    margin: 10px;
+
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    background-color: gray;
+  }
+  #roadmaps_nickname {
+    width: 989px;
+    margin: 0px 0px 0px 20px;
+
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size: 17px; 
+    font-weight: 600; 
+    color: rgb(190, 190, 190);
+  }
+  #roadmaps_date {
+    width: auto;
+    margin: 0px 0px 0px 20px;
+
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size: 17px; 
+    font-weight: 400; 
+    color: rgb(190, 190, 190);
+  }
+
+
+
+  /* #roadmap_list hr {
     height: 2px;
   }
   #roadmap_profill {
@@ -45,19 +108,16 @@
     background-color: #45AFBE; 
   }
   #roadmap_title {
-    /* width: 82%; */
     margin: 5px 0px 0px 20px;
     text-align: left;
     overflow:hidden;
     text-overflow:ellipsis;
-    /* white-space:nowrap; */
 
     font-size: 25px; 
     font-weight: bolder; 
     color: #17173D;
   }
   #roadmap_like {
-    /* width: 10%; */
     margin: 5px 0px 0px 20px;
 
     font-size: 22px;
@@ -120,7 +180,7 @@
     font-weight: bolder;
     color: #17173D;
     background-color: white;
-  }
+  } */
 
 
 

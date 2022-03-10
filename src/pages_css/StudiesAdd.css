@@ -80,3 +80,24 @@
     border: 0;
     background-color: rgb(219, 219, 219);
 }
+
+
+
+#studiesAdd_max, #studiesAdd_min, #studiesAdd_titleInput, #studiesAdd_descriptionInput {
+    border-radius: 5px;
+}
+#studiesAdd_locationInput {
+    width: 67px;
+  }
+  #studiesAdd_categoryInput {
+    width: 110px;
+  }
+  .studiesAdd_input {
+    /* width: auto; */
+    border: 0;
+    font-size: 22px;  
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
