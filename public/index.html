@@ -126,6 +126,31 @@
         var input = prompt('신고사유', '');
         console.log("nestedReport")
       }
+
+
+
+      function RoadmapsUpdateAddF(id, title, hashtags) {
+        document.getElementById('roadmapsUpdate_list2').innerHTML += 
+        "<div id='roadmapsUpdate_individe'>" +
+          "<div id='roadmapsUpdate_lectureId'>" + id + "</div>" +
+          "<div id='roadmapsUpdate_box1'>" +
+            "<div id='roadmapsUpdate_picture'></div>" +
+            "<div id='roadmapsUpdate_box2'><div id='roadmapsUpdate_hashtagBox'>"
+
+          // for (var j = 0; j < hashtags.length; j++) {
+          //   document.getElementById('roadmapsUpdate_list2').innerHTML += 
+          //     "<div id='roadmapsUpdate_hashtag'>" + hashtags[j] + "</div>"
+          // }
+
+          document.getElementById('roadmapsUpdate_list2').innerHTML += 
+              "</div><div id='roadmapsUpdate_title'>" + title + "</div>" +
+            "</div>" +
+          "</div>" +
+        "</div><hr/>"
+        var lecturesId = $('#roadmapsUpdate_lecturesId').val()
+        lecturesId[lecturesId.length] = id
+        console.log($('#roadmapsUpdate_lecturesId').val())
+      }
     </script>
     <title>React App</title>
   </head>

@@ -1,0 +1,102 @@
+#roadmapsUpdate_mainTitle {
+    width: 100%;
+    margin: 30px 20px;
+    font-size: 22px;
+    text-align: left;
+}
+#roadmapsUpdate_mainDescription {
+    width: 100%;
+    margin: 30px 20px;
+
+    font-size: 22px;
+    text-align: left;
+}
+#roadmapsUpdate_mainTitleInput {
+    width: 1500px;
+    background-color: white;
+}
+
+#roadmapsUpdate_mainTitle > input {
+    width: 800px;
+    height: 50px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(190, 190, 190);
+}
+#roadmapsUpdate_mainDescription > input {
+    width: 800px;
+    height: 150px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(190, 190, 190);
+}
+
+#roadmapsUpdate_individe {
+    width: 480px;
+    /* height: 200px; */
+}
+#roadmapsUpdate_lectureId {
+    display: none;
+}
+#roadmapsUpdate_box1 {
+    margin: 10px 0px 0px 10px;
+    display: flex;
+}
+#roadmapsUpdate_box2 {
+    width: 230px;
+    height: auto;
+    margin: 10px;
+    padding: 5px;
+    text-align: left;
+}
+#roadmapsUpdate_picture {
+    width: 200px;
+    height: 180px;
+    margin: 10px;
+
+    background-color: gray;
+}
+#roadmapsUpdate_hashtagBox {
+    width: auto;
+    height: 40px;
+    /* overflow: scroll; */
+    /* overflow-y: hidden; */
+    display: flex;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+#roadmapsUpdate_hashtag {
+    margin: 5px;
+    padding: 5px 10px;
+
+    color: #17173D;
+    border-radius: 50px;
+    background-color: rgb(219, 219, 219);
+}
+#roadmapsUpdate_title {
+    margin: 5px;
+
+    font-size: 22px;
+    font-weight: bolder;
+    color: #17173D;
+}
+/* #roadmapsUpdate_description {
+    margin: 5px;
+
+    font-size: 18px;
+    color: white;
+} */
+
+
+
+.roadmapsUpdate__box hr {
+    width: 500px;
+    background-color: #17173D;
+}
+.roadmapsUpdate_individe1 hr {
+    background-color: #17173D;
+}

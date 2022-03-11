@@ -59,13 +59,22 @@
 
 
 #roadmapsList_likeButton {
+    width: 1370px;
     margin: 10px 10px;
-    text-align: right;
+
+    align-items: right;
+    display: flex;
+}
+#roadmapsList_boxLike1 {
+    width: 80px;
+}
+#roadmapsList_boxLike2 {
+    width: 1250px;
 }
 
 #roadmapsList_box1 {
     width: 1000px;
-    height: 375px;
+    height: 340px;
     padding: 25px 0px 0px 20px;
 
     display: flex;
@@ -106,9 +115,9 @@
 
     text-align: left;
     display: inline-block; 
-    overflow:hidden;
+    /* overflow:hidden;
     text-overflow:ellipsis;
-    white-space:nowrap;
+    white-space:nowrap; */
     
     font-size: 23px;
     font-weight: bolder;
@@ -168,12 +177,23 @@
 }
 #roadmapsList_description {
     width: 100%;
+    height: 76px;
     margin: 30px 10px;
 
     text-align: left;
     
     font-size: 22px;
     color: #17173D;
+}
+#roadmapsList_review {
+    width: 170px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0px 10px;
+    padding: 0px 10px;
+
+    border-radius: 50px;
+    background-color: rgb(219, 219, 219);
 }
 
 #roadmapsList_rightBox {
@@ -220,9 +240,15 @@
     color: #17173D;
     font-weight: bolder;
 }
-#roadmapsList_updateButton {
+#roadmapsList_updateBox {
+    height: 100px;
     margin: 10px 10px;
     text-align: right;
+}
+#roadmapsList_updateButton {
+    color: white;
+    border-radius: 10px;
+    background-color: #17173D;
 }
 
 
