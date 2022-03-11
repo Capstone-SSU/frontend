@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../pages_css/Nav.css';
 import logo from '../logo.png';
+
 import axios from "axios";
+import $ from 'jquery';
+window.$ = $;
 
 function SigninUserF(message) {
   if (message === "로그인 성공")
@@ -24,7 +27,7 @@ function Nav() {
     }, localStorage.getItem('token')).then((response) => {
       const element = document.getElementById('header_signinUsers')
       element.innerHTML = SigninUserF(response.data.message)
-      console.log(response.data.message)
+      $('#header_login').val(response.data.data.userId)
     }).catch();
   
   // });
@@ -44,6 +47,7 @@ function Nav() {
             {/* <div className="header_main_inner3">{login ? <Link to="/signin">로그인</Link> : <Link to="/users">마이페이지</Link> }</div> */}
           </div>
         </div>
+        <div id="header_login"></div>
     </>
   );
 }

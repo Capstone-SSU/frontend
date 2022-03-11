@@ -10,7 +10,7 @@ window.$ = $;
 
 function RoadmapsF(list) {
     let theme = document.querySelector(':root');
-    theme.style.setProperty('--height', 320+(list.lectures.length-1)*360+'px');
+    theme.style.setProperty('--height', 320+(list.lectures.length-1)*370+'px');
 
     var roadmaps = '';
     roadmaps += 

@@ -130,26 +130,36 @@
 
 
       function RoadmapsUpdateAddF(id, title, hashtags) {
-        document.getElementById('roadmapsUpdate_list2').innerHTML += 
+        var roadmaps = ''
+        roadmaps += 
         "<div id='roadmapsUpdate_individe'>" +
           "<div id='roadmapsUpdate_lectureId'>" + id + "</div>" +
           "<div id='roadmapsUpdate_box1'>" +
             "<div id='roadmapsUpdate_picture'></div>" +
             "<div id='roadmapsUpdate_box2'><div id='roadmapsUpdate_hashtagBox'>"
+          var hashtagsList = hashtags.split(',')
+          for (var j = 0; j < hashtagsList.length; j++) {
+            roadmaps += 
+              "<div id='roadmapsUpdate_hashtag'>" + hashtagsList[j] + "</div>"
+          }
 
-          // for (var j = 0; j < hashtags.length; j++) {
-          //   document.getElementById('roadmapsUpdate_list2').innerHTML += 
-          //     "<div id='roadmapsUpdate_hashtag'>" + hashtags[j] + "</div>"
-          // }
-
-          document.getElementById('roadmapsUpdate_list2').innerHTML += 
+          roadmaps += 
               "</div><div id='roadmapsUpdate_title'>" + title + "</div>" +
             "</div>" +
           "</div>" +
         "</div><hr/>"
+
+        document.getElementById('roadmapsUpdate_list2').innerHTML += roadmaps
         var lecturesId = $('#roadmapsUpdate_lecturesId').val()
         lecturesId[lecturesId.length] = id
-        console.log($('#roadmapsUpdate_lecturesId').val())
+      }
+      function RoadmapsUpdateRemoveF(id) {
+        var lecturesId = $('#roadmapsUpdate_lecturesId').val()
+        lecturesId = lecturesId.filter(function(data) {
+          return data != id
+        })
+        $('#roadmapsUpdate_lecturesId').val(lecturesId)
+        $('#' + id).hide()
       }
     </script>
     <title>React App</title>
