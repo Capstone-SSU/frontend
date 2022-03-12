@@ -36,7 +36,7 @@ const StudiesUpdate = () => {
       <div style={{ width: '1200px', height: '810px', display: 'inline-block', }}>
           <div style={{ width: '100%', margin: '10px 10px', display: 'flex', alignItems: 'center', }}>
             <div id ='studiesUpdate_hashtag'></div>
-            <div id ='studiesUpdate_peeple'>모집인원수 <input id='studiesUpdate_max' type='number' min='0'/> / <input id='studiesUpdate_min' type='number'  min='0'/>
+            <div id ='studiesUpdate_peeple'>모집인원수 <input id='studiesUpdate_max' type='number' min='2'/> / <input id='studiesUpdate_min' type='number'  min='1'/>
             </div>
           </div>
           
@@ -86,12 +86,12 @@ const StudiesUpdate = () => {
           <div id="studiesUpdate_description">내용 <input id="studiesUpdate_descriptionInput" /></div>
 
           <div style={{ width: '98%', margin: '10px 10px', textAlign: 'right', }}>
-            <button style={{ color: 'white', backgroundColor: '#17173D', }} onClick={() => {
-              if ($('#studiesUpdate_max').val() < $('#studiesUpdate_min').val()) {
+            <button style={{ color: 'white', borderRadius: '5px', backgroundColor: '#17173D', }} onClick={() => {
+              if ($('#studiesAdd_max').val() < $('#studiesAdd_min').val()) {
                 alert('모집 최대인원이 모집 최소인원보다 작을 수 없습니다')
                 return
               }
-              if ($('#studiesUpdate_titleInput').val()==='' || $('#studiesUpdate_descriptionInput').val()==='' || $('#studiesUpdate_locationInput').val()==='지역' || $('#studiesUpdate_categoryInput').val()==='카테고리' || $('#studiesUpdate_max').val()==='' || $('#studiesUpdate_max').val()===0 || $('#studiesUpdate_min').val()==='' || $('#studiesUpdate_min').val()===0) {
+              if ($('#studiesUpdate_titleInput').val()==='' || $('#studiesUpdate_descriptionInput').val()==='' || $('#studiesUpdate_locationInput').val()==='지역' || $('#studiesUpdate_categoryInput').val()==='카테고리' || $('#studiesUpdate_max').val()==='' || $('#studiesUpdate_min').val()==='') {
                 alert('빈 칸이 있습니다')
                 return
               }

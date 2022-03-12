@@ -7,7 +7,7 @@ import $ from 'jquery';
 window.$ = $;
 
 function RoadmapListF(list) {
-  var string = '';
+  var string = ''
   var roadmaps = ''
   for (var i = 0; i < list.length; i++) {
     for(var k = 0; k < $('#roadmapsUpdate_lecturesId').val().length; k++) {
@@ -16,28 +16,31 @@ function RoadmapListF(list) {
       }
     }
       roadmaps += 
-      "<div id='roadmapsUpdate_individe" + string + "'"
-      if (string === '') {
-        roadmaps += " onClick='RoadmapsUpdateAddF(" + list[i].lectureId + ",\"" + list[i].lectureTitle +"\""  + ",\"" + list[i].hashTags +"\");'>"
-      } else {
-        roadmaps +=">"
-      }
+      "<div id='list_" + list[i].lectureId + "'>" +
+        "<div id='roadmapsUpdate_individe" + string + "'"
+        if (string === '') {
+          roadmaps += " onClick='RoadmapsUpdateAddF(" + list[i].lectureId + ",\"" + list[i].lectureTitle +"\""  + ",\"" + list[i].hashTags +"\");'>"
+        } else {
+          roadmaps +=">"
+        }
       roadmaps += 
-      "<div id='roadmapsUpdate_lectureId'>" + list[i].lectureId + "</div>" +
-      "<div id='roadmapsUpdate_box1'>" +
-        "<div id='roadmapsUpdate_picture'></div>" +
-        "<div id='roadmapsUpdate_box2'><div id='roadmapsUpdate_hashtagBox'>"
+          "<div id='roadmapsUpdate_box1'>" +
+            "<div id='roadmapsUpdate_picture'></div>" +
+            "<div id='roadmapsUpdate_box2'>" + 
+              "<div id='roadmapsUpdate_hashtagBox'>"
 
       for (var j = 0; j < list[i].hashTags.length; j++) {
           roadmaps +=
-          "<div id='roadmapsUpdate_hashtag'>" + list[i].hashTags[j] + "</div>"
+                "<div id='roadmapsUpdate_hashtag'>" + list[i].hashTags[j] + "</div>"
       }
           
       roadmaps +=
-          "</div><div id='roadmapsUpdate_title'>" + list[i].lectureTitle + "</div>" +
+            "</div><div id='roadmapsUpdate_title'>" + list[i].lectureTitle + "</div>" +
+          "</div>" +
         "</div>" +
-      "</div>" +
-    "</div><hr/>"
+      "</div>" + 
+    "</div>"
+    string = ''
   }
   return roadmaps;
 }
@@ -47,57 +50,58 @@ function RoadmapList2F(list) {
   for (var i = 0; i < list.length; i++) {
     lecturesId[i] = list[i].lectureId
     roadmaps += 
-    "<div id='roadmapsUpdate_individe3' onClick='RoadmapsUpdateRemoveF(" + list[i].lectureId + ");'>" +
     "<div id='" + list[i].lectureId + "'>" +
+    "<div id='roadmapsUpdate_individe3' onClick='RoadmapsUpdateRemoveF(" + list[i].lectureId + ",\"" + list[i].lectureTitle + "\",\"" + list[i].lectureHashtags + "\");'>" +
       "<div id='roadmapsUpdate_box1'>" +
         "<div id='roadmapsUpdate_picture'></div>" +
-        "<div id='roadmapsUpdate_box2'><div id='roadmapsUpdate_hashtagBox'>"
+        "<div id='roadmapsUpdate_box2'>" + 
+          "<div id='roadmapsUpdate_hashtagBox'>"
 
     for (var j = 0; j < list[i].lectureHashtags.length; j++) {
         roadmaps +=
-        "<div id='roadmapsUpdate_hashtag'>" + list[i].lectureHashtags[j] + "</div>"
+            "<div id='roadmapsUpdate_hashtag'>" + list[i].lectureHashtags[j] + "</div>"
     }
-        
     roadmaps +=
           "</div><div id='roadmapsUpdate_title'>" + list[i].lectureTitle + "</div>" +
         "</div>" +
       "</div>" +
-    "<hr/></div>" +
-  "</div>"
+    "</div>" +
+    "</div>"
   }
   $('#roadmapsUpdate_lecturesId').val(lecturesId)
   return roadmaps;
 }
 
 const RoadmapsUpdate = () => {
-    const navigate = useNavigate();
-    var current = ''
-    current += String(decodeURI(window.location.href));
-    useEffect(() => {
-      if (localStorage.getItem('token')) {
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-      }
-      axios.get('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]), {
+  const navigate = useNavigate();
+  var current = ''
+  current += String(decodeURI(window.location.href));
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+    }
+    axios.get('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]), {
 
-      }, localStorage.getItem('token'),).then((response)=>{
-          $('#roadmapsUpdate_mainTitleInput').val(response.data.data.roadmapTitle)
-          $('#roadmapsUpdate_mainDescriptionInput').val(response.data.data.roadmapRecommendation)
+    }, localStorage.getItem('token'),).then((response)=>{
+      console.log(response)
+      $('#roadmapsUpdate_mainTitleInput').val(response.data.data.roadmapTitle)
+      $('#roadmapsUpdate_mainDescriptionInput').val(response.data.data.roadmapRecommendation)
 
-          document.getElementById('roadmapsUpdate_list2').innerHTML = RoadmapList2F(response.data.data.lectures)
+      document.getElementById('roadmapsUpdate_list2').innerHTML = RoadmapList2F(response.data.data.lectures)
 
-          axios.get('http://54.180.150.167:8080/roadmaps/lectures/' + $('#header_login').val(), {
-          }, localStorage.getItem('token'),).then((response2)=>{
-              document.getElementById('roadmapsUpdate_list').innerHTML = RoadmapListF(response2.data.data)
-          }).catch((error) => {
-              alert('로그인 해주세요')
-              navigate('/roadmaps')
-          })
-          
+      axios.get('http://54.180.150.167:8080/roadmaps/lectures/' + $('#header_login').val(), {
+      }, localStorage.getItem('token'),).then((response2)=>{
+        document.getElementById('roadmapsUpdate_list').innerHTML = RoadmapListF(response2.data.data)
       }).catch((error) => {
-          alert('로그인 해주세요')
-          navigate('/roadmaps')
+        alert('로그인 해주세요')
+        navigate('/roadmaps')
       })
-    });
+        
+    }).catch((error) => {
+      alert('로그인 해주세요')
+      navigate('/roadmaps')
+    })
+  });
   return (
     <div id='body_main'>
       <div style={{ width: '1400px', height: '70px', backgroundColor: 'red',}}></div>
@@ -137,17 +141,17 @@ const RoadmapsUpdate = () => {
 
         <div style={{ width: '1650px', margin: '10px 0px 50px 0px', textAlign: 'right', }}>
             <button onClick={() => {
-              if ($('#roadmapsUpdate_lecturesId').val() === [] || $('#roadmapsUpdate_mainTitleInput').val() === '' || $('#roadmapsUpdate_mainDescriptionInput').val() === '') {
+              console.log($('#roadmapsUpdate_lecturesId').val())
+              console.log($('#roadmapsUpdate_mainTitleInput').val())
+              console.log($('#roadmapsUpdate_mainDescriptionInput').val())
+              if ($('#roadmapsUpdate_lecturesId').val().length === 0 || $('#roadmapsUpdate_mainTitleInput').val() === '' || $('#roadmapsUpdate_mainDescriptionInput').val() === '') {
                 alert('빈 칸이 있습니다')
                 return
               }
-              if (localStorage.getItem('token')) {
-                  axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-              }
               axios.patch('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]),  {
-                  "lectureIds": $('#roadmapsUpdate_lecturesId').val(),
-                    "roadmapRecommendation": $('#roadmapsUpdate_mainDescriptionInput').val(),
-                    "roadmapTitle": $('#roadmapsUpdate_mainTitleInput').val(),
+                "lectureIds": $('#roadmapsUpdate_lecturesId').val(),
+                "roadmapRecommendation": $('#roadmapsUpdate_mainDescriptionInput').val(),
+                "roadmapTitle": $('#roadmapsUpdate_mainTitleInput').val(),
               }, localStorage.getItem('token'),).then((response)=>{
                   navigate('/roadmaps/'+ parseInt(current.split("/")[4]))
               }).catch((error) => { alert('로드맵 글수정 실패') })

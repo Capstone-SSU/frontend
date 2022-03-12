@@ -11,11 +11,25 @@ import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
 
-function StudiesF(list) {
+function NumberF(list, box) {
+  var numbers = ''
+
+  for (var i = 8*(box-1); i < 8*box; i++) {
+    if (Math.ceil(list.length/8) === i) break;
+    numbers += 
+    "<div id='studies_numberInner' onClick='$(\"#studies_number\").val(" + (i+1) + ")'>" + (i+1) + "</div>"
+  }
+  return numbers
+}
+
+function StudiesF(list, page) {
   var studies = ''; var length = list.length;
   var togetherTrue = document.getElementById('studies_togetherTrue');
 
-  for (var i = 0; i < list.length; i++) {
+  document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
+
+  for (var i = 8*(page-1); i < 8*page; i++) {
+    if (list.length === i) break
     if ($(togetherTrue).prop("checked") && list[i].studyRecruitState !== "모집중") {
       length--; continue;
     }
@@ -35,8 +49,7 @@ function StudiesF(list) {
     "</div><hr/>" +
   "</a>"    
   }
-  const element2 = document.getElementById('studies_count')
-  element2.innerHTML = "스터디 총 " + length + "개"
+  document.getElementById('studies_count').innerHTML = "스터디 총 " + length + "개"
 
   return studies;
 }
@@ -58,14 +71,11 @@ function SearchF() {
   if ($('#studies_locationSearch').val() != '지역')
     link += "location="+ $('#studies_locationSearch').val() +"&"
   link = link.slice(0, -1)
-  console.log(link)
   
   axios.get('http://54.180.150.167:8080/studies' + link, {
 
   }).then((response)=>{
-    console.log(response)
-      const element = document.getElementById('studies_list')
-      element.innerHTML = StudiesF(response.data.data)
+    document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
   }).catch((error) => { alert('스터디 조회 실패했습니다.') })
 }
 
@@ -74,8 +84,10 @@ const Studies = () => {
   axios.get('http://54.180.150.167:8080/studies', {
 
   }).then((response)=>{
-      const element = document.getElementById('studies_list')
-      element.innerHTML = StudiesF(response.data.data)
+    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/8)/8));
+    document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
+    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
+      
   }).catch((error) => { alert('스터디 페이지에 오류가 있습니다.') })
 
   return (
@@ -122,10 +134,6 @@ const Studies = () => {
               <option value='로드맵공략'>로드맵공략</option>
               <option value='자격증'>자격증</option>
             </select>
-            {/* <Link to=''>
-              카테고리
-              <img id='studies_imgC' src={allowB} onClick={AllowCF}/>
-            </Link> */}
           </div>
           
           <div style={{ width: 'auto', height: '50px', margin: '0px 120px', padding: '0px 20px', display: 'flex', float: 'right', }}></div>
@@ -171,10 +179,8 @@ const Studies = () => {
               <input id='studies_togetherTrue' type='checkbox' onClick={() => {
                   axios.get('http://54.180.150.167:8080/studies', {
                   }).then((response)=>{
-                      const element = document.getElementById('studies_list')
-                      element.innerHTML = StudiesF(response.data.data)
-                      const element2 = document.getElementById('studies_count')
-                      element2.innerHTML = "스터디 총 " + response.data.data.length + "개"
+                    document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
+                    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
                   }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
                 }}/>
               <span className="onoff-switch"></span>
@@ -184,17 +190,42 @@ const Studies = () => {
           </div>
 
           <div id='studies_list'>
-          </div><hr/>
+          </div>
 
           <div style={{ height: '100px', textAlign: 'center', }}></div>
           <div style={{ height: '100px', textAlign: 'center', }}>
             <div style={{ textAlign: 'center', display: 'inline-block', }}>
               <div style={{ display: 'flex', }}>
-                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
 
+                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }} onClick={() => {
+                  if ($('#studies_Box').val() === '1') return
+                  var i = $('#studies_Box').val()
+                  $('#studies_Box').val(parseInt(i)-1)
+                  axios.get('http://54.180.150.167:8080/studies', {
+                  }).then((response)=>{
+                    document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, $('#studies_number').val())
+                    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
+                  }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
+                }}>
                 </div>
-                <div id='studies_number1'>1</div>
-                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
+                <div id='studies_number' onClick={() => {
+                  axios.get('http://54.180.150.167:8080/studies', {
+                  }).then((response)=>{
+                    document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, $('#studies_number').val())
+                    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
+                  }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
+                }}><div id='studies_Box'></div></div>
+                <div id='studies_max'></div>
+                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }} onClick={() => {
+                  if ($('#studies_Box').val() === $('#studies_max').val()) return
+                  var i = $('#studies_Box').val()
+                  $('#studies_Box').val(parseInt(i)+1)
+                  axios.get('http://54.180.150.167:8080/studies', {
+                  }).then((response)=>{
+                    document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, $('#studies_number').val())
+                    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
+                  }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
+                }}>
                   
                 </div>
               </div>

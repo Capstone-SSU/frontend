@@ -9,15 +9,24 @@ import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
 
-function SearchF() {
-  
+function NumberF(list, box) {
+  var numbers = ''
+
+  for (var i = 8*(box-1); i < 8*box; i++) {
+    if (Math.ceil(list.length/5) === i) break;
+    numbers += 
+    "<div id='studies_numberInner' onClick='$(\"#studies_number\").val(" + (i+1) + ")'>" + (i+1) + "</div>"
+  }
+  return numbers
 }
 
-function RoadmapF(list) {
+function RoadmapF(list, page) {
   var roadmaps = '';
 
-  console.log(list)
-  for (var i = 0; i < list.length; i++) {
+  document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
+
+  for (var i = 5*(page-1); i < 5*page; i++) {
+    if (list.length === i) break
     roadmaps +=
     "<a href='/roadmaps/"+ list[i].roadmapId +"'>" +
     "<div id='roadmaps_individe1'>" +
@@ -46,17 +55,18 @@ function RoadmapF(list) {
   return roadmaps;
 }
 
+function SearchF() {
+  
+}
+
 const Roadmaps = () => {
   var navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-    }
     axios.get('http://54.180.150.167:8080/roadmaps', {
 
     }, localStorage.getItem('token'),).then((response)=>{
-        const element = document.getElementById('roadmaps_list')
-        element.innerHTML = RoadmapF(response.data.data)
+      $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
+      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,1)
     }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
     
   });
@@ -140,7 +150,7 @@ const Roadmaps = () => {
 
 
           <div id='roadmaps_list'>
-          </div><hr/>
+          </div>
 
           <div style={{ height: '100px', textAlign: 'center', }}></div>
 
@@ -148,10 +158,35 @@ const Roadmaps = () => {
             <div style={{ textAlign: 'center', display: 'inline-block', }}>
               <div style={{ display: 'flex', }}>
 
-                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>
+              <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }} onClick={() => {
+                  if ($('#studies_Box').val() === '1') return
+                  var i = $('#studies_Box').val()
+                  $('#studies_Box').val(parseInt(i)-1)
+                  axios.get('http://54.180.150.167:8080/roadmaps', {
+
+                  }, localStorage.getItem('token'),).then((response)=>{
+                      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data, $('#studies_number').val())
+                  }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
+                }}>
                 </div>
-                <div id='roadmaps_number1'>1</div>
-                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }}>  
+                <div id='studies_number' onClick={() => {
+                  axios.get('http://54.180.150.167:8080/roadmaps', {
+
+                  }, localStorage.getItem('token'),).then((response)=>{
+                      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data, $('#studies_number').val())
+                  }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
+                }}><div id='studies_Box'></div></div>
+                <div id='studies_max'></div>
+                <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }} onClick={() => {
+                  if ($('#studies_Box').val() === $('#studies_max').val()) return
+                  var i = $('#studies_Box').val()
+                  $('#studies_Box').val(parseInt(i)+1)
+                  axios.get('http://54.180.150.167:8080/roadmaps', {
+
+                  }, localStorage.getItem('token'),).then((response)=>{
+                      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data, $('#studies_number').val())
+                  }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
+                }}>
                 </div>
 
               </div>

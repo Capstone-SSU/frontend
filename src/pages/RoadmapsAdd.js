@@ -1,102 +1,114 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import '../pages_css/RoadmapsAdd.css';
 
+import axios from 'axios';
+import $ from 'jquery';
+window.$ = $;
+
+function RoadmapListF(list) {
+  var string = ''
+  var roadmaps = ''
+  for (var i = 0; i < list.length; i++) {
+      roadmaps += 
+      "<div id='list_" + list[i].lectureId + "'>" +
+        "<div id='roadmapsUpdate_individe" + string + "'"
+        if (string === '') {
+          roadmaps += " onClick='RoadmapsUpdateAddF(" + list[i].lectureId + ",\"" + list[i].lectureTitle +"\""  + ",\"" + list[i].hashTags +"\");'>"
+        } else {
+          roadmaps +=">"
+        }
+      roadmaps += 
+          "<div id='roadmapsUpdate_box1'>" +
+            "<div id='roadmapsUpdate_picture'></div>" +
+            "<div id='roadmapsUpdate_box2'>" + 
+              "<div id='roadmapsUpdate_hashtagBox'>"
+
+      for (var j = 0; j < list[i].hashTags.length; j++) {
+          roadmaps +=
+                "<div id='roadmapsUpdate_hashtag'>" + list[i].hashTags[j] + "</div>"
+      }
+          
+      roadmaps +=
+            "</div><div id='roadmapsUpdate_title'>" + list[i].lectureTitle + "</div>" +
+          "</div>" +
+        "</div>" +
+      "</div>" + 
+    "</div>"
+    string = ''
+  }
+  return roadmaps;
+}
+
 const RoadmapsAdd = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    axios.get('http://54.180.150.167:8080/roadmaps/lectures/' + $('#header_login').val(), {
+    }, localStorage.getItem('token'),).then((response2)=>{
+      $('#roadmapsUpdate_lecturesId').val([])
+      $('#roadmapsUpdate_mainTitleInput').val('')
+      $('#roadmapsUpdate_mainDescriptionInput').val('')
+      document.getElementById('roadmapsUpdate_list').innerHTML = RoadmapListF(response2.data.data)
+    }).catch((error) => {
+      alert('로그인 해주세요')
+      navigate('/roadmaps')
+    })
+  });
   return (
     <div id='body_main'>
       <div style={{ width: '1400px', height: '70px', backgroundColor: 'red',}}></div>
-        <div id='body_center_name'><Link to="/roadmaps">로드맵</Link></div>
+        <div id='body_center_name' style={{ height: '70px', }}></div>
 
-        <div style={{ width: '1400px', height: '180px', textAlign: 'center', display: 'inline-block', }}>
+        <div style={{ width: '1400px', height: '1050px', textAlign: 'center', display: 'inline-block', borderRadius: '10px', backgroundColor: 'rgb(219, 219, 219)', }}>
 
-        <div style={{ display: 'inline-block'}}>
-          <div id="roadmapsAdd_mainTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목<input /></div>
-          <div id="roadmapsAdd_mainDescription">추천대상<input /></div>
-        </div>
+            <div style={{ display: 'inline-block'}}>
+                <div id="roadmapsUpdate_mainTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목<input id="roadmapsUpdate_mainTitleInput" style={{ width: '1100px', borderRadius: '10px', backgroundColor: 'white', }}/></div>
+                <div id="roadmapsUpdate_mainDescription">추천대상<input id="roadmapsUpdate_mainDescriptionInput" style={{ width: '1100px', borderRadius: '10px', backgroundColor: 'white', }}/></div>
+            </div>
         
-          <div style={{ display: 'flex', }}>
+            <div style={{ display: 'flex', }}>
+
+            {/* 첫 박스 */}
+            <div style={{ width: '100px', height: '680px', textAlign: 'center', backgroundColor: 'rgb(219, 219, 219)', }}></div>
             
-            <div className="roadmapsAdd_box" style={{ overflow: 'scroll', overflowX: 'hidden', width: '600px', height: '810px', backgroundColor: 'rgb(219, 219, 219)', }}>
-    
-              <div id='roadmapsAdd_individe1'>
-                  <div style={{ margin: '10px 0px 0px 10px', display: 'flex', }}>
-                    <div id='roadmapsAdd_picture'></div>
-                    <div style={{ width: '230px', height: '170px', margin: '10px', padding: '5px', textAlign: 'left', }}>
-                      <div id='roadmapsAdd_hashtag'>해시태그</div>
-                      <div id='roadmapsAdd_title'>이것은 제목입니다.</div>
-                      {/* <hr/>
-                      <div id='roadmapsAdd_description'>이것은 제목입니다.</div> */}
-                    </div>
-                  </div>
-              </div><hr/>
-
-              <div id='roadmapsAdd_individe1'>
-                  <div style={{ margin: '10px 0px 0px 10px', display: 'flex', }}>
-                    <div id='roadmapsAdd_picture'></div>
-                    <div style={{ width: '230px', height: '170px', margin: '10px', padding: '5px', textAlign: 'left', }}>
-                      <div id='roadmapsAdd_hashtag'>해시태그</div>
-                      <div id='roadmapsAdd_title'>이것은 제목입니다.</div>
-                      {/* <hr/>
-                      <div id='roadmapsAdd_description'>이것은 제목입니다.</div> */}
-                    </div>
-                  </div>
-              </div><hr/>
-
-              <div id='roadmapsAdd_individe1'>
-                  <div style={{ margin: '10px 0px 0px 10px', display: 'flex', }}>
-                    <div id='roadmapsAdd_picture'></div>
-                    <div style={{ width: '230px', height: '170px', margin: '10px', padding: '5px', textAlign: 'left', }}>
-                      <div id='roadmapsAdd_hashtag'>해시태그</div>
-                      <div id='roadmapsAdd_title'>이것은 제목입니다.</div>
-                      {/* <hr/>
-                      <div id='roadmapsAdd_description'>이것은 제목입니다.</div> */}
-                    </div>
-                  </div>
-              </div><hr/>
-
-              <div id='roadmapsAdd_individe1'>
-                  <div style={{ margin: '10px 0px 0px 10px', display: 'flex', }}>
-                    <div id='roadmapsAdd_picture'></div>
-                    <div style={{ width: '230px', height: '170px', margin: '10px', padding: '5px', textAlign: 'left', }}>
-                      <div id='roadmapsAdd_hashtag'>해시태그</div>
-                      <div id='roadmapsAdd_title'>이것은 제목입니다.</div>
-                      {/* <hr/>
-                      <div id='roadmapsAdd_description'>이것은 제목입니다.</div> */}
-                    </div>
-                  </div>
-              </div><hr/>
-
+            {/* 처음 박스 */}
+            <div className="roadmapsUpdate_box" style={{ overflow: 'scroll', overflowX: 'hidden', width: '500px', height: '680px', borderRadius: '10px', backgroundColor: 'white', }}>
+                <div id='roadmapsUpdate_list'></div>
             </div>
 
-            <div style={{ width: '200px', height: '810px', textAlign: 'center', backgroundColor: 'white', }}>
-              <div style={{ width: '80px', height: '80px', margin: '330px 60px 20px 60px', fontSize: '48px', fontWeight: 'bolder', color: '#45AFBE', backgroundColor: '#17173D', }}>&gt;</div>
-              <div style={{ width: '80px', height: '80px', margin: '0px 60px 20px 60px', fontSize: '48px', fontWeight: 'bolder', color: '#45AFBE', backgroundColor: '#17173D', }}>&lt;</div>
+            {/* 중간 박스 */}
+            <div style={{ width: '200px', height: '680px', textAlign: 'center', backgroundColor: 'rgb(219, 219, 219)', }}>
+              <div style={{ width: '80px', height: '80px', margin: '330px 60px 20px 60px', fontSize: '48px', fontWeight: 'bolder', borderRadius: '10px', color: 'white', backgroundColor: '#17173D', }}>&gt;</div>
+              <div style={{ width: '80px', height: '80px', margin: '0px 60px 20px 60px', fontSize: '48px', fontWeight: 'bolder', borderRadius: '10px', color: 'white', backgroundColor: '#17173D', }}>&lt;</div>
             </div>
 
-            <div className="roadmapsAdd_box" style={{ overflow: 'scroll', overflowX: 'hidden', width: '600px', height: '810px', backgroundColor: 'rgb(219, 219, 219)', }}>
-            
-              <div id='roadmapsAdd_individe1'>
-                  <div style={{ margin: '10px 0px 0px 10px', display: 'flex', }}>
-                    <div id='roadmapsAdd_picture'></div>
-                    <div style={{ width: '230px', height: '170px', margin: '10px', padding: '5px', textAlign: 'left', }}>
-                      <div id='roadmapsAdd_hashtag'>해시태그</div>
-                      <div id='roadmapsAdd_title'>이것은 제목입니다.</div>
-                      {/* <hr/>
-                      <div id='roadmapsAdd_description'>이것은 제목입니다.</div> */}
-                    </div>
-                  </div>
-              </div><hr/>
-
+            {/* 마지막 박스 */}
+            <div className= "roadmapsUpdate_box" style={{ overflow: 'scroll', overflowX: 'hidden', width: '500px', height: '680px', borderRadius: '10px', backgroundColor: 'white', }}>
+                <div id='roadmapsUpdate_list2'></div>
             </div>
-
-          </div>
-
-          <div style={{ margin: '10px 0px 10px 0px', textAlign: 'right', }}>
-            <button><Link to='/roadmaps'>취소</Link></button>
-            <button><Link to='/roadmapsAdd2'>다음</Link></button>
+          
+          <div id='roadmapsUpdate_lecturesId'></div>
           </div>
       </div>
+
+        <div style={{ width: '1650px', margin: '10px 0px 50px 0px', textAlign: 'right', }}>
+            <button onClick={() => {
+              console.log($('#roadmapsUpdate_lecturesId').val())
+              console.log($('#roadmapsUpdate_mainTitleInput').val())
+              console.log($('#roadmapsUpdate_mainDescriptionInput').val())
+              if ($('#roadmapsUpdate_lecturesId').val().length === 0 || $('#roadmapsUpdate_mainTitleInput').val() === '' || $('#roadmapsUpdate_mainDescriptionInput').val() === '') {
+                alert('빈 칸이 있습니다')
+                return
+              }
+              axios.post('http://54.180.150.167:8080/roadmaps',  {
+                "lectureIds": $('#roadmapsUpdate_lecturesId').val(),
+                "roadmapRecommendation": $('#roadmapsUpdate_mainDescriptionInput').val(),
+                "roadmapTitle": $('#roadmapsUpdate_mainTitleInput').val(),
+              }, localStorage.getItem('token'),).then((response)=>{
+                  navigate('/roadmaps')
+              }).catch((error) => { alert('로드맵 글추가 실패') })
+            }} style={{ borderRadius: '5px', color: 'white', backgroundColor: '#17173D', }}>글추가</button>
+        </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ const StudiesAdd = () => {
       <div style={{ width: '1200px', height: '810px', display: 'inline-block', }}>
           <div style={{ width: '100%', margin: '10px 10px', display: 'flex', alignItems: 'center', }}>
             <div id ='studiesAdd_hashtag'></div>
-            <div id ='studiesAdd_peeple'>모집인원수 <input id='studiesAdd_max' type='number' min='0'/> / <input id='studiesAdd_min' type='number'  min='0'/>
+            <div id ='studiesAdd_peeple'>모집인원수 <input id='studiesAdd_max' type='number' min='2'/> / <input id='studiesAdd_min' type='number'  min='1'/>
             </div>
           </div>
           
@@ -66,17 +66,13 @@ const StudiesAdd = () => {
           <div id="studiesAdd_description">내용 <input id="studiesAdd_descriptionInput" /></div>
 
           <div style={{ width: '98%', margin: '10px 10px', textAlign: 'right', }}>
-            <button style={{ color: 'white', backgroundColor: '#17173D', }} onClick={() => {
+            <button style={{ color: 'white', borderRadius: '5px', backgroundColor: '#17173D', }} onClick={() => {
               if ($('#studiesAdd_max').val() < $('#studiesAdd_min').val()) {
                 alert('모집 최대인원이 모집 최소인원보다 작을 수 없습니다')
                 return
               }
               if ($('#studiesAdd_titleInput').val()==='' || $('#studiesAdd_descriptionInput').val()==='' || $('#studies_locationSearch').val()==='지역' || $('#studiesAdd_categoryInput').val()==='카테고리' || $('#studiesAdd_max').val()==='' || $('#studiesAdd_min').val()==='') {
                 alert('빈 칸이 있습니다')
-                return
-              }
-              if ($('#studiesAdd_max').val()==='0' || $('#studiesAdd_min').val()==='0') {
-                alert('인원은 1명 이상이어야 합니다')
                 return
               }
               axios.post('http://54.180.150.167:8080/studies', {
