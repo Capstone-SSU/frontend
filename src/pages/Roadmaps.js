@@ -21,7 +21,7 @@ function NumberF(list, box) {
 }
 
 function RoadmapF(list, page) {
-  var roadmaps = '';
+  var roadmaps = ''; var length = list.length;
 
   document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
 
@@ -51,12 +51,48 @@ function RoadmapF(list, page) {
    "</div><hr/>" +
    "</a>"
   }
+  document.getElementById('studies_count').innerHTML = "로드맵 총 " + length + "개"
 
   return roadmaps;
 }
 
 function SearchF() {
+  var link = '?'
+  if ($('#studies_searchSearch').val() != '') {
+    var search = $('#studies_searchSearch').val().split(" ");
+    link += "keyword="+ search[0] +"%20"
+
+    for (var i = 1; i < search.length; i++) {
+      link += "" + search[i] + "%20"
+    }
+    link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
+  }
   
+  axios.get('http://54.180.150.167:8080/roadmaps' + link, {
+
+  }).then((response)=>{
+    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
+    document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,1)
+    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
+  }).catch((error) => { alert('로드맵 조회 실패했습니다.') })
+}
+function Search2F() {
+  var link = '?'
+  if ($('#studies_searchSearch').val() != '') {
+    var search = $('#studies_searchSearch').val().split(" ");
+    link += "keyword="+ search[0] +"%20"
+
+    for (var i = 1; i < search.length; i++) {
+      link += "" + search[i] + "%20"
+    }
+    link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
+  }
+  
+  axios.get('http://54.180.150.167:8080/roadmaps' + link, {
+
+  }).then((response)=>{
+    document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,$('#studies_number').val())
+  }).catch((error) => { alert('로드맵 조회 실패했습니다.') })
 }
 
 const Roadmaps = () => {
@@ -81,42 +117,6 @@ const Roadmaps = () => {
         
         <div style={{ width: '100%', backgroundColor: 'red'}}>
           <div style={{ width: 'auto', height: '50px', margin: '0px 120px', padding: '0px 20px', display: 'flex', float: 'left', }}></div>
-          <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
-              <select id='studies_locationSearch' className='studies_search'>
-                <option>지역</option>
-                <option value='서울'>서울</option>
-                <option value='경기'>경기</option>
-                <option value='인천'>인천</option>
-                <option value='대구'>대구</option>
-                <option value='광주'>광주</option>
-                <option value='대전'>대전</option>
-                <option value='울산'>울산</option>
-                <option value='세종'>세종</option>
-                <option value='강원'>강원</option>
-                <option value='충북'>충북</option>
-                <option value='충남'>충남</option>
-                <option value='전북'>전북</option>
-                <option value='전남'>전남</option>
-                <option value='경북'>경북</option>
-                <option value='경남'>경남</option>
-                <option value='부산'>부산</option>
-                <option value='제주'>제주</option>
-              </select>
-          </div>
-
-          <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
-            <select id='studies_categorySearch' className='studies_search'>
-              <option>카테고리</option>
-              <option value='모각코'>모각코</option>
-              <option value='코딩테스트'>코딩테스트</option>
-              <option value='사이드 프로젝트'>사이드 프로젝트</option>
-              <option value='공모전'>공모전</option>
-              <option value='프로그래밍언어'>프로그래밍언어</option>
-              <option value='강의완독'>강의완독</option>
-              <option value='로드맵공략'>로드맵공략</option>
-              <option value='자격증'>자격증</option>
-            </select>
-          </div>
           
           <div style={{ width: 'auto', height: '50px', margin: '0px 120px', padding: '0px 20px', display: 'flex', float: 'right', }}></div>
           
@@ -148,6 +148,14 @@ const Roadmaps = () => {
           </div>
         <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>
 
+          <div style={{ textAlign: 'left', display: 'flex', fontSize: '18px', fontWeight: 'bolder', }}>
+            <div id='studies_count' style={{ width: '150px',  }}>로드맵 개수</div>
+            {/* <div style={{ width: '110px', display: 'flex', }}>
+              최신순
+              <img id='studies_imgN' src={allowB} style={{ width: '20px', height: '20px', }}/>
+            </div> */}
+            <div style={{ width: '720px', }}></div>
+          </div>
 
           <div id='roadmaps_list'>
           </div>
@@ -162,30 +170,20 @@ const Roadmaps = () => {
                   if ($('#studies_Box').val() === '1') return
                   var i = $('#studies_Box').val()
                   $('#studies_Box').val(parseInt(i)-1)
-                  axios.get('http://54.180.150.167:8080/roadmaps', {
-
-                  }, localStorage.getItem('token'),).then((response)=>{
-                      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data, $('#studies_number').val())
-                  }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
+                  
+                  Search2F()
                 }}>
                 </div>
                 <div id='studies_number' onClick={() => {
-                  axios.get('http://54.180.150.167:8080/roadmaps', {
-
-                  }, localStorage.getItem('token'),).then((response)=>{
-                      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data, $('#studies_number').val())
-                  }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
+                  Search2F()
                 }}><div id='studies_Box'></div></div>
                 <div id='studies_max'></div>
                 <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }} onClick={() => {
                   if ($('#studies_Box').val() === $('#studies_max').val()) return
                   var i = $('#studies_Box').val()
                   $('#studies_Box').val(parseInt(i)+1)
-                  axios.get('http://54.180.150.167:8080/roadmaps', {
 
-                  }, localStorage.getItem('token'),).then((response)=>{
-                      document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data, $('#studies_number').val())
-                  }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
+                  Search2F()
                 }}>
                 </div>
 

@@ -91,3 +91,21 @@
     font-weight: 400; 
     color: rgb(190, 190, 190);
   }
+
+
+
+  #roadmaps_locationSearch {
+    width: 67px;
+  }
+  #roadmaps_categorySearch {
+    width: 110px;
+  }
+  .roadmaps_search {
+    /* width: auto; */
+    border: 0;
+    font-size: 22px;  
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
