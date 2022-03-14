@@ -1,6 +1,7 @@
 import React from "react";
 import '../pages_css/Lectures.css';
 import tempImg from '../mainCoding.png';
+import axios from "axios";
 
 const Lectures = () => {
   return (
@@ -38,6 +39,13 @@ const Lectures = () => {
   );
 }
 
+const Try = () => {
+  axios.get('http://54.180.150.167:8080/lectures')
+    .then(response => {
+      console.log(response);
+    });
+}
+
 const SearchBar = () => {
   return (
     <div className="search_bar">
@@ -52,7 +60,7 @@ const SearchBar = () => {
 const WriteButton = () => {
   return (
     <div className="write_button">
-      <buttton id="writeLectureButton">글쓰기</buttton>
+      <button id="writeLectureButton">글쓰기</button>
     </div>
   );
 }
