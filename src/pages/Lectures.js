@@ -2,10 +2,14 @@ import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import '../pages_css/Lectures.css';
 import tempImg from '../mainCoding.png';
+<<<<<<< HEAD
 import write from '../write.png';
 import search from '../search.png';
 import like from '../like.png';
 import likeFill from '../likeFill.png';
+=======
+import axios from "axios";
+>>>>>>> 0b4086ce26e5adeea658072a7f451e16de3df3a5
 
 import axios from 'axios';
 import $ from 'jquery';
@@ -14,6 +18,7 @@ window.$ = $;
 function NumberF(list, box) {
   var numbers = ''
 
+<<<<<<< HEAD
   for (var i = 25*(box-1); i < 25*box; i++) {
     if (Math.ceil(list.length/25) === i) break;
     numbers += 
@@ -46,6 +51,32 @@ function LecturesF(list, page) {
 
   document.getElementById('lectures_count').innerHTML = "강의평 총 " + length + "개";
   return lectures;
+=======
+const Try = () => {
+  axios.get('http://54.180.150.167:8080/lectures')
+    .then(response => {
+      console.log(response);
+    });
+}
+
+const SearchBar = () => {
+  return (
+    <div className="search_bar">
+      <form>
+        <input type="text"></input>
+        <button type="submit">검색</button>
+      </form>
+    </div>
+  );
+}
+
+const WriteButton = () => {
+  return (
+    <div className="write_button">
+      <button id="writeLectureButton">글쓰기</button>
+    </div>
+  );
+>>>>>>> 0b4086ce26e5adeea658072a7f451e16de3df3a5
 }
 
 const Lectures = () => {
