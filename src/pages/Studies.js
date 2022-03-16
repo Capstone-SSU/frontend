@@ -185,7 +185,7 @@ const Studies = () => {
             if(!localStorage.getItem('token')) navigate('/signin')
             else navigate('/studiesAdd')
           }}>
-            스터디글 작성하기
+            스터디 작성하기
           </div>
         </div>
         
@@ -205,7 +205,7 @@ const Studies = () => {
                   }).then((response)=>{
                     document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
                     document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
-                  }).catch((error) => { alert('스터디페이지에 오류가 있습니다.') })
+                  }).catch((error) => { alert('스터디 페이지에 오류가 있습니다.') })
                 }}/>
               <span className="onoff-switch"></span>
             </label>

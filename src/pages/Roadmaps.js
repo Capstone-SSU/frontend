@@ -123,7 +123,7 @@ const Roadmaps = () => {
           <div style={{ width: '400px', height: '50px', margin: '0 20px', padding: '0px 20px', float: 'right',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
             <div style={{ height: '4px'}}></div>
             <div className="roadmaps_searchCatagory">
-              <input id='studies_searchSearch' style={{ width: '480px', height: '40px', margin: '0px 15px 0px 0px', border: '0', }} placeholder='스터디를 입력하세요' />
+              <input id='studies_searchSearch' style={{ width: '480px', height: '40px', margin: '0px 15px 0px 0px', border: '0', }} placeholder='로드맵을 입력하세요' />
               <div>
                 <div style={{ height: '2px'}}></div>
                 <img src={search} style={{ width:'30px', height: '30px',}} onClick={SearchF}/>
@@ -143,7 +143,7 @@ const Roadmaps = () => {
               if(!localStorage.getItem('token')) navigate('/signin')
               else navigate('/roadmapsAdd')
             }}>
-              로드맵글 작성하기
+              로드맵 작성하기
             </div>
           </div>
         <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>
