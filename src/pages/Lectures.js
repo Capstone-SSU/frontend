@@ -76,6 +76,7 @@ const Lectures = () => {
     }
   
     link = link.slice(0, -1)
+    console.log(link)
     $('#lectures_hashtagSelection2').hide()
     
     axios.get('http://54.180.150.167:8080/lectures' + link, {
@@ -182,16 +183,39 @@ const Lectures = () => {
             </div>
            
             <div id='lectures_hashtagSelection2'>
-              <input type='checkbox' name='hashtag' value='Java' onClick={()=>{
-                document.getElementById('lectures_hashtagSelection3').innerHTML += "<div class='lectures_hashtag'>Java</div>"}}/>Java
-              <input type='checkbox' name='hashtag' value='C++' onClick={()=>{
-                document.getElementById('lectures_hashtagSelection3').innerHTML += "<div class='lectures_hashtag'>C++</div>"}}/>C++
-              <input type='checkbox' name='hashtag' value='파이썬' onClick={()=>{
-                document.getElementById('lectures_hashtagSelection3').innerHTML += "<div class='lectures_hashtag'>파이썬</div>"}}/>파이썬
-              <input type='checkbox' name='hashtag' value='스프링' onClick={()=>{
-                document.getElementById('lectures_hashtagSelection3').innerHTML += "<div class='lectures_hashtag'>스프링</div>"}}/>스프링
+              <div id='body_flex'>
+              <div style={{ width: '400px', display: 'block', }}>
+                <div><input type='checkbox' name='hashtag' value='Java' onClick={()=>{
+                  if ($('#Java').val() === undefined)
+                    document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='Java' class='lectures_hashtag'>Java</div>"
+                  else 
+                    $('#Java').remove()
+                }}/>Java</div>
+                <div><input type='checkbox' name='hashtag' value='C++' onClick={()=>{
+                  if ($('#CA').val() === undefined)
+                    document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='CA' class='lectures_hashtag'>C++</div>"
+                  else 
+                    $('#CA').remove()
+                  }}/>C++</div>
+                <div><input type='checkbox' name='hashtag' value='파이썬' onClick={()=>{
+                  if ($('#PythonK').val() === undefined)
+                    document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='PythonK' class='lectures_hashtag'>파이썬</div>"
+                  else 
+                    $('#PythonK').remove()
+                  }}/>파이썬</div>
+                <div><input type='checkbox' name='hashtag' value='스프링' onClick={()=>{
+                  if ($('#SpringK').val() === undefined)
+                    document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='SpringK' class='lectures_hashtag'>스프링</div>"
+                  else 
+                    $('#SpringK').remove()
+                  }}/>스프링</div>
+              </div>
+              <div id='lectures_hashtagRemoveAll' onClick={()=>{
+                  $(':checkbox:checked').prop('checked',false);
+                  $('.lectures_hashtag').remove()
+                }}>전체취소</div>
             </div>
-           
+            </div>
           </div>
         <hr className='lectures_hr'/>
       </div>
