@@ -56,7 +56,7 @@ const LecturesList = () => {
         }).catch((error) => {
             console.log(error)
             alert('로그인 해주세요')
-            navigate('/studies')
+            navigate('/lectures')
         })
     });
     return (
