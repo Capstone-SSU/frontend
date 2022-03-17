@@ -2,14 +2,10 @@ import * as React from 'react';
 import Nav from './pages/Nav';
 import Main from './pages/Main';
 import Lectures from './pages/Lectures';
-<<<<<<< HEAD
 import LecturesList from './pages/LecturesList';
 import LecturesAdd from './pages/LecturesAdd';
 import LecturesUpdate from './pages/LecturesUpdate';
-=======
-import LecturesAdd from './pages/LecturesAdd';
 import LecturesDetail from './pages/LecturesDetail';
->>>>>>> 0b4086ce26e5adeea658072a7f451e16de3df3a5
 import Studies from './pages/Studies';
 import StudiesList from './pages/StudiesList';
 import StudiesAdd from './pages/StudiesAdd';
@@ -28,7 +24,7 @@ function App() {
   // const [userInfo, setUserInfo] = React.useState("devstone");
   return (
     <Router>
-<<<<<<< HEAD
+
         <Nav/>
         <Routes>
           <Route path="/" exact={true} element={<Main/>} />
@@ -50,28 +46,6 @@ function App() {
           <Route path='/users' element={<Users/>} />
           {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}
         </Routes>
-=======
-      <Nav />
-      <Routes>
-        <Route path="/" exact={true} element={<Main />} />
-        <Route path='/lectures' element={<Lectures />} />
-        <Route path='/lecturesAdd' element={<LecturesAdd />} />
-        <Route path='/lecturesDetail' element={<LecturesDetail />} />
-        <Route path='/studies' element={<Studies />} />
-        <Route path='/studies/:studyId' element={<StudiesList />} />
-        <Route path='/studiesAdd' element={<StudiesAdd />} />
-        <Route path='/studiesUpdate/:studyId' element={<StudiesUpdate />} />
-        <Route path='/roadmaps' element={<Roadmaps />} />
-        <Route path='/roadmaps/:roadmapsId' element={<RoadmapsList />} />
-        <Route path='/roadmapsAdd' element={<RoadmapsAdd />} />
-        <Route path='/roadmapsAdd2' element={<RoadmapsAdd2 />} />
-        <Route path='/roadmapsUpdate/:roadmapsId' element={<RoadmapsUpdate />} />
-        <Route path='/signin' element={<Signin />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/users' element={<Users />} />
-        {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}
-      </Routes>
->>>>>>> 0b4086ce26e5adeea658072a7f451e16de3df3a5
     </Router>
   )
 }
