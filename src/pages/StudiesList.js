@@ -14,16 +14,14 @@ function StudiesListF(list) {
     "<div id='studiesList_individe1'>" +
         ( list.isThisUserPostWriter ?
         '<div id="body_flex"><div id="studiesList_blank"></div><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
-        "<div id='body_flex' >" +
+        "<div>" +
             "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
-            "<div id='studiesList_profill'>" + list.studyPostWriter.userProfileImg + "</div>" +
             "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
+            "<div id='studiesList_profill'>" + list.studyPostWriter.userProfileImg + "</div>" +
         "</div>" +
         "<div id='studiesList_top'>" +
-            "<div id='body_flex' >" +
-                "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" +
-                "<div id='studiesList_like'>현재 " + list.likeCount + "명이 관심을 가지고 있습니다.</div>" +
-            "</div>" +
+            "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" +
+            "<div id='studiesList_like'>현재 " + list.likeCount + "명이 관심을 가지고 있습니다.</div>" +
         "</div>" +
 
         "<div id='studiesList_box'>" +
@@ -40,10 +38,12 @@ function StudiesListF(list) {
                     "<div id='studiesList_box2'>" + list.studyMinReq + "~" + list.studyMaxReq + " 명</div>" +
                     "<div id='studiesList_box2'>" + list.studyCreatedDate.slice(0, 10) + "</div>" +
                 "</div>" +
-                "<div id='body_flex'>" + 
+                "<div>" + 
+                    "<button id='studiesList_reports'>신고하기</button><div id='studiesList_font'>" + list.likeCount + " |</div>" +
                     (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
-                    "<div><div id='studiesList_font2'></div><div id='studiesList_font'>" + list.likeCount + " |</div></div><button id='studiesList_reports'>신고하기</button></div>" +
-            "</div><hr id='studiesList_hr'/>" +
+                "</div>" +
+            "</div>" + 
+            "<hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
         "</div>" +
         "<div id='body_height'></div>" +

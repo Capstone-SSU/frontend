@@ -1,0 +1,17 @@
+#lecturesList_box3 {
+    width: 100%;
+    height: auto;
+    padding: 15px 0px 15px 0px;
+
+    text-align: left;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#lecturesList_commnetsAddInput {
+    width: 60%;
+}
+#lecturesList_commentsAddButton {
+    width: 50px;
+    font-size: 16px;
+}

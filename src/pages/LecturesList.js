@@ -59,6 +59,7 @@ const LecturesList = () => {
             navigate('/lectures')
         })
     });
+
     return (
         <div id="body_main">
             <div id="body_center_top"></div>
@@ -70,22 +71,8 @@ const LecturesList = () => {
                     <div id='body_flex'>
                     </div>
                     <div id="lecturesList_list"></div>
-                    <div id='studiesList_box3'>
-                        <input id="studiesList_commnetsAddInput" placeholder='댓글을 입력해주세요'/>
-                        <button id='studiesList_commentsAddButton' className='button' onClick={()=>{
-                            if ($('#studiesList_commnetsAddInput').val() === '') {
-                                alert('빈 칸은 안됩니다'); return;
-                            }
-                            axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + "/comments", {
-                                "commentClass": 0,
-                                "commentContent": $('#studiesList_commnetsAddInput').val(),
-                                "commentParentId": 0,
-                            }, localStorage.getItem('token'),).then((response)=>{
-                                navigate('/studies/' + parseInt(current.split("/")[4]))
-                            }).catch((error) => { 
-                                alert('스터디 댓글추가 실패')
-                            })
-                        }}>등록</button>
+                    <div id='lecturesList_box3'>
+                        <input id="lecturesList_commnetsAddInput" placeholder='댓글을 입력해주세요'/>
                     </div>
                     <div id="lecturesList_comments"></div>
                 </div>

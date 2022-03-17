@@ -31,7 +31,7 @@
   }
   #body_main {
     width: 100%;
-    min-width: 1903px;
+    min-width: 1176px;
     height: auto;
 
     text-align: center;
@@ -82,6 +82,10 @@
   .switch-button { 
     position: relative; 
     display: inline-block; 
+
+    display: flex; 
+    float: right;
+
     width: 55px; 
     height: 30px; 
   } 
@@ -138,7 +142,7 @@
     font-weight: bolder;
   }
 
-  #studies_individe1 {
+  #studies_individe {
     width: 100%;
     height: 98px;
     margin: 15px 0px 0px 0px;
@@ -150,6 +154,10 @@
     box-shadow: 3px 3px 3px gray;
     background-color: white;
   }
+  .studies_individeBox {
+    width: 100%;
+    height: 50px;
+  }
   #studies_list hr {
     height: 2px;
   }
@@ -157,7 +165,15 @@
     width: 50px;
     height: 50px; 
     line-height: 50px;
+    margin: 0px 0px 0px 5px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
     
+    display: flex;
+    float: left;
+
     font-size: 22px; 
     border-radius: 50%; 
     color: #17173D; 
@@ -165,12 +181,16 @@
   }
   #studies_title {
     /* width: 82%; */
-    width: 990px;
-    margin: 5px 0px 0px 20px;
+    width: auto;
+    margin: 4px 0px 0px 10px;
     text-align: left;
+
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+
+    display:flex;
+    float: left;
 
     font-size: 25px; 
     font-weight: bolder; 
@@ -180,9 +200,10 @@
     width: 50px;
     height: 36px;
     line-height: 36px;
-    margin: 0px 0px 0px 20px;
-
-    display: flex;
+    margin: 0px 10px 0px 0px;
+    
+    display:flex;
+    float: right;
 
     font-size: 22px;
     text-align: center;
@@ -205,6 +226,7 @@
     font-weight: 600;
     border-radius: 5px;
     background-color: #17173D;
+    
   }
   #studies_location {
     width: auto;

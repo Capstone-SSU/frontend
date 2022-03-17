@@ -115,22 +115,23 @@ const Roadmaps = () => {
 
       <div style={{ width: '100%', height: '50px', lineHeight: '50px', color: '#17173D', fontSize: '22px', }}>
         
-        <div style={{ width: '100%', backgroundColor: 'red'}}>
-          <div style={{ width: 'auto', height: '50px', margin: '0px 120px', padding: '0px 20px', display: 'flex', float: 'left', }}></div>
-          
-          <div style={{ width: 'auto', height: '50px', margin: '0px 120px', padding: '0px 20px', display: 'flex', float: 'right', }}></div>
-          
-          <div style={{ width: '400px', height: '50px', margin: '0 20px', padding: '0px 20px', float: 'right',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
-            <div style={{ height: '4px'}}></div>
-            <div className="roadmaps_searchCatagory">
-              <input id='studies_searchSearch' style={{ width: '480px', height: '40px', margin: '0px 15px 0px 0px', border: '0', }} placeholder='로드맵을 입력하세요' />
-              <div>
-                <div style={{ height: '2px'}}></div>
-                <img src={search} style={{ width:'30px', height: '30px',}} onClick={SearchF}/>
-              </div>
+        
+        <div style={{ width: '15%', height: '50px', display: 'flex', float: 'left',}}></div>
+        
+        <div style={{ width: '15%', height: '50px', display: 'flex', float: 'right', }}></div>
+        
+        {/* 검색창 담당 */}
+        <div style={{ width: '400px', height: '50px', margin: '0 20px', padding: '0px 20px', float: 'right',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px',}}>
+          <div style={{ height: '4px', }}></div>
+          <div className="studies_searchCatagory">
+            <input id='studies_searchSearch' style={{ width: '480px', height: '40px', margin: '0px 15px 0px 0px', border: '0', }} placeholder='로드맵을 입력하세요' />
+            <div>
+              <div style={{ height: '2px'}}></div>
+              <img src={search} style={{ width:'30px', height: '30px',}} onClick={SearchF}/>
             </div>
           </div>
         </div>
+        
         
       </div>
 
@@ -138,27 +139,23 @@ const Roadmaps = () => {
 
       <div style={{ width: '100%', height: 'auto', backgroundColor: 'rgb(240, 240, 240)', }}>
         <div style={{ display: 'flex', }}>
-            <img src={write} style={{ margin: '16px 0px 30px 330px', height: '30px', }}/>
-            <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
-              if(!localStorage.getItem('token')) navigate('/signin')
-              else navigate('/roadmapsAdd')
-            }}>
-              로드맵 작성하기
-            </div>
+          <div style={{ width: '17%', }}></div>
+          <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
+          <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
+            if(!localStorage.getItem('token')) navigate('/signin')
+            else navigate('/roadmapsAdd')
+          }}>
+            로드맵 작성하기
           </div>
+        </div>
+
         <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>
 
           <div style={{ textAlign: 'left', display: 'flex', fontSize: '18px', fontWeight: 'bolder', }}>
-            <div id='studies_count' style={{ width: '150px',  }}>로드맵 개수</div>
-            {/* <div style={{ width: '110px', display: 'flex', }}>
-              최신순
-              <img id='studies_imgN' src={allowB} style={{ width: '20px', height: '20px', }}/>
-            </div> */}
-            <div style={{ width: '720px', }}></div>
+            <div id='studies_count' style={{ width: 'auto', display: 'flex', float: 'left',  }}>로드맵 개수</div>
           </div>
 
-          <div id='roadmaps_list'>
-          </div>
+          <div id='roadmaps_list'></div>
 
           <div style={{ height: '100px', textAlign: 'center', }}></div>
 

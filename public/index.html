@@ -206,6 +206,17 @@
         $('#roadmapsUpdate_lecturesId').val(lecturesId)
             
       }
+
+      function LecturesHashtagsF(hashTag) {
+        if ($('#' + hashTag).val() === undefined)
+          document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='" + hashTag + "' class='lectures_hashtag'>" + hashTag + "</div>"
+        else 
+          $('#' + hashTag).remove()
+      }
+      function LecturesRemoveF() {
+        $(':checkbox:checked').prop('checked',false);
+        $('.lectures_hashtag').remove()
+      }
     </script>
     <title>React App</title>
   </head>
