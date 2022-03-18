@@ -1,0 +1,58 @@
+#lecturesAdd_hashtagInput1{
+    width: 20%;
+    height: 40px;
+    margin: 0px 20px 0px 0px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_hashtagInput2{
+    width: 20%;
+    height: 40px;
+    margin: 0px 20px 0px 0px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_hashtagInput3{
+    width: 20%;
+    height: 40px;
+    margin: 0px 170px 0px 0px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_linkInput {
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_titleInput, #lecturesAdd_mainTitleInput, #lecturesAdd_teacherInput, #lecturesAdd_siteInput {
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_descriptionInput {
+    width: 80%;
+    height: 200px;
+    resize: none;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}

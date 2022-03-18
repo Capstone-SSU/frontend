@@ -8,11 +8,8 @@
     text-align: left;
 }
 #roadmapsUpdate_mainTitle > input {
-    width: 89%;
+    width: 87%;
     height: 50px;
-
-    display: flex;
-    float: right;
 
     font-size: 22px;
     border: 0;
@@ -24,16 +21,15 @@
     height: 150px;
     margin: 30px 20px;
 
+    display: flex;
+
     font-size: 22px;
     text-align: left;
 }
 #roadmapsUpdate_mainDescription > textarea {
-    width: 89%;
+    width: 87%;
     height: 150px;
     resize: none;
-
-    display: flex;
-    float: right;
 
     font-size: 22px;
     border: 0;
@@ -48,7 +44,8 @@
     background-color: white;
 }
 #roadmapsUpdate_individe1 {
-    width: 480px;
+    width: 550px;
+    margin: 0px 0px 0px 3px;
     background-color: rgb(219, 219, 219);
 }
 #roadmapsUpdate_lectureId {
