@@ -14,7 +14,7 @@ function StudiesListF(list) {
     "<div id='studiesList_individe1'>" +
         ( list.isThisUserPostWriter ?
         '<div id="body_flex"><div id="studiesList_blank"></div><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
-        "<div>" +
+        "<div id='studiesList_top1'>" +
             "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
             "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
             "<div id='studiesList_profill'>" + list.studyPostWriter.userProfileImg + "</div>" +
@@ -22,27 +22,30 @@ function StudiesListF(list) {
         "<div id='studiesList_top'>" +
             "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" +
             "<div id='studiesList_like'>현재 " + list.likeCount + "명이 관심을 가지고 있습니다.</div>" +
+
         "</div>" +
 
         "<div id='studiesList_box'>" +
-            "<div id='body_flex'>" +
-                "<div>" +
-                    "<div id='studiesList_box1'>지역</div>" +
-                    "<div id='studiesList_box1'>카테고리</div>" +
-                    "<div id='studiesList_box1'>모집인원</div>" +
-                    "<div id='studiesList_box1'>작성 일시</div>" +
+            "<div id='studiesList_box1'>" +
+                "<div id='studiesList_boxOuter'>" +
+                    "<div id='studiesList_boxInner'>지역</div>" +
+                    "<div id='studiesList_boxInner'>카테고리</div>" +
+                    "<div id='studiesList_boxInner'>모집인원</div>" +
+                    "<div id='studiesList_boxInner'>작성 일시</div>" +
                 "</div>" +
-                "<div>" +
-                    "<div id='studiesList_box2'>" + list.studyLocation + "</div>" +
-                    "<div id='studiesList_box2'>" + list.studyCategoryName + "</div>" +
-                    "<div id='studiesList_box2'>" + list.studyMinReq + "~" + list.studyMaxReq + " 명</div>" +
-                    "<div id='studiesList_box2'>" + list.studyCreatedDate.slice(0, 10) + "</div>" +
+            "</div>" +
+            "<div id='studiesList_box2'>" +
+                "<div id='studiesList_boxOuter'>" +
+                    "<div id='studiesList_boxInner'>" + list.studyLocation + "</div>" +
+                    "<div id='studiesList_boxInner'>" + list.studyCategoryName + "</div>" +
+                    "<div id='studiesList_boxInner'>" + list.studyMinReq + "~" + list.studyMaxReq + " 명</div>" +
+                    "<div id='studiesList_boxInner'>" + list.studyCreatedDate.slice(0, 10) + "</div>" +
                 "</div>" +
-                "<div>" + 
-                    "<button id='studiesList_reports'>신고하기</button><div id='studiesList_font'>" + list.likeCount + " |</div>" +
-                    (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
-                "</div>" +
-            "</div>" + 
+            "</div>" +
+            "<div id='studiesList_box3'>" + 
+                (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
+                "<div id='studiesList_font'>" + list.likeCount + " |</div><button id='studiesList_reports'>신고하기</button>" +
+            "</div>" +
             "<hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
         "</div>" +
@@ -58,41 +61,37 @@ function StudiesListCommentsF(list, studyId) {
     for(var i = 0; i< list.length; i++) {
         studiesList +=
         "<div id='studiesList_individe2'>" +
-            "<div id='body_flex'>" +
+            "<div id='studiesList_commentsBox1'>" +   
                 "<div id='studiesList_commentsProfill'>" + list[i].commentWriter.userProfileImg + "</div>" +
                 "<div id='studiesList_commentsWriteUsername'>" + list[i].commentWriter.userNickname + "</div>" +
-                '<button id="studiesList_nestedcommentsAdd" onClick="NestedCommentsF('+list[i].studyCommentId+')">댓글</button><div id="studiesList_bar2"><div></div></div>' +
-                (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsUpdate" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + studyId +')">수정</button><div id="studiesList_bar2"><div></div></div>' : "<button></button>") +
-                (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsDelete" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + studyId +')">삭제</button><div id="studiesList_bar2"><div></div></div>' : "<button></button>") +
-                '<button id="studiesList_commentsReports" onClick="CommentsReportF('+list[i].studyCommentId+"," + studyId +')">신고</button>' +
-            "</div>" +
-            "<div id='body_flex'>" +
-                "<div id='studiesList_commentsContent'><div id='studiesList_commentsContent" + list[i].studyCommentId + "'>" + list[i].commentContent + "</div></div>" +
-                // "<div id='studiesList_UcommentsContent'>" +
-                    "<input class='studiesList_commentsContentUpdateInput' id='studiesList_commentsContentUpdateInput" + list[i].studyCommentId + "'/>" +
-                    '<button class="studiesList_commentsContentUpdatebutton" id="studiesList_commentsContentUpdatebutton' + list[i].studyCommentId + '"  onClick="CommentsUpdateF('+list[i].studyCommentId+"," + studyId +')">수정' + '</button>' +
-                // "</div>" +
+                "<div id='studiesList_commentsBoxInner'>" +
+                    '<button id="studiesList_nestedCommentsAdd" onClick="NestedCommentsF('+list[i].studyCommentId+')">댓글</button><div id="studiesList_bar2"><div></div></div>' +
+                    (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsUpdate" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + studyId +')">수정</button><div id="studiesList_bar2"><div></div></div>' : "<button></button>") +
+                    (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsDelete" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + studyId +')">삭제</button><div id="studiesList_bar2"><div></div></div>' : "<button></button>") +
+                    '<button id="studiesList_commentsReports" onClick="CommentsReportF('+list[i].studyCommentId+"," + studyId +')">신고</button>' +
+                "</div>" +
             "</div>" +
 
-            "<div id='studiesList_nestedcommnetsAdd2" + list[i].studyCommentId + "'>" + 
-                "<div id='body_flex'><div id='studiesList_nestedcommnetsAdd2_1'></div><div id='studiesList_nestedcommnetsAdd2'>" +
+            "<div id='studiesList_nestedCommnetsUpdate2'>" +
+                "<div id='studiesList_commentsContent'><div id='studiesList_commentsContent" + list[i].studyCommentId + "'>" + list[i].commentContent + "</div></div>" +
+                "<input class='studiesList_commentsContentUpdateInput' id='studiesList_commentsContentUpdateInput" + list[i].studyCommentId + "'/>" +
+                '<button class="studiesList_commentsContentUpdatebutton" id="studiesList_commentsContentUpdatebutton' + list[i].studyCommentId + '"  onClick="CommentsUpdateF('+list[i].studyCommentId+"," + studyId +')">수정' + '</button>' +
+            "</div>" +
+
+            "<div id='studiesList_nestedCommnetsAdd2" + list[i].studyCommentId + "'>" + 
+                "<div id='body_flex'><div id='studiesList_nestedcommnetsAdd3'></div><div id='studiesList_nestedCommnetsAdd2'>" +
                     "<input id='studiesList_nestedcommnetsAddInput" + list[i].studyCommentId + "' placeholder='대댓글을 입력해주세요'/>" +
-                    '<button id="studiesList_commentsNestedContentUpdatebutton" onClick="NestedCommentsAddF('+list[i].studyCommentId+"," + studyId +')">등록</button>' +
+                    '<button id="studiesList_nestedCommentsContentUpdatebutton" onClick="NestedCommentsAddF('+list[i].studyCommentId+"," + studyId +')">등록</button>' +
                 "</div></div>" +
             "</div>"
-           
         
-        for(var j = 0; j< list[i].nestedComments.length; j++) {
-            console.log(list[i].nestedComments)
+        for(var j = 0; j < list[i].nestedComments.length; j++) {
             studiesList +=
             "<div id='studiesList_nestedComments'>" +
-                "<div id='body_flex'>" +
-                    // "<div id='a'>dd</div>" +
-                    "<div id='body_flex'>" +
-                        "<div id='studiesList_commentsProfill'>" + list[i].nestedComments[j].commentWriter.userProfileImg + "</div>" +
-                        "<div id='studiesList_nestedCommentsWriteUsername'>" + list[i].nestedComments[j].commentWriter.userNickname + "</div>" +
-                        '<button id="studiesList_commentsReports" onClick="NestedCommentsReportF('+')">신고</button>' +
-                    "</div>" +
+                "<div id='studiesList_nestedCommentsBox1'>" +
+                    "<div id='studiesList_nestedCommentsProfill'>" + list[i].nestedComments[j].commentWriter.userProfileImg + "</div>" +
+                    "<div id='studiesList_nestedCommentsWriteUsername'>" + list[i].nestedComments[j].commentWriter.userNickname + "</div>" +
+                    '<button id="studiesList_nestedcommentsReports" onClick="NestedCommentsReportF('+')">신고</button>' +
                 "</div>" +
                 "<div id='body_flex'>" +
                     "<div id='studiesList_commentsContent'>" + list[i].nestedComments[j].commentContent + "</div>" +
@@ -170,8 +169,8 @@ const StudiesList = () => {
                 for (var i = 0; i < response.data.data.studyComments.length; i++) {
                     $('#studiesList_nestedcommnetsAddInput' + response.data.data.studyComments[i].studyCommentId).val('')
 
-                    $('#studiesList_commentsContent1').hide()
-                    $('#studiesList_nestedcommnetsAdd2' + response.data.data.studyComments[i].studyCommentId).hide()
+                    // $('#studiesList_commentsContent1').hide()
+                    $('#studiesList_nestedCommnetsAdd2' + response.data.data.studyComments[i].studyCommentId).hide()
                     
                     $('#studiesList_commentsContentUpdateInput' + response.data.data.studyComments[i].studyCommentId).hide()
                     $('#studiesList_commentsContentUpdateInput' + response.data.data.studyComments[i].studyCommentId).val(response.data.data.studyComments[i].commentContent)
@@ -197,9 +196,9 @@ const StudiesList = () => {
                     <div id='body_flex'>
                     </div>
                     <div id="studiesList_list"></div>
-                    <div id='studiesList_box3'>
+                    <div id='studiesList_commentsAdd'>
                         <input id="studiesList_commnetsAddInput" placeholder='댓글을 입력해주세요'/>
-                        <button id='studiesList_commentsAddButton' className='button' onClick={()=>{
+                        <button className='button' style={{ width: 'auto', margin: '0px 25px 0px 0px', fontSize: '16px', display: 'flex', float: 'right', }} onClick={()=>{
                             if ($('#studiesList_commnetsAddInput').val() === '') {
                                 alert('빈 칸은 안됩니다'); return;
                             }

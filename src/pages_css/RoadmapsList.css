@@ -3,7 +3,7 @@
 }
 
 #roadmapsList_main {
-    width: 1400px;
+    width: 75%;
     display: inline-block;
 }
 #roadmapsList_line {
@@ -59,7 +59,7 @@
 
 
 #roadmapsList_likeButton {
-    width: 1370px;
+    width: 99%;
     margin: 10px 10px;
 
     align-items: right;
@@ -69,11 +69,16 @@
     width: 80px;
 }
 #roadmapsList_boxLike2 {
-    width: 1250px;
+    width: 100%;
 }
 
+
+
+#roadmapsList_box0 {
+    width: 75%;
+}
 #roadmapsList_box1 {
-    width: 1000px;
+    width: 97%;
     height: 340px;
     padding: 25px 0px 0px 20px;
 
@@ -98,33 +103,42 @@
     background-color: #17173D;
 }
 #roadmapsList_blank1 {
-    width: 43%;
+    width: 38%;
     text-align: center;
 }
 #roadmapsList_image {
-    width: 400px;
+    width: 95%;
     height: 250px;
     text-align: center;
     display: inline-block; 
     background-color: gray;
 }
 #roadmapsList_mainTitle {
-    width: 380px;
+    width: 100%;
     height: 60px;
     padding: 10px;
 
     text-align: left;
     display: inline-block; 
-    /* overflow:hidden;
+    overflow:hidden;
     text-overflow:ellipsis;
-    white-space:nowrap; */
+    white-space:nowrap;
     
     font-size: 23px;
     font-weight: bolder;
     color: #17173D;
 }
 #roadmapsList_blank2 {
-    width: 45%;
+    width: 52%;
+}
+#roadmapsList_blank2 > hr {
+    height: 3px;
+}
+#roadmapsList_hashtagBox {
+    display: flex;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 #roadmapsList_hashtag0 {
     width: auto;
@@ -186,7 +200,7 @@
     color: #17173D;
 }
 #roadmapsList_review {
-    width: 170px;
+    width: 200px;
     height: 40px;
     line-height: 40px;
     margin: 0px 10px;
@@ -196,8 +210,10 @@
     background-color: rgb(219, 219, 219);
 }
 
+
+
 #roadmapsList_rightBox {
-    width: 400px;
+    width: 25%;
     height: auto;
     margin: 20px 0px;
 
@@ -209,6 +225,10 @@
     height: 50px;
     line-height: 50px;
     margin: 20px 0px 0px 20px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 
     border-radius: 50px;
     background-color: #45AFBE;

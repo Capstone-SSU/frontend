@@ -34,7 +34,7 @@ function RoadmapsF(list) {
             "<div id='roadmapsList_boxLike2'></div>" +
             (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
             "<div><div id='studiesList_font2'></div><div id='studiesList_font'>" + list.likeCount + " </div></div></div>" +
-        "<div id='body_flex'><div>"
+        "<div id='body_flex'><div id='roadmapsList_box0'>"
 
         for (var j = 0; j < list.lectures.length; j++) {
             roadmaps +=
@@ -45,13 +45,14 @@ function RoadmapsF(list) {
                     "<div id='roadmapsList_image'></div>" +
                     "<div id='roadmapsList_mainTitle'>" + list.lectures[j].lectureTitle + "</div>" +
                 "</div>" +
-                "<div id='roadmapsList_blank2'><div id='body_flex'>"
+                "<div id='roadmapsList_blank2'><div id='roadmapsList_hashtagBox'>"
                     for (var k = 0; k < list.lectures[j].lectureHashtags.length; k++) {
                         roadmaps += 
                         "<div id ='roadmapsList_hashtag" + k + "'>" + list.lectures[j].lectureHashtags[k] + "</div>"
                     }
                 roadmaps +=
-                    "</div><div id='roadmapsList_title'>" + list.lectures[j].lectureReviewTitle + "</div>" +
+                    "</div>" + 
+                    "<div id='roadmapsList_title'>" + list.lectures[j].lectureReviewTitle + "</div>" +
                     "<hr/>" +
                     "<div id='roadmapsList_description'>" + list.lectures[j].lectureReviewContent + "</div>" +
                     "<div id='roadmapsList_review'>" + "전체 리뷰 보러가기&nbsp;>" + "</div>" +
@@ -60,7 +61,8 @@ function RoadmapsF(list) {
         }
 
         roadmaps +=
-            "</div><div id='roadmapsList_rightBox'>" +
+        "</div>" + 
+            "<div id='roadmapsList_rightBox'>" +
                 "<div id='body_flex'>" +
                     "<div id='roadmapsList_profill'>" + list.roadmapWriter.userProfileImg + "</div>" +
                     "<div id='roadmapList_nickname'>" + list.roadmapWriter.userNickname + "</div>" +

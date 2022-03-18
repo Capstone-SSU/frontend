@@ -22,7 +22,7 @@ function LecturesListF(list) {
     
     return lectures
 }
-//남색 부분 디자인
+//흰색 부분 디자인
 function LecturesList2F(list) {
     var lectures = ''
 
@@ -67,15 +67,16 @@ const LecturesList = () => {
             <div style={{ width: '100%', height: '70px', }}></div>
             <div style={{ width: '100%', textAlign:'center', }}>
 
-                <div style={{ width: '60%', height: 'auto', padding: '30px 50px 30px 50px', display: 'inline-block', borderRadius: '10px', backgroundColor: 'rgb(240, 240, 240)' }}>
+                <div style={{ width: '100%', height: 'auto', padding: '30px 50px 30px 50px', display: 'inline-block', borderRadius: '10px', color: 'white', backgroundColor: '#17173D' }}>
                     <div id='body_flex'>
                     </div>
                     <div id="lecturesList_list"></div>
-                    <div id='lecturesList_box3'>
-                        <input id="lecturesList_commnetsAddInput" placeholder='댓글을 입력해주세요'/>
-                    </div>
-                    <div id="lecturesList_comments"></div>
                 </div>
+
+                <div id='lecturesList_box3'>
+                    <input id="lecturesList_commnetsAddInput" placeholder='댓글을 입력해주세요'/>
+                </div>
+                <div id="lecturesList_comments"></div>
             </div>
             <div style={{ width: '100%', height: '70px', }}></div>
             {/* <button onClick={() => {

@@ -33,9 +33,9 @@ function RoadmapF(list, page) {
       "<div id='body_flex' >" +
         "<div id='roadmaps_title'>" + list[i].roadmapTitle + "<div id='roadmaps_company'>" + list[i].roadmapWriterCompany + "</div></div>" +
         '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].roadmapLikeCount + '</div>' +
-        "</div>" +
+      "</div>" +
       "<div id='body_height'></div>" + 
-      "<div id='body_flex' >"
+      "<div id='roadmaps_Box1' >"
 
       for (var j = 0; j < list[i].lectureThumbnails.length; j++) {
         roadmaps += 
@@ -44,10 +44,10 @@ function RoadmapF(list, page) {
 
       roadmaps += "</div>" +
       "<div id='body_height'></div>" + 
-      "<div id='body_flex' >" +
+      // "<div id='body_flex'>" +
         "<div id='roadmaps_nickname'>" + list[i].roadmapWriterNickname + "</div>" + 
         "<div id='roadmaps_date'>" + list[i].roadmapCreatedDate.slice(0, 10)  + "</div>" +
-        "</div>" +
+      // "</div>" +
    "</div><hr/>" +
    "</a>"
   }
@@ -73,7 +73,7 @@ function SearchF() {
   }).then((response)=>{
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
     document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,1)
-    document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
+    document.getElementById('studies_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
   }).catch((error) => { alert('로드맵 조회 실패했습니다.') })
 }
 function Search2F() {
@@ -100,7 +100,7 @@ const Roadmaps = () => {
   useEffect(() => {
     axios.get('http://54.180.150.167:8080/roadmaps', {
 
-    }, localStorage.getItem('token'),).then((response)=>{
+    },).then((response)=>{
       $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
       document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,1)
     }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
@@ -114,8 +114,7 @@ const Roadmaps = () => {
       {/* <div id='body_center_name' style={{ textAlign: 'left', }}>로드맵</div> */}
 
       <div style={{ width: '100%', height: '50px', lineHeight: '50px', color: '#17173D', fontSize: '22px', }}>
-        
-        
+                
         <div style={{ width: '15%', height: '50px', display: 'flex', float: 'left',}}></div>
         
         <div style={{ width: '15%', height: '50px', display: 'flex', float: 'right', }}></div>

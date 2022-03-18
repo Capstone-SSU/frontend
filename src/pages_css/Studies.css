@@ -180,8 +180,7 @@
     background-color: #45AFBE; 
   }
   #studies_title {
-    /* width: 82%; */
-    width: auto;
+    width: 82%;
     margin: 4px 0px 0px 10px;
     text-align: left;
 

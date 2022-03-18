@@ -15,7 +15,7 @@ window.$ = $;
 function NumberF(list, box) {
   var numbers = ''
 
-  for (var i = 25*(box-1); i < 25*box; i++) {
+  for (var i = 8*(box-1); i < 8*box; i++) {
     if (Math.ceil(list.length/25) === i) break;
     numbers += 
     "<div id='studies_numberInner' onClick='$(\"#studies_number\").val(" + (i+1) + ")'>" + (i+1) + "</div>"
@@ -98,7 +98,7 @@ const Lectures = () => {
     axios.get('http://54.180.150.167:8080/lectures' + link, {
   
     }).then((response)=>{
-      $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
+      $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/8));
       document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data,1)
       document.getElementById('lectures_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
     }).catch((error) => { 

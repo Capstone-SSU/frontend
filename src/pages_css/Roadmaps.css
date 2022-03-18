@@ -30,8 +30,8 @@
     background-color: white;
   }
   #roadmaps_title {
-    width: 1040px;
-    margin: 5px 0px 0px 20px;
+    width: 1070px;
+    margin: 5px 0px 0px 15px;
 
     display: flex;
     text-align: left;
@@ -53,6 +53,14 @@
     color: white;
     background-color: #45AFBE;
   }
+  #roadmaps_Box1 {
+    display: flex;
+
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
   #roadmaps_lectureThumbnails {
     width: 135px;
     height: 100px;
@@ -66,10 +74,13 @@
     background-color: gray;
   }
   #roadmaps_nickname {
-    width: 989px;
-    margin: 0px 0px 0px 20px;
+    width: auto;
+    margin: 0px 0px 0px 15px;
 
     text-align: left;
+    display: flex;
+    float: left;
+
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
@@ -80,9 +91,12 @@
   }
   #roadmaps_date {
     width: auto;
-    margin: 0px 0px 0px 20px;
+    margin: 0px 20px 0px 20px;
 
     text-align: left;
+    display: flex;
+    float: right;
+
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;

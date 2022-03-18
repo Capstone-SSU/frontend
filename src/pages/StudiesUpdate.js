@@ -31,19 +31,18 @@ const StudiesUpdate = () => {
   return (
     <div id='body_main'>
       <div id='body_center_top'></div>
-      <div id='body_center_name'>스터디 수정</div>
+      <div id='body_center_name' style={{ height: '120px', }}></div>
 
-      <div style={{ width: '1200px', height: '810px', display: 'inline-block', }}>
-          <div style={{ width: '100%', margin: '10px 10px', display: 'flex', alignItems: 'center', }}>
-            <div id ='studiesUpdate_hashtag'></div>
-            <div id ='studiesUpdate_peeple'>모집인원수 <input id='studiesUpdate_max' type='number' min='2'/> / <input id='studiesUpdate_min' type='number'  min='1'/>
+      <div style={{ width: '60%', height: '810px', display: 'inline-block', }}>
+        <div style={{ width: 'auto', height: '50px', }}>
+          <div style={{ width: '6.5%', height: '60px',  display: 'flex', float: 'left', }}></div>
+          <div style={{ width: '225px', margin: '10px 10px', display: 'flex', float: 'right', }}>
+            <div id ='studiesUpdate_peeple'>모집인원수&nbsp;<input id='studiesUpdate_max' type='number' min='2'/>&nbsp;/&nbsp;<input id='studiesUpdate_min' type='number'  min='1'/>
             </div>
           </div>
-          
-          <div style={{ width: '100%', margin: '20px 10px', display: 'flex', alignItems: 'center', }}>
 
-            <div style={{ width: '38px', height: '50px', display: 'flex', float: 'left', }}></div>
-
+          <div style={{ width: '38px', height: '50px', margin: '11px 0px 0px 0px', display: 'flex', float: 'left', }}>
+            
             <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
               <select id='studiesUpdate_locationInput' className='studiesUpdate_input'>
                 <option>지역</option>
@@ -67,27 +66,27 @@ const StudiesUpdate = () => {
               </select>
             </div>
             <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
-            <select id='studiesUpdate_categoryInput' className='studiesUpdate_input'>
-              <option>카테고리</option>
-              <option value='모각코'>모각코</option>
-              <option value='코딩테스트'>코딩테스트</option>
-              <option value='사이드 프로젝트'>사이드 프로젝트</option>
-              <option value='공모전'>공모전</option>
-              <option value='프로그래밍언어'>프로그래밍언어</option>
-              <option value='강의완독'>강의완독</option>
-              <option value='로드맵공략'>로드맵공략</option>
-              <option value='자격증'>자격증</option>
-            </select>
+              <select id='studiesUpdate_categoryInput' className='studiesUpdate_input'>
+                <option>카테고리</option>
+                <option value='모각코'>모각코</option>
+                <option value='코딩테스트'>코딩테스트</option>
+                <option value='사이드 프로젝트'>사이드 프로젝트</option>
+                <option value='공모전'>공모전</option>
+                <option value='프로그래밍언어'>프로그래밍언어</option>
+                <option value='강의완독'>강의완독</option>
+                <option value='로드맵공략'>로드맵공략</option>
+                <option value='자격증'>자격증</option>
+              </select>
             </div>
           </div>
+        </div>
 
-          <div id="studiesUpdate_title">제목 <input id="studiesUpdate_titleInput" /></div>
+        <div id="studiesUpdate_title">제목 <input id="studiesUpdate_titleInput" /></div>
+        <div id="studiesUpdate_description">내용 <textarea id="studiesUpdate_descriptionInput" /></div>
 
-          <div id="studiesUpdate_description">내용 <input id="studiesUpdate_descriptionInput" /></div>
-
-          <div style={{ width: '98%', margin: '10px 10px', textAlign: 'right', }}>
-            <button style={{ color: 'white', borderRadius: '5px', backgroundColor: '#17173D', }} onClick={() => {
-              if ($('#studiesAdd_max').val() < $('#studiesAdd_min').val()) {
+        <div style={{ width: '98%', margin: '10px 15px', textAlign: 'right', }}>
+          <button style={{ margin: '10px 0px', color: 'white', borderRadius: '5px', backgroundColor: '#17173D', }} onClick={() => {
+              if ($('#studiesUpdate_max').val() < $('#studiesUpdate_min').val()) {
                 alert('모집 최대인원이 모집 최소인원보다 작을 수 없습니다')
                 return
               }

@@ -12,7 +12,6 @@ import StudiesAdd from './pages/StudiesAdd';
 import StudiesUpdate from './pages/StudiesUpdate';
 import Roadmaps from './pages/Roadmaps';
 import RoadmapsAdd from './pages/RoadmapsAdd';
-import RoadmapsAdd2 from './pages/RoadmapsAdd2';
 import RoadmapsUpdate from './pages/RoadmapsUpdate';
 import RoadmapsList from './pages/RoadmapsList';
 import Signin from './pages/Signin';
@@ -39,7 +38,6 @@ function App() {
           <Route path='/roadmaps' element={<Roadmaps/>} />
           <Route path='/roadmaps/:roadmapsId' element={<RoadmapsList/>} />
           <Route path='/roadmapsAdd' element={<RoadmapsAdd/>} />
-          <Route path='/roadmapsAdd2' element={<RoadmapsAdd2/>} />
           <Route path='/roadmapsUpdate/:roadmapsId' element={<RoadmapsUpdate/>} />
           <Route path='/signin' element={<Signin/>} />
           <Route path='/signup' element={<Signup/>} />

@@ -1,69 +1,117 @@
-#roadmapsAdd_mainTitle {
-    width: 100%;
-    margin: 30px 20px;
-    font-size: 22px;
-    text-align: left;
-}
-#roadmapsAdd_mainDescription {
-    width: 100%;
+#roadmapsUpdate_mainTitle {
+    width: 97.5%;
+    height: 50px;
+    line-height: 50px;
     margin: 30px 20px;
 
     font-size: 22px;
     text-align: left;
 }
-#roadmapsAdd_mainTitle > input {
-    width: 800px;
+#roadmapsUpdate_mainTitle > input {
+    width: 89%;
     height: 50px;
 
+    display: flex;
+    float: right;
+
     font-size: 22px;
     border: 0;
-    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+    background-color: white;
 }
-#roadmapsAdd_mainDescription > input {
-    width: 800px;
+#roadmapsUpdate_mainDescription {
+    width: 97.5%;
     height: 150px;
+    margin: 30px 20px;
+
+    font-size: 22px;
+    text-align: left;
+}
+#roadmapsUpdate_mainDescription > textarea {
+    width: 89%;
+    height: 150px;
+    resize: none;
+
+    display: flex;
+    float: right;
 
     font-size: 22px;
     border: 0;
-    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+    background-color: white;
 }
 
-#roadmapsAdd_individe1 {
+
+
+#roadmapsUpdate_individe, #roadmapsUpdate_individe3 {
     width: 480px;
-    height: 200px;
+    background-color: white;
 }
-#roadmapsAdd_picture {
+#roadmapsUpdate_individe1 {
+    width: 480px;
+    background-color: rgb(219, 219, 219);
+}
+#roadmapsUpdate_lectureId {
+    display: none;
+}
+#roadmapsUpdate_box1 {
+    margin: 10px 0px 0px 10px;
+    display: flex;
+}
+#roadmapsUpdate_box2 {
+    width: 230px;
+    height: auto;
+    margin: 10px;
+    padding: 5px;
+    text-align: left;
+    
+}
+#roadmapsUpdate_picture {
     width: 200px;
     height: 180px;
     margin: 10px;
 
     background-color: gray;
 }
-#roadmapsAdd_hashtag {
-    margin: 5px;
+#roadmapsUpdate_hashtagBox {
+    width: auto;
+    height: 40px;
+    /* overflow: scroll; */
+    /* overflow-y: hidden; */
+    display: flex;
 
-    color: white;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
-#roadmapsAdd_title {
+#roadmapsUpdate_hashtag {
+    margin: 5px;
+    padding: 5px 10px;
+
+    color: #17173D;
+    border-radius: 50px;
+    background-color: rgb(219, 219, 219);
+}
+#roadmapsUpdate_title {
     margin: 5px;
 
     font-size: 22px;
     font-weight: bolder;
-    color: white;
+    color: #17173D;
 }
-#roadmapsAdd_description {
+/* #roadmapsUpdate_description {
     margin: 5px;
 
     font-size: 18px;
     color: white;
-}
+} */
 
 
 
-.roadmapsAdd_box hr {
+.roadmapsUpdate__box hr {
     width: 500px;
     background-color: #17173D;
 }
-.roadmapsAdd_individe1 hr {
+.roadmapsUpdate_individe1 hr {
     background-color: #17173D;
 }

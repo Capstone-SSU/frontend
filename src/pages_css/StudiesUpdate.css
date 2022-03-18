@@ -1,24 +1,37 @@
-#studiesUpdate_hashtag {
-    width: 72%;
-    margin: 5px;
+#studiesUpdate_max, #studiesUpdate_min, #studiesUpdate_titleInput, #studiesUpdate_descriptionInput {
+    border-radius: 5px;
+}
+#studiesUpdate_locationInput {
+    width: 67px;
+}
+#studiesUpdate_categoryInput {
+    width: 110px;
+}
+.studiesUpdate_input {
+    border: 0;
+    font-size: 22px;  
 
-    font-size: 22px;
-    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 #studiesUpdate_peeple {
-    width: 25%;
-    font-size: 22px;
-    
-    text-align: right;
-}
-#studiesUpdate_onoff {
-    width: 50px;
+    width: auto;
     height: 50px;
     line-height: 50px;
-    text-align: center;
-    font-size: 25px;
-    border-radius: 50%;
-    background-color: #45AFBE;
+    font-size: 22px;
+    
+    text-align: left;
+    display: flex;
+}
+#studiesUpdate_peeple > input {
+    width: 40px;
+    height: 50px;
+
+    font-size: 22px;
+    border: 0;
+    background-color: rgb(219, 219, 219);
 }
 #studiesUpdate_location {
     width: 60%;
@@ -33,71 +46,43 @@
     text-align: left;
 }
 #studiesUpdate_title {
-    width: 100%;
-    margin: 30px 20px;
-    font-size: 22px;
-    text-align: left;
-}
-#studiesUpdate_description {
-    width: 100%;
+    width: 97.5%;
+    height: 50px;
+    line-height: 50px;
     margin: 30px 20px;
 
     font-size: 22px;
     text-align: left;
-}
-
-
-
-.studiesUpdate_locationStudy > input {
-    width: 465px;
-    height: 50px;
-
-    font-size: 22px;
-    border: 0;
-    background-color: rgb(219, 219, 219);
-}
-#studiesUpdate_peeple > input {
-    width: 40px;
-    height: 50px;
-
-    font-size: 22px;
-    border: 0;
-    background-color: rgb(219, 219, 219);
 }
 #studiesUpdate_title > input {
-    width: 1110px;
+    width: 93%;
     height: 50px;
 
+    display: flex;
+    float: right;
+
     font-size: 22px;
     border: 0;
     background-color: rgb(219, 219, 219);
 }
-#studiesUpdate_description > input {
-    width: 1110px;
+#studiesUpdate_description {
+    width: 97.5%;
+    margin: 30px 20px;
+
+    font-size: 22px;
+    text-align: left;
+}
+#studiesUpdate_description > textarea {
+    width: 93%;
     height: 470px;
+    resize: none;
+    padding-top: 5;
+    text-align: left;
+
+    display: flex;
+    float: right;
 
     font-size: 22px;
     border: 0;
     background-color: rgb(219, 219, 219);
 }
-
-
-
-#studiesUpdate_max, #studiesUpdate_min, #studiesUpdate_titleInput, #studiesUpdate_descriptionInput {
-    border-radius: 5px;
-}
-#studiesUpdate_locationInput {
-    width: 67px;
-  }
-  #studiesUpdate_categoryInput {
-    width: 110px;
-  }
-  .studiesUpdate_input {
-    /* width: auto; */
-    border: 0;
-    font-size: 22px;  
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
