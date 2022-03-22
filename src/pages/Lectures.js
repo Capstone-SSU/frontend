@@ -28,6 +28,7 @@ function LecturesF(list, page) {
   document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
 
   for (var j = (page-1)*25; j < page*25; j++) {
+    if (list.length === j) break;
     if (j % 5 === 0) lectures += "<div id='body_flex'>"
     lectures +=
     "<a  id='lectures_individeA' href='/lectures/" + list[j].lectureId + "'>" +
@@ -150,10 +151,11 @@ const Lectures = () => {
   axios.get('http://54.180.150.167:8080/lectures', {
 
   }).then((response)=>{
-    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
-    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
+    console.log(response)
+    // $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
+    document.getElementById('lectures_list').innerHTML = LecturesF(response.data, 1)
       
-  }).catch((error) => { alert('강의평 페이지에 오류가 있습니다.'); })
+  }).catch((error) => { console.log(error); alert('강의평 페이지에 오류가 있습니다.'); })
 
   axios.get('http://54.180.150.167:8080/hashtags', {
 
