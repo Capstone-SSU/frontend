@@ -153,7 +153,7 @@ const Lectures = () => {
   }).then((response)=>{
     console.log(response)
     // $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
-    document.getElementById('lectures_list').innerHTML = LecturesF(response.data, 1)
+    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
       
   }).catch((error) => { console.log(error); alert('강의평 페이지에 오류가 있습니다.'); })
 
