@@ -38,7 +38,7 @@ function LecturesF(list, page) {
           ( list[j].likeCnt != 0 ? "<img src='" + likeFill + "'/>" : "<img src='" + like + "'/>" ) +
           "<div>" + list[j].likeCnt + "</div>" +
         "</div>" +
-        "<div id='lectures_box'></div>" +
+        "<img id='lectures_box' src='" + list[j].thumbnailUrl + "'/>" +
         "<div id='lectures_title'>" + list[j].lectureTitle + "</div>" +
         "<div id='lectures_rate'>" + list[j].avgRate + "</div>" +
       "</div>" +
@@ -152,7 +152,7 @@ const Lectures = () => {
 
   }).then((response)=>{
     console.log(response)
-    // $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
+    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
     document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
       
   }).catch((error) => { console.log(error); alert('강의평 페이지에 오류가 있습니다.'); })

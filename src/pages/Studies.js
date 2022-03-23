@@ -37,7 +37,7 @@ function StudiesF(list, page) {
     "<a href='/studies/"+ list[i].studyPostId +"'>" +
       "<div id='studies_individe'>" +
         "<div class='studies_individeBox'>" +
-          "<div id='studies_profill'>" + list[i].studyPostWriter.userProfileImg + "</div>" +
+          "<img id='studies_profill' src='" + list[i].studyPostWriter.userProfileImg + "'/>" +
           "<div id='studies_title'>" + list[i].studyTitle + "</div>" +
           '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].studyLikeCount + '</div>' +
         "</div>" +

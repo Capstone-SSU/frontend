@@ -17,7 +17,7 @@ function StudiesListF(list) {
         "<div id='studiesList_top1'>" +
             "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
             "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
-            "<div id='studiesList_profill'>" + list.studyPostWriter.userProfileImg + "</div>" +
+            "<img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/>" +
         "</div>" +
         "<div id='studiesList_top'>" +
             "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" +

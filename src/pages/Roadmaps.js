@@ -39,7 +39,7 @@ function RoadmapF(list, page) {
 
       for (var j = 0; j < list[i].lectureThumbnails.length; j++) {
         roadmaps += 
-          "<div id='roadmaps_lectureThumbnails'>" + list[i].lectureThumbnails[j] + "</div>"
+          "<img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/>"
       }
 
       roadmaps += "</div>" +

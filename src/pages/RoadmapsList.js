@@ -42,7 +42,7 @@ function RoadmapsF(list) {
                 "<div id='roadmapsList_blank'></div>" +
                 "<div id='roadmapsList_circle'>"+ (j+1) +"</div>" +
                 "<div id='roadmapsList_blank1'>" +
-                    "<div id='roadmapsList_image'></div>" +
+                    "<img id='roadmapsList_image' src='"+ list.lectures[j].thumbnailUrl + "'/>" +
                     "<div id='roadmapsList_mainTitle'>" + list.lectures[j].lectureTitle + "</div>" +
                 "</div>" +
                 "<div id='roadmapsList_blank2'><div id='roadmapsList_hashtagBox'>"

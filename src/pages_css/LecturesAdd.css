@@ -37,7 +37,7 @@
     border-radius: 10px;
     background-color: rgb(219, 219, 219);
 }
-#lecturesAdd_titleInput, #lecturesAdd_mainTitleInput, #lecturesAdd_teacherInput, #lecturesAdd_siteInput {
+#lecturesAdd_titleInput, #lecturesAdd_rateInput, #lecturesAdd_mainTitleInput, #lecturesAdd_teacherInput, #lecturesAdd_siteInput {
     width: 80%;
     height: 40px;
     font-size: 18px;
