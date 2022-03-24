@@ -41,7 +41,7 @@
     z-index: 998;
 }
 #lectures_likeBox {
-    width: 80%;
+    width: 100%;
 }
 #lectures_title {
     width: 90%;
@@ -56,11 +56,8 @@
     /* white-space: nowrap; */
 }
 #lectures_rate {
-    width: 90%;
-    margin: 0px 0px 0px 10px;
-
-    text-align: left;
-    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
 
 
@@ -141,4 +138,27 @@
     font-weight: bolder;
     border-radius: 5px;
     background-color: #45AFBE;
+}
+
+
+
+#myform fieldset{
+    display: inline-block;
+    /* direction: rtl; */
+    align-items: left;
+    border:0;
+}
+#myform2 {
+    display: flex;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label.reviewStar {
+    font-size: 1em;
+    color: transparent;
+    text-shadow: 0 0 0 rgb(219, 219, 219);
 }

@@ -40,7 +40,17 @@ function LecturesF(list, page) {
         "</div>" +
         "<img id='lectures_box' src='" + list[j].thumbnailUrl + "'/>" +
         "<div id='lectures_title'>" + list[j].lectureTitle + "</div>" +
-        "<div id='lectures_rate'>" + list[j].avgRate + "</div>" +
+        '<form class="mb-3" name="myform" id="myform" method="post">' +
+        '<div id="body_flex"><fieldset>'
+
+        for (var s = 0; s < Math.round(list[j].avgRate); s++)
+          lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label for="rate' + s + '">⭐</label>'
+        for (var s = Math.round(list[j].avgRate); s < 5; s++)
+          lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
+        
+        lectures += 
+          '<input type="radio" name="reviewStar" />(' + list[j].avgRate + ')</fieldset></div>' +
+        '</form>' +
       "</div>" +
     "</a>"
     if (length === j+1) { lectures += "</div>"; break;  }

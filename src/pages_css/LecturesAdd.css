@@ -1,4 +1,4 @@
-#lecturesAdd_hashtagInput1{
+#lecturesAdd_hashtagInput1, #lecturesAdd_hashtagInput2, #lecturesAdd_hashtagInput3 {
     width: 20%;
     height: 40px;
     margin: 0px 20px 0px 0px;
@@ -8,20 +8,10 @@
     border-radius: 10px;
     background-color: rgb(219, 219, 219);
 }
-#lecturesAdd_hashtagInput2{
+#lecturesAdd_hashtagInput4 {
     width: 20%;
     height: 40px;
-    margin: 0px 20px 0px 0px;
-    font-size: 18px;
-
-    border: 0;
-    border-radius: 10px;
-    background-color: rgb(219, 219, 219);
-}
-#lecturesAdd_hashtagInput3{
-    width: 20%;
-    height: 40px;
-    margin: 0px 170px 0px 0px;
+    margin: 0px 0px 0px 0px;
     font-size: 18px;
 
     border: 0;
@@ -29,7 +19,7 @@
     background-color: rgb(219, 219, 219);
 }
 #lecturesAdd_linkInput {
-    width: 80%;
+    width: 100%;
     height: 40px;
     font-size: 18px;
 
@@ -56,16 +46,10 @@
     border-radius: 10px;
     background-color: rgb(219, 219, 219);
 }
-
-
-
-.clickedstar {
-    color: rgb(212, 180, 0);
-}
   
 
 
-#myform fieldset{
+/* #myform fieldset{
     display: inline-block;
     direction: rtl;
     border:0;
@@ -76,21 +60,91 @@
 #myform input[type=radio]{
     display: none;
 }
-#myform label{
-    font-size: 4em;
+#myform div{
+    font-size: 3em;
+    color: transparent;
+    background-color:rgb(219, 219, 219);
+}
+#myform div:hover{
+    background-color: rgba(250, 208, 0, 0.3);
+}
+#myform div:hover ~ div{
+    background-color: rgba(250, 208, 0, 0.3);
+}
+#myform input[type=radio]:checked ~ div{
+    background-color: rgba(250, 208, 0, 1);
+    background: linear-gradient( 90deg, rgba(250, 208, 0, 1) 50%, rgb(219, 219, 219) 50%);
+} */
+
+#myformA fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myformA fieldset legend{
+    text-align: right;
+}
+#myformA input[type=radio]{
+    display: none;
+}
+#myformA label{
+    font-size: 3em;
     color: transparent;
     text-shadow: 0 0 0 rgb(219, 219, 219);
 }
-#myform label:hover{
+#myformA label:hover{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.3);
 }
-#myform label:hover ~ label{
+#myformA label:hover ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.3);
 }
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 1);
+#myformA input[type=radio]:checked ~ label{
+    text-shadow : 0 0 0 rgba(250, 208, 0, 1);
+    /* background: linear-gradient( 90deg, rgba(250, 208, 0, 1) 50%, rgb(219, 219, 219) 50%); */
 }
 
-.reviewStar {
+.reviewStarA {
     margin: 10px;
 }
+
+
+
+.star-five {
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: pink;
+    width: 0px;
+    height: 0px;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid pink;
+    border-left: 100px solid transparent;
+    transform: rotate(35deg);
+  }
+  .star-five:before {
+    border-bottom: 80px solid pink;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -45px;
+    left: -65px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+  }
+  .star-five:after {
+    position: absolute;
+    display: block;
+    color: pink;
+    top: 3px;
+    left: -105px;
+    width: 0px;
+    height: 0px;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid pink;
+    border-left: 100px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+  }
