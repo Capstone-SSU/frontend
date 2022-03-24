@@ -37,8 +37,10 @@
 
 
 #signup_login {
-    width: 350px;
-    margin: 0px 0px 10px 0px;
+    background-color: rgb(219, 219, 219);
+}
+#signup_login:hover {
+    background-color: #45AFBE;
 }
 #signup_githubLogo {
     width: 30px;

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import '../pages_css/LecturesAdd.css';
 import tempImg from '../mainCoding.png';
+
+import { FaStar } from "react-icons/fa";
+import styles from './new.module.scss';
 
 import axios from 'axios';
 import $ from 'jquery';
@@ -11,6 +14,19 @@ const LecturesAdd = () => {
   const navigate = useNavigate();
   var current = ''
   current += String(decodeURI(window.location.href));
+
+  const [clicked, setClicked] = useState([false, false, false, false, false]);
+  
+  const handleStarClick = (e, index) => {
+    e.preventDefault();
+    let clickStates = [...clicked];
+    for (let i = 0; i < 5; i++) {
+      if (i <= index) clickStates[i] = true;
+      else clickStates[i] = false;
+    }
+
+    setClicked(clickStates);
+  };
 
   return (
     <div id='body_main'>
@@ -29,8 +45,46 @@ const LecturesAdd = () => {
 
         <div style={{ width: '60%', margin: '60px 0px 20px 0px', textAlign: 'left', display: 'inline-block', fontSize: '22px', fontWeight: 'bolder', }}>나의 리뷰</div>
         <div style={{ width: '60%', height: '410px', textAlign: 'center', display: 'inline-block', borderRadius: '10px', backgroundColor: 'white', }}>
-          <div style={{ margin: '30px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>별점 <input id='lecturesAdd_rateInput'/></div>
-          <div style={{ margin: '30px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>글 제목 <input id='lecturesAdd_titleInput'/></div>
+          <div style={{ margin: '0px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>
+            
+          <div className={styles.rating}>
+            <p>Rating</p>
+            <div>
+              <FaStar
+                onClick={(e) => handleStarClick(e, 0)}
+                className={clicked[0] ? styles.clickedstar : null}
+              />
+              <FaStar
+                onClick={(e) => handleStarClick(e, 1)}
+                className={clicked[1] ? styles.clickedstar : null}
+              />
+              <FaStar
+                onClick={(e) => handleStarClick(e, 2)}
+                className={clicked[2] ? styles.clickedstar : null}
+              />
+              <FaStar
+                onClick={(e) => handleStarClick(e, 3)}
+                className={clicked[3] ? styles.clickedstar : null}
+              />
+              <FaStar
+                onClick={(e) => handleStarClick(e, 4)}
+                className={clicked[4] ? styles.clickedstar : null}
+              />
+            </div>
+          </div> 
+      
+            {/* <form class="mb-3" name="myform" id="myform" method="post">
+            <fieldset>
+              <input type="radio" name="reviewStar" value="5" id="rate1" /><label class='reviewStar' for="rate1">★</label>
+              <input type="radio" name="reviewStar" value="4" id="rate2" /><label class='reviewStar' for="rate2">★</label>
+              <input type="radio" name="reviewStar" value="3" id="rate3" /><label class='reviewStar' for="rate3">★</label>
+              <input type="radio" name="reviewStar" value="2" id="rate4" /><label class='reviewStar' for="rate4">★</label>
+              <input type="radio" name="reviewStar" value="1" id="rate5" /><label class='reviewStar' for="rate5">★</label>
+            </fieldset>
+          </form>	 */}
+          
+          </div>
+          <div style={{ margin: '0px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>글 제목 <input id='lecturesAdd_titleInput'/></div>
           <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder', display: 'flex', justifyContent: 'center', }}>내용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea id='lecturesAdd_descriptionInput'/></div>
         </div>
         
@@ -47,7 +101,7 @@ const LecturesAdd = () => {
               "lectureTitle": $('#lecturesAdd_mainTitleInput').val(),
               "lectureUrl": $('#lecturesAdd_linkInput').val(),
               "lecturer": $('#lecturesAdd_teacherInput').val(),
-              "rate": $('#lecturesAdd_rateInput').val(),
+              "rate": "",
               "siteName": $('#lecturesAdd_siteInput').val(),
               "thumbnailUrl": $('#lecturesAdd_linkInput').val(), //메인 이미지 링크
             }, localStorage.getItem('token'),).then((response)=>{

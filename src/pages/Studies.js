@@ -77,6 +77,9 @@ function SearchF() {
   axios.get('http://54.180.150.167:8080/studies' + link, {
 
   }).then((response)=>{
+    if (response.data.data === null) {
+      alert('스터디가 없습니다.'); return;
+    }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/8)/8));
     document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
   }).catch((error) => { alert('스터디 조회 실패했습니다.') })
@@ -102,6 +105,9 @@ function Search2F() {
   axios.get('http://54.180.150.167:8080/studies' + link, {
 
   }).then((response)=>{
+    if (response.data.data === null) {
+      alert('스터디가 없습니다.'); return;
+    }
     document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, $('#studies_number').val())
   }).catch((error) => { alert('스터디 조회 실패했습니다.') })
 }
@@ -111,6 +117,9 @@ const Studies = () => {
   axios.get('http://54.180.150.167:8080/studies', {
 
   }).then((response)=>{
+    if (response.data.data === null) {
+      alert('스터디가 없습니다.'); return;
+    }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/8)/8));
     document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
       
@@ -206,6 +215,9 @@ const Studies = () => {
               <input id='studies_togetherTrue' type='checkbox' onClick={() => {
                   axios.get('http://54.180.150.167:8080/studies', {
                   }).then((response)=>{
+                    if (response.data.data === null) {
+                      alert('스터디가 없습니다.'); return;
+                    }
                     document.getElementById('studies_list').innerHTML = StudiesF(response.data.data, 1)
                     document.getElementById('studies_count').innerHTML = "스터디 총 " + response.data.data.length + "개"
                   }).catch((error) => { alert('스터디 페이지에 오류가 있습니다.') })

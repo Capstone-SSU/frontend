@@ -99,6 +99,9 @@ const Lectures = () => {
     axios.get('http://54.180.150.167:8080/lectures' + link, {
   
     }).then((response)=>{
+      if (response.data.data === null) {
+        alert('강의평이 없습니다.'); return;
+      }
       $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/8));
       document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data,1)
       document.getElementById('lectures_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
@@ -139,6 +142,9 @@ const Lectures = () => {
     axios.get('http://54.180.150.167:8080/lectures' + link, {
   
     }).then((response)=>{
+      if (response.data.data === null) {
+        alert('강의평이 없습니다.'); return;
+      }
       document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, $('#studies_number').val())
     }).catch((error) => { 
       $(':checkbox:checked').prop('checked',false);
@@ -151,7 +157,9 @@ const Lectures = () => {
   axios.get('http://54.180.150.167:8080/lectures', {
 
   }).then((response)=>{
-    console.log(response)
+    if (response.data.data === null) {
+      alert('강의평이 없습니다.'); return;
+    }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
     document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
       
@@ -160,6 +168,9 @@ const Lectures = () => {
   axios.get('http://54.180.150.167:8080/hashtags', {
 
   }).then((response)=>{
+    if (response.data.data === null) {
+      alert('강의평이 없습니다.'); return;
+    }
     document.getElementById('lectures_hashtagSelection2').innerHTML = HashTagsF(response.data.data)
   }).catch((error) => { alert('해시태그에 오류가 있습니다.'); })
 

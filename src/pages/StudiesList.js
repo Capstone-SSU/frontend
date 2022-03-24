@@ -9,6 +9,7 @@ import $ from 'jquery';
 window.$ = $;
 
 function StudiesListF(list) {
+    console.log(list)
     var studiesList = '';
     studiesList +=
     "<div id='studiesList_individe1'>" +

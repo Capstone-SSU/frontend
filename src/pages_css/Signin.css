@@ -31,8 +31,10 @@
 
 
 #signin_login {
-    width: 350px;
-    margin: 0px 0px 10px 0px;
+    background-color: rgb(219, 219, 219);
+}
+#signin_login:hover {
+    background-color: #45AFBE;
 }
 #signin_githubLogo {
     width: 30px;

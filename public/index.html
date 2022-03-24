@@ -24,6 +24,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
     <script src='http://code.jquery.com/jquery-latest.min.js'></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -37,7 +38,7 @@
       }
       function NestedCommentsAddF(a, studyId) {
         if ($('#studiesList_nestedcommnetsAddInput' + a).val() === '') {
-          alert('빈 칸은 안됩니다'); return;
+          alert('빈 칸이 있습니다'); return;
         }
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
@@ -73,7 +74,7 @@
       }
       function CommentsUpdateF(a, studyId) {
         if ($('#studiesList_commentsContentUpdateInput'+a).val() === '') {
-          alert('빈 칸은 안됩니다'); return;
+          alert('빈 칸이 있습니다'); return;
         }
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');

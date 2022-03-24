@@ -56,3 +56,41 @@
     border-radius: 10px;
     background-color: rgb(219, 219, 219);
 }
+
+
+
+.clickedstar {
+    color: rgb(212, 180, 0);
+}
+  
+
+
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 4em;
+    color: transparent;
+    text-shadow: 0 0 0 rgb(219, 219, 219);
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.3);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.3);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 1);
+}
+
+.reviewStar {
+    margin: 10px;
+}

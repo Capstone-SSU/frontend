@@ -71,6 +71,9 @@ function SearchF() {
   axios.get('http://54.180.150.167:8080/roadmaps' + link, {
 
   }).then((response)=>{
+    if (response.data.data === null) {
+      alert('로드맵이 없습니다.'); return;
+    }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
     document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,1)
     document.getElementById('studies_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
@@ -91,6 +94,9 @@ function Search2F() {
   axios.get('http://54.180.150.167:8080/roadmaps' + link, {
 
   }).then((response)=>{
+    if (response.data.data === null) {
+      alert('로드맵이 없습니다.'); return;
+    }
     document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,$('#studies_number').val())
   }).catch((error) => { alert('로드맵 조회 실패했습니다.') })
 }
@@ -101,6 +107,9 @@ const Roadmaps = () => {
     axios.get('http://54.180.150.167:8080/roadmaps', {
 
     },).then((response)=>{
+      if (response.data.data === null) {
+        alert('로드맵이 없습니다.'); return;
+      }
       $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/5)/8));
       document.getElementById('roadmaps_list').innerHTML = RoadmapF(response.data.data,1)
     }).catch((error) => { alert('로드맵페이지에 오류가 있습니다.') })
