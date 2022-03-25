@@ -7,13 +7,22 @@ import subPic2 from '../subCoding2.png';
 import subPic3 from '../subCoding3.png';
 import axios from 'axios';
 import $ from 'jquery';
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
 window.$ = $;
 
-function Main () {
+function Main() {
+  //  const axios = require('axios');
+  //  const cheerio=require('cheerio');
+  //  axios.get("https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1").then(dataa => {
+  //   console.log(dataa);
+  // $("meta[property="og:image").attr('content)
+  //});
+
   return (
     <div className="App">
       <body>
         <div className="body_box">
+          <LinkPreview url="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1" width="1000px" />;
           <MainCard></MainCard>
           <SubPicRightCard img={subPic1}></SubPicRightCard>
           <SubPicLeftCard img={subPic2}></SubPicLeftCard>
