@@ -22,14 +22,12 @@ function Main() {
     <div className="App">
       <body>
         <div className="body_box">
-          <LinkPreview url="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1" width="1000px" />;
           <MainCard></MainCard>
           <SubPicRightCard img={subPic1}></SubPicRightCard>
           <SubPicLeftCard img={subPic2}></SubPicLeftCard>
           <SubPicRightCard img={subPic3}></SubPicRightCard>
         </div>
       </body>
-
 
     </div>
   );
@@ -42,7 +40,7 @@ const MainCard = () => {
       <div className="text_box">
         <h1>코딩 강의, 어떻게 골라야할지 막막하셨나요?</h1>
         <p>강의 후기, 코딩 스터디, 로드맵 추천까지</p>
-        <a>추천 강의 보러가기</a>
+        <a id="linkButton">추천 강의 보러가기</a>
       </div>
 
     </div>

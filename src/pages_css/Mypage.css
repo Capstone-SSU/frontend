@@ -12,3 +12,17 @@
 .right_content_box {
 
 }
+
+.bigMenu {
+    font-size:24px;
+    color:white;
+    font-weight: 900;
+    text-align: left;
+    margin-left:20%;
+    margin-top:20%;
+}
+
+.smallMenu {
+    font-size:18px;
+    color:#c4c4c4;
+}
