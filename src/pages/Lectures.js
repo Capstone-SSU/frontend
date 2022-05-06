@@ -227,7 +227,7 @@ const Lectures = () => {
         }}>등록</button>
         <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('#lecturesReviewAdd_link').val(''); $('.lecturesReviewAdd_modal2').hide() }}>취소</button>
       </div>
-
+//
       <div class="lecturesReviewAdd_modal3">
         <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
           관리자에게 요청사항이 전달되었습니다.
