@@ -18,13 +18,13 @@ import RoadmapsList from './pages/RoadmapsList';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Users from './pages/Users';
+import Mypage from './pages/Mypage'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   // const [userInfo, setUserInfo] = React.useState("devstone");
   return (
     <Router>
-
         <Nav/>
         <Routes>
           <Route path="/" exact={true} element={<Main/>} />
