@@ -47,6 +47,7 @@ function StudiesF(list, page) {
           "<div id='studies_location'>" + list[i].studyLocation + "</div>" +
           "<div id='studies_hashtag'>" + list[i].studyCategoryName + "</div>" +
           "<div id='studies_date'>" + list[i].studyCreatedDate.slice(0, 10) + "</div>" +
+          "<div id='studies_date'>" + list[i].studyPostWriter.userNickname + "</div>" +
         "</div>" +
       "</div><hr/>" +
     "</a>" 
@@ -114,7 +115,7 @@ function Search2F() {
 
 const Studies = () => {
   var navigate = useNavigate();
-  axios.get('http://54.180.150.167:8080/studies', {
+  axios.get('http://54.180.150.167:8080/studies?sort="desc"', {
 
   }).then((response)=>{
     if (response.data.data === null) {

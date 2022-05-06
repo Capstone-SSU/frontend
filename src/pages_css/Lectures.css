@@ -139,6 +139,33 @@
     border-radius: 5px;
     background-color: #45AFBE;
 }
+.lectures_img {
+    z-index: 1;
+}
+
+
+
+.lecturesReviewAdd_modal1, .lecturesReviewAdd_modal2, .lecturesReviewAdd_modal3, .lecturesReviewAdd_modal4, .lecturesReviewAdd_modal5 { 
+    position: absolute; 
+    top: 25%; 
+    left: 35%; 
+    width: 500px; 
+    height: 300px; 
+    display: none; 
+
+    z-index: 998;
+    box-shadow: 3px 3px 3px 3px gray;
+    background-color: white; 
+}
+#lecturesReviewAdd_lecture {
+    width: 400px;
+    height: 90px;
+    margin: 0px 0px 25px 0px;
+
+    border: 0;
+    border-radius: 5px;
+    background: rgb(219, 219, 219);
+}
 
 
 

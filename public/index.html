@@ -108,20 +108,12 @@
           error: ()=>{ alert('스터디 댓글삭제 실패') },
         })
       }
-      function CommentsReportF(a, studyId) {
-        var input = prompt('신고사유', '');
-        $.ajax({
-          type: "POST",
-          url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a + "/reports",
-          data: JSON.stringify({ "reportContent" : input }),
-          dataType : "json",
-          contentType: "application/json",
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-          },
-          success: ()=>{ location.replace("/studies/" + studyId) },
-          error: ()=>{ alert('스터디 댓글신고 실패') },
-        })
+      function ReportF() {
+        $('.studiesList_modal1').show()
+      }
+      function CommentsReportF(studyId) {
+        $('.studiesList_modal2').show()
+        $('#studiesList_commentId').val(studyId)
       }
       function NestedCommentsReportF() {
         var input = prompt('신고사유', '');

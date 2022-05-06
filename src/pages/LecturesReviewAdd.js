@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import '../pages_css/LecturesAdd.css';
+import '../pages_css/LecturesReviewAdd.css';
 import tempImg from '../mainCoding.png';
 
 import like from '../like.png';
@@ -9,7 +9,7 @@ import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
 
-const LecturesAdd = () => {
+const LecturesReviewAdd = () => {
   const navigate = useNavigate();
   var current = ''
   current += String(decodeURI(window.location.href));
@@ -32,11 +32,15 @@ const LecturesAdd = () => {
                     "additionalProp1" : $('#lecturesAdd_linkInput').val(),
                   }).then((response)=>{
                     if (response.data.message === "중복된 링크가 없습니다.") {
+                      $('#lecturesAdd_linkF').show()
+                      const modal = document.querySelector('.lecturesReviewAdd_modal1');
+                      if(!localStorage.getItem('token')) navigate('/signin')
+                      else modal.style.display = 'block'
+                    }
+                    else {
                       $('#lecturesAdd_linkT').show()
                       linkR = true
                     }
-                    else 
-                      $('#lecturesAdd_linkF').show()
                   }).catch((error) => { alert('강의 링크 확인에 오류가 있습니다.') })
               }}>링크확인</button></div>
             </div>
@@ -50,7 +54,7 @@ const LecturesAdd = () => {
           <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id='lecturesAdd_mainTitleInput'/></div>
           <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>강의자&nbsp;&nbsp;&nbsp; <input id='lecturesAdd_teacherInput'/></div>
           <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>사이트명 <input id='lecturesAdd_siteInput'/></div>
-          <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder', display: 'flex', justifyContent: 'center', }}>해시태그&nbsp; <div style={{ width: '80%', textAlign: 'left', }}><input id='lecturesAdd_hashtagInput1'/><input id='lecturesAdd_hashtagInput2'/><input id='lecturesAdd_hashtagInput3'/><input id='lecturesAdd_hashtagInput4'/></div></div>
+          <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder', display: 'flex', justifyContent: 'center', }}>해시태그&nbsp; <div style={{ width: '80%', textAlign: 'left', }}><input id='lecturesAdd_hashtagInput1'/><input id='lecturesAdd_hashtagInput2'/><input id='lecturesAdd_hashtagInput3'/><input id='lecturesAdd_hashtagInput4' style={{display:'none'}}/></div></div>
         </div>
 
         <div style={{ width: '60%', margin: '60px 0px 20px 0px', textAlign: 'left', display: 'inline-block', fontSize: '22px', fontWeight: 'bolder', }}>나의 리뷰</div>
@@ -82,33 +86,31 @@ const LecturesAdd = () => {
         
         <div style={{ width: '60%', margin: '10px 0px 0px 0px', display: 'inline-block', textAlign: 'right', }}>
           <button style={{  color: 'white', borderRadius: '10px', backgroundColor: '#17173D', }} onClick={() => {
-            if ($('#lecturesAdd_linkInput').val() === '' || $('#lecturesAdd_mainTitleInput').val() === '' || $('#lecturesAdd_teacherInput').val() === '' || $('#lecturesAdd_siteInput').val() === '' || ($('#lecturesAdd_hashtagInput1').val() === '' && $('#lecturesAdd_hashtagInput2').val() === '' && $('#lecturesAdd_hashtagInput3').val() === '' && $('#lecturesAdd_hashtagInput4').val() === '') || $('#lecturesAdd_titleInput').val() === '' || $('#lecturesAdd_descriptionInput').val() === '' || $('#lecturesAdd_startNum').val() === '') {
+            var list = []
+            if ($('#lecturesAdd_linkInput').val() === '' || $('#lecturesAdd_mainTitleInput').val() === '' || $('#lecturesAdd_teacherInput').val() === '' || $('#lecturesAdd_siteInput').val() === '' || ($('#lecturesAdd_hashtagInput1').val() === '' && $('#lecturesAdd_hashtagInput2').val() === '' && $('#lecturesAdd_hashtagInput3').val() === '') || $('#lecturesAdd_titleInput').val() === '' || $('#lecturesAdd_descriptionInput').val() === '' || $('#lecturesAdd_startNum').val() === '') {
               alert('빈 칸이 있습니다'); return;
             }
             if (!linkR) {
               alert('링크확인을 체크해주세요'); return;
             }
-            // axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
-            //   "comment": $('#lecturesAdd_descriptionInput').val(),
-            //   "commentTitle": $('#lecturesAdd_titleInput').val(),
-            //   "hashtags": [
-            //     $('#lecturesAdd_hashtagInput1').val(),
-            //     $('#lecturesAdd_hashtagInput2').val(),
-            //     $('#lecturesAdd_hashtagInput3').val(),
-            //   ],
-            //   "lectureTitle": $('#lecturesAdd_mainTitleInput').val(),
-            //   "lectureUrl": $('#lecturesAdd_linkInput').val(),
-            //   "lecturer": $('#lecturesAdd_teacherInput').val(),
-            //   "rate": "",
-            //   "siteName": $('#lecturesAdd_siteInput').val(),
-            //   "thumbnailUrl": $('#lecturesAdd_linkInput').val(), //메인 이미지 링크
-            // }, localStorage.getItem('token'),).then((response)=>{
+            if ($('#lecturesAdd_hashtagInput1').val() != '') list.push($('#lecturesAdd_hashtagInput1').val())
+            if ($('#lecturesAdd_hashtagInput2').val() != '') list.push($('#lecturesAdd_hashtagInput2').val())
+            if ($('#lecturesAdd_hashtagInput3').val() != '') list.push($('#lecturesAdd_hashtagInput3').val())
+            axios.post('http://54.180.150.167:8080/reviews', {
+              "hashtags": [list],
+              "lectureTitle": $('#lecturesAdd_mainTitleInput').val(),
+              "lectureUrl": $('#lecturesAdd_linkInput').val(),
+              "lecturer": $('#lecturesAdd_teacherInput').val(),
+              "rate": $('#lecturesAdd_startNum').val(),
+              "siteName": $('#lecturesAdd_siteInput').val(),
+              "thumbnailUrl": $('#lecturesAdd_linkInput').val(), //메인 이미지 링크
+            }, localStorage.getItem('token'),).then((response)=>{
                 
-            // }).catch((error) => {
-            //     console.log(error)
-            //     alert('강의평 글추가 실패')
-            //     navigate('/lectures')
-            // })
+            }).catch((error) => {
+                console.log(error)
+                alert('강의평 글추가 실패')
+                navigate('/lectures')
+            })
 
           }}>글추가</button></div>
 
@@ -117,4 +119,4 @@ const LecturesAdd = () => {
   );
 }
 
-export default LecturesAdd;
+export default LecturesReviewAdd;

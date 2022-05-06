@@ -35,8 +35,8 @@ function LecturesF(list, page) {
       "<div id='lectures_individe'>" +
         "<div id='lectures_imageBox'>" +
           "<div id='lectures_likeBox'></div>" +
-          ( list[j].likeCnt != 0 ? "<img src='" + likeFill + "'/>" : "<img src='" + like + "'/>" ) +
-          "<div>" + list[j].likeCnt + "</div>" +
+          ( list[j].likeCnt != 0 ? "<img class='lectures_img' src='" + likeFill + "'/>" : "<img class='lectures_img' src='" + like + "'/>" ) +
+          "<div class='lectures_img'>" + list[j].likeCnt + "</div>" +
         "</div>" +
         "<img id='lectures_box' src='" + list[j].thumbnailUrl + "'/>" +
         "<div id='lectures_title'>" + list[j].lectureTitle + "</div>" +
@@ -167,6 +167,7 @@ const Lectures = () => {
   axios.get('http://54.180.150.167:8080/lectures', {
 
   }).then((response)=>{
+    console.log(response)
     if (response.data.data === null) {
       alert('강의평이 없습니다.'); return;
     }
@@ -186,6 +187,71 @@ const Lectures = () => {
 
   return (
     <div id="body_main">
+      {/* <div class="lecturesReviewAdd_modal1">
+        <div style={{ width: '100%', height: '130px', lineHeight: '180px', fontSize: '25px', fontWeight: '600', }}>
+          등록되지 않은 강의입니다.
+        </div>
+        <div style={{ width: '100%', height: '80px', lineHeight: '0px', fontSize: '25px', fontWeight: '600', }}>
+          관리자에게 강의를 요청하시겠습니까?
+        </div>
+        <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('#lecturesReviewAdd_link').val(''); $('.lecturesReviewAdd_modal2').show(); $('.lecturesReviewAdd_modal1').hide(); }}>요청하기</button>
+        <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('#lecturesReviewAdd_link').val(''); $('.lecturesReviewAdd_modal1').hide() }}>취소</button>
+      </div> */}
+
+      <div class="lecturesReviewAdd_modal2">
+        <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
+          등록하고 싶은 강의 링크를 남겨주세요.
+        </div>
+        <div><input id='lecturesReviewAdd_link'/></div>
+        <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => {
+          
+          axios.post('http://54.180.150.167:8080/lectures/urls', {
+            "additionalProp1" : $('#lecturesReviewAdd_link').val(),
+          }).then((response)=>{
+            console.log($('#lecturesReviewAdd_link').val())
+
+            if (response.data.message === "중복된 링크가 없습니다.") {
+              console.log(response.data.message)
+              // axios.post('http://54.180.150.167:8080/lectures', {
+              // }).then((response)=>{
+              //   $('.lecturesReviewAdd_modal3').show();
+              // }).catch((error) => { alert('강의 링크추가 실패') })
+            }
+            else {
+              $('.lecturesReviewAdd_modal4').show();
+            }
+          }).catch((error) => { alert('강의 링크 확인에 오류가 있습니다.') })
+
+          $('.lecturesReviewAdd_modal2').hide();
+          $('#lecturesReviewAdd_link').val('');
+        }}>등록</button>
+        <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('#lecturesReviewAdd_link').val(''); $('.lecturesReviewAdd_modal2').hide() }}>취소</button>
+      </div>
+
+      <div class="lecturesReviewAdd_modal3">
+        <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
+          관리자에게 요청사항이 전달되었습니다.
+        </div>
+        <div><input id='lecturesReviewAdd_link'/></div>
+        <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal3').hide() }}>확인</button>
+      </div>
+
+      <div class="lecturesReviewAdd_modal4">
+        <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
+          이미 등록 요청된 강의입니다.
+        </div>
+        <div><input id='lecturesReviewAdd_link'/></div>
+        <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal4').hide() }}>확인</button>
+      </div>
+
+      <div class="lecturesReviewAdd_modal5">
+        <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
+          이미 등록된 강의입니다.
+        </div>
+        <div id='lecturesReviewAdd_lecture'></div>
+        <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal5').hide() }}>확인</button>
+      </div>
+      
       <div id='body_center_top'></div>
       <div id='body_center_name' style={{ height: '130px', }}></div>
       
@@ -237,15 +303,23 @@ const Lectures = () => {
       </div>
 
       <div style={{ width: '100%', height: 'auto', backgroundColor: 'rgb(240, 240, 240)', }}>
+        {/* <div style={{ margin: '16px 0px 8px 0px', height: '30px', }}></div> */}
         <div style={{ display: 'flex', }}>
           <div style={{ width: '17%', }}></div>
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
+            $('.lecturesReviewAdd_modal2').show();
+          }}>
+            강의 추가하기
+          </div>
+
+          {/* <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
+          <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
             if(!localStorage.getItem('token')) navigate('/signin')
-            else navigate('/lecturesAdd')
+            else navigate('/lecturesReviewAdd')
           }}>
             강의평 작성하기
-          </div>
+          </div> */}
         </div>
         
         <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>

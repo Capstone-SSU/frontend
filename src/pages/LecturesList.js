@@ -44,6 +44,7 @@ const LecturesList = () => {
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
+    console.log('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]))
     useEffect(() => {
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');

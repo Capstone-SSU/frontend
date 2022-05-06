@@ -32,7 +32,6 @@ function RoadmapF(list, page) {
     "<div id='roadmaps_individe1'>" +
       "<div id='body_flex' >" +
         "<div id='roadmaps_title'>" + list[i].roadmapTitle + "<div id='roadmaps_company'>" + list[i].roadmapWriterCompany + "</div></div>" +
-        '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].roadmapLikeCount + '</div>' +
       "</div>" +
       "<div id='body_height'></div>" + 
       "<div id='roadmaps_Box1' >"
@@ -47,6 +46,7 @@ function RoadmapF(list, page) {
       // "<div id='body_flex'>" +
         "<div id='roadmaps_nickname'>" + list[i].roadmapWriterNickname + "</div>" + 
         "<div id='roadmaps_date'>" + list[i].roadmapCreatedDate.slice(0, 10)  + "</div>" +
+        '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].roadmapLikeCount + '</div>' +
       // "</div>" +
    "</div><hr/>" +
    "</a>"

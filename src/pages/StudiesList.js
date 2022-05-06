@@ -45,7 +45,7 @@ function StudiesListF(list) {
             "</div>" +
             "<div id='studiesList_box3'>" + 
                 (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
-                "<div id='studiesList_font'>" + list.likeCount + " |</div><button id='studiesList_reports'>신고하기</button>" +
+                "<div id='studiesList_font'>" + list.likeCount + " |</div><button id='studiesList_reports' onClick='ReportF(" + null + ")'>신고하기</button>" +
             "</div>" +
             "<hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
@@ -65,11 +65,12 @@ function StudiesListCommentsF(list, studyId) {
             "<div id='studiesList_commentsBox1'>" +   
                 "<div id='studiesList_commentsProfill'>" + list[i].commentWriter.userProfileImg + "</div>" +
                 "<div id='studiesList_commentsWriteUsername'>" + list[i].commentWriter.userNickname + "</div>" +
+                // <div id="studiesList_bar2"><div>
                 "<div id='studiesList_commentsBoxInner'>" +
-                    '<button id="studiesList_nestedCommentsAdd" onClick="NestedCommentsF('+list[i].studyCommentId+')">댓글</button><div id="studiesList_bar2"><div></div></div>' +
-                    (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsUpdate" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + studyId +')">수정</button><div id="studiesList_bar2"><div></div></div>' : "<button></button>") +
-                    (list[i].isThisCommentWriterPostWriter ? '<button id="studiesList_commentsDelete" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + studyId +')">삭제</button><div id="studiesList_bar2"><div></div></div>' : "<button></button>") +
-                    '<button id="studiesList_commentsReports" onClick="CommentsReportF('+list[i].studyCommentId+"," + studyId +')">신고</button>' +
+                    '<button id="studiesList_nestedCommentsAdd" onClick="NestedCommentsF('+list[i].studyCommentId+')">댓글</button><div id="studiesList_bar2"></div>' +
+                    (list[i].isThisUserCommentWriter ? '<button id="studiesList_commentsUpdate" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + studyId +')">수정</button><div id="studiesList_bar2"></div>' : "") +
+                    (list[i].isThisUserCommentWriter ? '<button id="studiesList_commentsDelete" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + studyId +')">삭제</button>' : "") +
+                    (!list[i].isThisUserCommentWriter ? '<button id="studiesList_commentsReports" onClick="CommentsReportF('+list[i].studyCommentId +')">신고</button>': "") +
                 "</div>" +
             "</div>" +
 
@@ -87,15 +88,17 @@ function StudiesListCommentsF(list, studyId) {
             "</div>"
         
         for(var j = 0; j < list[i].nestedComments.length; j++) {
+            console.log(list[i].nestedComments[j])
             studiesList +=
             "<div id='studiesList_nestedComments'>" +
                 "<div id='studiesList_nestedCommentsBox1'>" +
                     "<div id='studiesList_nestedCommentsProfill'>" + list[i].nestedComments[j].commentWriter.userProfileImg + "</div>" +
                     "<div id='studiesList_nestedCommentsWriteUsername'>" + list[i].nestedComments[j].commentWriter.userNickname + "</div>" +
-                    '<button id="studiesList_nestedcommentsReports" onClick="NestedCommentsReportF('+')">신고</button>' +
+                    (list[i].nestedComments[j].isThisUserCommentWriter ? '<button id="studiesList_nestedcommentsDelete" onClick="NestedCommentsDeleteF('+list[i].nestedComments[j].studyCommentId+"," + studyId +')">삭제</button>' : "") +
+                    (!list[i].nestedComments[j].isThisUserCommentWriter ? '<button id="studiesList_nestedcommentsReports" onClick="CommentsReportF('+ list[i].nestedComments[j].studyCommentId + ')">신고</button>': "") +
                 "</div>" +
                 "<div id='body_flex'>" +
-                    "<div id='studiesList_commentsContent'>" + list[i].nestedComments[j].commentContent + "</div>" +
+                    "<div id='studiesList_nestedCommentsContent'>" + list[i].nestedComments[j].commentContent + "</div>" +
                 "</div>" +
             "</div>"
         }
@@ -108,6 +111,7 @@ function StudiesListCommentsF(list, studyId) {
 
 const StudiesList = () => {
     $('#studiesList_commnetsAddInput').val('')
+    $('#reports1').prop("checked", true);
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
@@ -118,7 +122,7 @@ const StudiesList = () => {
         axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
 
         }, localStorage.getItem('token'),).then((response)=>{
-            
+
             const element = document.getElementById('studiesList_list')
             element.innerHTML = StudiesListF(response.data.data)
             const element2 = document.getElementById('studiesList_comments')
@@ -138,17 +142,6 @@ const StudiesList = () => {
                     alert('스터디 글삭제 실패')
                     })
                 }
-            }
-
-            document.getElementById('studiesList_reports').onclick = function () {
-                var input = prompt('신고사유', '');
-                axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/reports', {
-                    "reportContent": input
-                }, localStorage.getItem('token'),).then(()=>{
-                    navigate('/studies/' + parseInt(current.split("/")[4]))
-                }).catch((error) => { 
-                    alert('스터디 글신고 실패')
-                })
             }
 
             if (!response.data.data.isLikedByUser) {
@@ -188,6 +181,45 @@ const StudiesList = () => {
     
     return (
         <div id="body_main">
+            <div class="studiesList_modal1">
+                <div style={{ width: '100%', height: '70px', lineHeight: '70px', fontSize: '25px', fontWeight: '600', }}>신고 사유 선택</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports1" value="불건전한 만남 및 대화" /> 불건전한 만남 및 대화</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports2" value="상업적 광고 및 판매" /> 상업적 광고 및 판매</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports3" value="낚시 및 도배" /> 낚시 및 도배</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
+                <div style={{ height: '70px', lineHeight: '60px', }}>
+                    <button class="modal_body studiesList_reportsButton" onClick={() => {
+                        axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/reports', {
+                            "additionalProp1": $('input[name="reports"]:checked').val()
+                        }, localStorage.getItem('token'),).then(()=>{
+                            $('.studiesList_modal1').hide()
+                        }).catch((error) => { 
+                            alert('스터디 글신고 실패')
+                        })
+                    }}>확인</button>
+                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal1').hide() }}>취소</button>
+                </div>
+            </div>
+            <div class="studiesList_modal2">
+                <div id='studiesList_commentId' style={{ display:'none', }}></div>
+                <div style={{ width: '100%', height: '70px', lineHeight: '70px', fontSize: '25px', fontWeight: '600', }}>신고 사유 선택</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports1" value="불건전한 만남 및 대화" /> 불건전한 만남 및 대화</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports2" value="상업적 광고 및 판매" /> 상업적 광고 및 판매</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports3" value="낚시 및 도배" /> 낚시 및 도배</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
+                <div style={{ height: '70px', lineHeight: '60px', }}>
+                    <button class="modal_body studiesList_reportsButton" onClick={() => {
+                        axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/comments/' + $('#studiesList_commentId').val() + '/reports', {
+                            "additionalProp1": $('input[name="reports"]:checked').val()
+                        }, localStorage.getItem('token'),).then(()=>{
+                            $('.studiesList_modal2').hide()
+                        }).catch((error) => { 
+                            alert('스터디 글신고 실패')
+                        })
+                    }}>확인</button>
+                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal1').hide() }}>취소</button>
+                </div>
+            </div>
             <div id="body_center_top"></div>
 
             <div style={{ width: '100%', height: '70px', }}></div>

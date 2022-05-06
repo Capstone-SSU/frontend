@@ -95,7 +95,7 @@
 
     text-align: left;
     display: flex;
-    float: right;
+    float: left;
 
     overflow:hidden;
     text-overflow:ellipsis;
