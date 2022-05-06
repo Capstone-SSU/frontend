@@ -7,9 +7,17 @@ import subPic2 from '../subCoding2.png';
 import subPic3 from '../subCoding3.png';
 import axios from 'axios';
 import $ from 'jquery';
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
 window.$ = $;
 
-function Main () {
+function Main() {
+  //  const axios = require('axios');
+  //  const cheerio=require('cheerio');
+  //  axios.get("https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1").then(dataa => {
+  //   console.log(dataa);
+  // $("meta[property="og:image").attr('content)
+  //});
+
   return (
     <div className="App">
       <body>
@@ -20,7 +28,6 @@ function Main () {
           <SubPicRightCard img={subPic3}></SubPicRightCard>
         </div>
       </body>
-
 
     </div>
   );
@@ -33,7 +40,7 @@ const MainCard = () => {
       <div className="text_box">
         <h1>코딩 강의, 어떻게 골라야할지 막막하셨나요?</h1>
         <p>강의 후기, 코딩 스터디, 로드맵 추천까지</p>
-        <a>추천 강의 보러가기</a>
+        <a id="linkButton">추천 강의 보러가기</a>
       </div>
 
     </div>

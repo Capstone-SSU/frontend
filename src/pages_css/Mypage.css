@@ -1,0 +1,28 @@
+.body_main {
+    height:100%;
+    width:100%;
+}
+
+.left_menu_box {
+    width:20%;
+    height:100vh;
+    background-color: #17173d;
+}
+
+.right_content_box {
+
+}
+
+.bigMenu {
+    font-size:24px;
+    color:white;
+    font-weight: 900;
+    text-align: left;
+    margin-left:20%;
+    margin-top:20%;
+}
+
+.smallMenu {
+    font-size:18px;
+    color:#c4c4c4;
+}

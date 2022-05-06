@@ -33,7 +33,7 @@ const LectureInfoText = () => {
     return (
         <div>
             <h1 id="lectureTitle">강의제목강의제목 이ㅇ러ㅏ어라어나아걸 어떻게 가져오지 으앙sssss</h1>
-            <p>⭐️⭐️⭐️⭐️⭐️(5.0)</p>
+            <p id="stars">★★★★★(5.0)</p>
             <p><b>강사이름</b></p>
             <p><b>어디강의인지</b></p>
             <div className="hashtag_box">
