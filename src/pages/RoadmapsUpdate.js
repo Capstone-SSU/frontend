@@ -73,6 +73,10 @@ function RoadmapList2F(list) {
 }
 
 const RoadmapsUpdate = () => {
+  $("#roadmapsUpdate_mainDescriptionInput").on('keydown keyup', function () {
+    $(this).height(1).height( $(this).prop('scrollHeight')+12 );	
+  });
+  
   const navigate = useNavigate();
   var current = ''
   current += String(decodeURI(window.location.href));
@@ -107,10 +111,28 @@ const RoadmapsUpdate = () => {
       <div style={{ width: 'auto', height: '70px',}}></div>
         <div id='body_center_name' style={{ height: '70px', }}></div>
 
+        <div style={{ width: '75%', height: '50px', textAlign: 'center', display: 'inline-block', borderRadius: '10px', }}>
+          <div id="roadmapsUpdate_mainTitle">
+            <input id="roadmapsUpdate_mainTitleInput" placeholder="로드맵 제목"/>
+            <button onClick={() => {
+              if ($('#roadmapsUpdate_lecturesId').val().length === 0 || $('#roadmapsUpdate_mainTitleInput').val() === '' || $('#roadmapsUpdate_mainDescriptionInput').val() === '') {
+                alert('빈 칸이 있습니다')
+                return
+              }
+              axios.patch('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]),  {
+                "lectureIds": $('#roadmapsUpdate_lecturesId').val(),
+                "roadmapRecommendation": $('#roadmapsUpdate_mainDescriptionInput').val(),
+                "roadmapTitle": $('#roadmapsUpdate_mainTitleInput').val(),
+              }, localStorage.getItem('token'),).then((response)=>{
+                  navigate('/roadmaps/'+ parseInt(current.split("/")[4]))
+              }).catch((error) => { alert('로드맵 글수정 실패') })
+            }} style={{ margin: '6px 0px 0px 0px', display: 'flex', float: 'right', alignItems: 'center', borderRadius: '5px', color: 'white', backgroundColor: '#17173D', }}>&nbsp;&nbsp;&nbsp;글수정</button>
+          </div>
+        </div>
+
         <div style={{ width: '75%', height: '1050px', textAlign: 'center', display: 'inline-block', borderRadius: '10px', backgroundColor: 'rgb(219, 219, 219)', }}>
             {/* <div> */}
-            <div id="roadmapsUpdate_mainTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목<input id="roadmapsUpdate_mainTitleInput"/></div>
-            <div id="roadmapsUpdate_mainDescription">추천대상<textarea id="roadmapsUpdate_mainDescriptionInput" /></div>
+            <div id="roadmapsUpdate_mainDescription"><textarea id="roadmapsUpdate_mainDescriptionInput" placeholder="추천할 대상을 입력하세요."/></div>
           {/* <div id="roadmapsUpdate_mainTitle">제목<input id="roadmapsUpdate_mainTitleInput" /></div>
           <div id="roadmapsUpdate_mainDescription">추천대상<textarea id="roadmapsUpdate_mainDescriptionInput" /></div> */}
             {/* </div> */}
@@ -142,19 +164,6 @@ const RoadmapsUpdate = () => {
 
       <div style={{ width: '75%', textAlign: 'center', display: 'inline-block', borderRadius: '10px', backgroundColor: 'white', }}>
         <div style={{ width: '100%', margin: '10px 0px 50px 0px', textAlign: 'right', borderRadius: '5px', }}>
-            <button onClick={() => {
-              if ($('#roadmapsUpdate_lecturesId').val().length === 0 || $('#roadmapsUpdate_mainTitleInput').val() === '' || $('#roadmapsUpdate_mainDescriptionInput').val() === '') {
-                alert('빈 칸이 있습니다')
-                return
-              }
-              axios.patch('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]),  {
-                "lectureIds": $('#roadmapsUpdate_lecturesId').val(),
-                "roadmapRecommendation": $('#roadmapsUpdate_mainDescriptionInput').val(),
-                "roadmapTitle": $('#roadmapsUpdate_mainTitleInput').val(),
-              }, localStorage.getItem('token'),).then((response)=>{
-                  navigate('/roadmaps/'+ parseInt(current.split("/")[4]))
-              }).catch((error) => { alert('로드맵 글수정 실패') })
-            }} style={{ borderRadius: '5px', color: 'white', backgroundColor: '#17173D', }}>글수정</button>
         </div>
       </div>
     </div>

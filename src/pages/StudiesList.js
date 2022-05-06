@@ -15,11 +15,9 @@ function StudiesListF(list) {
     "<div id='studiesList_individe1'>" +
         ( list.isThisUserPostWriter ?
         '<div id="body_flex"><div id="studiesList_blank"></div><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
-        "<div id='studiesList_top1'>" +
-            "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
-            "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
-            "<img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/>" +
-        "</div>" +
+        "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
+        "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
+        "<img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/>" +
         "<div id='studiesList_top'>" +
             "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" +
             "<div id='studiesList_like'>현재 " + list.likeCount + "명이 관심을 가지고 있습니다.</div>" +
@@ -110,8 +108,6 @@ function StudiesListCommentsF(list, studyId) {
 }
 
 const StudiesList = () => {
-    $('#studiesList_commnetsAddInput').val('')
-    $('#reports1').prop("checked", true);
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
@@ -178,6 +174,10 @@ const StudiesList = () => {
             navigate('/studies')
         })
     });
+
+    $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
+    $('#studiesList_commnetsAddInput').val('')
+    $('#reports1').prop("checked", true);
     
     return (
         <div id="body_main">
@@ -189,6 +189,7 @@ const StudiesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
+                        $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/reports', {
                             "additionalProp1": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
@@ -197,9 +198,10 @@ const StudiesList = () => {
                             alert('스터디 글신고 실패')
                         })
                     }}>확인</button>
-                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal1').hide() }}>취소</button>
+                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal1').hide(); $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
                 </div>
             </div>
+
             <div class="studiesList_modal2">
                 <div id='studiesList_commentId' style={{ display:'none', }}></div>
                 <div style={{ width: '100%', height: '70px', lineHeight: '70px', fontSize: '25px', fontWeight: '600', }}>신고 사유 선택</div>
@@ -209,6 +211,7 @@ const StudiesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
+                        $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/comments/' + $('#studiesList_commentId').val() + '/reports', {
                             "additionalProp1": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
@@ -217,11 +220,11 @@ const StudiesList = () => {
                             alert('스터디 글신고 실패')
                         })
                     }}>확인</button>
-                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal1').hide() }}>취소</button>
+                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal2').hide(); $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
                 </div>
             </div>
-            <div id="body_center_top"></div>
 
+            <div id="body_center_top"></div>
             <div style={{ width: '100%', height: '70px', }}></div>
             <div style={{ width: '100%', textAlign:'center', }}>
 

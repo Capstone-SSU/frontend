@@ -29,18 +29,16 @@ const StudiesUpdate = () => {
     });
 
   return (
-    <div id='body_main'>
+    <div id='body_main' style={{ background:'rgb(240, 240, 240)', }}>
       <div id='body_center_top'></div>
-      <div id='body_center_name' style={{ height: '120px', }}></div>
+      <div id='body_center_name' style={{ height: '120px', background:'rgb(240, 240, 240)', }}></div>
 
-      <div style={{ width: '60%', height: '810px', display: 'inline-block', }}>
+      <div style={{ width: '60%', height: '850px', display: 'inline-block', borderRadius: '10px', background: 'white', }}>
         <div style={{ width: 'auto', height: '50px', }}>
           <div style={{ width: '6.5%', height: '60px',  display: 'flex', float: 'left', }}></div>
-          <div style={{ width: '225px', margin: '10px 10px', display: 'flex', float: 'right', }}>
-            <div id ='studiesUpdate_peeple'>모집인원수&nbsp;<input id='studiesUpdate_max' type='number' min='2'/>&nbsp;/&nbsp;<input id='studiesUpdate_min' type='number'  min='1'/>
-            </div>
-          </div>
+          <div style={{ width: '225px', margin: '10px 10px', display: 'flex', float: 'right', }}></div>
 
+          <div style={{ width: '100px', height: '13px', opacity: '0', background: 'red' }}>a</div>
           <div style={{ width: '38px', height: '50px', margin: '11px 0px 0px 0px', display: 'flex', float: 'left', }}>
             
             <div style={{ width: 'auto', height: '50px', margin: '0px 20px', padding: '0px 20px', display: 'flex', float: 'left', border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
@@ -81,10 +79,16 @@ const StudiesUpdate = () => {
           </div>
         </div>
 
+        <div id ='studiesUpdate_peeple'>모집인원수&nbsp;&nbsp;
+          <input id='studiesUpdate_max' type='number' min='2'/>
+          &nbsp;&nbsp;/&nbsp;&nbsp;
+          <input id='studiesUpdate_min' type='number' min='1'/>
+        </div>
+        {/* <div id ='studiesUpdate_peeple'>모집인원수&nbsp;&nbsp;<input id="studiesUpdate_max" /></div> */}
         <div id="studiesUpdate_title">제목 <input id="studiesUpdate_titleInput" /></div>
         <div id="studiesUpdate_description">내용 <textarea id="studiesUpdate_descriptionInput" /></div>
 
-        <div style={{ width: '98%', margin: '10px 15px', textAlign: 'right', }}>
+        <div style={{ width: '98%', margin: '10px 15px', textAlign: 'center', }}>
           <button style={{ margin: '10px 0px', color: 'white', borderRadius: '5px', backgroundColor: '#17173D', }} onClick={() => {
               if ($('#studiesUpdate_max').val() < $('#studiesUpdate_min').val()) {
                 alert('모집 최대인원이 모집 최소인원보다 작을 수 없습니다')
@@ -111,6 +115,7 @@ const StudiesUpdate = () => {
             </button>
           </div>
       </div>
+      <div id='body_center_name' style={{ height: '120px', background:'rgb(240, 240, 240)', }}></div>
     </div>
   );
 }

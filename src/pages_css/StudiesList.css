@@ -16,11 +16,9 @@
     height: 6px;
     background-color: rgb(240, 240, 240);
 }
-#studiesList_top1 {
-}
 #studiesList_title {
-    width: auto;
-    height: auto;
+    width: 100%;
+    /* height: auto; */
     margin: 0px 0px 0px 10px;
 
     text-align: left;

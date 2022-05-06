@@ -227,7 +227,7 @@ const Lectures = () => {
         }}>등록</button>
         <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('#lecturesReviewAdd_link').val(''); $('.lecturesReviewAdd_modal2').hide() }}>취소</button>
       </div>
-//
+
       <div class="lecturesReviewAdd_modal3">
         <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
           관리자에게 요청사항이 전달되었습니다.
@@ -306,20 +306,20 @@ const Lectures = () => {
         {/* <div style={{ margin: '16px 0px 8px 0px', height: '30px', }}></div> */}
         <div style={{ display: 'flex', }}>
           <div style={{ width: '17%', }}></div>
-          <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
+          {/* <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
             $('.lecturesReviewAdd_modal2').show();
           }}>
             강의 추가하기
-          </div>
+          </div> */}
 
-          {/* <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
+          <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
             if(!localStorage.getItem('token')) navigate('/signin')
             else navigate('/lecturesReviewAdd')
           }}>
             강의평 작성하기
-          </div> */}
+          </div>
         </div>
         
         <div style={{ width: '60%', height: 'auto', display: 'inline-block', }}>

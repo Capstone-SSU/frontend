@@ -115,10 +115,6 @@
         $('.studiesList_modal2').show()
         $('#studiesList_commentId').val(studyId)
       }
-      function NestedCommentsReportF() {
-        var input = prompt('신고사유', '');
-        console.log("nestedReport")
-      }
 
 
 
@@ -199,6 +195,14 @@
         $('#roadmapsUpdate_lecturesId').val(lecturesId)
             
       }
+
+
+
+      function RoadmapsAddModalF() {
+        $('#roadmapsAdd_modal1').hide()
+      }
+
+
 
       function LecturesHashtagsF(hashTag) {
         if ($('#' + hashTag).val() === undefined)
