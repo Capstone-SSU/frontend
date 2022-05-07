@@ -18,7 +18,11 @@ const Signup = () => {
       <div>
       <div className='signup_emailPassword'>
         <div>이메일 주소</div>
-        <input type='text' id="signup_email" placeholder='abc123@abc123.com'/>
+        <input type='text' id="signup_email" placeholder='abc123@abc123.com' onClick={() => {
+          emailR = false;
+          $('#signup_emailT').hide()
+          $('#signup_emailF').hide()
+        }}/>
         <button className="button" style={{ width: '75px', height: '35px', borderRadius: '10px', }} onClick={()=> {
           var emailTest =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
           if (!emailTest.test($('#signup_email').val())) {
@@ -64,7 +68,11 @@ const Signup = () => {
       </div>
       <div className='signup_emailPassword'>
         <div>닉네임</div>
-        <input type='text' id="signup_nickname"/>
+        <input type='text' id="signup_nickname" onClick={() => {
+          nicknameR = false;
+          $('#signup_nicknameT').hide()
+          $('#signup_nicknameF').hide()
+        }}/>
         <button className="button" style={{ width: '75px', height: '35px', borderRadius: '10px', }} onClick={()=> {
           if ($('#signup_nickname').val() === '') {
             $('#signup_nicknameT').hide();

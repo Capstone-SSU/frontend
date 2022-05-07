@@ -37,7 +37,7 @@ const LoginForm = () => {
       </div>
       <div className='signin_emailPassword'>
         <div>비밀번호</div> {/*input_label*/}
-        <input type='text' id="signin_password"/> {/*input_form*/}
+        <input type='password' id="signin_password"/> {/*input_form*/}
       </div>
       <button type="submit" id="signin_login" className="button" style={{ width: '350px', margin: '0px 0px 10px 0px', borderRadius: '5px', }} onClick={() => {
         axios.post('http://54.180.150.167:8080/signin', {

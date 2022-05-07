@@ -140,7 +140,7 @@
     background-color: #45AFBE;
 }
 .lectures_img {
-    z-index: 1;
+    z-index: 997;
 }
 
 
@@ -157,7 +157,7 @@
     box-shadow: 3px 3px 3px 3px gray;
     background-color: white; 
 }
-#lecturesReviewAdd_lecture {
+#lecturesReviewAdd_link, #lecturesReviewAdd_lecture {
     width: 400px;
     height: 90px;
     margin: 0px 0px 25px 0px;

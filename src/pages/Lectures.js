@@ -49,7 +49,7 @@ function LecturesF(list, page) {
           lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
         
         lectures += 
-          '<input type="radio" name="reviewStar" />(' + list[j].avgRate + ')</fieldset></div>' +
+          '<input type="radio" name="reviewStar" />(' + Math.round(list[j].avgRate) + ')</fieldset></div>' +
         '</form>' +
       "</div>" +
     "</a>"
@@ -167,7 +167,6 @@ const Lectures = () => {
   axios.get('http://54.180.150.167:8080/lectures', {
 
   }).then((response)=>{
-    console.log(response)
     if (response.data.data === null) {
       alert('강의평이 없습니다.'); return;
     }
@@ -205,22 +204,14 @@ const Lectures = () => {
         <div><input id='lecturesReviewAdd_link'/></div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => {
           
-          axios.post('http://54.180.150.167:8080/lectures/urls', {
-            "additionalProp1" : $('#lecturesReviewAdd_link').val(),
+          axios.post('http://54.180.150.167:8080/lectures/request', {
+            "lectureUrl" : $('#lecturesReviewAdd_link').val(),
           }).then((response)=>{
-            console.log($('#lecturesReviewAdd_link').val())
-
-            if (response.data.message === "중복된 링크가 없습니다.") {
-              console.log(response.data.message)
-              // axios.post('http://54.180.150.167:8080/lectures', {
-              // }).then((response)=>{
-              //   $('.lecturesReviewAdd_modal3').show();
-              // }).catch((error) => { alert('강의 링크추가 실패') })
-            }
-            else {
-              $('.lecturesReviewAdd_modal4').show();
-            }
-          }).catch((error) => { alert('강의 링크 확인에 오류가 있습니다.') })
+            console.log(response)
+            $('.lecturesReviewAdd_modal3').show();
+          }).catch((error) => {
+            $('.lecturesReviewAdd_modal4').show();
+          })
 
           $('.lecturesReviewAdd_modal2').hide();
           $('#lecturesReviewAdd_link').val('');
@@ -229,18 +220,18 @@ const Lectures = () => {
       </div>
 
       <div class="lecturesReviewAdd_modal3">
-        <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
+        <div style={{ width: '100%', height: '100px', lineHeight: '180px', fontSize: '25px', fontWeight: '600', }}></div>
+        <div style={{ width: '100%', height: '80px', lineHeight: '0px', fontSize: '25px', fontWeight: '600', }}>
           관리자에게 요청사항이 전달되었습니다.
         </div>
-        <div><input id='lecturesReviewAdd_link'/></div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal3').hide() }}>확인</button>
       </div>
 
       <div class="lecturesReviewAdd_modal4">
-        <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
+        <div style={{ width: '100%', height: '100px', lineHeight: '180px', fontSize: '25px', fontWeight: '600', }}></div>
+        <div style={{ width: '100%', height: '80px', lineHeight: '0px', fontSize: '25px', fontWeight: '600', }}>
           이미 등록 요청된 강의입니다.
         </div>
-        <div><input id='lecturesReviewAdd_link'/></div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal4').hide() }}>확인</button>
       </div>
 
@@ -256,8 +247,7 @@ const Lectures = () => {
       <div id='body_center_name' style={{ height: '130px', }}></div>
       
       <div style={{ width: '100%', height: '50px', lineHeight: '50px', color: '#17173D', fontSize: '22px', }}>
-        
-        
+
         <div style={{ width: '15%', height: '50px', display: 'flex', float: 'left',}}></div>
         
         <div style={{ width: '15%', height: '50px', display: 'flex', float: 'right', }}></div>
@@ -306,17 +296,17 @@ const Lectures = () => {
         {/* <div style={{ margin: '16px 0px 8px 0px', height: '30px', }}></div> */}
         <div style={{ display: 'flex', }}>
           <div style={{ width: '17%', }}></div>
-          {/* <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
+          <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
             $('.lecturesReviewAdd_modal2').show();
           }}>
             강의 추가하기
-          </div> */}
+          </div>
 
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
             if(!localStorage.getItem('token')) navigate('/signin')
-            else navigate('/lecturesReviewAdd')
+            else navigate('/lecturesReviewAdd/0')
           }}>
             강의평 작성하기
           </div>
