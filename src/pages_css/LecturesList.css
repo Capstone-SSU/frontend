@@ -1,3 +1,22 @@
+.lecturesList_master {
+    margin: 0px;
+    background-color: red;
+}
+
+
+
+.lecturesList_modal2 { 
+    position: absolute; 
+    top: 25%; 
+    left: 37%; 
+    width: 380px; 
+    height: 350px; 
+    display: none; 
+
+    z-index: 998;
+    box-shadow: 3px 3px 3px 3px gray;
+    background-color: white; 
+}
 .lecturesList_modal1 { 
     position: absolute;
     top: 25%;
@@ -14,7 +33,7 @@
 
 
 #lecturesList_boxA {
-    width: 60%;
+    width: 70%;
     height: auto;
 
     display: inline-block;
@@ -78,15 +97,103 @@
 
 
 
-#lecturesList_box3 {
+#lecturesList_boxReviewAA {
     width: 100%;
     height: auto;
-    padding: 15px 0px 15px 0px;
+    margin: 30px 0px;
 
     text-align: left;
-    border-radius: 10px;
-    background-color: white;
 }
+#lecturesList_titleReview {
+    margin: 0px 0px 0px 17px;
+
+    /* float: left; */
+    font-size: 19px;
+    font-weight: 600;
+}
+#lecturesList_titleReports {
+    float: right;
+    font-size: 17px;
+    font-weight: 500;
+}
+#lecturesList_nicknameReview {
+    margin: 0px 0px 0px 17px;
+    color: rgb(150, 150, 150);
+}
+#lecturesList_dateReview {
+    margin: 0px 0px 0px 30px;
+    color: rgb(150, 150, 150);
+}
+#lecturesList_commentReview {
+    margin: 10px 0px 30px 17px;
+}
+#lecturesList_hrReview {
+    border-width: 1px 0px 0px 0px;
+    height: 1px;
+    background: rgb(190, 190, 190);
+}
+
+
+
+#lecturesList_box3 {
+    width: 100%;
+    height: 250px;
+    margin: 30px 0px;
+
+    display: flex;
+    text-align: left;
+    border-radius: 10px;
+}
+#lecturesList_box4 {
+    width: 350px;
+    height: 100%;
+
+    text-align: center;
+    font-size: 25px;
+    border: 2px solid rgb(219, 219, 219);
+    border-radius: 10px;
+}
+#lecturesList_avgRate {
+    margin: 30px 0px 0px 0px;
+    font-size: 60px;
+    font-weight: 700;
+}
+#lecturesList_starReview {
+    margin: 0px 60px;
+}
+#lecturesList_reviewCnt {
+    color:rgb(190, 190, 190);
+    font-size: 22px;
+    font-weight: 600;
+}
+#lecturesList_box5 {
+    width: 73%;
+    height: 100%;
+    margin: 0px 0px 0px 10px;
+
+    border: 2px solid rgb(219, 219, 219);
+    border-radius: 10px;
+}
+#lecturesList_num {
+    margin: 35px 20px 0px 20px;
+}
+.lecturesList_numReview {
+    margin: 10px 20px;
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    color:rgb(20, 20, 20)
+}
+.lecturesList_numReviewBox {
+    width: 90%;
+    height: 10px;
+    margin: 8px 0px 0px 10px;
+
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+}
+
+
 
 #lecturesList_commnetsAddInput {
     width: 60%;

@@ -90,10 +90,14 @@ const LecturesReviewAdd = () => {
             </div>
           </div>
           <div style={{ width: '300px', height: '7px', padding: '0px 0px 0px 5px', }}>
-            <div id='lecturesAdd_linkF' style={{ display: 'none', fontSize: '12px', color: 'red', }}>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사용 불가능한 링크 입니다</div>
-            <div id='lecturesAdd_linkT' style={{ display: 'none', fontSize: '12px', color: 'blue', }}>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사용 가능한 링크 입니다</div>
+            <div style={{ fontSize: '18px', fontWeight: 'bolder', display: 'flex', }}>
+              <div style={{ width: '47%', }}></div>
+              <div id='lecturesAdd_linkF' style={{ display: 'none', fontSize: '12px', color: 'red', }}>사용 불가능한 링크 입니다</div>
+            </div>
+            <div style={{ fontSize: '18px', fontWeight: 'bolder', display: 'flex', }}>
+              <div style={{ width: '47%', }}></div>
+              <div id='lecturesAdd_linkT' style={{ display: 'none', fontSize: '12px', color: 'blue', }}>사용 가능한 링크 입니다</div>
+            </div>
           </div>
           <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id='lecturesAdd_mainTitleInput' disabled/></div>
           <div style={{ margin: '20px 0px 10px 0px', fontSize: '18px', fontWeight: 'bolder' }}>강의자&nbsp;&nbsp;&nbsp; <input id='lecturesAdd_teacherInput' disabled/></div>
@@ -143,9 +147,9 @@ const LecturesReviewAdd = () => {
               "comment": $('#lecturesAdd_descriptionInput').val(),
               "rate": $('#lecturesAdd_startNum').val(),
             }, localStorage.getItem('token'),).then((response)=>{
-                
+                navigate('/lectures/' + parseInt(current.split("/")[4]))
             }).catch((error) => {
-                alert('강의평 글추가 실패')
+                alert('이미 강의평을 추가한 강의입니다.')
             })
 
           }}>글추가</button></div>

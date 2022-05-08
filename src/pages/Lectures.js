@@ -49,7 +49,7 @@ function LecturesF(list, page) {
           lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
         
         lectures += 
-          '<input type="radio" name="reviewStar" />(' + Math.round(list[j].avgRate) + ')</fieldset></div>' +
+          '<input type="radio" name="reviewStar" />(' + list[j].avgRate + ')</fieldset></div>' +
         '</form>' +
       "</div>" +
     "</a>"
