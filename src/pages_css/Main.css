@@ -37,5 +37,17 @@
     height:300px;   
 }
 
+#linkBox {
+    line-height: 40px;
+    cursor:pointer;
+}
 
-
+#linkButton {
+    background-color: #45afbe;
+    width:200px;
+    height:40px;
+    color:white;
+    text-align: center;
+    border-radius: 20px;
+    vertical-align: middle;
+}

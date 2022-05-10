@@ -6,6 +6,7 @@ import subPic1 from '../subCoding1.png';
 import subPic2 from '../subCoding2.png';
 import subPic3 from '../subCoding3.png';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import $ from 'jquery';
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 window.$ = $;
@@ -40,7 +41,7 @@ const MainCard = () => {
       <div className="text_box">
         <h1>코딩 강의, 어떻게 골라야할지 막막하셨나요?</h1>
         <p>강의 후기, 코딩 스터디, 로드맵 추천까지</p>
-        <a id="linkButton">추천 강의 보러가기</a>
+        <Link to="/lectures" id="linkBox"><p id="linkButton">추천 강의 보러가기</p></Link>
       </div>
 
     </div>
