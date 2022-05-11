@@ -41,8 +41,9 @@ function RoadmapListF(list) {
 }
 
 const RoadmapsAdd = () => {
-  $("#roadmapsUpdate_mainDescriptionInput").on('keydown keyup', function () {
-    $(this).height(1).height( $(this).prop('scrollHeight')+12 );	
+  $('#roadmapsUpdate_mainDescriptionInput').on('keyup', function (e) {
+    $(this).css('height', 'auto');
+    $(this).height(this.scrollHeight - 15);
   });
 
   const navigate = useNavigate();

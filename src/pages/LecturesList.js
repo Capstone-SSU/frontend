@@ -9,8 +9,6 @@ import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
 
-var n5 = 0; var n4 = 0; var n3 = 0; var n2 = 0; var n1 = 0; 
-
 //남색 부분 디자인
 function LecturesListF(list) {
     var lectures = ''
@@ -52,13 +50,13 @@ function LecturesListF(list) {
     return lectures
 }
 //흰색 부분 디자인
+var n5 = 0; var n4 = 0; var n3 = 0; var n2 = 0; var n1 = 0;
 function LecturesList2F(list) {
     var lectures = ''
     lectures += 
     "<div id='lecturesList_boxA'>"
 
     for (var i = 0; i < list.length; i++) {
-    if (list[i].rate == 5) n5 += 1; else if (list[i].rate == 4) n4 += 1; else if (list[i].rate == 3) n3 += 1; else if (list[i].rate == 2) n2 += 1; else n1 += 1;
     lectures +=
         "<div id='lecturesList_boxReviewAA'>" +
             "<div id='lecturesList_titleReview'>" + list[i].commentTitle + "</div>" +
@@ -84,7 +82,6 @@ function LecturesList2F(list) {
 
     lectures +=
     "</div>"
-    n5 = (n5/list.length)*100; n4 = (n4/list.length)*100; n3 = (n3/list.length)*100; n2 = (n2/list.length)*100; n1 =(n1/list.length)*100;
     return lectures
 }
 function LecturesList3F(avgRate, reviewCnt) {
@@ -118,6 +115,14 @@ function LecturesList4F(list) {
     "<div class='lecturesList_numReview'>1점&nbsp;<div id='n1' class='lecturesList_numReviewBox'></div>" + "</div>"
     return lectures
 }
+function LecturesList5F(list) {
+    var n5 = 0; var n4 = 0; var n3 = 0; var n2 = 0; var n1 = 0;
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].rate == 5) n5 += 1; else if (list[i].rate == 4) n4 += 1; else if (list[i].rate == 3) n3 += 1; else if (list[i].rate == 2) n2 += 1; else n1 += 1;
+    }
+    n5 = (n5/list.length)*100; n4 = (n4/list.length)*100; n3 = (n3/list.length)*100; n2 = (n2/list.length)*100; n1 =(n1/list.length)*100;
+    return [n5, n4, n3, n2, n1]
+}
 
 const LecturesList = () => {
     const navigate = useNavigate();
@@ -134,12 +139,13 @@ const LecturesList = () => {
             document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews)
             document.getElementById('lecturesList_box4').innerHTML = LecturesList3F(response.data.data.avgRate, response.data.data.reviewCnt)
             document.getElementById('lecturesList_box5').innerHTML = LecturesList4F(response.data.data.reviews)
+            var starList = LecturesList5F(response.data.data.reviews)
 
-            $('#n5').css('background', 'linear-gradient(90deg, #FCD53F ' + n5 + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-n5) +'%)')
-            $('#n4').css('background', 'linear-gradient(90deg, #FCD53F ' + n4 + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-n4) +'%)')
-            $('#n3').css('background', 'linear-gradient(90deg, #FCD53F ' + n3 + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-n3) +'%)')
-            $('#n2').css('background', 'linear-gradient(90deg, #FCD53F ' + n2 + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-n2) +'%)')
-            $('#n1').css('background', 'linear-gradient(90deg, #FCD53F ' + n1 + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-n1) +'%)')
+            $('#n5').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[0] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[0]) +'%)')
+            $('#n4').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[1] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[1]) +'%)')
+            $('#n3').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[2] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[2]) +'%)')
+            $('#n2').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[3] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[3]) +'%)')
+            $('#n1').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[4] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[4]) +'%)')
 
             if (!response.data.data.likeStatus) {
                 document.getElementById('lecturesList_imgLike2').onclick = function () {
