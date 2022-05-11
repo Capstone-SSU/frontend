@@ -60,9 +60,9 @@ function App() {
           <Route path='/mylikereviews' element={<MyLikeReviews/>} />
           <Route path='/mylikestudies' element={<MyLikeStudies/>} />
           <Route path='/mylikeroadmaps' element={<MyLikeRoadmaps/>} />
-          <Route path='/mywritereviews' element={<Mypage/>} />
-          <Route path='/mywritestudies' element={<Mypage/>} />
-          <Route path='/mywriteroadmaps' element={<Mypage/>} />
+          <Route path='/mywritereviews' element={<MyWriteReviews/>} />
+          <Route path='/mywritestudies' element={<MyWriteStudies/>} />
+          <Route path='/mywriteroadmaps' element={<MyWriteRoadmaps/>} />
           {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}
         </Routes>
     </Router>
