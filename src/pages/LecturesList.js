@@ -105,7 +105,6 @@ function LecturesList3F(avgRate, reviewCnt) {
     return lectures
 }
 function LecturesList4F(list) {
-    // console.log(list)
     var lectures = ''
     lectures +=
     "<div id='lecturesList_num' class='lecturesList_numReview'>5점<div id='n5' class='lecturesList_numReviewBox'></div>" + "</div>" +
@@ -134,7 +133,6 @@ const LecturesList = () => {
         }
         axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
         }, localStorage.getItem('token'),).then((response)=>{
-            console.log(response)
             document.getElementById('lecturesList_list').innerHTML = LecturesListF(response.data.data)
             document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews)
             document.getElementById('lecturesList_box4').innerHTML = LecturesList3F(response.data.data.avgRate, response.data.data.reviewCnt)

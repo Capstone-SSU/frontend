@@ -123,6 +123,7 @@ const Studies = () => {
   var navigate = useNavigate();
   axios.get('http://54.180.150.167:8080/studies?sort=desc', {
   }).then((response)=>{
+    console.log(response)
     $('#studies_searchLinkFirst').val('?sort=desc')
     $('#studies_searchLinkCenter').val('')
     $('#studies_searchLinkLast').val('')

@@ -68,10 +68,10 @@ function HashTagsF(list) {
     num++;
     if (num === 1) hashtags += "<div>"
     hashtags += 
-    "<div>" +
+    "<div class='lectures_hashtagElements'>" +
       '<input type="checkbox" name="hashtag" value="' + list[i].hashtag + '" onClick="LecturesHashtagsF(\'' + list[i].hashtag + '\')"/>' + list[i].hashtag +
     "</div>"
-    if (num === 13){ hashtags += "</div>"; num = 0} //13~26
+    if (num === 24){ hashtags += "</div>"; num = 0} //13~26
     if (i === list.length-1) hashtags += "<div><div id='lectures_hashtagRemoveAll' onClick='LecturesRemoveF()'>전체취소</div></div></div>";
   }
   return hashtags
@@ -207,7 +207,6 @@ const Lectures = () => {
           axios.post('http://54.180.150.167:8080/lectures/request', {
             "lectureUrl" : $('#lecturesReviewAdd_link').val(),
           }).then((response)=>{
-            console.log(response)
             $('.lecturesReviewAdd_modal3').show();
           }).catch((error) => {
             $('.lecturesReviewAdd_modal4').show();
@@ -284,8 +283,7 @@ const Lectures = () => {
               }}>.&nbsp;.&nbsp;.</div>
             </div>
            
-            <div id='lectures_hashtagSelection2'>
-            </div>
+            <div class='lectures_section' id='lectures_hashtagSelection2'></div>
           </div>
           
         <hr className='lectures_hr'/>

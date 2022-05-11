@@ -44,6 +44,7 @@ function App() {
           <Route path='/signin' element={<Signin/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/users' element={<Users/>} />
+          <Route path='/mypage' element={<Mypage/>} />
           {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}
         </Routes>
     </Router>
