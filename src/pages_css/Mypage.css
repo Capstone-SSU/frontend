@@ -26,4 +26,10 @@
 .smallMenu {
     font-size:18px;
     color:#c4c4c4;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.smallMenu:hover {
+    color:#45afbe;
 }
