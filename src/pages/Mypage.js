@@ -30,30 +30,4 @@ const Mypage = () => {
   );
 }
 
-const BigMenuBox = (props) => {
-
-  for (var i = 0; i < Number(props.number); i++) {
-
-  }
-  return (
-    <div>
-      <b id="bigMenuTitle">{props.bigmenu}</b>
-      <div className="smallMenuBox">
-        <SmallMenu smallMenu="메뉴111"></SmallMenu>
-        <SmallMenu smallMenu="메뉴111"></SmallMenu>
-        <SmallMenu smallMenu="메뉴111"></SmallMenu>
-      </div>
-    </div>
-
-  );
-}
-
-const SmallMenu = (props) => {
-  return (
-    <div>
-      <b id="smallMenuTitle">{props.smallMenu}</b>
-    </div>
-  );
-}
-
 export default Mypage;
