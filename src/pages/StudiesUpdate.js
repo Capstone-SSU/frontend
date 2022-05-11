@@ -85,8 +85,8 @@ const StudiesUpdate = () => {
           <input id='studiesUpdate_min' type='number' min='1'/>
         </div>
         {/* <div id ='studiesUpdate_peeple'>모집인원수&nbsp;&nbsp;<input id="studiesUpdate_max" /></div> */}
-        <div id="studiesUpdate_title">제목 <input id="studiesUpdate_titleInput" /></div>
-        <div id="studiesUpdate_description">내용 <textarea id="studiesUpdate_descriptionInput" /></div>
+        <div id="studiesUpdate_title"><div style={{ textAlign: 'center', }}>제목&nbsp;&nbsp;</div><input id="studiesUpdate_titleInput" /></div>
+        <div id="studiesUpdate_description"><div style={{ textAlign: 'center', }}>내용&nbsp;&nbsp;</div><textarea id="studiesUpdate_descriptionInput" /></div>
 
         <div style={{ width: '98%', margin: '10px 15px', textAlign: 'center', }}>
           <button style={{ margin: '10px 0px', color: 'white', borderRadius: '5px', backgroundColor: '#17173D', }} onClick={() => {

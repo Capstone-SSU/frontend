@@ -18,7 +18,16 @@ import RoadmapsList from './pages/RoadmapsList';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Users from './pages/Users';
-import Mypage from './pages/Mypage'
+import Mypage from './pages/Mypage';
+
+import MyProfile from './mypages/myProfile';
+import MyCompany from './mypages/myCompany';
+import MyLikeReviews from './mypages/myLikeReviews';
+import MyLikeRoadmaps from './mypages/myLikeRoadmaps';
+import MyLikeStudies from './mypages/myLikeStudies';
+import MyWriteReviews from './mypages/myWriteReviews';
+import MyWriteRoadmaps from './mypages/myWriteRoadmaps';
+import MyWriteStudies from './mypages/myWriteStudies';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -45,6 +54,15 @@ function App() {
           <Route path='/signup' element={<Signup/>} />
           <Route path='/users' element={<Users/>} />
           <Route path='/mypage' element={<Mypage/>} />
+
+          <Route path='/myprofile' element={<MyProfile/>} />
+          <Route path='/mycompany' element={<MyCompany/>} />
+          <Route path='/mylikereviews' element={<MyLikeReviews/>} />
+          <Route path='/mylikestudies' element={<MyLikeStudies/>} />
+          <Route path='/mylikeroadmaps' element={<MyLikeRoadmaps/>} />
+          <Route path='/mywritereviews' element={<Mypage/>} />
+          <Route path='/mywritestudies' element={<Mypage/>} />
+          <Route path='/mywriteroadmaps' element={<Mypage/>} />
           {/* <Route exact path="/info" render={() => <Info userInfo={userInfo} />} /> */}
         </Routes>
     </Router>
