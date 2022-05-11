@@ -5,6 +5,7 @@
 
 .left_menu_box {
     width:20%;
+    min-width: 125px;
     height:100vh;
     background-color: #17173d;
 }
