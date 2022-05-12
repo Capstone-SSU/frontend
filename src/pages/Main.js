@@ -5,10 +5,9 @@ import mainPic from '../mainCoding.png';
 import subPic1 from '../subCoding1.png';
 import subPic2 from '../subCoding2.png';
 import subPic3 from '../subCoding3.png';
-import axios from 'axios';
 import { Link } from "react-router-dom";
+import axios from "axios";
 import $ from 'jquery';
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
 window.$ = $;
 
 function Main() {

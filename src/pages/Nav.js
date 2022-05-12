@@ -10,7 +10,7 @@ window.$ = $;
 function SigninUserF(message) {
   if (message === "로그인 성공")
     return (
-      '<a href="/mypage">마이페이지</a>'
+      '<a href="/myprofile">마이페이지</a>'
     );
   else
     return (
