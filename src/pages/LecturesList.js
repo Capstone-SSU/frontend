@@ -37,7 +37,7 @@ function LecturesListF(list) {
             "<div id='body_flex' class='lecturesList_hashtag'>"
                 for (var s = 0; s < list.hashtags.length; s++)
                     lectures += "<div id='lecturesList_hashtag2'>#" + list.hashtags[s] + "</div>"
-    lectures += 
+            lectures += 
             "</div><div id='lecturesList_like2'>" + list.likeCnt + "</div><div id='lecturesList_like'>" +
             ( list.likeStatus? "<img id='lecturesList_imgLike1' src='" + likeFill + "'/>" : "<img id='lecturesList_imgLike2' src='" + like + "'/>" ) +
             "</div>" +

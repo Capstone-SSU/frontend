@@ -35,7 +35,7 @@ function LecturesF(list, page) {
       "<div id='lectures_individe'>" +
         "<div id='lectures_imageBox'>" +
           "<div id='lectures_likeBox'></div>" +
-          ( list[j].likeCnt != 0 ? "<img class='lectures_img' src='" + likeFill + "'/>" : "<img class='lectures_img' src='" + like + "'/>" ) +
+          "<img class='lectures_img' src='" + like + "'/>" +
           "<div class='lectures_img'>" + list[j].likeCnt + "</div>" +
         "</div>" +
         "<img id='lectures_box' src='" + list[j].thumbnailUrl + "'/>" +

@@ -1,9 +1,173 @@
+#myProfile_body2 {
+    width: 100%;
+    background: white;
+}
 #myProfile_body {
     width: 100%;
-    min-width: 1176px;
-    background: white;
+    background: rgb(240, 240, 240);
 }
 #myProfile_top {
     width: 100%;
     height: 70px;
+}
+#myProfile_first {
+    font-size: 27px;
+    font-weight: 800;
+}
+#myProfile_second {
+    margin: 10px 0px 0px 10px;
+    font-size: 20px;
+    font-weight: 800;
+    color:rgb(170, 170, 170)
+}
+
+
+
+#myProfile_boxA {
+    margin: 30px 0px;
+    /* align-items: center; */
+    display: flex;
+}
+#myProfile_boxB {
+    width: 20%;
+    text-align: center;
+}
+#myProfile_profile {
+    margin: 20px 0px;
+    font-size: 23px;
+    font-weight: 700;
+}
+#myProfile_image {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    
+    border-radius: 50px;
+    background-color: rgb(190, 190, 190);
+}
+#myProfile_boxC {
+    width: 80%;
+}
+#myProfile_profileButton {
+    width: 100%;
+    height: 50px;
+    margin: 30px 0px 0px 0px;
+}
+#myProfile_profileText {
+    width: auto;
+    padding: 5px 0px 0px 0px;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(100, 100, 100);
+}
+#myProfile_inputs {
+    width: 100%;
+    height: 360px;
+    border-radius: 10px;
+}
+#myProfile_titleInput {
+    width: 68%;
+    height: 25px;
+    margin: 15px 0px;
+
+    font-size: 18px;
+    outline: 0px solid rgb(190, 190, 190);
+
+    border-radius: 10px;
+}
+#myProfile_titleInput2 {
+    width: 57%;
+    height: 25px;
+    margin: 15px 0px;
+
+    font-size: 18px;
+    outline: 0px solid rgb(190, 190, 190);
+    opacity: 0;
+
+    border-radius: 10px;
+}
+#myProfile_nicknameButton {
+    width: 95px;
+    height: 35px;
+    margin: 0px 10px;
+
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #17173D;
+}
+#myProfile_nicknameButton2 {
+    width: 130px;
+    height: 40px;
+    margin: 0px 10px;
+
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(190, 190, 190);
+}
+#myProfile_nicknameButton2:hover {
+    width: 130px;
+    height: 40px;
+    margin: 0px 10px;
+
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: #17173D;
+}
+
+
+
+.myProfile_switch-button { 
+    position: relative; 
+    display: inline-block; 
+
+    display: flex; 
+    float: left;
+
+    width: 55px; 
+    height: 30px; 
+} 
+.myProfile_switch-button input { 
+    opacity: 0; 
+    width: 0; 
+    height: 0; 
+} 
+.myProfile_onoff-switch { 
+    position: absolute; 
+    cursor: pointer; 
+
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+
+    border-radius:20px; 
+    background-color: #ccc; 
+    box-shadow: inset 1px 5px 1px #999; 
+    -webkit-transition: .4s; 
+    transition: .4s; 
+} 
+.myProfile_onoff-switch:before { 
+    position: absolute;
+    content: ""; 
+    height: 22px; 
+    width: 22px; 
+    left: 4px; 
+    bottom: 4px; 
+    background-color: #fff; 
+    -webkit-transition: .5s; 
+    transition: .4s; 
+    border-radius:20px; 
+} 
+.myProfile_switch-button input:checked + .myProfile_onoff-switch { 
+    background-color: #45AFBE; 
+    box-shadow: inset 1px 5px 1px #256169; 
+} 
+.myProfile_switch-button input:checked + .myProfile_onoff-switch:before { 
+    -webkit-transform: translateX(26px); 
+    -ms-transform: translateX(26px); 
+    transform: translateX(26px); 
 }

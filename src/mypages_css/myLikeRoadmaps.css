@@ -1,0 +1,24 @@
+#myLikeRoadmaps_boxB {
+    height: 210px;
+    padding: 20px;
+    margin: 30px 0px;
+
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px gray;
+    background-color: white;
+}
+
+#myLikeRoadmaps_title {
+    width: 100%;
+    margin: 5px 0px 0px 15px;
+
+    display: flex;
+    text-align: left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size: 25px; 
+    font-weight: bolder; 
+    color: #17173D;
+  }
