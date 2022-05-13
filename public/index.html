@@ -115,6 +115,26 @@
         $('.studiesList_modal2').show()
         $('#studiesList_commentId').val(studyId)
       }
+
+
+
+      function ReviewUpdateF(lecturesId, reviewsId, navigate) {
+        location.href = '/lecturesReviewUpdate/' + lecturesId + "/" + reviewsId
+      }
+      function ReviewDeleteF(lecturesId, reviewId) {
+        if (localStorage.getItem('token')) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+        }
+        $.ajax({
+          type: "DELETE",
+          url: "http://54.180.150.167:8080/reviews/"+ reviewId,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/lectures/" + lecturesId) },
+          error: ()=>{ alert('강의평 삭제 실패') },
+        })
+      }
       function ReviewReportsF(reviewId) {
         $('.lecturesList_modal2').show()
         $('#lecturesList_reviewId').val(reviewId)

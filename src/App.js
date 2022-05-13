@@ -5,6 +5,7 @@ import Lectures from './pages/Lectures';
 import LecturesList from './pages/LecturesList';
 import LecturesAdd from './pages/LecturesAdd';
 import LecturesReviewAdd from './pages/LecturesReviewAdd';
+import LecturesReviewUpdate from './pages/LecturesReviewUpdate';
 import LecturesUpdate from './pages/LecturesUpdate';
 import LecturesDetail from './pages/LecturesDetail';
 import Studies from './pages/Studies';
@@ -41,7 +42,8 @@ function App() {
           <Route path='/lectures/:lecturesId' element={<LecturesList/>} />
           <Route path='/lecturesAdd' element={<LecturesAdd/>} />
           <Route path='/lecturesReviewAdd/:lecturesId' element={<LecturesReviewAdd/>} />
-          <Route path='/lecturesUpdate/:lecturesId' element={<LecturesUpdate/>} />
+          <Route path='/lecturesReviewUpdate/:lecturesId/:reviewsId' element={<LecturesReviewUpdate/>} />
+          <Route path='/lecturesUpdate/:lecturesId/:reviewId' element={<LecturesUpdate/>} />
           <Route path='/studies' element={<Studies/>} />
           <Route path='/studies/:studyId' element={<StudiesList/>} />
           <Route path='/studiesAdd' element={<StudiesAdd/>} />

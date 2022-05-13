@@ -54,11 +54,11 @@ const MyLikeRoadmaps = () => {
 
     return (
         <>
-            <div id='body_flex' style={{ minWidth: '1176px', }}>
+            <div id='body_flex' style={{ minWidth: '1176px', background: '#17173D' }}>
                 <Mypage/>
                 <div id='myProfile_body'>
                     <div id='myProfile_top'></div>
-                    <div id="myLikeRoadmaps_main"></div>
+                    <div id="myLikeRoadmaps_main" style={{ }}></div>
                 </div>
             </div>
         </>

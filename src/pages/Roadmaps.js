@@ -57,7 +57,7 @@ function RoadmapF(list, page) {
 }
 
 function SearchF() {
-  var link = '?'
+  var link = '&'
   if ($('#studies_searchSearch').val() != '') {
     var search = $('#studies_searchSearch').val().split(" ");
     link += "keyword="+ search[0] +"%20"
@@ -68,7 +68,7 @@ function SearchF() {
     link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
   }
   
-  axios.get('http://54.180.150.167:8080/roadmaps' + link, {
+  axios.get('http://54.180.150.167:8080/roadmaps?' + link, {
 
   }).then((response)=>{
     if (response.data.data === null) {
@@ -80,7 +80,7 @@ function SearchF() {
   }).catch((error) => { alert('로드맵 조회 실패했습니다.') })
 }
 function Search2F() {
-  var link = '?'
+  var link = '&'
   if ($('#studies_searchSearch').val() != '') {
     var search = $('#studies_searchSearch').val().split(" ");
     link += "keyword="+ search[0] +"%20"
@@ -91,7 +91,7 @@ function Search2F() {
     link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
   }
   
-  axios.get('http://54.180.150.167:8080/roadmaps' + link, {
+  axios.get('http://54.180.150.167:8080/roadmaps?' + link, {
 
   }).then((response)=>{
     if (response.data.data === null) {
@@ -104,9 +104,10 @@ function Search2F() {
 const Roadmaps = () => {
   var navigate = useNavigate();
   useEffect(() => {
-    axios.get('http://54.180.150.167:8080/roadmaps', {
+    axios.get('http://54.180.150.167:8080/roadmaps?', {
 
     },).then((response)=>{
+      console.log(response)
       if (response.data.data === null) {
         alert('로드맵이 없습니다.'); return;
       }

@@ -51,7 +51,7 @@ function LecturesListF(list) {
 }
 //흰색 부분 디자인
 var n5 = 0; var n4 = 0; var n3 = 0; var n2 = 0; var n1 = 0;
-function LecturesList2F(list) {
+function LecturesList2F(list, lecturesId, navigate) {
     var lectures = ''
     lectures += 
     "<div id='lecturesList_boxA'>"
@@ -61,7 +61,7 @@ function LecturesList2F(list) {
         "<div id='lecturesList_boxReviewAA'>" +
             "<div id='lecturesList_titleReview'>" + list[i].commentTitle + "</div>" +
             "<div id='lecturesList_titleReports'>" +
-                (list[i].writerStatus ? '<div id="body_flex"><div id="" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + list[i].reviewId +')">수정</div><div id="lecturesList_bar2"></div><div id="" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + list[i].reviewId +')">삭제</div></div>' : "") +
+                (list[i].writerStatus ? '<div id="body_flex"><div id="lecturesList_reviewUpdate" onClick="ReviewUpdateF('+ lecturesId + "," + list[i].reviewId + ')">수정</div><div id="lecturesList_bar2"></div><div id="lecturesList_reviewDelete" onClick="ReviewDeleteF(' + lecturesId + "," + list[i].reviewId +')">삭제</div></div>' : "") +
                 (!list[i].writerStatus ? "<div id='' onClick='ReviewReportsF(" + list[i].reviewId + ")'>신고</div>": "") +
             "</div>" +
             '<form class="mb-3" name="myform" id="myform" method="post">' +
@@ -136,9 +136,8 @@ const LecturesList = () => {
         }
         axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
         }, localStorage.getItem('token'),).then((response)=>{
-            console.log(response)
             document.getElementById('lecturesList_list').innerHTML = LecturesListF(response.data.data)
-            document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews)
+            document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews, parseInt(current.split("/")[4]), navigate)
             document.getElementById('lecturesList_box4').innerHTML = LecturesList3F(response.data.data.avgRate, response.data.data.reviewCnt)
             document.getElementById('lecturesList_box5').innerHTML = LecturesList4F(response.data.data.reviews)
             var starList = LecturesList5F(response.data.data.reviews)
@@ -150,6 +149,16 @@ const LecturesList = () => {
             $('#n2').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[3] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[3]) +'%)')
             $('#n1').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[4] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[4]) +'%)')
 
+            // if (response.data.data.reviews) {
+            //     document.getElementById('lecturesList_imgLike2').onclick = function () {
+            //         axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]) + '/likes', {
+            //         }, localStorage.getItem('token'),).then(()=>{
+            //             navigate('/lectures/' + parseInt(current.split("/")[4]))
+            //         }).catch((error) => { 
+            //             $('.lecturesList_modal1').show()
+            //         })
+            //     }
+            // }
             if (!response.data.data.likeStatus) {
                 document.getElementById('lecturesList_imgLike2').onclick = function () {
                     axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]) + '/likes', {

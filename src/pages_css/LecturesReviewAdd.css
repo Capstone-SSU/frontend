@@ -49,33 +49,6 @@
   
 
 
-/* #myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-}
-#myform fieldset legend{
-    text-align: right;
-}
-#myform input[type=radio]{
-    display: none;
-}
-#myform div{
-    font-size: 3em;
-    color: transparent;
-    background-color:rgb(219, 219, 219);
-}
-#myform div:hover{
-    background-color: rgba(250, 208, 0, 0.3);
-}
-#myform div:hover ~ div{
-    background-color: rgba(250, 208, 0, 0.3);
-}
-#myform input[type=radio]:checked ~ div{
-    background-color: rgba(250, 208, 0, 1);
-    background: linear-gradient( 90deg, rgba(250, 208, 0, 1) 50%, rgb(219, 219, 219) 50%);
-} */
-
 #myformA fieldset{
     display: inline-block;
     direction: rtl;

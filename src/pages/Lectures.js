@@ -112,7 +112,7 @@ function SearchF() {
     }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/8));
     document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data,1)
-    document.getElementById('lectures_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
+    document.getElementById('lectures_count').innerHTML = "강의평 총 " + response.data.data.length + "개"
   }).catch((error) => { 
     $(':checkbox:checked').prop('checked',false);
     $('.lectures_hashtag').remove();

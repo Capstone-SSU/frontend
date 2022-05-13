@@ -8,7 +8,7 @@ window.$ = $;
 
 const Mypage = () => {
   return (
-    <div className="body_main" style={{ width: '20%', }}>
+    <div className="body_main" style={{ width: '15%', }}>
 
       <div className="left_menu_box">
         <p className="bigMenu">프로필</p>

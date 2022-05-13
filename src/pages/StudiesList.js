@@ -111,6 +111,9 @@ const StudiesList = () => {
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
+    $('#studiesList_commnetsAddInput').val('')
+    $('#reports1').prop("checked", true);
+
     useEffect(() => {
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
@@ -123,6 +126,9 @@ const StudiesList = () => {
             element.innerHTML = StudiesListF(response.data.data)
             const element2 = document.getElementById('studiesList_comments')
             element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments, parseInt(current.split("/")[4]))
+
+            $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
+            $("input:radio[name='reports2']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
 
             if (response.data.data.isThisUserPostWriter) {
                 document.getElementById('studiesList_update').onclick = function () {
@@ -174,10 +180,6 @@ const StudiesList = () => {
             navigate('/studies')
         })
     });
-
-    $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
-    $('#studiesList_commnetsAddInput').val('')
-    $('#reports1').prop("checked", true);
     
     return (
         <div id="body_main">
@@ -189,14 +191,14 @@ const StudiesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
-                        $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/reports', {
-                            "additionalProp1": $('input[name="reports"]:checked').val()
+                            "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
-                            $('.studiesList_modal1').hide()
+                            alert('스터디 글신고 성공')
                         }).catch((error) => { 
                             alert('스터디 글신고 실패')
                         })
+                        $('.studiesList_modal1').hide()
                     }}>확인</button>
                     <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal1').hide(); $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
                 </div>
@@ -205,20 +207,20 @@ const StudiesList = () => {
             <div class="studiesList_modal2">
                 <div id='studiesList_commentId' style={{ display:'none', }}></div>
                 <div style={{ width: '100%', height: '70px', lineHeight: '70px', fontSize: '25px', fontWeight: '600', }}>신고 사유 선택</div>
-                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports1" value="불건전한 만남 및 대화" /> 불건전한 만남 및 대화</div>
-                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports2" value="상업적 광고 및 판매" /> 상업적 광고 및 판매</div>
-                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports3" value="낚시 및 도배" /> 낚시 및 도배</div>
-                <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports2" id="reports1" value="불건전한 만남 및 대화" /> 불건전한 만남 및 대화</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports2" id="reports2" value="상업적 광고 및 판매" /> 상업적 광고 및 판매</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports2" id="reports3" value="낚시 및 도배" /> 낚시 및 도배</div>
+                <div class="studiesList_reportsRadio"><input type="radio" name="reports2" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
-                        $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/comments/' + $('#studiesList_commentId').val() + '/reports', {
-                            "additionalProp1": $('input[name="reports"]:checked').val()
+                            "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
-                            $('.studiesList_modal2').hide()
+                            alert('스터디 댓글신고 성공')
                         }).catch((error) => { 
-                            alert('스터디 글신고 실패')
+                            alert('스터디 댓글신고 실패')
                         })
+                        $('.studiesList_modal2').hide()
                     }}>확인</button>
                     <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal2').hide(); $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
                 </div>
