@@ -213,3 +213,10 @@
     color: transparent;
     text-shadow: 0 0 0 rgb(219, 219, 219);
 }
+
+.lectures_starsBox {
+}
+.lectures_avgRate {
+    font-size: calc(13px + 0.1vw);
+    font-weight: 700;
+}

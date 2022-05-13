@@ -21,18 +21,18 @@ function MyProfileContentF(list) {
                 "<div id='myLikeRoadmaps_title'>" + list[i].roadmapTitle + "<div id='roadmaps_company'>" + list[i].roadmapWriterCompany + "</div></div>" +
             "</div>" +
             "<div id='body_height'></div>" + 
-            "<div id='roadmaps_Box1' >"
+            "<div id='myLikeRoadmaps_Box1' >"
     
             for (var j = 0; j < list[i].lectureThumbnails.length; j++) {
                 mypage += 
-                "<img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/>"
+                "<div><img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/></div>"
             }
     
             mypage += "</div>" +
             "<div id='body_height'></div>" + 
             // "<div id='body_flex'>" +
             "<div id='roadmaps_nickname'>" + list[i].roadmapWriterNickname + "</div>" + 
-            "<div id='roadmaps_date'>" + list[i].roadmapCreatedDate.slice(0, 10)  + "</div>" +
+            // "<div id='roadmaps_date'>" + list[i].roadmapCreatedDate.slice(0, 10)  + "</div>" +
             // '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].roadmapLikeCount + '</div>' +
             // "</div>" +
         "</div><hr/>"

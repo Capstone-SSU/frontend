@@ -21,11 +21,11 @@ function MyProfileContentF(list) {
                 "<div id='myLikeRoadmaps_title'>" + list[i].roadmapTitle + "<div id='roadmaps_company'>" + list[i].roadmapWriterCompany + "</div></div>" +
             "</div>" +
             "<div id='body_height'></div>" + 
-            "<div id='roadmaps_Box1' >"
+            "<div id='myLikeRoadmaps_Box1' >"
     
             for (var j = 0; j < list[i].lectureThumbnails.length; j++) {
                 mypage += 
-                "<img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/>"
+                "<div><img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/></div>"
             }
     
             mypage += "</div>" +

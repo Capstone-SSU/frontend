@@ -67,6 +67,10 @@
   #body_studiesBlock1 {
     width: 850px;
   }
+  #grayStars {
+    color: transparent;
+    text-shadow: 0 0 0 rgb(219, 219, 219);
+  }
 
 
   

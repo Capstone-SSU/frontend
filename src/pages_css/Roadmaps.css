@@ -19,7 +19,7 @@
 
   #roadmaps_individe1 {
     width: 100%;
-    height: 210px;
+    height: 220px;
     margin: 15px 0px 0px 0px;
     padding: 15px 0px 15px 10px;
     
@@ -54,10 +54,11 @@
     background-color: #45AFBE;
   }
   #roadmaps_Box1 {
+    width: 100%;
     display: flex;
 
     text-align: left;
-    overflow:hidden;
+    overflow: scroll;
     text-overflow:ellipsis;
     white-space:nowrap;
   }

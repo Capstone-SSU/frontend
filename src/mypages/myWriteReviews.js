@@ -24,7 +24,7 @@ function MyProfileContentF(list) {
                 "</div>" +
                 "<div>" 
                     mypage += 
-                    "<div class='myWriteReviews_comment'>" + list[i].commentTitle + "</div>" +
+                    "<div class='myWriteReviews_comment0'><div class='myWriteReviews_comment'>" + list[i].commentTitle + "</div></div>" +
                     '<form class="mb-3" name="myform" id="myform" method="post">' +
                         '<div id="body_flex"><fieldset id="myLikeReviews">'
                 
@@ -36,7 +36,7 @@ function MyProfileContentF(list) {
                             mypage += 
                             '<input type="radio" name="reviewStar" />(' + list[i].avgRate + ')</fieldset></div>' +
                     '</form>' +
-                    "<div class='myWriteReviews_comment2'>" + list[i].comment + "</div>" +
+                    "<div class='myWriteReviews_comment0'><div class='myWriteReviews_comment2'>" + list[i].comment + "</div></div>" +
                 "</div>" +
             "</div>" +
         "</div>"

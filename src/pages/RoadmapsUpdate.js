@@ -97,13 +97,21 @@ const RoadmapsUpdate = () => {
       }, localStorage.getItem('token'),).then((response2)=>{
         document.getElementById('roadmapsUpdate_list').innerHTML = RoadmapListF(response2.data.data)
       }).catch((error) => {
-        alert('로그인 해주세요')
-        navigate('/roadmaps')
+        if ($('header_login').val() == '') {
+          alert('로그인 해주세요')
+          navigate('/roadmaps')
+        } else {
+            alert('오류가 났습니다')
+        }
       })
         
     }).catch((error) => {
-      alert('로그인 해주세요')
-      navigate('/roadmaps')
+      if ($('header_login').val() == '') {
+        alert('로그인 해주세요')
+        navigate('/roadmaps')
+      } else {
+          alert('오류가 났습니다')
+      }
     })
   });
   return (

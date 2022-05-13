@@ -205,7 +205,10 @@ const Studies = () => {
           <div style={{ width: '17%', }}></div>
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
-            if(!localStorage.getItem('token')) navigate('/signin')
+            if(!localStorage.getItem('token')) {
+              alert('로그인 해주세요')
+              navigate('/signin') 
+            }
             else navigate('/studiesAdd')
           }}>
             스터디 작성하기

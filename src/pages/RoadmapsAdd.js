@@ -55,8 +55,12 @@ const RoadmapsAdd = () => {
       $('#roadmapsUpdate_mainDescriptionInput').val('')
       document.getElementById('roadmapsUpdate_list').innerHTML = RoadmapListF(response2.data.data)
     }).catch((error) => {
-      alert('로그인 해주세요')
-      navigate('/roadmaps')
+      if ($('header_login').val() == '') {
+        alert('로그인 해주세요')
+        navigate('/roadmaps')
+      } else {
+          alert('오류가 났습니다')
+      }
     })
 
     axios.get('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
@@ -80,13 +84,20 @@ const RoadmapsAdd = () => {
           하러가실래요?
         </div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => {
-          navigate('/users')
+          if ($('input:radio[name="no"]').is(':checked')) {
+            axios.post('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
+              "roadmapCompnayRequestAnswer" : "NO_REQUEST",
+            }, localStorage.getItem('token'),).then((response)=>{
+            }).catch((error) => { alert('소속인증 거부 실패') })
+          }
           $('.roadmapsAdd_modal1').hide()
+          navigate('/mycompany')
         }}>확인</button>
         <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => {
           if ($('input:radio[name="no"]').is(':checked')) {
             axios.post('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
-            }).then((response)=>{
+              "roadmapCompnayRequestAnswer" : "NO_REQUEST",
+            }, localStorage.getItem('token'),).then((response)=>{
             }).catch((error) => { alert('소속인증 거부 실패') })
           }
           $('.roadmapsAdd_modal1').hide()
@@ -105,6 +116,16 @@ const RoadmapsAdd = () => {
                   alert('빈 칸이 있습니다')
                   return
                 }
+
+                if ($('#roadmapsUpdate_mainTitleInput').val().split('').length > 17) {
+                  alert('제목은 17자를 초과할 수 없습니다')
+                  return
+                }
+                if ($('#roadmapsUpdate_mainDescriptionInput').val().split('').length > 255) {
+                  alert('추천 대상 내용은 255자를 초과할 수 없습니다')
+                  return
+                }
+
                 axios.post('http://54.180.150.167:8080/roadmaps',  {
                   "lectureIds": $('#roadmapsUpdate_lecturesId').val(),
                   "roadmapRecommendation": $('#roadmapsUpdate_mainDescriptionInput').val(),

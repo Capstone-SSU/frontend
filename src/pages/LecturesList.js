@@ -60,7 +60,10 @@ function LecturesList2F(list) {
     lectures +=
         "<div id='lecturesList_boxReviewAA'>" +
             "<div id='lecturesList_titleReview'>" + list[i].commentTitle + "</div>" +
-            "<div id='lecturesList_titleReports' onClick='ReviewReportsF(" + list[i].reviewId + ")'>신고</div>" +
+            "<div id='lecturesList_titleReports'>" +
+                (list[i].writerStatus ? '<div id="body_flex"><div id="" onClick="CommentsUpdate2F('+list[i].studyCommentId+"," + list[i].reviewId +')">수정</div><div id="lecturesList_bar2"></div><div id="" onClick="CommentsDeleteF('+list[i].studyCommentId+"," + list[i].reviewId +')">삭제</div></div>' : "") +
+                (!list[i].writerStatus ? "<div id='' onClick='ReviewReportsF(" + list[i].reviewId + ")'>신고</div>": "") +
+            "</div>" +
             '<form class="mb-3" name="myform" id="myform" method="post">' +
                 '<div id="body_flex"><fieldset >'
         
@@ -133,11 +136,13 @@ const LecturesList = () => {
         }
         axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
         }, localStorage.getItem('token'),).then((response)=>{
+            console.log(response)
             document.getElementById('lecturesList_list').innerHTML = LecturesListF(response.data.data)
             document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews)
             document.getElementById('lecturesList_box4').innerHTML = LecturesList3F(response.data.data.avgRate, response.data.data.reviewCnt)
             document.getElementById('lecturesList_box5').innerHTML = LecturesList4F(response.data.data.reviews)
             var starList = LecturesList5F(response.data.data.reviews)
+            $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
 
             $('#n5').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[0] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[0]) +'%)')
             $('#n4').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[1] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[1]) +'%)')
@@ -166,7 +171,6 @@ const LecturesList = () => {
         })
     });
 
-    $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
     $('#reports1').prop("checked", true);
     return (
         <div id="body_main">
@@ -180,14 +184,17 @@ const LecturesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
-                        $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
-                        axios.post('http://54.180.150.167:8080/reviews/' + parseInt(current.split("/")[4]) + '/reports', {
-                            "additionalProp1": $('input[name="reports"]:checked').val()
+                        axios.post('http://54.180.150.167:8080/reviews/' + $('#lecturesList_reviewId').val() + '/reports', {
+                            "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
-                            $('.lecturesList_modal2').hide()
+                            alert('강의리뷰 글신고 성공')
                         }).catch((error) => { 
-                            alert('강의리뷰 글신고 실패')
+                            if (error == 'Error: Request failed with status code 409') 
+                                alert('이미 신고한 강의리뷰입니다')
+                            else
+                                alert('강의리뷰 글신고 실패')
                         })
+                        $('.lecturesList_modal2').hide()
                     }}>확인</button>
                     <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.lecturesList_modal2').hide(); $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
                 </div>

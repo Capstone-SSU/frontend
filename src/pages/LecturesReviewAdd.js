@@ -141,6 +141,16 @@ const LecturesReviewAdd = () => {
             if (!linkR) {
               alert('링크확인을 체크해주세요'); return;
             }
+
+            if ($('#lecturesAdd_titleInput').val().split('').length > 255) {
+              alert('제목은 255자를 초과할 수 없습니다')
+              return
+            }
+            if ($('#lecturesAdd_descriptionInput').val().split('').length > 255) {
+              alert('내용은 255자를 초과할 수 없습니다')
+              return
+            }
+
             axios.post('http://54.180.150.167:8080/reviews', {
               "lectureUrl": $('#lecturesAdd_linkInput').val(),
               "commentTitle": $('#lecturesAdd_titleInput').val(),
@@ -149,7 +159,10 @@ const LecturesReviewAdd = () => {
             }, localStorage.getItem('token'),).then((response)=>{
                 navigate('/lectures/' + parseInt(current.split("/")[4]))
             }).catch((error) => {
+              if (error == 'Error: Request failed with status code 409') 
                 alert('이미 강의평을 추가한 강의입니다.')
+              else
+                alert('강의평 추가 실패')
             })
 
           }}>글추가</button></div>

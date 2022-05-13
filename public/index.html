@@ -208,10 +208,13 @@
 
 
       function LecturesHashtagsF(hashTag) {
-        if ($('#' + hashTag).val() === undefined)
-          document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='" + hashTag + "' class='lectures_hashtag'>" + hashTag + "</div>"
+        console.log(hashTag)
+        var hashTag2 = hashTag.replace(' ', ''); hashTag2 = hashTag2.replace('/', ''); hashTag2 = hashTag2.replace(',', ''); hashTag2 = hashTag2.replace(',', '');
+        console.log(hashTag2)
+        if ($('#' + hashTag2).val() === undefined)
+          document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='" + hashTag2 + "' class='lectures_hashtag'>" + hashTag + "</div>"
         else 
-          $('#' + hashTag).remove()
+          $('#' + hashTag2).remove()
       }
       function LecturesRemoveF() {
         $(':checkbox:checked').prop('checked',false);

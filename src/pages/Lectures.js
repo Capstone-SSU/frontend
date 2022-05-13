@@ -16,7 +16,7 @@ function NumberF(list, box) {
   var numbers = ''
 
   for (var i = 8*(box-1); i < 8*box; i++) {
-    if (Math.ceil(list.length/25) === i) break;
+    if (Math.ceil(list.length/20) === i) break;
     numbers += 
     "<div id='studies_numberInner' onClick='$(\"#studies_number\").val(" + (i+1) + ")'>" + (i+1) + "</div>"
   }
@@ -24,10 +24,11 @@ function NumberF(list, box) {
 }
 
 function LecturesF(list, page) {
+  console.log(list)
   var lectures = ''; var length = list.length;
   document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
 
-  for (var j = (page-1)*25; j < page*25; j++) {
+  for (var j = (page-1)*20; j < page*20; j++) {
     if (list.length === j) break;
     if (j % 5 === 0) lectures += "<div id='body_flex'>"
     lectures +=
@@ -39,18 +40,16 @@ function LecturesF(list, page) {
           "<div class='lectures_img'>" + list[j].likeCnt + "</div>" +
         "</div>" +
         "<img id='lectures_box' src='" + list[j].thumbnailUrl + "'/>" +
-        "<div id='lectures_title'>" + list[j].lectureTitle + "</div>" +
-        '<form class="mb-3" name="myform" id="myform" method="post">' +
-        '<div id="body_flex"><fieldset>'
+        "<div id='lectures_title'>" + list[j].lectureTitle + "</div><div id='body_flex' class='lectures_starsBox'><div class='lectures_avgRate'>"
 
         for (var s = 0; s < Math.round(list[j].avgRate); s++)
-          lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label for="rate' + s + '">⭐</label>'
+          lectures += '⭐'
+        lectures += '</div><div id="grayStars" class="lectures_avgRate">'
         for (var s = Math.round(list[j].avgRate); s < 5; s++)
-          lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
+          lectures += '⭐'
         
         lectures += 
-          '<input type="radio" name="reviewStar" />(' + list[j].avgRate + ')</fieldset></div>' +
-        '</form>' +
+        '</div><div class="lectures_avgRate">(' + list[j].avgRate + ')</div></div></form>' +
       "</div>" +
     "</a>"
     if (length === j+1) { lectures += "</div>"; break;  }
@@ -77,100 +76,101 @@ function HashTagsF(list) {
   return hashtags
 }
 
-const Lectures = () => {
-  var navigate = useNavigate();
-  function SearchF() {
-    var length = document.getElementsByName('hashtag').length
-    var link = '?'
-    if ($('#studies_searchSearch').val() != '') {
-      var search = $('#studies_searchSearch').val().split(" ");
-      link += "keyword="+ search[0] +"%20"
-  
-      for (var i = 1; i < search.length; i++) {
-        link += "" + search[i] + "%20"
-      }
-      link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
-      link += "&"
+function SearchF() {
+  var length = document.getElementsByName('hashtag').length
+  var link = '&'
+  if ($('#studies_searchSearch').val() != '') {
+    var search = $('#studies_searchSearch').val().split(" ");
+    link += "keyword="+ search[0] +"%20"
+
+    for (var i = 1; i < search.length; i++) {
+      link += "" + search[i] + "%20"
     }
-  
-    if ($('input[name=hashtag]:checked').val() != undefined) {
-      link += 'category='
-      for (var i = 0; i < length; i++) {
-        if (document.getElementsByName('hashtag')[i].checked === true)
-          link += document.getElementsByName('hashtag')[i].value + ","
-      }
-      link = link.slice(0, -1);
-      link += "&"
-    }
-  
-    link = link.slice(0, -1)
-    $('#lectures_hashtagSelection2').hide()
-    
-    axios.get('http://54.180.150.167:8080/lectures' + link, {
-  
-    }).then((response)=>{
-      if (response.data.data === null) {
-        alert('강의평이 없습니다.'); return;
-      }
-      $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/8));
-      document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data,1)
-      document.getElementById('lectures_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
-    }).catch((error) => { 
-      $(':checkbox:checked').prop('checked',false);
-      $('.lectures_hashtag').remove();
-      navigate('/lectures'); 
-      alert('강의평 조회 실패했습니다.'); 
-    })
-  }
-  function Search2F() {
-    var length = document.getElementsByName('hashtag').length
-    var link = '?'
-    if ($('#studies_searchSearch').val() != '') {
-      var search = $('#studies_searchSearch').val().split(" ");
-      link += "keyword="+ search[0] +"%20"
-  
-      for (var i = 1; i < search.length; i++) {
-        link += "" + search[i] + "%20"
-      }
-      link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
-      link += "&"
-    }
-  
-    if ($('input[name=hashtag]:checked').val() != undefined) {
-      link += 'category='
-      for (var i = 0; i < length; i++) {
-        if (document.getElementsByName('hashtag')[i].checked === true)
-          link += document.getElementsByName('hashtag')[i].value + ","
-      }
-      link = link.slice(0, -1);
-      link += "&"
-    }
-  
-    link = link.slice(0, -1)
-    $('#lectures_hashtagSelection2').hide()
-    
-    axios.get('http://54.180.150.167:8080/lectures' + link, {
-  
-    }).then((response)=>{
-      if (response.data.data === null) {
-        alert('강의평이 없습니다.'); return;
-      }
-      document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, $('#studies_number').val())
-    }).catch((error) => { 
-      $(':checkbox:checked').prop('checked',false);
-      $('.lectures_hashtag').remove();
-      navigate('/lectures'); 
-      alert('강의평 조회 실패했습니다.'); 
-    })
+    link = link.slice(0, -1); link = link.slice(0, -1); link = link.slice(0, -1);
+    link += "&"
   }
 
-  axios.get('http://54.180.150.167:8080/lectures', {
+  if ($('input[name=hashtag]:checked').val() != undefined) {
+    link += 'category='
+    for (var i = 0; i < length; i++) {
+      if (document.getElementsByName('hashtag')[i].checked === true)
+        link += document.getElementsByName('hashtag')[i].value + "%20"
+    }
+    link = link.slice(0, -1); link = link.slice(0, -1);
+    link += "&"
+  }
+
+  link = link.slice(0, -1)
+  $('#lectures_hashtagSelection2').hide()
+  
+  $('#lectures_searchLinkCenter').val(link)
+  axios.get('http://54.180.150.167:8080/lectures?' + $('#lectures_searchLinkCenter').val(), {
 
   }).then((response)=>{
     if (response.data.data === null) {
       alert('강의평이 없습니다.'); return;
     }
-    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/25)/5));
+    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/8));
+    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data,1)
+    document.getElementById('lectures_count').innerHTML = "로드맵 총 " + response.data.data.length + "개"
+  }).catch((error) => { 
+    $(':checkbox:checked').prop('checked',false);
+    $('.lectures_hashtag').remove();
+    // navigate('/lectures'); 
+    alert('강의평 조회 실패했습니다.'); 
+  })
+}
+function Search2F() {
+  var length = document.getElementsByName('hashtag').length
+  var link = '&'
+  if ($('#studies_searchSearch').val() != '') {
+    var search = $('#studies_searchSearch').val().split(" ");
+    link += "keyword="+ search[0] +"%20"
+
+    for (var i = 1; i < search.length; i++) {
+      link += "" + search[i] + "%20"
+    }
+    link = link.slice(0, -1); link = link.slice(0, -1);
+    link += "&"
+  }
+
+  if ($('input[name=hashtag]:checked').val() != undefined) {
+    link += 'category='
+    for (var i = 0; i < length; i++) {
+      if (document.getElementsByName('hashtag')[i].checked === true)
+        link += document.getElementsByName('hashtag')[i].value + ","
+    }
+    link = link.slice(0, -1);
+    link += "&"
+  }
+
+  link = link.slice(0, -1)
+  $('#lectures_hashtagSelection2').hide()
+  
+  axios.get('http://54.180.150.167:8080/lectures?' + $('#lectures_searchLinkCenter').val(), {
+
+  }).then((response)=>{
+    if (response.data.data === null) {
+      alert('강의평이 없습니다.'); return;
+    }
+    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, $('#studies_number').val())
+  }).catch((error) => { 
+    $(':checkbox:checked').prop('checked',false);
+    $('.lectures_hashtag').remove();
+    // navigate('/lectures'); 
+    alert('강의평 조회 실패했습니다.'); 
+  })
+}
+
+const Lectures = () => {
+  var navigate = useNavigate();
+  axios.get('http://54.180.150.167:8080/lectures?', {
+
+  }).then((response)=>{
+    if (response.data.data === null) {
+      alert('강의평이 없습니다.'); return;
+    }
+    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/5));
     document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
       
   }).catch((error) => { console.log(error); alert('강의평 페이지에 오류가 있습니다.'); })
@@ -186,6 +186,7 @@ const Lectures = () => {
 
   return (
     <div id="body_main">
+      <div id="lectures_searchLinkCenter"></div>
       {/* <div class="lecturesReviewAdd_modal1">
         <div style={{ width: '100%', height: '130px', lineHeight: '180px', fontSize: '25px', fontWeight: '600', }}>
           등록되지 않은 강의입니다.
@@ -296,14 +297,21 @@ const Lectures = () => {
           <div style={{ width: '17%', }}></div>
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
-            $('.lecturesReviewAdd_modal2').show();
+            if(!localStorage.getItem('token')) {
+              alert('로그인 해주세요')
+              navigate('/signin') 
+            }
+            else $('.lecturesReviewAdd_modal2').show();
           }}>
             강의 추가하기
           </div>
 
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
-            if(!localStorage.getItem('token')) navigate('/signin')
+            if(!localStorage.getItem('token')) {
+              alert('로그인 해주세요')
+              navigate('/signin') 
+            }
             else navigate('/lecturesReviewAdd/0')
           }}>
             강의평 작성하기

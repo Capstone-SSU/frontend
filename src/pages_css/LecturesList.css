@@ -192,6 +192,12 @@
     border-radius: 5px;
     background-color: rgb(219, 219, 219);
 }
+#lecturesList_bar2 {
+    margin: 0px 7px;
+    width: 1px;
+    height: 28px;
+    background-color: #17173D;
+}
 
 
 

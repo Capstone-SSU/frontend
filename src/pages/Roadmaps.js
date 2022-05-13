@@ -38,7 +38,7 @@ function RoadmapF(list, page) {
 
       for (var j = 0; j < list[i].lectureThumbnails.length; j++) {
         roadmaps += 
-          "<img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/>"
+          "<div><img id='roadmaps_lectureThumbnails' src='" + list[i].lectureThumbnails[j] + "'/></div>"
       }
 
       roadmaps += "</div>" +
@@ -150,7 +150,10 @@ const Roadmaps = () => {
           <div style={{ width: '17%', }}></div>
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
           <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }} onClick={() => {
-            if(!localStorage.getItem('token')) navigate('/signin')
+            if(!localStorage.getItem('token')) {
+              alert('로그인 해주세요')
+              navigate('/signin') 
+            }
             else navigate('/roadmapsAdd')
           }}>
             로드맵 작성하기
