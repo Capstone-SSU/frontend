@@ -118,11 +118,12 @@ const RoadmapsList = () => {
             }
             
         }).catch((error) => {
-            if ($('header_login').val() == '') {
+            if ($('#header_login').val() === '') {
                 alert('로그인 해주세요')
                 navigate('/roadmaps')
             } else {
                 alert('오류가 났습니다')
+                navigate('/roadmaps')
             }
         })
     });

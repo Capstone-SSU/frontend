@@ -65,6 +65,7 @@ const LecturesReviewAdd = () => {
                 axios.post('http://54.180.150.167:8080/lectures/url', {
                   "lectureUrl" : $('#lecturesAdd_linkInput').val(),
                 }).then((response)=>{
+                  console.log(response.data.message)
                   if (response.data.message === "중복된 링크가 없습니다.") {
                     $('#lecturesAdd_linkF').show()
                     linkR = false

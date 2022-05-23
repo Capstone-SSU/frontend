@@ -42,8 +42,8 @@ function StudiesListF(list) {
                 "</div>" +
             "</div>" +
             "<div id='studiesList_box3'>" + 
-                (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
-                "<div id='studiesList_font'>" + list.likeCount + " |</div><button id='studiesList_reports' onClick='ReportF(" + null + ")'>신고하기</button>" +
+                (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/><div id="studiesList_font">' + list.likeCount + '</div>' : '<img id="studiesList_like2" src="' + like + '"/><div id="studiesList_font">' + list.likeCount + '</div>') + 
+                (!list.isThisUserPostWriter ? " <button id='studiesList_reports' onClick='ReportF(" + null + ")'>신고하기</button>": "") +
             "</div>" +
             "<hr id='studiesList_hr'/>" +
             "<div><div id='studiesList_content'>" + list.studyContent + "</div></div>" +
@@ -175,9 +175,13 @@ const StudiesList = () => {
             }
             
         }).catch((error) => {
-            console.log(error)
-            alert('로그인 해주세요')
-            navigate('/studies')
+            if ($('#header_login').val() === '') {
+                alert('로그인 해주세요')
+                navigate('/studies')
+            } else {
+                alert('오류가 났습니다')
+                navigate('/studies')
+            }
         })
     });
     
@@ -195,8 +199,10 @@ const StudiesList = () => {
                             "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
                             alert('스터디 글신고 성공')
+                            $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         }).catch((error) => { 
                             alert('스터디 글신고 실패')
+                            $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         })
                         $('.studiesList_modal1').hide()
                     }}>확인</button>
@@ -214,15 +220,17 @@ const StudiesList = () => {
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
                         axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/comments/' + $('#studiesList_commentId').val() + '/reports', {
-                            "reportContent": $('input[name="reports"]:checked').val()
+                            "reportContent": $('input[name="reports2"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
                             alert('스터디 댓글신고 성공')
+                            $("input:radio[name='reports2']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         }).catch((error) => { 
                             alert('스터디 댓글신고 실패')
+                            $("input:radio[name='reports2']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         })
                         $('.studiesList_modal2').hide()
                     }}>확인</button>
-                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal2').hide(); $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
+                    <button class="studiesList_reportsButton" style={{ color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('.studiesList_modal2').hide(); $("input:radio[name='reports2']:radio[value='불건전한 만남 및 대화']").prop('checked', true); }}>취소</button>
                 </div>
             </div>
 

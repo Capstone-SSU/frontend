@@ -15,8 +15,8 @@ function LecturesListF(list) {
     lectures +=
     "<div id='lecturesList_boxA'>" +
     "<div id='lecturesList_boxAA'>" +
-    (false ? "<button class='lecturesList_master'>수정</button>": "") +
-    (false ? "<button class='lecturesList_master'>삭제</button>": "") +
+    ($('#header_login').val() == 1 ? "<button class='lecturesList_master'>수정</button>": "") +
+    ($('#header_login').val() == 1 ? "<button class='lecturesList_master'>삭제</button>": "") +
     "<div id='body_flex'>" +
         "<div id='lecturesList_boxB'><img id='lecturesList_img' src='" + list.thumbnailUrl + "'/></div>" +
         "<div id='lecturesList_boxC'>" + 
@@ -30,7 +30,7 @@ function LecturesListF(list) {
                 lectures += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
                 
                 lectures += 
-                '<input type="radio" name="reviewStar" />(' + list.avgRate + ')</fieldset></div>' +
+                '<input type="radio" name="reviewStar" />(' + Math.ceil(list.avgRate*10)/10 + ')</fieldset></div>' +
             '</form>' +
             "<div id='lecturesList_lecturer'>" + list.lecturer + "</div>" +
             "<div id='lecturesList_site'>" + list.siteName + "</div>" +
@@ -90,7 +90,7 @@ function LecturesList2F(list, lecturesId, navigate) {
 function LecturesList3F(avgRate, reviewCnt) {
     var lectures = ''
     lectures +=
-    "<div id='lecturesList_avgRate'>" + avgRate + "</div>" +
+    "<div id='lecturesList_avgRate'>" + Math.ceil(avgRate*10)/10 + "</div>" +
     "<div>" +
         '<form class="mb-3" name="myform" id="myform" method="post">' +
             '<div id="body_flex"><fieldset  id="lecturesList_starReview" >'
@@ -197,11 +197,13 @@ const LecturesList = () => {
                             "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
                             alert('강의리뷰 글신고 성공')
+                            $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         }).catch((error) => { 
                             if (error == 'Error: Request failed with status code 409') 
                                 alert('이미 신고한 강의리뷰입니다')
                             else
                                 alert('강의리뷰 글신고 실패')
+                            $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
                         })
                         $('.lecturesList_modal2').hide()
                     }}>확인</button>

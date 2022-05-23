@@ -24,7 +24,6 @@ function NumberF(list, box) {
 }
 
 function LecturesF(list, page) {
-  console.log(list)
   var lectures = ''; var length = list.length;
   document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
 
@@ -49,7 +48,7 @@ function LecturesF(list, page) {
           lectures += '⭐'
         
         lectures += 
-        '</div><div class="lectures_avgRate">(' + list[j].avgRate + ')</div></div></form>' +
+        '</div><div class="lectures_avgRate">(' + Math.ceil(list[j].avgRate*10)/10 + ')</div></div></form>' +
       "</div>" +
     "</a>"
     if (length === j+1) { lectures += "</div>"; break;  }
@@ -78,7 +77,7 @@ function HashTagsF(list) {
 
 function SearchF() {
   var length = document.getElementsByName('hashtag').length
-  var link = '&'
+  var link = ''
   if ($('#studies_searchSearch').val() != '') {
     var search = $('#studies_searchSearch').val().split(" ");
     link += "keyword="+ search[0] +"%20"
@@ -94,9 +93,9 @@ function SearchF() {
     link += 'category='
     for (var i = 0; i < length; i++) {
       if (document.getElementsByName('hashtag')[i].checked === true)
-        link += document.getElementsByName('hashtag')[i].value + "%20"
+        link += document.getElementsByName('hashtag')[i].value + ","
     }
-    link = link.slice(0, -1); link = link.slice(0, -1);
+    link = link.slice(0, -1);
     link += "&"
   }
 
@@ -104,6 +103,7 @@ function SearchF() {
   $('#lectures_hashtagSelection2').hide()
   
   $('#lectures_searchLinkCenter').val(link)
+  console.log($('#lectures_searchLinkCenter').val())
   axios.get('http://54.180.150.167:8080/lectures?' + $('#lectures_searchLinkCenter').val(), {
 
   }).then((response)=>{
@@ -164,16 +164,17 @@ function Search2F() {
 
 const Lectures = () => {
   var navigate = useNavigate();
-  axios.get('http://54.180.150.167:8080/lectures?', {
+  axios.get('http://54.180.150.167:8080/lectures', {
 
   }).then((response)=>{
     if (response.data.data === null) {
       alert('강의평이 없습니다.'); return;
     }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/5));
+    document.getElementById('lectures_hashtagSelection3').innerHTML = ""
     document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
-      
-  }).catch((error) => { console.log(error); alert('강의평 페이지에 오류가 있습니다.'); })
+
+  }).catch((error) => { alert('강의평 페이지에 오류가 있습니다.'); })
 
   axios.get('http://54.180.150.167:8080/hashtags', {
 
@@ -204,17 +205,32 @@ const Lectures = () => {
         </div>
         <div><input id='lecturesReviewAdd_link'/></div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => {
-          
           axios.post('http://54.180.150.167:8080/lectures/request', {
             "lectureUrl" : $('#lecturesReviewAdd_link').val(),
           }).then((response)=>{
             $('.lecturesReviewAdd_modal3').show();
+            $('#lecturesReviewAdd_link').val('');
           }).catch((error) => {
-            $('.lecturesReviewAdd_modal4').show();
+            if (error == 'Error: Request failed with status code 409') {
+              axios.post('http://54.180.150.167:8080/lectures/url', {
+                "lectureUrl" : $('#lecturesReviewAdd_link').val(),
+              }).then((response)=>{
+                console.log(response)
+                if (response.data.message == "중복된 링크가 없습니다.")
+                  $('.lecturesReviewAdd_modal4').show()
+                else {
+                  $('.lecturesReviewAdd_modal5').show()
+                  document.getElementById('lecturesReviewAdd_lecture').innerHTML = 
+                    "<div>" + response.data.data.lectureTitle + "</div>"
+                }
+              }).catch((error) => {
+              })
+            }
+            $('#lecturesReviewAdd_link').val('');
           })
 
           $('.lecturesReviewAdd_modal2').hide();
-          $('#lecturesReviewAdd_link').val('');
+          // $('#lecturesReviewAdd_link').val('');
         }}>등록</button>
         <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => { $('#lecturesReviewAdd_link').val(''); $('.lecturesReviewAdd_modal2').hide() }}>취소</button>
       </div>
@@ -239,7 +255,8 @@ const Lectures = () => {
         <div style={{ width: '100%', height: '93px', lineHeight: '100px', fontSize: '25px', fontWeight: '600', }}>
           이미 등록된 강의입니다.
         </div>
-        <div id='lecturesReviewAdd_lecture'></div>
+        <div id='lecturesReviewAdd_lecture'>
+        </div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal5').hide() }}>확인</button>
       </div>
       

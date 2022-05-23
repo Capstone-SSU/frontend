@@ -70,11 +70,11 @@
     line-height: 50px;
     margin: 30px 20px;
 
+    display: flex;
     font-size: 22px;
-    text-align: center;
 }
 #studiesUpdate_title > input {
-    width: 88%;
+    width: 90%;
     height: 50px;
 
     font-size: 22px;
@@ -85,15 +85,15 @@
     width: 95%;
     margin: 30px 20px;
 
-    font-size: 22px;
+    display: flex;
     text-align: center;
+    font-size: 22px;
 }
 #studiesUpdate_description > textarea {
-    width: 88%;
+    width: 90%;
     height: 470px;
     resize: none;
     padding-top: 5;
-    text-align: left;
 
     font-size: 22px;
     border: 0;

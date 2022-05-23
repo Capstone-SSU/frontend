@@ -86,7 +86,7 @@ const RoadmapsAdd = () => {
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => {
           if ($('input:radio[name="no"]').is(':checked')) {
             axios.post('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
-              "roadmapCompnayRequestAnswer" : "NO_REQUEST",
+              "roadmapCompnayRequestAnswer" : "NO_REQUEST ",
             }, localStorage.getItem('token'),).then((response)=>{
             }).catch((error) => { alert('소속인증 거부 실패') })
           }
@@ -94,9 +94,10 @@ const RoadmapsAdd = () => {
           navigate('/mycompany')
         }}>확인</button>
         <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => {
+          console.log($('input:radio[name="no"]').is(':checked'))
           if ($('input:radio[name="no"]').is(':checked')) {
             axios.post('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
-              "roadmapCompnayRequestAnswer" : "NO_REQUEST",
+              "roadmapCompnayRequestAnswer" : "NO_REQUEST ",
             }, localStorage.getItem('token'),).then((response)=>{
             }).catch((error) => { alert('소속인증 거부 실패') })
           }

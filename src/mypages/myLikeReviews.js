@@ -29,7 +29,7 @@ function MyProfileContentF(list) {
                                 mypage += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
                         
                             mypage += 
-                            '<input type="radio" name="reviewStar" />(' + list[i].avgRate + ')</fieldset></div>' +
+                            '<input type="radio" name="reviewStar" />(' + Math.ceil(list[i].avgRate*10)/10 + ')</fieldset></div>' +
                     '</form>' +
                 "</div>" +
                 "<div>" + 

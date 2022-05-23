@@ -21,6 +21,7 @@ function NumberF(list, box) {
 }
 
 function RoadmapF(list, page) {
+  list.reverse()
   var roadmaps = ''; var length = list.length;
 
   document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
