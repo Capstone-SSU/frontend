@@ -19,7 +19,8 @@ function StudiesListF(list) {
         "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
         "<img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/>" +
         "<div id='studiesList_top'>" +
-            "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" +
+            ( list.isThisUserPostWriter ?
+            "<div id='studiesList_together' onClick='StudiesListMoF(" + $('#header_login').val() + "," + list.studyPostId + ")'>" + list.studyRecruitState + "</div>" : "<div id='studiesList_together'>" + list.studyRecruitState + "</div>") +
             "<div id='studiesList_like'>현재 " + list.likeCount + "명이 관심을 가지고 있습니다.</div>" +
 
         "</div>" +

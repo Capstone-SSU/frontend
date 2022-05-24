@@ -11,12 +11,13 @@ window.$ = $;
 
 //남색 부분 디자인
 function LecturesListF(list) {
+    console.log(list)
     var lectures = ''
     lectures +=
     "<div id='lecturesList_boxA'>" +
     "<div id='lecturesList_boxAA'>" +
-    ($('#header_login').val() == 1 ? "<button class='lecturesList_master'>수정</button>": "") +
-    ($('#header_login').val() == 1 ? "<button class='lecturesList_master'>삭제</button>": "") +
+    ($('#header_login').val() == 3 ? "<div id='lecturesList_masterButtonUD'><button class='lecturesList_master' onClick='masterUF(" + list.lectureId + ")'>수정</button>": "") +
+    ($('#header_login').val() == 3 ? "<button class='lecturesList_master' onClick='masterDF(" + list.lectureId + ")'>삭제</button></div>": "") +
     "<div id='body_flex'>" +
         "<div id='lecturesList_boxB'><img id='lecturesList_img' src='" + list.thumbnailUrl + "'/></div>" +
         "<div id='lecturesList_boxC'>" + 

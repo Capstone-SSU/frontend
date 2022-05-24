@@ -29,6 +29,160 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
+      function myProfile_profileF() {
+        $.ajax({
+          type: "PATCH",
+          url: "http://54.180.150.167:8080/users/"+ $('#header_login').val() + "/profiles",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: (response)=>{console.log(response)},
+          error: ()=>{ alert('프로필 공개 여부 수정 실패') },
+        })
+      }
+      function myProfileNicknameInputF() {
+        $('#myProfile_nicknameR').val('')
+        $('#myProfile_nicknameT').hide()
+        $('#myProfile_nicknameF').hide()
+      }
+      function myProfileNicknameF() {
+        $.ajax({
+          type: "GET",
+          url: "http://54.180.150.167:8080/signup/"+ $('#myProfile_nicknameInput').val(),
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: (response)=>{ 
+            if (response.message == "닉네임 사용가능" || $('#myProfile_nickname').val() == $('#myProfile_nicknameInput').val()){
+              $('#myProfile_nicknameR').val('true')
+              $('#myProfile_nicknameT').show()
+              $('#myProfile_nicknameF').hide()
+            } else {
+              $('#myProfile_nicknameR').val('')
+              $('#myProfile_nicknameT').hide()
+              $('#myProfile_nicknameF').show()
+            }
+           },
+          error: ()=>{ alert('닉네임 중복 여부 실패') },
+        })
+      }
+      function myProfilePasswordInputF() {
+        $('#myProfile_passwordR').val('')
+        $('#myProfile_passwordT').hide()
+        $('#myProfile_passwordF').hide()
+      }
+      function myProfilePasswordF() {
+        if ($('#myProfile_passwordInput').val() == '' || $('#myProfile_newpasswordInput').val() == '' || $('#myProfile_confirmpasswordInput').val() == '') {
+          $('#myProfile_passwordR').val('')
+          $('#myProfile_passwordT').hide()
+          $('#myProfile_passwordF').hide()
+          alert('빈 칸이 있습니다'); return;
+        }
+        if ($('#myProfile_passwordInput').val() == $('#myProfile_newpasswordInput').val()) {
+          $('#myProfile_passwordR').val('')
+          $('#myProfile_passwordT').hide()
+          $('#myProfile_passwordF').hide()
+          alert('현재 비밀번호와 새 비밀번호 값이 달라야 합니다'); return;
+        }
+        if (!($('#myProfile_newpasswordInput').val() == $('#myProfile_confirmpasswordInput').val())) {
+          $('#myProfile_passwordR').val('')
+          $('#myProfile_passwordT').hide()
+          $('#myProfile_passwordF').hide()
+          alert('새 비밀번호와 새 비밀번호 확인 값이 같아야 합니다'); return;
+        }
+        if ($('#myProfile_passwordInput').val().length < 8 || $('#myProfile_newpasswordInput').val().length < 8 || $('#myProfile_confirmpasswordInput').val().length < 8) {
+          $('#myProfile_passwordR').val('')
+          $('#myProfile_passwordT').hide()
+          $('#myProfile_passwordF').hide()
+          alert('비밀번호는 8자리 이상이어야 합니다'); return;
+        }
+        if ($('#myProfile_passwordInput').val() == $('#myProfile_confirmpasswordInput').val()) {
+          $('#myProfile_passwordR').val('')
+          $('#myProfile_passwordT').hide()
+          $('#myProfile_passwordF').show()
+        } else {
+          $('#myProfile_passwordR').val('true')
+          $('#myProfile_passwordT').show()
+          $('#myProfile_passwordF').hide()
+        }
+      }
+      function myProfileF() {
+        console.log($('#myProfile_nicknameR').val())
+        console.log($('#myProfile_passwordR').val())
+        if ($('#myProfile_nicknameR').val() == '' || $('#myProfile_passwordR').val() == '') {
+          alert('중복확인을 체크해주세요'); return;
+        }
+
+        console.log($('#header_login').val())
+        console.log($('#myProfile_nicknameInput').val())
+        console.log($('#myProfile_githubInput').val())
+        console.log($('#myProfile_passwordInput').val())
+        console.log($('#myProfile_newpasswordInput').val())
+        console.log($('#myProfile_confirmpasswordInput').val())
+        
+        $.ajax({
+          type: "PATCH",
+          url: "http://54.180.150.167:8080/users/"+ $('#header_login').val(),
+          data: JSON.stringify({
+            "userNickname" : $('#myProfile_nicknameInput').val(),
+            "githubUrlName" : $('#myProfile_githubInput').val(),
+            "userProfileImg": "",
+            "password": $('#myProfile_passwordInput').val(),
+            "newPassword": $('#myProfile_newpasswordInput').val(),
+            "confirmPassword": $('#myProfile_confirmpasswordInput').val(),
+          }),
+          dataType : "json",
+          contentType: "application/json",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: (response)=>{ location.replace("/myprofile") },
+          error: (error)=>{ alert('사용자 수정 실패') },
+        })
+      }
+
+
+
+      function masterUF(id) {
+        $.ajax({
+          type: "PATCH",
+          url: "http://54.180.150.167:8080/lectures/"+ id,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/lectures/" + id) },
+          error: ()=>{ alert('강의 수정 실패') },
+        })
+      }
+      function masterDF(id) {
+        $.ajax({
+          type: "DELETE",
+          url: "http://54.180.150.167:8080/lectures/"+ id,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/lectures/" + id) },
+          error: ()=>{ alert('강의 삭제 실패') },
+        })
+      }
+
+      function StudiesListMoF(userId, studyId) {
+        if (localStorage.getItem('token')) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+        }
+        $.ajax({
+          type: "PATCH",
+          url: "http://54.180.150.167:8080/users/"+ userId + "/studies/" + studyId,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: ()=>{ location.replace("/studies/" + studyId) },
+          error: ()=>{ alert('스터디 모집수정 실패') },
+        })
+      }
+
+
+
       function NestedCommentsF(a) {
         if ($('#studiesList_nestedCommnetsAdd2'+a).css("display") === "none"){
           $('#studiesList_nestedCommnetsAdd2'+a).show()

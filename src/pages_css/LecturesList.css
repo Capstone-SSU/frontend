@@ -1,6 +1,12 @@
+#lecturesList_masterButtonUD {
+    text-align: right;
+}
 .lecturesList_master {
     margin: 0px;
-    background-color: red;
+    width: 70px;
+
+    color: white;
+    background-color: transparent;
 }
 
 

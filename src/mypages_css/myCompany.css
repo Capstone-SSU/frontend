@@ -1,0 +1,23 @@
+#myCompany_nicknameButton, #myCompany_nicknameButton2 {
+    width: 130px;
+    height: 35px;
+    margin: 0px 10px;
+
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #17173D;
+}
+#myCompany_nicknameButton2 {
+    margin: 10px 10px;
+}
+#myCompany_email, #myCompany_num {
+    width: 68%;
+    height: 25px;
+    margin: 15px 0px;
+
+    font-size: 18px;
+    outline: 0px solid rgb(190, 190, 190);
+
+    border-radius: 10px;
+}

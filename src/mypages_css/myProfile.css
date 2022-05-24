@@ -66,7 +66,7 @@
     height: 360px;
     border-radius: 10px;
 }
-#myProfile_titleInput {
+#myProfile_titleInput, #myProfile_nicknameInput, #myProfile_githubInput, #myProfile_passwordInput, #myProfile_newpasswordInput, #myProfile_confirmpasswordInput {
     width: 68%;
     height: 25px;
     margin: 15px 0px;
@@ -170,4 +170,15 @@
     -webkit-transform: translateX(26px); 
     -ms-transform: translateX(26px); 
     transform: translateX(26px); 
+}
+
+
+
+#myProfile_nicknameT, #myProfile_nicknameF, #myProfile_passwordT, #myProfile_passwordF {
+    display: none;
+    font-size: 12px;
+    color: blue;
+}
+#myProfile_nicknameF, #myProfile_passwordF {
+    color: red;
 }
