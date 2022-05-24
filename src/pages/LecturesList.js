@@ -53,6 +53,7 @@ function LecturesListF(list) {
 //흰색 부분 디자인
 var n5 = 0; var n4 = 0; var n3 = 0; var n2 = 0; var n1 = 0;
 function LecturesList2F(list, lecturesId, navigate) {
+    console.log(list)
     var lectures = ''
     lectures += 
     "<div id='lecturesList_boxA'>"

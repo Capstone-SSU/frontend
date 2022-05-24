@@ -6,7 +6,7 @@ import axios from "axios";
 import $ from 'jquery';
 window.$ = $;
 
-function MyProfileContentF(list) {
+export function MyProfileContentF(list) {
     console.log(list)
     var mypage =
     "<div id='myLikeReviews_boxA'>" +

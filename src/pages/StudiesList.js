@@ -16,8 +16,8 @@ function StudiesListF(list) {
         ( list.isThisUserPostWriter ?
         '<div id="body_flex"><div id="studiesList_blank"></div><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
         "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
-        "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
-        "<img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/>" +
+        "<div id='studiesList_writeUsername' onClick='OtherProfileF(" + list.studyPostWriter.userId + ")'>" + list.studyPostWriter.userNickname + "</div>" +
+        "<div id='studiesList_image'><img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/></div>" +
         "<div id='studiesList_top'>" +
             ( list.isThisUserPostWriter ?
             "<div id='studiesList_together' onClick='StudiesListMoF(" + $('#header_login').val() + "," + list.studyPostId + ")'>" + list.studyRecruitState + "</div>" : "<div id='studiesList_together'>" + list.studyRecruitState + "</div>") +

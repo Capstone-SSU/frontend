@@ -9,7 +9,6 @@ window.$ = $;
 const Mypage = () => {
   return (
     <div className="body_main" style={{ width: '15%', }}>
-
       <div className="left_menu_box">
         <p className="bigMenu">프로필</p>
         <Link to="/myprofile"><p id="myprofile" className="smallMenu">정보수정</p></Link>

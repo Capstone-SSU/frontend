@@ -21,6 +21,7 @@ import Signup from './pages/Signup';
 import Users from './pages/Users';
 import Mypage from './pages/Mypage';
 
+import OtherProfile from './mypages/otherProfile';
 import MyProfile from './mypages/myProfile';
 import MyCompany from './mypages/myCompany';
 import MyLikeReviews from './mypages/myLikeReviews';
@@ -57,6 +58,7 @@ function App() {
           <Route path='/users' element={<Users/>} />
           {/* <Route path='/mypage' element={<Mypage/>} /> */}
 
+          <Route path='/otherprofile/:userId' element={<OtherProfile/>} />
           <Route path='/myprofile' element={<MyProfile/>} />
           <Route path='/mycompany' element={<MyCompany/>} />
           <Route path='/mylikereviews' element={<MyLikeReviews/>} />

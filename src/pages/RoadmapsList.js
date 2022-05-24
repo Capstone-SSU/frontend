@@ -9,6 +9,7 @@ import $ from 'jquery';
 window.$ = $;
 
 function RoadmapsF(list) {
+    console.log(list)
     let theme = document.querySelector(':root');
     theme.style.setProperty('--height', 320+(list.lectures.length-1)*370+'px');
 
@@ -65,7 +66,7 @@ function RoadmapsF(list) {
             "<div id='roadmapsList_rightBox'>" +
                 "<div id='body_flex'>" +
                     "<div id='roadmapsList_profill'>" + list.roadmapWriter.userProfileImg + "</div>" +
-                    "<div id='roadmapList_nickname'>" + list.roadmapWriter.userNickname + "</div>" +
+                    "<div id='roadmapList_nickname' onClick='OtherProfileF(" + list.roadmapWriter.userId + ")'>" + list.roadmapWriter.userNickname + "</div>" +
                 "</div>" +
                 "<div id='roadmapList_content'>" + list.roadmapRecommendation + "</div>" +
             "</div>" +

@@ -71,6 +71,16 @@
     font-size: 22px; 
     color: #17173D;
 }
+#studiesList_image {
+    width: 48px; 
+    height: 48px; 
+
+    display: flex;
+    float: right;
+
+    border-radius: 50%;
+    background-color: rgb(190, 190, 190);
+}
 #studiesList_profill {
     width: 48px; 
     height: 48px; 
@@ -80,9 +90,6 @@
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-
-    display: flex;
-    float: right;
 
     font-size: 22px; 
     border-radius: 50%; 
