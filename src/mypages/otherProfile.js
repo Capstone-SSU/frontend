@@ -13,6 +13,43 @@ import axios from "axios";
 import $ from 'jquery';
 window.$ = $;
 
+function ColorF(f, b) {
+    if (b == 'lectures') {
+        $('#lectures').css('background', '#17173D')
+        $('#lectures').css('color', 'white')
+        $('#studies').css('background', 'white')
+        $('#studies').css('color', '#17173D')
+        $('#roadmaps').css('background', 'white')
+        $('#roadmaps').css('color', '#17173D')
+    } else if(b == 'studies') {
+        $('#studies').css('background', '#17173D')
+        $('#studies').css('color', 'white')
+        $('#lectures').css('background', 'white')
+        $('#lectures').css('color', '#17173D')
+        $('#roadmaps').css('background', 'white')
+        $('#roadmaps').css('color', '#17173D')
+    } else {
+        $('#roadmaps').css('background', '#17173D')
+        $('#roadmaps').css('color', 'white')
+        $('#studies').css('background', 'white')
+        $('#studies').css('color', '#17173D')
+        $('#lectures').css('background', 'white')
+        $('#lectures').css('color', '#17173D')
+    }
+
+    if (f == 'liked-') {
+        $('#liked').css('background', '#17173D')
+        $('#liked').css('color', 'white')
+        $('#write').css('background', 'white')
+        $('#write').css('color', '#17173D')
+    } else {
+        $('#write').css('background', '#17173D')
+        $('#write').css('color', 'white')
+        $('#liked').css('background', 'white')
+        $('#liked').css('color', '#17173D')
+    }
+}
+
 function MyProfileContentF(list) {
     var mypage = ''
     mypage +=
@@ -35,7 +72,9 @@ function MyProfileContentF(list) {
 }
 
 function OtherProfileLastF(current, f, b) {
-    console.log('http://54.180.150.167:8080/users/' + current + "/" + f + b)
+    //볼 수 있게 허락하는 함수
+    $('.myOtherList_modal1').show()
+
     axios.get('http://54.180.150.167:8080/users/' + current + "/" + f + b, {
 
     }, localStorage.getItem('token'),).then((response)=>{
@@ -74,11 +113,21 @@ const OtherProfile = () => {
         })
         $('#otherProfile_f').val('liked-'); $('#otherProfile_b').val('lectures');
         OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), $('#otherProfile_b').val());
+        ColorF($('#otherProfile_f').val(), $('#otherProfile_b').val());
     });
 
     return (
         <>
             <div id='body_flex' style={{ minWidth: '1176px', height: '100%', background: 'rgb(240, 240, 240)' }}>
+                <div class="myOtherList_modal1">
+                    <div style={{ textAlign: 'center', }}>
+                        <div style={{ width: '100%', height: '100px', lineHeight: '180px', fontSize: '25px', fontWeight: '600', }}></div>
+                        <div style={{ width: '100%', height: '80px', lineHeight: '0px', fontSize: '25px', fontWeight: '600', }}>
+                            비공개 처리된 사용자 입니다.
+                        </div>
+                        <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.myOtherList_modal1').hide(); navigate('/') }}>확인</button>
+                    </div>
+                </div>
                 <div id="otherProfile_f" style={{ display: 'none', }}></div>
                 <div id="otherProfile_b" style={{ display: 'none', }}></div>
                 <div id='otherProfile_body2'>
@@ -89,16 +138,17 @@ const OtherProfile = () => {
                     <div id="otherProfile_center">
                         <div><div style={{ display: 'inline-block', }}>
                             <div id='body_flex'>
-                                <div class="otherProfile_click" onClick={() => {$('#otherProfile_b').val('lectures'); OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), 'lectures')}}>강의리뷰</div>
-                                <div class="otherProfile_click" onClick={() => {$('#otherProfile_b').val('studies'); OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), 'studies')}}>스터디</div>
-                                <div class="otherProfile_click" onClick={() => {$('#otherProfile_b').val('roadmaps'); OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), 'roadmaps')}}>로드맵</div>
+                                <div id='lectures' class="otherProfile_click" onClick={() => {$('#otherProfile_b').val('lectures'); OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), 'lectures'); ColorF($('#otherProfile_f').val(), 'lectures')}}>강의리뷰</div>
+                                <div id='studies' class="otherProfile_click" onClick={() => {$('#otherProfile_b').val('studies'); OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), 'studies'); ColorF($('#otherProfile_f').val(), 'studies');}}>스터디</div>
+                                <div id='roadmaps' class="otherProfile_click" onClick={() => {$('#otherProfile_b').val('roadmaps'); OtherProfileLastF(parseInt(current.split("/")[4]), $('#otherProfile_f').val(), 'roadmaps'); ColorF($('#otherProfile_f').val(), 'roadmaps')}}>로드맵</div>
                             </div>
                         </div></div>
+                        <div style={{ width: '5px', height: '10px', }}></div>
                         <div><div style={{ display: 'inline-block', }}>
                             <div id='body_flex'>
-                                <div class="otherProfile_click" onClick={() => {$('#otherProfile_f').val('liked-'); OtherProfileLastF(parseInt(current.split("/")[4]), 'liked-', $('#otherProfile_b').val())}}>좋아요</div>
-                                <div class="otherProfile_click">|</div>
-                                <div class="otherProfile_click" onClick={() => {$('#otherProfile_f').val(''); OtherProfileLastF(parseInt(current.split("/")[4]), '', $('#otherProfile_b').val())}}>작성한</div>
+                                <div id='liked' class="otherProfile_click" onClick={() => {$('#otherProfile_f').val('liked-'); OtherProfileLastF(parseInt(current.split("/")[4]), 'liked-', $('#otherProfile_b').val()); ColorF('liked-', $('#otherProfile_b').val())}}>좋아요</div>
+                                {/* <div class="otherProfile_click">|</div> */}
+                                <div id='write' class="otherProfile_click" onClick={() => {$('#otherProfile_f').val(''); OtherProfileLastF(parseInt(current.split("/")[4]), '', $('#otherProfile_b').val()); ColorF('', $('#otherProfile_b').val())}}>작성한</div>
                             </div>
                         </div></div>
                     </div>

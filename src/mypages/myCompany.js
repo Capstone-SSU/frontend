@@ -6,6 +6,7 @@ import axios from "axios";
 import $ from 'jquery';
 window.$ = $;
 
+
 // axios.get('http://54.180.150.167:8080/users/' + $('#header_login').val() + '/', {
 // }, localStorage.getItem('token')).then((response2) => {
 // console.log(response2)
