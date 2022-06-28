@@ -1,5 +1,6 @@
 import React from "react";
 import Mypage from '../pages/Mypage';
+import { useNavigate } from "react-router-dom";
 import '../mypages_css/myWriteReviews.css';
 
 import axios from "axios";
@@ -11,11 +12,12 @@ export function MyProfileContentF(list) {
     "<div id='myLikeReviews_boxA'>" +
     "<div id='body_flex'>" +
         "<div id='myProfile_first'>작성한" + "</div>" +
-        "<div id='myProfile_second'>강의리뷰" + "</div>" +
+        "<div id='myProfile_second'>강의" + "</div>" +
     "</div>"
 
     for (var i = 0; i < list.length; i++) {
         mypage +=
+        "<a href='/pickit/#/lectures/" + list[i].lectureId + "'>" +
         "<div id='myLikeReviews_boxB'>" +
             "<div id='body_flex'>" +
                 "<div>" +
@@ -39,7 +41,8 @@ export function MyProfileContentF(list) {
                     "<div class='myWriteReviews_comment0'><div class='myWriteReviews_comment2'>" + list[i].comment + "</div></div>" +
                 "</div>" +
             "</div>" +
-        "</div>"
+        "</div>" +
+        "</a>"
     }
 
     mypage +=
@@ -49,12 +52,14 @@ export function MyProfileContentF(list) {
 }
 
 const MyWriteReviews = () => {
-
-    axios.get('http://54.180.150.167:8080/users/' + $('#header_login').val() + '/reviews', {
-    }, localStorage.getItem('token')).then((response) => {
-        console.log(response)
-        document.getElementById('myWriteReviews_main').innerHTML = MyProfileContentF(response.data.data)
-    }).catch();
+    var navigate = useNavigate();
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
+    }, localStorage.getItem('token')).then((response2) => {
+        axios.get('http://54.180.150.167:8080/users/' + response2.data.data.userId + '/reviews', {
+        }, localStorage.getItem('token')).then((response) => {
+            document.getElementById('myWriteReviews_main').innerHTML = MyProfileContentF(response.data.data)
+        }).catch();
+    }).catch(()=>{alert('오류가 발생했습니다.'); navigate('/signin');});
 
     return (
         <>

@@ -7,7 +7,6 @@ import LecturesAdd from './pages/LecturesAdd';
 import LecturesReviewAdd from './pages/LecturesReviewAdd';
 import LecturesReviewUpdate from './pages/LecturesReviewUpdate';
 import LecturesUpdate from './pages/LecturesUpdate';
-import LecturesDetail from './pages/LecturesDetail';
 import Studies from './pages/Studies';
 import StudiesList from './pages/StudiesList';
 import StudiesAdd from './pages/StudiesAdd';
@@ -27,10 +26,12 @@ import MyCompany from './mypages/myCompany';
 import MyLikeReviews from './mypages/myLikeReviews';
 import MyLikeRoadmaps from './mypages/myLikeRoadmaps';
 import MyLikeStudies from './mypages/myLikeStudies';
+import myWriteLectures from './mypages/myWriteLectures';
 import MyWriteReviews from './mypages/myWriteReviews';
 import MyWriteRoadmaps from './mypages/myWriteRoadmaps';
 import MyWriteStudies from './mypages/myWriteStudies';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import MyWriteLectures from './mypages/myWriteLectures';
 
 function App() {
   // const [userInfo, setUserInfo] = React.useState("devstone");
@@ -56,14 +57,13 @@ function App() {
           <Route path='/signin' element={<Signin/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/users' element={<Users/>} />
-          {/* <Route path='/mypage' element={<Mypage/>} /> */}
-
           <Route path='/otherprofile/:userId' element={<OtherProfile/>} />
           <Route path='/myprofile' element={<MyProfile/>} />
           <Route path='/mycompany' element={<MyCompany/>} />
           <Route path='/mylikereviews' element={<MyLikeReviews/>} />
           <Route path='/mylikestudies' element={<MyLikeStudies/>} />
           <Route path='/mylikeroadmaps' element={<MyLikeRoadmaps/>} />
+          <Route path='/mywritelectures' element={<MyWriteLectures/>} />
           <Route path='/mywritereviews' element={<MyWriteReviews/>} />
           <Route path='/mywritestudies' element={<MyWriteStudies/>} />
           <Route path='/mywriteroadmaps' element={<MyWriteRoadmaps/>} />

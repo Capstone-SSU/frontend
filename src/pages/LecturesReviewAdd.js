@@ -15,7 +15,7 @@ const LecturesReviewAdd = () => {
   current += String(decodeURI(window.location.href));
   var linkR = false;
 
-  axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]) + '/reviews', {
+  axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]) + '/reviews', {
   }, localStorage.getItem('token'),).then((response)=>{
     $('#lecturesAdd_linkInput').val(response.data.data.lectureUrl)
     $('#lecturesAdd_linkT').show()
@@ -61,11 +61,9 @@ const LecturesReviewAdd = () => {
                 }
               }}/>
               <div style={{ width: '14%', textAlign: 'right', }}><button style={{ width: '80px', margin: '0px 0px 0px 5px', color: 'white', fontSize: '15px', borderRadius: '10px', backgroundColor: '#17173D', }} onClick={() => {
-                console.log($('#lecturesAdd_linkInput').val())
                 axios.post('http://54.180.150.167:8080/lectures/url', {
                   "lectureUrl" : $('#lecturesAdd_linkInput').val(),
                 }).then((response)=>{
-                  console.log(response.data.message)
                   if (response.data.message === "중복된 링크가 없습니다.") {
                     $('#lecturesAdd_linkF').show()
                     linkR = false
@@ -135,7 +133,6 @@ const LecturesReviewAdd = () => {
         
         <div style={{ width: '60%', margin: '10px 0px 0px 0px', display: 'inline-block', textAlign: 'right', }}>
           <button style={{  color: 'white', borderRadius: '10px', backgroundColor: '#17173D', }} onClick={() => {
-            console.log("a")
             if ($('#lecturesAdd_linkInput').val() === '' || $('#lecturesAdd_titleInput').val() === '' || $('#lecturesAdd_descriptionInput').val() === '' || $('#lecturesAdd_startNum').val() === '') {
               alert('빈 칸이 있습니다'); return;
             }
@@ -158,7 +155,7 @@ const LecturesReviewAdd = () => {
               "comment": $('#lecturesAdd_descriptionInput').val(),
               "rate": $('#lecturesAdd_startNum').val(),
             }, localStorage.getItem('token'),).then((response)=>{
-                navigate('/lectures/' + parseInt(current.split("/")[4]))
+                navigate('/lectures/' + parseInt(current.split("/")[6]))
             }).catch((error) => {
               if (error == 'Error: Request failed with status code 409') 
                 alert('이미 강의평을 추가한 강의입니다.')

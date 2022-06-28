@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../pages_css/StudiesList.css';
+import StudiesListElements from "./StudiesListElements";
+
 import like from '../like.png';
 import likeFill from '../likeFill.png';
 
@@ -9,18 +11,17 @@ import $ from 'jquery';
 window.$ = $;
 
 function StudiesListF(list) {
-    console.log(list)
     var studiesList = '';
     studiesList +=
     "<div id='studiesList_individe1'>" +
         ( list.isThisUserPostWriter ?
         '<div id="body_flex"><div id="studiesList_blank"></div><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
         "<div id='studiesList_title'>" + list.studyTitle + "</div>" +
-        "<div id='studiesList_writeUsername' onClick='OtherProfileF(" + list.studyPostWriter.userId + ")'>" + list.studyPostWriter.userNickname + "</div>" +
+        "<div id='studiesList_writeUsername'>" + list.studyPostWriter.userNickname + "</div>" +
         "<div id='studiesList_image'><img id='studiesList_profill' src='" + list.studyPostWriter.userProfileImg + "'/></div>" +
         "<div id='studiesList_top'>" +
             ( list.isThisUserPostWriter ?
-            "<div id='studiesList_together' onClick='StudiesListMoF(" + $('#header_login').val() + "," + list.studyPostId + ")'>" + list.studyRecruitState + "</div>" : "<div id='studiesList_together'>" + list.studyRecruitState + "</div>") +
+            "<div id='studiesList_together'>" + list.studyRecruitState + "</div>" : "<div id='studiesList_together'>" + list.studyRecruitState + "</div>") +
             "<div id='studiesList_like'>현재 " + list.likeCount + "명이 관심을 가지고 있습니다.</div>" +
 
         "</div>" +
@@ -43,7 +44,7 @@ function StudiesListF(list) {
                 "</div>" +
             "</div>" +
             "<div id='studiesList_box3'>" + 
-                (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/><div id="studiesList_font">' + list.likeCount + '</div>' : '<img id="studiesList_like2" src="' + like + '"/><div id="studiesList_font">' + list.likeCount + '</div>') + 
+                (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/><div id="studiesList_font">' + list.likeCount + '</div>' : '<img id="studiesList_like1" src="' + like + '"/><div id="studiesList_font">' + list.likeCount + '</div>') + 
                 (!list.isThisUserPostWriter ? " <button id='studiesList_reports' onClick='ReportF(" + null + ")'>신고하기</button>": "") +
             "</div>" +
             "<hr id='studiesList_hr'/>" +
@@ -62,7 +63,7 @@ function StudiesListCommentsF(list, studyId) {
         studiesList +=
         "<div id='studiesList_individe2'>" +
             "<div id='studiesList_commentsBox1'>" +   
-                "<div id='studiesList_commentsProfill'>" + list[i].commentWriter.userProfileImg + "</div>" +
+                "<div id='studiesList_commentsProfill'><img src='" + list[i].commentWriter.userProfileImg + "'/></div>" +
                 "<div id='studiesList_commentsWriteUsername'>" + list[i].commentWriter.userNickname + "</div>" +
                 // <div id="studiesList_bar2"><div>
                 "<div id='studiesList_commentsBoxInner'>" +
@@ -87,13 +88,12 @@ function StudiesListCommentsF(list, studyId) {
             "</div>"
         
         for(var j = 0; j < list[i].nestedComments.length; j++) {
-            console.log(list[i].nestedComments[j])
             studiesList +=
             "<div id='studiesList_nestedComments'>" +
                 "<div id='studiesList_nestedCommentsBox1'>" +
-                    "<div id='studiesList_nestedCommentsProfill'>" + list[i].nestedComments[j].commentWriter.userProfileImg + "</div>" +
+                    "<div id='studiesList_nestedCommentsProfill'><img src='" + list[i].nestedComments[j].commentWriter.userProfileImg + "'/></div>" +
                     "<div id='studiesList_nestedCommentsWriteUsername'>" + list[i].nestedComments[j].commentWriter.userNickname + "</div>" +
-                    (list[i].nestedComments[j].isThisUserCommentWriter ? '<button id="studiesList_nestedcommentsDelete" onClick="NestedCommentsDeleteF('+list[i].nestedComments[j].studyCommentId+"," + studyId +')">삭제</button>' : "") +
+                    (list[i].nestedComments[j].isThisUserCommentWriter ? '<button id="studiesList_nestedcommentsDelete" onClick="CommentsDeleteF('+list[i].nestedComments[j].studyCommentId+"," + studyId +')">삭제</button>' : "") +
                     (!list[i].nestedComments[j].isThisUserCommentWriter ? '<button id="studiesList_nestedcommentsReports" onClick="CommentsReportF('+ list[i].nestedComments[j].studyCommentId + ')">신고</button>': "") +
                 "</div>" +
                 "<div id='body_flex'>" +
@@ -109,6 +109,7 @@ function StudiesListCommentsF(list, studyId) {
 }
 
 const StudiesList = () => {
+    const [studieslistcomments, setStudiesListComments] = useState([]);
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
@@ -119,46 +120,58 @@ const StudiesList = () => {
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
         }
-        axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
+        axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]), {
 
         }, localStorage.getItem('token'),).then((response)=>{
-
             const element = document.getElementById('studiesList_list')
             element.innerHTML = StudiesListF(response.data.data)
             const element2 = document.getElementById('studiesList_comments')
-            element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments, parseInt(current.split("/")[4]))
-
+            element2.innerHTML = StudiesListCommentsF(response.data.data.studyComments, parseInt(current.split("/")[6]))
+            setStudiesListComments(response.data.data.studyComments)
             $("input:radio[name='reports']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
             $("input:radio[name='reports2']:radio[value='불건전한 만남 및 대화']").prop('checked', true);
 
             if (response.data.data.isThisUserPostWriter) {
                 document.getElementById('studiesList_update').onclick = function () {
-                    navigate('/studiesUpdate/' + parseInt(current.split("/")[4]))
+                    navigate('/studiesUpdate/' + parseInt(current.split("/")[6]))
                 }
 
                 document.getElementById('studiesList_delete').onclick = function () {
-                    axios.delete('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
+                    axios.delete('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]), {
 
                     }, localStorage.getItem('token'),).then(()=>{
                         navigate('/studies')
                     }).catch((error) => { 
-                    alert('스터디 글삭제 실패')
+                        alert('스터디 글삭제 실패')
                     })
                 }
-            }
 
-            if (!response.data.data.isLikedByUser) {
-                document.getElementById('studiesList_like2').onclick = function () {
-                    axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/likes', {
+                document.getElementById('studiesList_together').onclick = function () {
+                    axios.patch("http://54.180.150.167:8080/users/" + $('#header_login').val() + "/studies/" + parseInt(current.split("/")[6]), {
 
                     }, localStorage.getItem('token'),).then(()=>{
-                        navigate('/studies/' + parseInt(current.split("/")[4]))
+                        navigate('/')
+                        navigate('/studies/' + parseInt(current.split("/")[6]))
                     }).catch((error) => { 
-                        alert('스터디 글좋아요 실패')
+                        alert('스터디 모집수정 실패')
                     })
                 }
             }
 
+            document.getElementById('studiesList_writeUsername').onclick = function () {
+                navigate('/otherprofile/' + response.data.data.studyPostWriter.userId)
+            }
+
+            document.getElementById('studiesList_like1').onclick = function () {
+                axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]) + '/likes', {
+
+                }, localStorage.getItem('token'),).then(()=>{
+                    navigate('/')
+                    navigate('/studies/' + parseInt(current.split("/")[6]))
+                }).catch((error) => { 
+                    alert('스터디 글좋아요 실패')
+                })
+            }
 
             if (response.data.data.studyComments != []) {
                 // $('#studiesList_commentsContentUpdateInput').hide()
@@ -184,7 +197,7 @@ const StudiesList = () => {
                 navigate('/studies')
             }
         })
-    });
+    }, []);
     
     return (
         <div id="body_main">
@@ -196,7 +209,7 @@ const StudiesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
-                        axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/reports', {
+                        axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]) + '/reports', {
                             "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
                             alert('스터디 글신고 성공')
@@ -220,7 +233,7 @@ const StudiesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports2" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
-                        axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + '/comments/' + $('#studiesList_commentId').val() + '/reports', {
+                        axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]) + '/comments/' + $('#studiesList_commentId').val() + '/reports', {
                             "reportContent": $('input[name="reports2"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
                             alert('스터디 댓글신고 성공')
@@ -243,24 +256,27 @@ const StudiesList = () => {
                     <div id='body_flex'>
                     </div>
                     <div id="studiesList_list"></div>
+                    {/* <StudiesListElements list={studieslist}/> */}
                     <div id='studiesList_commentsAdd'>
                         <input id="studiesList_commnetsAddInput" placeholder='댓글을 입력해주세요'/>
                         <button className='button' style={{ width: 'auto', margin: '0px 25px 0px 0px', fontSize: '16px', display: 'flex', float: 'right', }} onClick={()=>{
                             if ($('#studiesList_commnetsAddInput').val() === '') {
                                 alert('빈 칸은 안됩니다'); return;
                             }
-                            axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]) + "/comments", {
+                            axios.post('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]) + "/comments", {
                                 "commentClass": 0,
                                 "commentContent": $('#studiesList_commnetsAddInput').val(),
                                 "commentParentId": 0,
                             }, localStorage.getItem('token'),).then((response)=>{
-                                navigate('/studies/' + parseInt(current.split("/")[4]))
+                                navigate('/')
+                                navigate('/studies/' + parseInt(current.split("/")[6]))
                             }).catch((error) => { 
                                 alert('스터디 댓글추가 실패')
                             })
                         }}>등록</button>
                     </div>
                     <div id="studiesList_comments"></div>
+                    {/* <StudiesListElements list={studieslistcomments}/> */}
                 </div>
             </div>
             <div style={{ width: '100%', height: '70px', }}></div>

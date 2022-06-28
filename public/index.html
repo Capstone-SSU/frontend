@@ -29,8 +29,20 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
-      function OtherProfileF(userId) {
-        location.href = '/otherprofile/' + userId
+      function LogoutF() {
+          $.ajax({
+          type: "GET",
+          url: "http://54.180.150.167:8080/logout",
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+          },
+          success: (response)=>{
+            localStorage.removeItem('token')
+            $('#header_login').val('')
+            location.replace("/pickit/")
+          },
+          error: ()=>{ alert('로그아웃 실패') },
+        })
       }
 
 
@@ -42,7 +54,7 @@
           beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
           },
-          success: (response)=>{console.log(response)},
+          success: (response)=>{},
           error: ()=>{ alert('프로필 공개 여부 수정 실패') },
         })
       }
@@ -113,78 +125,55 @@
         }
       }
       function myProfileF() {
-        console.log($('#myProfile_nicknameR').val())
-        console.log($('#myProfile_passwordR').val())
-        if ($('#myProfile_nicknameR').val() == '' || $('#myProfile_passwordR').val() == '') {
-          alert('중복확인을 체크해주세요'); return;
+        if ($('#myProfile_passwordInput').val() == '' && $('#myProfile_newpasswordInput').val() == '' && $('#myProfile_confirmpasswordInput').val() == '') {
+          if ($('#myProfile_nicknameR').val() == '') {
+            alert('중복확인을 체크해주세요'); return;
+          }
+          $.ajax({
+            type: "PATCH",
+            url: "http://54.180.150.167:8080/users/"+ $('#header_login').val(),
+            data: JSON.stringify({
+              "userNickname" : $('#myProfile_nicknameInput').val(),
+              "githubUrlName" : $('#myProfile_githubInput').val(),
+              "userProfileImg": $('#myProfile_profileinput').val(),
+              "password": $('#myProfile_passwordInput').val(),
+              "newPassword": $('#myProfile_newpasswordInput').val(),
+              "confirmPassword": $('#myProfile_confirmpasswordInput').val(),
+            }),
+            dataType : "json",
+            contentType: "application/json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+            },
+            success: (response)=>{ location.replace("/pickit/#/myprofile") },
+            error: (error)=>{ alert('사용자 수정 실패') },
+          })
+        } 
+        else {
+          if ($('#myProfile_nicknameR').val() == '' || $('#myProfile_passwordR').val() == '') {
+            alert('중복확인을 체크해주세요'); return;
+          }
+          
+          $.ajax({
+            type: "PATCH",
+            url: "http://54.180.150.167:8080/users/"+ $('#header_login').val(),
+            data: JSON.stringify({
+              "userNickname" : $('#myProfile_nicknameInput').val(),
+              "githubUrlName" : $('#myProfile_githubInput').val(),
+              "userProfileImg": $('#myProfile_profileinput').val(),
+              "password": $('#myProfile_passwordInput').val(),
+              "newPassword": $('#myProfile_newpasswordInput').val(),
+              "confirmPassword": $('#myProfile_confirmpasswordInput').val(),
+            }),
+            dataType : "json",
+            contentType: "application/json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
+            },
+            success: (response)=>{ location.replace("/pickit/#/myprofile") },
+            error: (error)=>{ alert('사용자 수정 실패') },
+          })
         }
-
-        console.log($('#header_login').val())
-        console.log($('#myProfile_nicknameInput').val())
-        console.log($('#myProfile_githubInput').val())
-        console.log($('#myProfile_passwordInput').val())
-        console.log($('#myProfile_newpasswordInput').val())
-        console.log($('#myProfile_confirmpasswordInput').val())
-        
-        $.ajax({
-          type: "PATCH",
-          url: "http://54.180.150.167:8080/users/"+ $('#header_login').val(),
-          data: JSON.stringify({
-            "userNickname" : $('#myProfile_nicknameInput').val(),
-            "githubUrlName" : $('#myProfile_githubInput').val(),
-            "userProfileImg": "",
-            "password": $('#myProfile_passwordInput').val(),
-            "newPassword": $('#myProfile_newpasswordInput').val(),
-            "confirmPassword": $('#myProfile_confirmpasswordInput').val(),
-          }),
-          dataType : "json",
-          contentType: "application/json",
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-          },
-          success: (response)=>{ location.replace("/myprofile") },
-          error: (error)=>{ alert('사용자 수정 실패') },
-        })
-      }
-
-
-
-      function masterUF(id) {
-        $.ajax({
-          type: "PATCH",
-          url: "http://54.180.150.167:8080/lectures/"+ id,
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-          },
-          success: ()=>{ location.replace("/lectures/" + id) },
-          error: ()=>{ alert('강의 수정 실패') },
-        })
-      }
-      function masterDF(id) {
-        $.ajax({
-          type: "DELETE",
-          url: "http://54.180.150.167:8080/lectures/"+ id,
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-          },
-          success: ()=>{ location.replace("/lectures/" + id) },
-          error: ()=>{ alert('강의 삭제 실패') },
-        })
-      }
-
-      function StudiesListMoF(userId, studyId) {
-        if (localStorage.getItem('token')) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-        }
-        $.ajax({
-          type: "PATCH",
-          url: "http://54.180.150.167:8080/users/"+ userId + "/studies/" + studyId,
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-          },
-          success: ()=>{ location.replace("/studies/" + studyId) },
-          error: ()=>{ alert('스터디 모집수정 실패') },
-        })
       }
 
 
@@ -216,7 +205,7 @@
           beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
           },
-          success: ()=>{ location.replace("/studies/" + studyId) },
+          success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/studies/" + studyId); },
           error: ()=>{ alert('스터디 대댓글추가 실패') },
         })
       }
@@ -250,7 +239,7 @@
           beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
           },
-          success: ()=>{ location.replace("/studies/" + studyId) },
+          success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/studies/" + studyId); },
           error: ()=>{ alert('스터디 댓글수정 실패') },
         })
       }
@@ -264,7 +253,7 @@
           beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
           },
-          success: ()=>{ location.replace("/studies/" + studyId) },
+          success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/studies/" + studyId); },
           error: ()=>{ alert('스터디 댓글삭제 실패') },
         })
       }
@@ -278,8 +267,9 @@
 
 
 
-      function ReviewUpdateF(lecturesId, reviewsId, navigate) {
-        location.href = '/lecturesReviewUpdate/' + lecturesId + "/" + reviewsId
+      //강의리뷰 댓글
+      function ReviewUpdateF(lecturesId, reviewsId) {
+        location.href = '/pickit/#/lecturesReviewUpdate/' + lecturesId + "/" + reviewsId
       }
       function ReviewDeleteF(lecturesId, reviewId) {
         if (localStorage.getItem('token')) {
@@ -291,7 +281,7 @@
           beforeSend: function (xhr) {
               xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
           },
-          success: ()=>{ location.replace("/lectures/" + lecturesId) },
+          success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/lectures/" + lecturesId); },
           error: ()=>{ alert('강의평 삭제 실패') },
         })
       }
@@ -302,12 +292,12 @@
 
 
 
-      function RoadmapsUpdateAddF(id, title, hashTags) {
+      function RoadmapsUpdateAddF(id, title, hashTags, image) {
         var roadmaps = ''
         roadmaps +=
         "<div id='roadmapsUpdate_individe1'>" +
             "<div id='roadmapsUpdate_box1'>" +
-              "<div id='roadmapsUpdate_picture'></div>" +
+              "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + image + "'/></div>" +
               "<div id='roadmapsUpdate_box2'>" + 
                 "<div id='roadmapsUpdate_hashtagBox'>"
 
@@ -325,9 +315,9 @@
 
         roadmaps = 
         "<div id='" + id + "'>" +
-        "<div id='roadmapsUpdate_individe3' onClick='RoadmapsUpdateRemoveF(" + id + ",\"" + title + "\",\"" + hashTags + "\");'>" +
+        "<div id='roadmapsUpdate_individe3' onClick='RoadmapsUpdateRemoveF(" + id + ",\"" + title + "\",\"" + hashTags + "\",\"" + image + "\");'>" +
           "<div id='roadmapsUpdate_box1'>" +
-            "<div id='roadmapsUpdate_picture'></div>" +
+            "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + image + "'/></div>" +
             "<div id='roadmapsUpdate_box2'>" + 
               "<div id='roadmapsUpdate_hashtagBox'>"
 
@@ -346,16 +336,15 @@
 
         var lecturesId = $('#roadmapsUpdate_lecturesId').val()
         lecturesId[lecturesId.length] = id
-        console.log($('#roadmapsUpdate_lecturesId').val())    
       }
-      function RoadmapsUpdateRemoveF(id, title, hashTags) {
+      function RoadmapsUpdateRemoveF(id, title, hashTags, image) {
         $('#' + id).remove()
 
         var roadmaps = ''
         roadmaps +=
-        "<div id='roadmapsUpdate_individe' onClick='RoadmapsUpdateAddF(" + id + ",\"" + title +"\",\"" + hashTags +"\");'>" +
+        "<div id='roadmapsUpdate_individe' onClick='RoadmapsUpdateAddF(" + id + ",\"" + title +"\",\"" + hashTags +"\",\"" + image + "\");'>" +
             "<div id='roadmapsUpdate_box1'>" +
-              "<div id='roadmapsUpdate_picture'></div>" +
+              "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + image + "'/></div>" +
               "<div id='roadmapsUpdate_box2'>" + 
                 "<div id='roadmapsUpdate_hashtagBox'>"
 

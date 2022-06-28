@@ -26,7 +26,7 @@
     font-size: 18px;
     font-weight: bolder;
   }
-#lectures_individeA {
+#lectures_individe {
     width: 20%;
     height: 215px;
     margin: 10px;
@@ -47,6 +47,7 @@
 
     border-radius: 10px 10px 0px 0px;
     background-color: rgb(219, 219, 219);
+    /* background-color: red; */
 }
 #lectures_imageBox {
     width: 10.5%;
@@ -58,10 +59,11 @@
     float: right;
 
     position: absolute;
-    z-index: 998;
+    z-index: 997;
 }
 #lectures_likeBox {
     width: 100%;
+    z-index: 997;
 }
 #lectures_title {
     width: 90%;
@@ -69,7 +71,10 @@
     /* margin: 0px 10px; */
 
     text-align: left;
-    display: inline-block;
+
+    /* overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap; */
 
     overflow: hidden;
     text-overflow: ellipsis;

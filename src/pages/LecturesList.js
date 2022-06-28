@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import '../pages_css/LecturesList.css';
+import LecturesListElements from './LecturesListElements';
+
 import tempImg from '../mainCoding.png';
 import like from '../like.png';
 import likeFill from '../likeFill.png';
 
 import axios from 'axios';
 import $ from 'jquery';
+import LecturesElements from "./LecturesElements";
 window.$ = $;
 
 //남색 부분 디자인
 function LecturesListF(list) {
-    console.log(list)
     var lectures = ''
     lectures +=
     "<div id='lecturesList_boxA'>" +
     "<div id='lecturesList_boxAA'>" +
-    ($('#header_login').val() == 3 ? "<div id='lecturesList_masterButtonUD'><button class='lecturesList_master' onClick='masterUF(" + list.lectureId + ")'>수정</button>": "") +
-    ($('#header_login').val() == 3 ? "<button class='lecturesList_master' onClick='masterDF(" + list.lectureId + ")'>삭제</button></div>": "") +
     "<div id='body_flex'>" +
         "<div id='lecturesList_boxB'><img id='lecturesList_img' src='" + list.thumbnailUrl + "'/></div>" +
         "<div id='lecturesList_boxC'>" + 
@@ -40,7 +40,7 @@ function LecturesListF(list) {
                     lectures += "<div id='lecturesList_hashtag2'>#" + list.hashtags[s] + "</div>"
             lectures += 
             "</div><div id='lecturesList_like2'>" + list.likeCnt + "</div><div id='lecturesList_like'>" +
-            ( list.likeStatus? "<img id='lecturesList_imgLike1' src='" + likeFill + "'/>" : "<img id='lecturesList_imgLike2' src='" + like + "'/>" ) +
+            ( list.likeStatus? "<img id='lecturesList_imgLike' src='" + likeFill + "'/>" : "<img id='lecturesList_imgLike' src='" + like + "'/>" ) +
             "</div>" +
 
         "</div>" +
@@ -53,7 +53,6 @@ function LecturesListF(list) {
 //흰색 부분 디자인
 var n5 = 0; var n4 = 0; var n3 = 0; var n2 = 0; var n1 = 0;
 function LecturesList2F(list, lecturesId, navigate) {
-    console.log(list)
     var lectures = ''
     lectures += 
     "<div id='lecturesList_boxA'>"
@@ -129,17 +128,20 @@ function LecturesList5F(list) {
 }
 
 const LecturesList = () => {
+    const [lecturesListComments, setLecturesListComments] = useState([]);
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
+    
     useEffect(() => {
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
         }
-        axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
+        axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), {
         }, localStorage.getItem('token'),).then((response)=>{
             document.getElementById('lecturesList_list').innerHTML = LecturesListF(response.data.data)
-            document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews, parseInt(current.split("/")[4]), navigate)
+            document.getElementById('lecturesList_comments').innerHTML = LecturesList2F(response.data.data.reviews, parseInt(current.split("/")[6]), navigate)
+            setLecturesListComments(response.data.data.reviews)
             document.getElementById('lecturesList_box4').innerHTML = LecturesList3F(response.data.data.avgRate, response.data.data.reviewCnt)
             document.getElementById('lecturesList_box5').innerHTML = LecturesList4F(response.data.data.reviews)
             var starList = LecturesList5F(response.data.data.reviews)
@@ -151,41 +153,34 @@ const LecturesList = () => {
             $('#n2').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[3] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[3]) +'%)')
             $('#n1').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[4] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[4]) +'%)')
 
-            // if (response.data.data.reviews) {
-            //     document.getElementById('lecturesList_imgLike2').onclick = function () {
-            //         axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]) + '/likes', {
-            //         }, localStorage.getItem('token'),).then(()=>{
-            //             navigate('/lectures/' + parseInt(current.split("/")[4]))
-            //         }).catch((error) => { 
-            //             $('.lecturesList_modal1').show()
-            //         })
-            //     }
-            // }
-            if (!response.data.data.likeStatus) {
-                document.getElementById('lecturesList_imgLike2').onclick = function () {
-                    axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]) + '/likes', {
-                    }, localStorage.getItem('token'),).then(()=>{
-                        navigate('/lectures/' + parseInt(current.split("/")[4]))
-                    }).catch((error) => { 
-                        $('.lecturesList_modal1').show()
-                    })
-                }
+            document.getElementById('lecturesList_imgLike').onclick = function () {
+                axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]) + '/likes', {
+                }, localStorage.getItem('token'),).then((response)=>{
+                    navigate('/')
+                    navigate('/lectures/' + parseInt(current.split("/")[6]))
+                }).catch((error) => { 
+                    alert('로그아웃 실패')
+                })
             }
 
         }).catch((error) => {
             if ($('#header_login').val() === '') {
                 alert('로그인 해주세요')
                 navigate('/lectures')
-            } else {
+            } else if (error == 'Error: Request failed with status code 403'){
                 $('.lecturesList_modal1').show()
+            } else {
+                alert('오류가 났습니다')
+                navigate('/lectures')
             }
         })
-    });
+    }, []);
+
 
     $('#reports1').prop("checked", true);
     return (
         <div id="body_main">
-            <div id="body_center_top"></div>
+            {$('#header_login').val() != 3 ? <div id="body_center_top"></div> : <div style={{ height: '35px', }}></div> }
             <div class="lecturesList_modal2">
                 <div id='lecturesList_reviewId'></div>
                 <div style={{ width: '100%', height: '70px', lineHeight: '70px', fontSize: '25px', fontWeight: '600', }}>신고 사유 선택</div>
@@ -195,6 +190,7 @@ const LecturesList = () => {
                 <div class="studiesList_reportsRadio"><input type="radio" name="reports" id="reports4" value="욕설 및 비하" /> 욕설 및 비하</div>
                 <div style={{ height: '70px', lineHeight: '60px', }}>
                     <button class="modal_body studiesList_reportsButton" onClick={() => {
+                        console.log('http://54.180.150.167:8080/reviews/' + $('#lecturesList_reviewId').val() + '/reports')
                         axios.post('http://54.180.150.167:8080/reviews/' + $('#lecturesList_reviewId').val() + '/reports', {
                             "reportContent": $('input[name="reports"]:checked').val()
                         }, localStorage.getItem('token'),).then(()=>{
@@ -220,7 +216,7 @@ const LecturesList = () => {
                     남겨주세요!
                 </div>
                 <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => {
-                    navigate('/lecturesReviewAdd/' + parseInt(current.split("/")[4]))
+                    navigate('/lecturesReviewAdd/' + parseInt(current.split("/")[6]))
                     $('.lecturesList_modal1').hide()
                 }}>확인</button>
                 <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => {
@@ -230,6 +226,20 @@ const LecturesList = () => {
             </div>
 
             <div style={{ width: '100%', height: '70px', }}></div>
+            <div id='lecturesList_masterButtonUD'>
+                {$('#header_login').val() == 3 ? <button class='lecturesList_master' onClick={() => {
+                    axios.patch('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), {
+                    }, localStorage.getItem('token'),).then((response)=>{
+                        navigate("/lectures/" + parseInt(current.split("/")[6]))
+                    }).catch((error) => { alert('강의 수정 실패') })
+                }}>수정</button>: <></>}
+                {$('#header_login').val() == 3 ? <button class='lecturesList_master' onClick={() => {
+                    axios.delete('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), {
+                    }, localStorage.getItem('token'),).then((response)=>{
+                        navigate("/lectures/" + parseInt(current.split("/")[6]))
+                    }).catch((error) => { alert('강의 삭제 실패') })
+                }}>삭제</button> : <></>}
+            </div>
             <div id="lecturesList_list" style={{ width: '100%', height: 'auto', padding: '30px 0px', color: 'white', backgroundColor: '#17173D' }}></div>
 
             <div id='lecturesList_boxA'>
@@ -242,11 +252,12 @@ const LecturesList = () => {
 
             <div id='lecturesList_boxA'>
                 <button onClick={() => {
-                    navigate('/lecturesReviewAdd/' + parseInt(current.split("/")[4]))
+                    navigate('/lecturesReviewAdd/' + parseInt(current.split("/")[6]))
                 }} style={{ margin: '20px 0px 0px 0px', float: 'right', fontSize: '18px', fontWeight: '600', color: 'white', borderRadius: '10px', background: '#17173D', }}>리뷰등록</button>
             </div>
             
             <div id="lecturesList_comments"></div>
+            {/* <LecturesListElements listcomments={lecturesListComments}/> */}
             {/* <div style={{ width: '100%', height: '70px', }}></div> */}
         </div>
     );

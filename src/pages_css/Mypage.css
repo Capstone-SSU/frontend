@@ -5,8 +5,9 @@
 
 .left_menu_box {
     width:100%;
-    min-width: 125px;
-    height: 100vh;
+    margin: 100px 0px 0px 0px;
+    min-width: 200px;
+    /* height: 100vh; */
     background-color: #17173d;
 }
 
@@ -25,6 +26,7 @@
 
 .smallMenu {
     font-size:18px;
+    text-align: center;
     color:#c4c4c4;
     font-weight: 900;
     cursor: pointer;

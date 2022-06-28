@@ -11,6 +11,7 @@ import $ from 'jquery';
 window.$ = $;
 
 const Signin = () => {
+  localStorage.removeItem('token')
   return (
     
     <div style={{ width:'100%', height: '900px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', }}>
@@ -32,6 +33,7 @@ const LoginForm = () => {
   return (
     <div>
       <div className='signin_emailPassword'>
+        {/* <button onClick={() => { localStorage.removeItem('token') }}>remove</button> */}
         <div>이메일 주소</div> {/*input_label*/}
         <input type='text' id="signin_email" placeholder='abc123@abc123.com'/> {/*input_form*/}
       </div>
@@ -44,7 +46,7 @@ const LoginForm = () => {
           email: $('#signin_email').val(),
           password: $('#signin_password').val(),
         }).then((response)=>{
-          localStorage.setItem('token', response.data.data.jwtToken)
+          localStorage.setItem('token', response.data.data.accessToken)
           if (response.data.message === "로그인 성공") {
             navigate("/");
             window.location.reload();

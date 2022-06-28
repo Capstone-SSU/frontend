@@ -142,6 +142,10 @@ textarea#roadmapsUpdate_mainDescriptionInput { min-height: 150px; }
 
     background-color: gray;
 }
+#roadmapsUpdate_picture2 {
+    width: 200px;
+    height: 180px;
+}
 #roadmapsUpdate_hashtagBox {
     width: auto;
     height: 40px;

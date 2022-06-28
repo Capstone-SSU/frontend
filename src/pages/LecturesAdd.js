@@ -88,7 +88,7 @@ const LecturesAdd = () => {
             if (!linkR) {
               alert('링크확인을 체크해주세요'); return;
             }
-            // axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
+            // axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[5]), {
             //   "comment": $('#lecturesAdd_descriptionInput').val(),
             //   "commentTitle": $('#lecturesAdd_titleInput').val(),
             //   "hashtags": [
@@ -105,7 +105,6 @@ const LecturesAdd = () => {
             // }, localStorage.getItem('token'),).then((response)=>{
                 
             // }).catch((error) => {
-            //     console.log(error)
             //     alert('강의평 글추가 실패')
             //     navigate('/lectures')
             // })

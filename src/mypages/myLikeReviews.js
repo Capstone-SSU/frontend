@@ -1,5 +1,6 @@
 import React from "react";
 import Mypage from '../pages/Mypage';
+import { useNavigate } from "react-router-dom";
 import '../mypages_css/myLikeReviews.css';
 
 import axios from "axios";
@@ -7,16 +8,16 @@ import $ from 'jquery';
 window.$ = $;
 
 export function MyProfileContentF(list) {
-    console.log(list)
     var mypage =
     "<div id='myLikeReviews_boxA'>" +
     "<div id='body_flex'>" +
         "<div id='myProfile_first'>좋아요" + "</div>" +
-        "<div id='myProfile_second'>강의리뷰" + "</div>" +
+        "<div id='myProfile_second'>강의" + "</div>" +
     "</div>"
 
     for (var i = 0; i < list.length; i++) {
         mypage +=
+        "<a href='/pickit/#/lectures/" + list[i].lectureId + "'>" +
         "<div id='myLikeReviews_boxB'>" +
             "<div id='body_flex'>" +
                 "<div>" +
@@ -25,7 +26,7 @@ export function MyProfileContentF(list) {
                         '<div id="body_flex"><fieldset id="myLikeReviews">'
                 
                             for (var s = 0; s < Math.round(list[i].avgRate); s++)
-                                mypage += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label for="rate' + s + '">⭐</label>'
+                                mypage += '<input type="radio" name="" value="' + s + '" id="rate' + s + '" /><label for="rate' + s + '">⭐</label>'
                             for (var s = Math.round(list[i].avgRate); s < 5; s++)
                                 mypage += '<input type="radio" name="reviewStar" value="' + s + '" id="rate' + s + '" /><label class="reviewStar" for="rate1">⭐</label>'
                         
@@ -46,7 +47,8 @@ export function MyProfileContentF(list) {
                     "</div>" +
                 "</div>" +
             "</div>" +
-        "</div>"
+        "</div>" +
+        "</a>"
     }
 
     mypage +=
@@ -56,11 +58,14 @@ export function MyProfileContentF(list) {
 }
 
 const MyLikeReviews = () => {
-    axios.get('http://54.180.150.167:8080/users/' + $('#header_login').val() + '/liked-lectures', {
-    }, localStorage.getItem('token')).then((response) => {
-        console.log(response)
-        document.getElementById('myLikeReviews_main').innerHTML = MyProfileContentF(response.data.data)
-    }).catch();
+    var navigate = useNavigate();
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
+    }, localStorage.getItem('token')).then((response2) => {
+        axios.get('http://54.180.150.167:8080/users/' + response2.data.data.userId + '/liked-lectures', {
+        }, localStorage.getItem('token')).then((response) => {
+            document.getElementById('myLikeReviews_main').innerHTML = MyProfileContentF(response.data.data)
+        }).catch();
+    }).catch(()=>{navigate('/signin/');});
 
   return (
     <>

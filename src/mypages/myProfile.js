@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, Link } from 'react-router-dom';
 import Mypage from '../pages/Mypage';
 import '../mypages_css/myProfile.css';
 
@@ -14,8 +15,10 @@ function MyProfileContentF(list) {
     "<div id='myProfile_boxA'>" +
         "<div id='myProfile_boxB'>" +
             "<div id='myProfile_profile'>" + "프로필" + "</div>" +
-            "<div id='myProfile_image'><img src='" + list.userProfileImg + "'/></div>" +
-            "<div>" + "프로필 사진" + "</div>" +
+            "<div id='myProfile_image'><img id='myProfile_image' src='" + list.userProfileImg + "'/></div>" +
+            // "<div  onClick='myProfileImageF()'>" + "프로필 사진" + "</div>" +
+            "<div id='myProfile_profile2'><input type='file' id='myProfile_profileinput'/></div>" +
+            "<button id='logout' onClick='LogoutF()'>로그아웃</button>" +
         "</div>" +
         "<div id='myProfile_boxC'>" +
             "<div id='myProfile_profileButton'>" +
@@ -46,31 +49,31 @@ function MyProfileContentF(list) {
 }
 
 const MyProfile = () => {
-
+    const navigate = useNavigate();
     axios.get('http://54.180.150.167:8080/temp-login-success', {
-    }, localStorage.getItem('token')).then((response) => {
-        $('#header_login').val(response.data.data.userId)
-        axios.get('http://54.180.150.167:8080/users/' + response.data.data.userId, {
-        }, localStorage.getItem('token')).then((response2) => {
-        console.log(response2)
-        document.getElementById('myProfile_main').innerHTML = MyProfileContentF(response2.data.data)
+    }, localStorage.getItem('token')).then((response2) => {
+        axios.get('http://54.180.150.167:8080/users/' + response2.data.data.userId, {
+        }, localStorage.getItem('token')).then((response) => {
+            document.getElementById('myProfile_main').innerHTML = MyProfileContentF(response.data.data)
+            if (response.data.data.publicProfileStatus == true) {
+                $("input:checkbox[id='studies_togetherTrue']").prop('checked', true);
+            }
         }).catch();
-    }).catch();
+    }).catch(()=>{alert('오류가 발생했습니다.'); navigate('/signin');});
 
     return (
-        <>
-            <div id='body_flex' style={{ minWidth: '1176px', background: '#17173D' }}>
-                <Mypage/>
-                <div id='myProfile_nickname' style={{display: 'none'}}></div>
-                <div id='myProfile_nicknameR' style={{display: 'none'}}></div>
-                <div id='myProfile_passwordR' style={{display: 'none'}}></div>
-                <div id='myProfile_body2'>
-                    <div id='myProfile_top'></div>
-                    <div id="myProfile_main"></div>
-                </div>
+        
+        <div id='body_flex' style={{ minWidth: '1176px', background: '#17173D' }}>
+            <Mypage/>
+            <div id='myProfile_nickname' style={{display: 'none'}}></div>
+            <div id='myProfile_nicknameR' style={{display: 'none'}}></div>
+            <div id='myProfile_passwordR' style={{display: 'none'}}></div>
+            <div id='myProfile_body2'>
+                <div id='myProfile_top'></div>
+                <div id="myProfile_main"></div>
             </div>
-            <div id='header_login'></div>
-        </>
+        </div>
+        
     );
 }
 

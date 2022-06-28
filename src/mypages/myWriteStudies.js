@@ -1,5 +1,6 @@
 import React from "react";
 import Mypage from '../pages/Mypage';
+import { useNavigate } from "react-router-dom";
 import '../mypages_css/myWriteStudies.css';
 
 import axios from "axios";
@@ -7,7 +8,6 @@ import $ from 'jquery';
 window.$ = $;
 
 export function MyProfileContentF(list) {
-    console.log(list)
     var mypage =
     "<div id='myLikeReviews_boxA'>" +
         "<div id='body_flex'>" +
@@ -16,21 +16,23 @@ export function MyProfileContentF(list) {
         "</div>"
 
     for (var i = 0; i < list.length; i++) {
-        mypage +=
-        "<div id='studies_individe'>" +
-            "<div class='studies_individeBox'>" +
-                "<img id='studies_profill' src='" + list[i].profileImage + "'/>" +
-                "<div id='studies_title'>" + list[i].studyLocation + "</div>" +
-            "</div>" +
-            "<div class='studies_individeBox'>" +
-                "<div id='body_height'></div>" + 
-                "<div id='studies_together'>" + list[i].studyRecruitState + "</div>" + 
-                "<div id='studies_location'>" + list[i].studyCategoryName + "</div>" +
-                "<div id='studies_hashtag'>" + list[i].studyTitle + "</div>" +
-                // "<div id='studies_date'>" + list[i].studyCreatedDate.slice(0, 10) + "</div>" +
-                "<div id='studies_date'>" + list[i].nickname + "</div>" +
-            "</div>" +
-        "</div><hr/>"
+    mypage +=
+    "<a href='/pickit/#/studies/" + list[i].studyPostId + "'>" +
+    "<div id='studies_individe'>" +
+        "<div class='studies_individeBox'>" +
+            "<img id='studies_profill' src='" + list[i].profileImage + "'/>" +
+            "<div id='studies_title'>" + list[i].studyLocation + "</div>" +
+        "</div>" +
+        "<div class='studies_individeBox'>" +
+            "<div id='body_height'></div>" + 
+            "<div id='studies_together'>" + list[i].studyRecruitStatus + "</div>" + 
+            "<div id='studies_location'>" + list[i].studyCategoryName + "</div>" +
+            "<div id='studies_hashtag'>" + list[i].studyTitle + "</div>" +
+            "<div id='studies_date'>" + list[i].studyCreatedDate.slice(0, 10) + "</div>" +
+            "<div id='studies_date'>" + list[i].writerNickname + "</div>" +
+        "</div>" +
+    "</div>" +
+    "</a>"
     }
 
     mypage +=
@@ -40,12 +42,14 @@ export function MyProfileContentF(list) {
 }
 
 const MyWriteStudies = () => {
-
-    axios.get('http://54.180.150.167:8080/users/' + $('#header_login').val() + '/studies', {
-    }, localStorage.getItem('token')).then((response) => {
-        console.log(response)
-        document.getElementById('myWriteStudies_main').innerHTML = MyProfileContentF(response.data.data)
-    }).catch();
+    var navigate = useNavigate();
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
+    }, localStorage.getItem('token')).then((response2) => {
+        axios.get('http://54.180.150.167:8080/users/' + response2.data.data.userId + '/studies', {
+        }, localStorage.getItem('token')).then((response) => {
+            document.getElementById('myWriteStudies_main').innerHTML = MyProfileContentF(response.data.data)
+        }).catch();
+    }).catch(()=>{alert('오류가 발생했습니다.'); navigate('/signin');});
 
   return (
     <>

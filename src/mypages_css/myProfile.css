@@ -32,10 +32,24 @@
     width: 20%;
     text-align: center;
 }
+#logout {
+    font-size: 14px;
+    background-color: white;
+}
 #myProfile_profile {
     margin: 20px 0px;
     font-size: 23px;
     font-weight: 700;
+}
+#myProfile_profile2 {
+    width: 180px;
+    margin:0 auto;
+    padding: 10px 0px;
+}
+#myProfile_profileinput {
+    border:0; 
+    padding-top:2; 
+    text-align:center;
 }
 #myProfile_image {
     width: 100px;

@@ -1,5 +1,6 @@
 import React from "react";
 import Mypage from '../pages/Mypage';
+import { useNavigate } from "react-router-dom";
 import '../mypages_css/myLikeRoadmaps.css';
 
 import axios from "axios";
@@ -16,9 +17,12 @@ export function MyProfileContentF(list) {
 
     for (var i = 0; i < list.length; i++) {
         mypage +=
+        "<a href='/pickit/#/roadmaps/" + list[i].roadmapId + "'>" +
         "<div id='myLikeRoadmaps_boxB'>" +
             "<div id='body_flex' >" +
-                "<div id='myLikeRoadmaps_title'>" + list[i].roadmapTitle + "<div id='roadmaps_company'>" + list[i].roadmapWriterCompany + "</div></div>" +
+                "<div id='myLikeRoadmaps_title'>" + list[i].roadmapTitle + 
+                    (list[i].roadmapWriterCompany != null ? "<div id='roadmaps_company'>" + list[i].roadmapWriterCompany + "</div>" : "") + 
+                "</div>" +
             "</div>" +
             "<div id='body_height'></div>" + 
             "<div id='myLikeRoadmaps_Box1' >"
@@ -35,7 +39,8 @@ export function MyProfileContentF(list) {
             "<div id='roadmaps_date'>" + list[i].roadmapCreatedDate.slice(0, 10)  + "</div>" +
             // '<div id="studies_like"><img id="studies_like1" src="' + like + '"/>' + list[i].roadmapLikeCount + '</div>' +
             // "</div>" +
-        "</div><hr/>"
+        "</div>" +
+        "</a>"
     }
 
     mypage +=
@@ -45,12 +50,14 @@ export function MyProfileContentF(list) {
 }
 
 const MyLikeRoadmaps = () => {
-
-    axios.get('http://54.180.150.167:8080/users/' + $('#header_login').val() + '/liked-roadmaps', {
-    }, localStorage.getItem('token')).then((response) => {
-        console.log(response)
-        document.getElementById('myLikeRoadmaps_main').innerHTML = MyProfileContentF(response.data.data)
-    }).catch();
+    var navigate = useNavigate();
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
+    }, localStorage.getItem('token')).then((response2) => {
+        axios.get('http://54.180.150.167:8080/users/' + response2.data.data.userId + '/liked-roadmaps', {
+        }, localStorage.getItem('token')).then((response) => {
+            document.getElementById('myLikeRoadmaps_main').innerHTML = MyProfileContentF(response.data.data)
+        }).catch();
+    }).catch(()=>{navigate('/signin/');});
 
     return (
         <>

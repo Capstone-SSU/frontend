@@ -20,6 +20,7 @@
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    text-align: left;
 
     font-size: 22px;
     font-weight: 700;
@@ -32,7 +33,56 @@
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    text-align: left;
 
     font-size: 18px;
     font-weight: 400;
+}
+
+
+
+#myLikeReviews_boxAA {
+    width: 150px;
+    height: 30px;
+    margin: 50px 0px 0px 0px;
+    padding: 8px 0px 0px 0px;
+
+    text-align: center;
+    border-radius: 50px;
+
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    background-color: #17173D;
+}
+#myLikeReviews_boxAAA {
+    width: 150px;
+    height: 30px;
+    margin: 40px 0px 0px 0px;
+    padding: 8px 0px 0px 0px;
+
+    text-align: center;
+    border-radius: 50px;
+
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    background-color: #9765FF;
+}
+#myWriteLectures_box {
+    height: 45px;
+    line-height: 45px;
+    padding: 20px;
+    margin: 30px 0px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size: 22px;
+    font-weight: 650;
+
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px gray;
+    background-color: white;
 }

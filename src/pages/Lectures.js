@@ -1,8 +1,11 @@
-import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import ReactDOM from 'react-dom';
+import { Link, useNavigate, Router } from 'react-router-dom';
 import '../pages_css/Lectures.css';
-import tempImg from '../mainCoding.png';
+import LecturesElements from './LecturesElements';
+import LecturesRElements from "./LecturesRElements";
 
+import tempImg from '../mainCoding.png';
 import write from '../write.png';
 import search from '../search.png';
 import like from '../like.png';
@@ -11,6 +14,9 @@ import likeFill from '../likeFill.png';
 import axios from 'axios';
 import $ from 'jquery';
 window.$ = $;
+
+var list1 = []; var list2 = []; var list3 = []; var list4 = []; var list5 = [];
+var listR1 = []; var listR2 = []; var listR3 = []; var listR4 = []; var listR5 = [];
 
 function NumberF(list, box) {
   var numbers = ''
@@ -24,39 +30,10 @@ function NumberF(list, box) {
 }
 
 function LecturesF(list, page) {
-  var lectures = ''; var length = list.length;
+  var length = list.length;
   document.getElementById('studies_Box').innerHTML = NumberF(list, $('#studies_Box').val())
+  document.getElementById('lectures_count').innerHTML = "강의 총 " + length + "개";
 
-  for (var j = (page-1)*20; j < page*20; j++) {
-    if (list.length === j) break;
-    if (j % 5 === 0) lectures += "<div id='body_flex'>"
-    lectures +=
-    "<a  id='lectures_individeA' href='/lectures/" + list[j].lectureId + "'>" +
-      "<div id='lectures_individe'>" +
-        "<div id='lectures_imageBox'>" +
-          "<div id='lectures_likeBox'></div>" +
-          "<img class='lectures_img' src='" + like + "'/>" +
-          "<div class='lectures_img'>" + list[j].likeCnt + "</div>" +
-        "</div>" +
-        "<img id='lectures_box' src='" + list[j].thumbnailUrl + "'/>" +
-        "<div id='lectures_title'>" + list[j].lectureTitle + "</div><div id='body_flex' class='lectures_starsBox'><div class='lectures_avgRate'>"
-
-        for (var s = 0; s < Math.round(list[j].avgRate); s++)
-          lectures += '⭐'
-        lectures += '</div><div id="grayStars" class="lectures_avgRate">'
-        for (var s = Math.round(list[j].avgRate); s < 5; s++)
-          lectures += '⭐'
-        
-        lectures += 
-        '</div><div class="lectures_avgRate">(' + Math.ceil(list[j].avgRate*10)/10 + ')</div></div></form>' +
-      "</div>" +
-    "</a>"
-    if (length === j+1) { lectures += "</div>"; break;  }
-    if (j % 5 === 4) lectures += "</div>"
-  }
-
-  document.getElementById('lectures_count').innerHTML = "강의평 총 " + length + "개";
-  return lectures;
 }
 
 function HashTagsF(list) {
@@ -75,7 +52,7 @@ function HashTagsF(list) {
   return hashtags
 }
 
-function SearchF() {
+function SearchF(setLectures1, setLectures2, setLectures3, setLectures4, setLectures5) {
   var length = document.getElementsByName('hashtag').length
   var link = ''
   if ($('#studies_searchSearch').val() != '') {
@@ -103,7 +80,6 @@ function SearchF() {
   $('#lectures_hashtagSelection2').hide()
   
   $('#lectures_searchLinkCenter').val(link)
-  console.log($('#lectures_searchLinkCenter').val())
   axios.get('http://54.180.150.167:8080/lectures?' + $('#lectures_searchLinkCenter').val(), {
 
   }).then((response)=>{
@@ -111,8 +87,19 @@ function SearchF() {
       alert('강의평이 없습니다.'); return;
     }
     $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/8));
-    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data,1)
-    document.getElementById('lectures_count').innerHTML = "강의평 총 " + response.data.data.length + "개"
+    for (var i = 0; i < response.data.data.length; i++) {
+      list1.push(response.data.data[i].lectureId);
+      list2.push(response.data.data[i].likeCnt);
+      list3.push(response.data.data[i].thumbnailUrl);
+      list4.push(response.data.data[i].lectureTitle);
+      list5.push(response.data.data[i].avgRate);
+    }
+
+    LecturesF(response.data.data, 1)
+    setLectures1(list1.reverse()); setLectures2(list2.reverse()); setLectures3(list3.reverse()); setLectures4(list4.reverse()); setLectures5(list5.reverse());
+    list1 = list1.slice(0,0); list2 = list2.slice(0,0); list3 = list3.slice(0,0); list4 = list4.slice(0,0); list5 = list5.slice(0,0);
+    document.getElementById('lectures_count').innerHTML = "강의 총 " + response.data.data.length + "개"
+    
   }).catch((error) => { 
     $(':checkbox:checked').prop('checked',false);
     $('.lectures_hashtag').remove();
@@ -120,7 +107,7 @@ function SearchF() {
     alert('강의평 조회 실패했습니다.'); 
   })
 }
-function Search2F() {
+function Search2F(setLectures1, setLectures2, setLectures3, setLectures4, setLectures5) {
   var length = document.getElementsByName('hashtag').length
   var link = '&'
   if ($('#studies_searchSearch').val() != '') {
@@ -153,7 +140,17 @@ function Search2F() {
     if (response.data.data === null) {
       alert('강의평이 없습니다.'); return;
     }
-    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, $('#studies_number').val())
+    for (var i = 0; i < response.data.data.length; i++) {
+      list1.push(response.data.data[i].lectureId);
+      list2.push(response.data.data[i].likeCnt);
+      list3.push(response.data.data[i].thumbnailUrl);
+      list4.push(response.data.data[i].lectureTitle);
+      list5.push(response.data.data[i].avgRate);
+    }
+
+    LecturesF(response.data.data, 1)
+    setLectures1(list1.reverse()); setLectures2(list2.reverse()); setLectures3(list3.reverse()); setLectures4(list4.reverse()); setLectures5(list5.reverse());
+    list1 = list1.slice(0,0); list2 = list2.slice(0,0); list3 = list3.slice(0,0); list4 = list4.slice(0,0); list5 = list5.slice(0,0);
   }).catch((error) => { 
     $(':checkbox:checked').prop('checked',false);
     $('.lectures_hashtag').remove();
@@ -162,30 +159,71 @@ function Search2F() {
   })
 }
 
-const Lectures = () => {
+function Lectures () {
+  const [lectures1, setLectures1] = useState([]); const [lectures2, setLectures2] = useState([]); const [lectures3, setLectures3] = useState([]); const [lectures4, setLectures4] = useState([]); const [lectures5, setLectures5] = useState([]);
+  const [lecturesR, setLecturesR] = useState([]);
+  const [lecturesRlist1, setLecturesRlist1] = useState([]); const [lecturesRlist2, setLecturesRlist2] = useState([]); const [lecturesRlist3, setLecturesRlist3] = useState([]); const [lecturesRlist4, setLecturesRlist4] = useState([]); const [lecturesRlist5, setLecturesRlist5] = useState([]);
+
   var navigate = useNavigate();
-  axios.get('http://54.180.150.167:8080/lectures', {
+  useEffect(() => {
+    axios.get('http://54.180.150.167:8080/lectures', {
+    }).then((response)=>{
+      if (response.data.data === null) {
+        alert('강의평이 없습니다.'); return;
+      }
+      $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/8));
+      for (var i = 0; i < response.data.data.length; i++) {
+        list1.push(response.data.data[i].lectureId);
+        list2.push(response.data.data[i].likeCnt);
+        list3.push(response.data.data[i].thumbnailUrl);
+        list4.push(response.data.data[i].lectureTitle);
+        list5.push(response.data.data[i].avgRate);
+      }
 
-  }).then((response)=>{
-    if (response.data.data === null) {
-      alert('강의평이 없습니다.'); return;
-    }
-    $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/5));
-    document.getElementById('lectures_hashtagSelection3').innerHTML = ""
-    document.getElementById('lectures_list').innerHTML = LecturesF(response.data.data, 1)
+      LecturesF(response.data.data, 1)
+      setLectures1(list1.reverse()); setLectures2(list2.reverse()); setLectures3(list3.reverse()); setLectures4(list4.reverse()); setLectures5(list5.reverse());
+      list1 = list1.slice(0,0); list2 = list2.slice(0,0); list3 = list3.slice(0,0); list4 = list4.slice(0,0); list5 = list5.slice(0,0);
 
-  }).catch((error) => { alert('강의평 페이지에 오류가 있습니다.'); })
+    }).catch((error) => { alert('강의평 페이지에 오류가 있습니다.'); })
 
-  axios.get('http://54.180.150.167:8080/hashtags', {
+    axios.get('http://54.180.150.167:8080/recommended-lectures', {
+    }, localStorage.getItem('token'),).then((response)=>{
+      if (response.data.data === null) {
+        // alert('추천 강의평이 없습니다.'); 
+        return;
+      }
+      for (var i = 0; i < response.data.data.length; i++) {
+        listR1.push(response.data.data[i].lectureId)
+        listR2.push(response.data.data[i].likeCnt)
+        listR3.push(response.data.data[i].thumbnailUrl)
+        listR4.push(response.data.data[i].lectureTitle)
+        listR5.push(response.data.data[i].avgRate)
+      }
+      $('#studiesR_number').val('1'); $('#studiesR_max').val(Math.ceil(response.data.data.length/5));
+      setLecturesRlist1(listR1); setLecturesRlist2(listR2); setLecturesRlist3(listR3); setLecturesRlist4(listR4); setLecturesRlist5(listR5);
+      listR1 = listR1.slice(0,0); listR2 = listR2.slice(0,0); listR3 = listR3.slice(0,0); listR4 = listR4.slice(0,0); listR5 = listR5.slice(0,0);
+    }).catch((error) => { 
+      $('#studiesR_number').val('0'); 
+      if (error == 'Error: Request failed with status code 500') {
+        return;
+      } else if (error == 'Error: Request failed with status code 401') {
+        return;
+      } else {
+        alert('강의평 페이지에 오류가 있습니다.'); 
+      }
+    })
 
-  }).then((response)=>{
-    if (response.data.data === null) {
-      alert('강의평이 없습니다.'); return;
-    }
-    document.getElementById('lectures_hashtagSelection2').innerHTML = HashTagsF(response.data.data)
-  }).catch((error) => { alert('해시태그에 오류가 있습니다.'); })
+    axios.get('http://54.180.150.167:8080/hashtags', {
+    }).then((response)=>{
+      if (response.data.data === null) {
+        alert('강의평이 없습니다.'); return;
+      }
+      document.getElementById('lectures_hashtagSelection2').innerHTML = HashTagsF(response.data.data)
+    }).catch((error) => { alert('해시태그에 오류가 있습니다.'); })
+  }, []);
 
   return (
+    <div className="App">
     <div id="body_main">
       <div id="lectures_searchLinkCenter"></div>
       {/* <div class="lecturesReviewAdd_modal1">
@@ -215,7 +253,6 @@ const Lectures = () => {
               axios.post('http://54.180.150.167:8080/lectures/url', {
                 "lectureUrl" : $('#lecturesReviewAdd_link').val(),
               }).then((response)=>{
-                console.log(response)
                 if (response.data.message == "중복된 링크가 없습니다.")
                   $('.lecturesReviewAdd_modal4').show()
                 else {
@@ -238,7 +275,7 @@ const Lectures = () => {
       <div class="lecturesReviewAdd_modal3">
         <div style={{ width: '100%', height: '100px', lineHeight: '180px', fontSize: '25px', fontWeight: '600', }}></div>
         <div style={{ width: '100%', height: '80px', lineHeight: '0px', fontSize: '25px', fontWeight: '600', }}>
-          관리자에게 요청사항이 전달되었습니다.
+          요청이 등록되었습니다.
         </div>
         <button class="modal_body studiesList_reportsButton" style={{ width: '140px', }} onClick={() => { $('.lecturesReviewAdd_modal3').hide() }}>확인</button>
       </div>
@@ -276,7 +313,7 @@ const Lectures = () => {
             <input id='studies_searchSearch' style={{ width: '480px', height: '40px', margin: '0px 15px 0px 0px', border: '0', }} placeholder='강의평을 입력하세요' />
             <div>
               <div style={{ height: '2px'}}></div>
-              <img src={search} style={{ width:'30px', height: '30px',}} onClick={SearchF}/>
+              <img src={search} style={{ width:'30px', height: '30px',}} onClick={() => { SearchF(setLectures1, setLectures2, setLectures3, setLectures4, setLectures5) }}/>
             </div>
           </div>
         </div>
@@ -309,7 +346,77 @@ const Lectures = () => {
       </div>
 
       <div style={{ width: '100%', height: 'auto', backgroundColor: 'rgb(240, 240, 240)', }}>
-        {/* <div style={{ margin: '16px 0px 8px 0px', height: '30px', }}></div> */}
+        <div style={{ display: 'flex', }}>
+          <div style={{ width: '17%', }}></div>
+          <div style={{ width: '150px', height: '25px', margin: '20px 0px 30px 0px', textAlign: 'left', fontSize: '18px', fontWeight: 'bolder', }}>추천 강의</div>
+        </div>
+        <div style={{ width: '67%', height: 'auto', display: 'inline-block', }}>
+          <div id='body_flex'>
+            <div id='lectures_allow1' style={{ height: '215px', lineHeight: '215px', color: 'rgb(190, 190, 190)', fontSize: '60px', fontWeight: '700', }} onClick={()=>{
+              if($('#studiesR_number').val() == 1) return;
+              $('#studiesR_number').val($('#studiesR_number').val()-1)
+              axios.get('http://54.180.150.167:8080/recommended-lectures', {
+
+              }, localStorage.getItem('token'),).then((response)=>{
+                if (response.data.data === null) {
+                  alert('추천 강의평이 없습니다.'); return;
+                }
+                for (var i = 0; i < response.data.data.length; i++) {
+                  listR1.push(response.data.data[i].lectureId)
+                  listR2.push(response.data.data[i].likeCnt)
+                  listR3.push(response.data.data[i].thumbnailUrl)
+                  listR4.push(response.data.data[i].lectureTitle)
+                  listR5.push(response.data.data[i].avgRate)
+                }
+                setLecturesRlist1(listR1); setLecturesRlist2(listR2); setLecturesRlist3(listR3); setLecturesRlist4(listR4); setLecturesRlist5(listR5);
+                listR1 = listR1.slice(0,0); listR2 = listR2.slice(0,0); listR3 = listR3.slice(0,0); listR4 = listR4.slice(0,0); listR5 = listR5.slice(0,0);
+              }).catch((error) => { 
+                if (error == 'Error: Request failed with status code 500') {
+                  return;
+                } else if (error == 'Error: Request failed with status code 401') {
+                  return;
+                } else {
+                  alert('강의평 페이지에 오류가 있습니다.'); 
+                }
+              })
+            }}>&lt;</div>
+            <LecturesRElements list={[lecturesRlist1, lecturesRlist2, lecturesRlist3, lecturesRlist4, lecturesRlist5, $('#studiesR_number').val()]}/>
+            <div id='lectures_allow2' style={{ height: '215px', lineHeight: '215px', color: 'rgb(190, 190, 190)', fontSize: '60px', fontWeight: '700', }} onClick={()=>{
+              if($('#studiesR_number').val() == $('#studiesR_max').val()) return;
+              $('#studiesR_number').val(parseInt($('#studiesR_number').val())+1)
+              axios.get('http://54.180.150.167:8080/recommended-lectures', {
+
+              }, localStorage.getItem('token'),).then((response)=>{
+                if (response.data.data === null) {
+                  alert('추천 강의평이 없습니다.'); return;
+                }
+                for (var i = 0; i < response.data.data.length; i++) {
+                  listR1.push(response.data.data[i].lectureId)
+                  listR2.push(response.data.data[i].likeCnt)
+                  listR3.push(response.data.data[i].thumbnailUrl)
+                  listR4.push(response.data.data[i].lectureTitle)
+                  listR5.push(response.data.data[i].avgRate)
+                }
+                setLecturesRlist1(listR1); setLecturesRlist2(listR2); setLecturesRlist3(listR3); setLecturesRlist4(listR4); setLecturesRlist5(listR5);
+                listR1 = listR1.slice(0,0); listR2 = listR2.slice(0,0); listR3 = listR3.slice(0,0); listR4 = listR4.slice(0,0); listR5 = listR5.slice(0,0);
+              }).catch((error) => { 
+                if (error == 'Error: Request failed with status code 500') {
+                  return;
+                } else if (error == 'Error: Request failed with status code 401') {
+                  return;
+                } else {
+                  alert('강의평 페이지에 오류가 있습니다.'); 
+                }
+              })
+            }}>&gt;</div>
+          </div>
+        </div>
+        <div style={{ width: '67%', height: 'auto', display: 'inline-block', }}>
+          <hr class='lectures_hr'/>
+        </div>
+        <div id='studiesR_number'></div>
+        <div id='studiesR_max'></div>
+
         <div style={{ display: 'flex', }}>
           <div style={{ width: '17%', }}></div>
           <img src={write} style={{ margin: '16px 0px 30px 0px', height: '30px', }}/>
@@ -341,7 +448,8 @@ const Lectures = () => {
             <div id='lectures_count' style={{ width: 'auto', display: 'flex', float: 'left',  }}>강의평 개수</div>
           </div>
 
-          <div id='lectures_list'></div>
+          {/* <div id='lectures_list'></div> */}
+          <LecturesElements list={[lectures1, lectures2, lectures3, lectures4, lectures5, $('#studies_number').val()]}/>
 
           <div style={{ height: '100px', textAlign: 'center', }}></div>
           <div style={{ height: '100px', textAlign: 'center', }}>
@@ -353,12 +461,11 @@ const Lectures = () => {
                   var i = $('#studies_Box').val()
                   $('#studies_Box').val(parseInt(i)-1)
                   
-                  Search2F()
+                  Search2F(setLectures1, setLectures2, setLectures3, setLectures4, setLectures5)
                 }}>
                 </div>
                 <div id='studies_number' onClick={() => {
-                  
-                  Search2F()
+                  Search2F(setLectures1, setLectures2, setLectures3, setLectures4, setLectures5)
                 }}><div id='studies_Box'></div></div>
                 <div id='studies_max'></div>
                 <div style={{ width: '40px', height: '40px', margin: '5px', backgroundColor: '#45AFBE', }} onClick={() => {
@@ -366,7 +473,7 @@ const Lectures = () => {
                   var i = $('#studies_Box').val()
                   $('#studies_Box').val(parseInt(i)+1)
 
-                  Search2F()
+                  Search2F(setLectures1, setLectures2, setLectures3, setLectures4, setLectures5)
                 }}>
                   
                 </div>
@@ -377,6 +484,7 @@ const Lectures = () => {
         </div>
       </div>
 
+    </div>
     </div>
   );
 }

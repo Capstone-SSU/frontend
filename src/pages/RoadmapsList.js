@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import ReactDOM from 'react-dom';
+import { Link, useNavigate, Router, Routes } from 'react-router-dom';
 import '../pages_css/RoadmapsList.css';
+import RoadmapsListElements from "./RoadmapsListElements";
+
 import like from '../like.png';
 import likeFill from '../likeFill.png';
 
@@ -9,7 +12,6 @@ import $ from 'jquery';
 window.$ = $;
 
 function RoadmapsF(list) {
-    console.log(list)
     let theme = document.querySelector(':root');
     theme.style.setProperty('--height', 320+(list.lectures.length-1)*370+'px');
 
@@ -27,16 +29,15 @@ function RoadmapsF(list) {
                 "<div id='roadmapsList_line5'></div>" +
             "</div>" +
         "</div>" +
-        "<div id='body_center_name'>" + list.roadmapTitle + "</div>" +
+        "<div id='roadmapsList_title2'>" + list.roadmapTitle + "</div>" +
         "<div id='roadmapsList_likeButton'>" +
             "<div id='roadmapsList_boxLike1'></div>" +
             ( list.isThisUserRoadmapWriter ?
             '<div id="body_flex"><div id="studiesList_blank"></div><button id="studiesList_update">수정</button>' + '<div id="studiesList_bar"><div></div></div>' + '<button id="studiesList_delete">삭제</button></div>' : '') +
             "<div id='roadmapsList_boxLike2'></div>" +
-            (list.isLikedByUser ? '<img id="studiesList_like1" src="' + likeFill + '"/>' : '<img id="studiesList_like2" src="' + like + '"/>') + 
+            (list.isLikedByUser ? '<img id="roadmapsList_like1" src="' + likeFill + '"/>' : '<img id="roadmapsList_like1" src="' + like + '"/>') + 
             "<div><div id='studiesList_font2'></div><div id='studiesList_font'>" + list.likeCount + " </div></div></div>" +
         "<div id='body_flex'><div id='roadmapsList_box0'>"
-
         for (var j = 0; j < list.lectures.length; j++) {
             roadmaps +=
             "<div id='roadmapsList_box1'>" +
@@ -65,8 +66,8 @@ function RoadmapsF(list) {
         "</div>" + 
             "<div id='roadmapsList_rightBox'>" +
                 "<div id='body_flex'>" +
-                    "<div id='roadmapsList_profill'>" + list.roadmapWriter.userProfileImg + "</div>" +
-                    "<div id='roadmapList_nickname' onClick='OtherProfileF(" + list.roadmapWriter.userId + ")'>" + list.roadmapWriter.userNickname + "</div>" +
+                    "<div id='roadmapsList_profill'><img id='roadmapsList_profill2' src='" + list.roadmapWriter.userProfileImg + "'/></div>" +
+                    "<div id='roadmapList_nickname'>" + list.roadmapWriter.userNickname + "</div>" +
                 "</div>" +
                 "<div id='roadmapList_content'>" + list.roadmapRecommendation + "</div>" +
             "</div>" +
@@ -74,52 +75,31 @@ function RoadmapsF(list) {
         "<div id='roadmapsList_updateBox'>" +
         "</div>" +
     "</div>"
-
-    return roadmaps;
 }
 
 const RoadmapsList = () => {
+    const [roadmapslistcomments, setRoadmapsListComments] = useState([]);
+    const [num1, setNum1] = useState([]);
+    const [profile, setProfile] = useState([]);
+    const [nickname, setNickname] = useState([]);
     const navigate = useNavigate();
     var current = ''
     current += String(decodeURI(window.location.href));
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-        }
-        axios.get('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]), {
+        axios.get('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[6]), {
 
         }, localStorage.getItem('token'),).then((response)=>{
-            document.getElementById('roadmapsList_list').innerHTML = RoadmapsF(response.data.data)
+            RoadmapsF(response.data.data)
+            setRoadmapsListComments(response.data.data)
+            setNum1(response.data.data.lectures.length)
+            setProfile(response.data.data.roadmapWriter.userProfileImg)
+            setNickname(response.data.data.roadmapWriter.userNickname)
 
-            if (response.data.data.isThisUserRoadmapWriter) {
-                document.getElementById('studiesList_update').onclick = function () {
-                    navigate('/roadmapsUpdate/' + parseInt(current.split("/")[4]))
-                }
-                document.getElementById('studiesList_delete').onclick = function () {
-                    axios.delete('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]), {
-
-                    }, localStorage.getItem('token'),).then(()=>{
-                        navigate('/roadmaps')
-                    }).catch((error) => { 
-                        alert('로드맵 글삭제 실패')
-                    })
-                }
-            }
-
-            if (!response.data.data.isLikedByUser) {
-                document.getElementById('studiesList_like2').onclick = function() {
-                    axios.post('http://54.180.150.167:8080/roadmaps/' + parseInt(current.split("/")[4]) + '/likes', {
-
-                    }, localStorage.getItem('token'),).then(()=>{
-                        navigate('/roadmaps/' + parseInt(current.split("/")[4]))
-                    }).catch((error) => { 
-                        alert('로드맵 글좋아요 실패')
-                    })
-                }
-            }
-            
         }).catch((error) => {
-            if ($('#header_login').val() === '') {
+            if (error == "Error: Request failed with status code 500"){
+                alert("500 오류")
+                navigate('/roadmaps')
+            } else if ($('#header_login').val() === '') {
                 alert('로그인 해주세요')
                 navigate('/roadmaps')
             } else {
@@ -127,12 +107,12 @@ const RoadmapsList = () => {
                 navigate('/roadmaps')
             }
         })
-    });
+    }, []);
   return (
     <div id='body_main'>
         <div id='body_center_top'></div>
-        <div id='roadmapsList_list'></div>
-
+        {/* <div id='roadmapsList_list'></div> */}
+        <RoadmapsListElements list={[roadmapslistcomments, num1, profile, nickname]}/>
     </div>
   );
 }

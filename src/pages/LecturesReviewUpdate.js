@@ -15,9 +15,8 @@ const LecturesReviewUpdate = () => {
   current += String(decodeURI(window.location.href));
   var linkR = false;
 
-  axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[4]), {
+  axios.get('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), {
   }, localStorage.getItem('token'),).then((response)=>{
-    console.log(response)
     $('#lecturesAdd_linkInput').val(response.data.data.lectureUrl)
     $('#lecturesAdd_linkT').show()
     linkR = true
@@ -29,9 +28,9 @@ const LecturesReviewUpdate = () => {
     }
     
     for (var i = 0; i < response.data.data.reviews.length; i++) {
-      if (response.data.data.reviews[i].reviewId == parseInt(current.split("/")[5])) {
-        $('#lecturesAdd_titleInput').val(response.data.data.reviews[i].comment)
-        $('#lecturesAdd_descriptionInput').val(response.data.data.reviews[i].commentTitle)
+      if (response.data.data.reviews[i].reviewId == parseInt(current.split("/")[7])) {
+        $('#lecturesAdd_titleInput').val(response.data.data.reviews[i].commentTitle)
+        $('#lecturesAdd_descriptionInput').val(response.data.data.reviews[i].comment)
         $('#lecturesAdd_startNum').val(response.data.data.reviews[i].rate)
         for (var j = 0; j < response.data.data.reviews[i].rate; j++) {
           $("input:radio[name='reviewStar']:radio[value='" + (j+1) + "']").prop('checked', true);
@@ -73,7 +72,6 @@ const LecturesReviewUpdate = () => {
                 }
               }}/>
               <div style={{ width: '14%', textAlign: 'right', }}><button style={{ width: '80px', margin: '0px 0px 0px 5px', color: 'white', fontSize: '15px', borderRadius: '10px', backgroundColor: '#17173D', }} onClick={() => {
-                console.log($('#lecturesAdd_linkInput').val())
                 axios.post('http://54.180.150.167:8080/lectures/url', {
                   "lectureUrl" : $('#lecturesAdd_linkInput').val(),
                 }).then((response)=>{
@@ -146,7 +144,6 @@ const LecturesReviewUpdate = () => {
         
         <div style={{ width: '60%', margin: '10px 0px 0px 0px', display: 'inline-block', textAlign: 'right', }}>
           <button style={{  color: 'white', borderRadius: '10px', backgroundColor: '#17173D', }} onClick={() => {
-            console.log("a")
             if ($('#lecturesAdd_linkInput').val() === '' || $('#lecturesAdd_titleInput').val() === '' || $('#lecturesAdd_descriptionInput').val() === '' || $('#lecturesAdd_startNum').val() === '') {
               alert('빈 칸이 있습니다'); return;
             }
@@ -163,13 +160,13 @@ const LecturesReviewUpdate = () => {
               return
             }
 
-            axios.patch('http://54.180.150.167:8080/reviews/' + parseInt(current.split("/")[5]), {
+            axios.patch('http://54.180.150.167:8080/reviews/' + parseInt(current.split("/")[7]), {
               "lectureUrl": $('#lecturesAdd_linkInput').val(),
               "commentTitle": $('#lecturesAdd_titleInput').val(),
               "comment": $('#lecturesAdd_descriptionInput').val(),
               "rate": $('#lecturesAdd_startNum').val(),
             }, localStorage.getItem('token'),).then((response)=>{
-                navigate('/lectures/' + parseInt(current.split("/")[4]))
+                navigate('/lectures/' + parseInt(current.split("/")[6]))
             }).catch((error) => {
               if (error == 'Error: Request failed with status code 409') 
                 alert('이미 강의평을 추가한 강의입니다.')

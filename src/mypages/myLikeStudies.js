@@ -1,5 +1,6 @@
 import React from "react";
 import Mypage from '../pages/Mypage';
+import { useNavigate } from "react-router-dom";
 import '../mypages_css/myLikeStudies.css';
 
 import axios from "axios";
@@ -16,6 +17,7 @@ export function MyProfileContentF(list) {
 
     for (var i = 0; i < list.length; i++) {
         mypage +=
+            "<a href='/pickit/#/studies/" + list[i].studyPostId + "'>" +
             "<div id='studies_individe'>" +
                 "<div class='studies_individeBox'>" +
                     "<img id='studies_profill' src='" + list[i].profileImage + "'/>" +
@@ -30,7 +32,8 @@ export function MyProfileContentF(list) {
                     "<div id='studies_date'>" + list[i].studyCreatedDate.slice(0, 10) + "</div>" +
                     "<div id='studies_date'>" + list[i].nickname + "</div>" +
                 "</div>" +
-            "</div><hr/>"
+            "</div>" +
+            "</a>"
     }
 
     mypage +=
@@ -40,12 +43,15 @@ export function MyProfileContentF(list) {
 }
 
 const MyLikeStudies = () => {
+    var navigate = useNavigate();
+    axios.get('http://54.180.150.167:8080/temp-login-success', {
+    }, localStorage.getItem('token')).then((response2) => {
+        axios.get('http://54.180.150.167:8080/users/' + response2.data.data.userId + '/liked-studies', {
+        }, localStorage.getItem('token')).then((response) => {
+            document.getElementById('myLikeStudies_main').innerHTML = MyProfileContentF(response.data.data)
+        }).catch();
+    }).catch(()=>{alert('오류가 발생했습니다.'); navigate('/signin');});
 
-    axios.get('http://54.180.150.167:8080/users/' + $('#header_login').val() + '/liked-studies', {
-    }, localStorage.getItem('token')).then((response) => {
-        console.log(response)
-        document.getElementById('myLikeStudies_main').innerHTML = MyProfileContentF(response.data.data)
-    }).catch();
 
     return (
         <>

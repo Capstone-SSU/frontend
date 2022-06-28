@@ -14,13 +14,13 @@ function RoadmapListF(list) {
       "<div id='list_" + list[i].lectureId + "'>" +
         "<div id='roadmapsUpdate_individe" + string + "'"
         if (string === '') {
-          roadmaps += " onClick='RoadmapsUpdateAddF(" + list[i].lectureId + ",\"" + list[i].lectureTitle +"\""  + ",\"" + list[i].hashTags +"\");'>"
+          roadmaps += " onClick='RoadmapsUpdateAddF(" + list[i].lectureId + ",\"" + list[i].lectureTitle +"\""  + ",\"" + list[i].hashTags +"\",\"" + list[i].thumbnailUrl + "\");'>"
         } else {
           roadmaps +=">"
         }
       roadmaps += 
           "<div id='roadmapsUpdate_box1'>" +
-            "<div id='roadmapsUpdate_picture'></div>" +
+            "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + list[i].thumbnailUrl + "'/></div>" +
             "<div id='roadmapsUpdate_box2'>" +
               "<div id='roadmapsUpdate_hashtagBox'>"
 
@@ -59,13 +59,14 @@ const RoadmapsAdd = () => {
         alert('로그인 해주세요')
         navigate('/roadmaps')
       } else {
-          alert('오류가 났습니다')
+        alert('오류가 났습니다')
+        navigate('/roadmaps')
       }
     })
 
     axios.get('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
     }).then((response)=>{
-      console.log(response.data.message)
+  
       if (response.data.message == '소속인증 요청 필요') {
         $('.roadmapsAdd_modal1').show()
       } else {
@@ -94,7 +95,6 @@ const RoadmapsAdd = () => {
           navigate('/mycompany')
         }}>확인</button>
         <button class="studiesList_reportsButton" style={{ width: '140px', color: '#17173D', background: 'rgb(219, 219, 219)', }} onClick={() => {
-          console.log($('input:radio[name="no"]').is(':checked'))
           if ($('input:radio[name="no"]').is(':checked')) {
             axios.post('http://54.180.150.167:8080/roadmaps/' + $('#header_login').val() + '/company', {
               "roadmapCompnayRequestAnswer" : "NO_REQUEST ",

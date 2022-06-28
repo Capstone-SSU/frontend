@@ -41,6 +41,7 @@ const StudiesAdd = () => {
                 <option value='경남'>경남</option>
                 <option value='부산'>부산</option>
                 <option value='제주'>제주</option>
+                <option value='온라인'>온라인</option>
               </select>
             </div>
             <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>

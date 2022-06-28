@@ -14,7 +14,7 @@ const StudiesUpdate = () => {
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
         }
-        axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
+        axios.get('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]), {
 
         }, localStorage.getItem('token'),).then((response)=>{
             $("#studiesUpdate_titleInput").val(response.data.data.studyTitle);
@@ -61,6 +61,7 @@ const StudiesUpdate = () => {
                 <option value='경남'>경남</option>
                 <option value='부산'>부산</option>
                 <option value='제주'>제주</option>
+                <option value='온라인'>온라인</option>
               </select>
             </div>
             <div style={{ width: 'auto', height: '50px', margin: '0 20px', padding: '0px 20px', display: 'flex', float: 'left',  border: '1px solid rgb(190, 190, 190)', borderRadius: '10px', }}>
@@ -98,7 +99,7 @@ const StudiesUpdate = () => {
                 alert('빈 칸이 있습니다')
                 return
               }
-              axios.patch('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[4]), {
+              axios.patch('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]), {
                 "studyCategoryName": $('#studiesUpdate_categoryInput').val(),
                 "studyContent": $('#studiesUpdate_descriptionInput').val(),
                 "studyLocation": $('#studiesUpdate_locationInput').val(),
@@ -106,7 +107,7 @@ const StudiesUpdate = () => {
                 "studyMinReq": $('#studiesUpdate_min').val(),
                 "studyTitle": $('#studiesUpdate_titleInput').val(),
               }, localStorage.getItem('token'),).then(()=>{
-                navigate('/studies/' + parseInt(current.split("/")[4]))
+                navigate('/studies/' + parseInt(current.split("/")[6]))
               }).catch((error) => {
                 alert('스터디 글수정 실패')
               })
