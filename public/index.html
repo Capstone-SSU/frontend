@@ -9,6 +9,7 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -230,7 +231,7 @@
         }
         $.ajax({
           type: "PATCH",
-          url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
+          url: "studies/"+ studyId + "/comments/" + a,
           data: JSON.stringify({
           "content" : $('#studiesList_commentsContentUpdateInput'+a).val(),
         }),
@@ -247,7 +248,6 @@
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
         }
-
         $.ajax({
           type: "DELETE",
           url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
@@ -257,7 +257,6 @@
           success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/studies/" + studyId); },
           error: ()=>{ alert('스터디 댓글삭제 실패') },
         })
-
       }
       function ReportF() {
         $('.studiesList_modal1').show()
@@ -268,131 +267,9 @@
       }
 
 
-
-      //강의리뷰 댓글
-      function ReviewUpdateF(lecturesId, reviewsId) {
-        location.href = '/pickit/#/lecturesReviewUpdate/' + lecturesId + "/" + reviewsId
-      }
-      function ReviewDeleteF(lecturesId, reviewId) {
-        if (localStorage.getItem('token')) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-        }
-        $.ajax({
-          type: "DELETE",
-          url: "http://54.180.150.167:8080/reviews/"+ reviewId,
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('token'));
-          },
-          success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/lectures/" + lecturesId); },
-          error: ()=>{ alert('강의평 삭제 실패') },
-        })
-      }
-      function ReviewReportsF(reviewId) {
-        $('.lecturesList_modal2').show()
-        $('#lecturesList_reviewId').val(reviewId)
-      }
-
-
-
-      function RoadmapsUpdateAddF(id, title, hashTags, image) {
-        var roadmaps = ''
-        roadmaps +=
-        "<div id='roadmapsUpdate_individe1'>" +
-            "<div id='roadmapsUpdate_box1'>" +
-              "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + image + "'/></div>" +
-              "<div id='roadmapsUpdate_box2'>" + 
-                "<div id='roadmapsUpdate_hashtagBox'>"
-
-        for (var j = 0; j < hashTags.split(',').length; j++) {
-            roadmaps +=
-                  "<div id='roadmapsUpdate_hashtag'>" + hashTags.split(',')[j] + "</div>"
-        }
-            
-        roadmaps +=
-              "</div><div id='roadmapsUpdate_title'>" + title + "</div>" +
-            "</div>" +
-          "</div>" +
-        "</div>"
-        document.getElementById('list_' + id).innerHTML = roadmaps
-
-        roadmaps = 
-        "<div id='" + id + "'>" +
-        "<div id='roadmapsUpdate_individe3' onClick='RoadmapsUpdateRemoveF(" + id + ",\"" + title + "\",\"" + hashTags + "\",\"" + image + "\");'>" +
-          "<div id='roadmapsUpdate_box1'>" +
-            "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + image + "'/></div>" +
-            "<div id='roadmapsUpdate_box2'>" + 
-              "<div id='roadmapsUpdate_hashtagBox'>"
-
-        for (var j = 0; j < hashTags.split(',').length; j++) {
-            roadmaps +=
-                "<div id='roadmapsUpdate_hashtag'>" + hashTags.split(',')[j] + "</div>"
-        }
-        roadmaps +=
-              "</div><div id='roadmapsUpdate_title'>" + title + "</div>" +
-            "</div>" +
-          "</div>" +
-        "</div>" +
-        "</div>"
-
-        document.getElementById('roadmapsUpdate_list2').innerHTML += roadmaps
-
-        var lecturesId = $('#roadmapsUpdate_lecturesId').val()
-        lecturesId[lecturesId.length] = id
-      }
-      function RoadmapsUpdateRemoveF(id, title, hashTags, image) {
-        $('#' + id).remove()
-
-        var roadmaps = ''
-        roadmaps +=
-        "<div id='roadmapsUpdate_individe' onClick='RoadmapsUpdateAddF(" + id + ",\"" + title +"\",\"" + hashTags +"\",\"" + image + "\");'>" +
-            "<div id='roadmapsUpdate_box1'>" +
-              "<div id='roadmapsUpdate_picture'><img id='roadmapsUpdate_picture2' src='" + image + "'/></div>" +
-              "<div id='roadmapsUpdate_box2'>" + 
-                "<div id='roadmapsUpdate_hashtagBox'>"
-
-        for (var j = 0; j < hashTags.split(',').length; j++) {
-            roadmaps +=
-                  "<div id='roadmapsUpdate_hashtag'>" + hashTags.split(',')[j] + "</div>"
-        }
-            
-        roadmaps +=
-              "</div><div id='roadmapsUpdate_title'>" + title + "</div>" +
-            "</div>" +
-          "</div>" +
-        "</div>"
-
-        document.getElementById('list_' + id).innerHTML = roadmaps
-
-        var lecturesId = $('#roadmapsUpdate_lecturesId').val()
-        lecturesId = lecturesId.filter(function(data) {
-          return data != id
-        })
-        $('#roadmapsUpdate_lecturesId').val(lecturesId)
-      }
-
-
-
       function RoadmapsAddModalF() {
         $('#roadmapsAdd_modal1').hide()
       }
-
-
-
-      function LecturesHashtagsF(hashTag) {
-        var hashTag2 = hashTag.replace(' ', ''); hashTag2 = hashTag2.replace('/', ''); hashTag2 = hashTag2.replace('#', ''); hashTag2 = hashTag2.replace(',', ''); hashTag2 = hashTag2.replace(',', ''); hashTag2 = hashTag2.replace('.', '');
-        if ($('#' + hashTag2).val() === undefined)
-          document.getElementById('lectures_hashtagSelection3').innerHTML += "<div id='" + hashTag2 + "' class='lectures_hashtag'>" + hashTag + "</div>"
-        else 
-          $('#' + hashTag2).remove()
-      }
-      function LecturesRemoveF() {
-        $(':checkbox:checked').prop('checked',false);
-        $('.lectures_hashtag').remove()
-      }
-
-
-
-
     </script>
     <title>React App</title>
   </head>

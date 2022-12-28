@@ -1,0 +1,387 @@
+/* ::-webkit-scrollbar {
+  display: none;
+}   */
+
+  a {
+    color: #17173D;
+    font-weight: bolder;
+    text-decoration-line: none;
+  }
+  .header_main_inner3 > a {
+    color: #17173D;
+    font-weight: bolder;
+    text-decoration-line: none;
+  }
+  #body_center a {
+    color: #17173D;
+    text-decoration-line: none;
+  }
+  hr {
+    border: 0px;
+    height: 5px;
+    background-color: rgb(240, 240, 240);
+  }
+  button {
+    width: 110px;
+    height: 38px;
+
+    border: 0;
+    outline: 0;
+    
+    font-size: 20px;
+    font-weight: bolder;
+    color: #17173D;
+    background-color: #45AFBE;
+  }
+  #body_main {
+    width: 100%;
+    min-width: 1176px;
+    height: auto;
+
+    text-align: center;
+    background-color: white;
+  }
+  #body_center_top {
+    width: 100%;
+    height: 70px;
+    background-color: white;
+  }
+  #body_center_name {
+    width: 100%;
+    height: 200px;
+    
+    line-height: 250px;
+    text-align: center;
+  
+    color: #17173D;
+    font-size: 64px;
+    font-weight: bolder;
+    display: inline-block;
+  }
+  #body_height {
+    height: 10px;
+  }
+  #body_flex {
+    display: flex;
+  }
+  #body_studiesBlock1 {
+    width: 850px;
+  }
+  #grayStars {
+    color: transparent;
+    text-shadow: 0 0 0 rgb(219, 219, 219);
+  }
+
+
+  
+  .studies_searchCatagory {
+    width: 400px;
+    height: 50px;
+  
+    display: flex;
+    /* float: right; */
+  }
+  /* .studies_searchCatagory > input {
+    
+  } */
+
+
+
+  .switch-button { 
+    position: relative; 
+    display: inline-block; 
+
+    display: flex; 
+    float: right;
+
+    width: 55px; 
+    height: 30px; 
+  } 
+  .switch-button input { 
+    opacity: 0; 
+    width: 0; 
+    height: 0; 
+  } 
+  .onoff-switch { 
+    position: absolute; 
+    cursor: pointer; 
+
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    
+    border-radius:20px; 
+    background-color: #ccc; 
+    box-shadow: inset 1px 5px 1px #999; 
+    -webkit-transition: .4s; 
+    transition: .4s; 
+  } 
+  .onoff-switch:before { 
+    position: absolute;
+    content: ""; 
+    height: 22px; 
+    width: 22px; 
+    left: 4px; 
+    bottom: 4px; 
+    background-color: #fff; 
+    -webkit-transition: .5s; 
+    transition: .4s; 
+    border-radius:20px; 
+  } 
+  .switch-button input:checked + .onoff-switch { 
+    background-color: #45AFBE; 
+    box-shadow: inset 1px 5px 1px #256169; 
+  } 
+  .switch-button input:checked + .onoff-switch:before { 
+    -webkit-transform: translateX(26px); 
+    -ms-transform: translateX(26px); 
+    transform: translateX(26px); 
+  }
+
+
+  
+  #studies_list {
+    width: 100%;
+    height: 1150px;
+    
+    color: #17173D;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+  #studies_individe {
+    width: 100%;
+    height: 98px;
+    margin: 15px 0px 0px 0px;
+    padding: 15px 0px 15px 10px;
+    
+    font-size: 18px;
+    font-weight: bolder;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px gray;
+    background-color: white;
+  }
+  .studies_individeBox {
+    width: 100%;
+    height: 50px;
+    display: flex;
+  }
+  .studies_image_box {
+    width: 50px;
+    height: 50px;
+    margin-left: 7px;
+
+    border-radius: 50%;
+    background-color: rgb(212, 212, 212);
+  }
+  #studies_list hr {
+    height: 2px;
+  }
+
+
+
+  .studies_profile_box {
+    width: 50px;
+    height: 50px;
+    margin-left: 7px;
+    position: relative;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    
+    display: flex;
+    float: left;
+
+    border-radius: 50%;
+    background: rgb(212, 212, 212);
+  }
+  #studies_profill {
+    width: 50px;
+    height: 50px;
+
+    text-align: center;
+    color: #858997;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 50%;
+  }
+  #studies_profill_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+
+  #studies_title {
+    width: 82%;
+    margin: 4px 0px 0px 10px;
+    text-align: left;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    display:flex;
+    float: left;
+
+    font-size: 25px; 
+    font-weight: bolder; 
+    color: #17173D;
+  }
+  #studies_like {
+    height: 36px;
+    line-height: 36px;
+    margin: 0px 10px 0px 0px;
+    
+    display:flex;
+    float: right;
+
+    font-size: 22px;
+    text-align: center;
+  }
+  #studies_like1 {
+    width: 28px;
+    height: 28px;
+    margin: 5px 0px 0px 0px;
+  }
+  #studies_together {
+    width: auto;
+    height: 25px;
+    margin: 5px 7px 5px 7px;
+    padding: 3px 7px 3px 7px;
+
+    display: flex;
+    float: left;
+
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #17173D;
+    
+  }
+  #studies_location {
+    width: auto;
+    height: 25px;
+    margin: 5px 7px 5px 0px;
+    padding: 3px 7px 3px 7px;
+
+    display: flex;
+    float: left;
+
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #45AFBE;
+  }
+  #studies_hashtag {
+    width: auto;
+    height: 25px;
+    margin: 5px 7px 5px 0px;
+    padding: 3px 7px 3px 7px;
+
+    display: flex;
+    float: left;
+
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #FF9900;
+  }
+  #studies_date {
+    width: auto;
+    height: 25px;
+    margin: 5px 20px 5px 5px;
+    padding: 3px;
+
+    display: flex;
+    float: right;
+
+    font-weight: 400;
+    color: rgb(190, 190, 190);
+    border-radius: 5px;
+  }
+
+
+
+  #studies_number {
+    display: flex;
+  }
+  #studies_Box {
+    /* width: 430px; */
+    display: flex;
+  }
+  #studies_numberInner {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 5px;
+    border: 2px solid rgb(240, 240, 240);
+
+    font-size: 20px;
+    font-weight: bolder;
+    color: #17173D;
+    background-color: white;
+  }
+
+
+
+  #studies_locationSearch {
+    width: 67px;
+  }
+  #studies_categorySearch {
+    width: 110px;
+  }
+  .studies_search {
+    /* width: auto; */
+    border: 0;
+    font-size: 22px;  
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+
+
+  /* .App {
+    text-align: center;
+  } */
+  
+  /* .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  } */
+  

@@ -1,0 +1,150 @@
+#lecturesAdd_hashtagInput1, #lecturesAdd_hashtagInput2, #lecturesAdd_hashtagInput3 {
+    width: 20%;
+    height: 40px;
+    margin: 0px 20px 0px 0px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_hashtagInput4 {
+    width: 20%;
+    height: 40px;
+    margin: 0px 0px 0px 0px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_linkInput {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_titleInput, #lecturesAdd_rateInput, #lecturesAdd_mainTitleInput, #lecturesAdd_teacherInput, #lecturesAdd_siteInput {
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+#lecturesAdd_descriptionInput {
+    width: 80%;
+    height: 200px;
+    resize: none;
+    font-size: 18px;
+
+    border: 0;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
+  
+
+
+/* #myformA fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myformA fieldset legend{
+    text-align: right;
+}
+#myformA input[type=radio]{
+    display: none;
+}
+#myformA div{
+    font-size: 3em;
+    color: transparent;
+    background-color:rgb(219, 219, 219);
+}
+#myformA label:hover{
+    background-color: rgba(250, 208, 0, 0.3);
+}
+#myformA label:hover ~ label{
+    background-color: rgba(250, 208, 0, 0.3);
+}
+#myformA input[type=radio]:checked ~ label{
+    background-color: rgba(250, 208, 0, 1);
+    background: linear-gradient( 90deg, rgba(250, 208, 0, 1) 50%, rgb(219, 219, 219) 50%);
+} */
+
+#myformA fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myformA fieldset legend{
+    text-align: right;
+}
+#myformA input[type=radio]{
+    display: none;
+}
+#myformA div{
+    font-size: 1.7em;
+    color: transparent;
+    text-shadow: 0 0 0 rgb(219, 219, 219);
+}
+#myformA div:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.3);
+}
+#myformA div:hover ~ div {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.3);
+}
+.lecture_update_reviewStar {
+    margin: 10px;
+    text-shadow : 0 0 0 rgba(250, 208, 0, 1);
+}
+
+.reviewStarA {
+    margin: 10px;
+}
+
+
+
+.star-five {
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: pink;
+    width: 0px;
+    height: 0px;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid pink;
+    border-left: 100px solid transparent;
+    transform: rotate(35deg);
+  }
+  .star-five:before {
+    border-bottom: 80px solid pink;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -45px;
+    left: -65px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+  }
+  .star-five:after {
+    position: absolute;
+    display: block;
+    color: pink;
+    top: 3px;
+    left: -105px;
+    width: 0px;
+    height: 0px;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid pink;
+    border-left: 100px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+  }

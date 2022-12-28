@@ -1,0 +1,48 @@
+#signup_logo {
+    width:150px;
+    margin: 30px;
+    
+    text-align: center;
+    display: inline-block;
+}
+
+.signup_emailPassword {
+    width: 100%;
+    margin: 20px 0px 20px 0px;
+
+    font-weight: bolder;
+    text-align: left;
+}
+.signup_emailPassword > div {
+    margin: 0px 0px 20px 0px;
+}
+.signup_emailPassword > input {
+    width: 350px;
+    height: 30px;
+
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgb(219, 219, 219);
+
+    text-align: left;
+}
+#signup_email, #signup_nickname {
+    width: 270px;
+}
+.signup_emailPassword button {
+    width: 80px;
+    font-size: 15px;
+}
+
+
+#signup_login {
+    background-color: rgb(219, 219, 219);
+}
+#signup_login:hover {
+    background-color: #45AFBE;
+}
+#signup_githubLogo {
+    width: 30px;
+    height: 30px;
+}

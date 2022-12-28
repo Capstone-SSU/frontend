@@ -1,0 +1,43 @@
+.body_main {
+    height:100vh;
+    width:100%;
+}
+
+.left_menu_box {
+    width:100%;
+    margin: 100px 0px 0px 0px;
+    min-width: 200px;
+    /* height: 100vh; */
+    background-color: #17173d;
+}
+
+.right_content_box {
+
+}
+
+.bigMenu {
+    font-size:24px;
+    color:white;
+    font-weight: 900;
+    text-align: left;
+    margin-left:20%;
+    margin-top:20%;
+}
+
+.smallMenu {
+    font-size:18px;
+    text-align: center;
+    color:#c4c4c4;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.smallMenu:hover {
+    color:#45afbe;
+}
+.smallMenu:active {
+    color:#45afbe;
+}
+.smallMenu:visited {
+    color:#45afbe;
+}
