@@ -160,31 +160,28 @@ function Search2F(setLectures1, setLectures2, setLectures3, setLectures4, setLec
 }
 
 function Lectures () {
+  const [lecture, setLecture] = useState(null);
   const [lectures1, setLectures1] = useState([]); const [lectures2, setLectures2] = useState([]); const [lectures3, setLectures3] = useState([]); const [lectures4, setLectures4] = useState([]); const [lectures5, setLectures5] = useState([]);
   const [lecturesR, setLecturesR] = useState([]);
   const [lecturesRlist1, setLecturesRlist1] = useState([]); const [lecturesRlist2, setLecturesRlist2] = useState([]); const [lecturesRlist3, setLecturesRlist3] = useState([]); const [lecturesRlist4, setLecturesRlist4] = useState([]); const [lecturesRlist5, setLecturesRlist5] = useState([]);
 
   var navigate = useNavigate();
   useEffect(() => {
-    axios.get('http://54.180.150.167:8080/lectures', {
-    }).then((response)=>{
-      if (response.data.data === null) {
-        alert('강의평이 없습니다.'); return;
-      }
-      $('#studies_number').val('1'); $('#studies_Box').val('1'); $('#studies_max').val(Math.ceil(Math.ceil(response.data.data.length/20)/8));
-      for (var i = 0; i < response.data.data.length; i++) {
-        list1.push(response.data.data[i].lectureId);
-        list2.push(response.data.data[i].likeCnt);
-        list3.push(response.data.data[i].thumbnailUrl);
-        list4.push(response.data.data[i].lectureTitle);
-        list5.push(response.data.data[i].avgRate);
-      }
 
-      LecturesF(response.data.data, 1)
-      setLectures1(list1.reverse()); setLectures2(list2.reverse()); setLectures3(list3.reverse()); setLectures4(list4.reverse()); setLectures5(list5.reverse());
-      list1 = list1.slice(0,0); list2 = list2.slice(0,0); list3 = list3.slice(0,0); list4 = list4.slice(0,0); list5 = list5.slice(0,0);
-
-    }).catch((error) => { alert('강의평 페이지에 오류가 있습니다.'); })
+    axios
+      .get(
+        '/api/lectures', 
+        {})
+      .then((response)=>{
+        if (response.data.data === null) {
+          alert('강의평이 없습니다.'); 
+          return;
+        }
+        setLecture(response.data.data);
+      })
+      .catch((error) => { 
+        alert('강의평 페이지에 오류가 있습니다.'); 
+      })
 
     axios.get('http://54.180.150.167:8080/recommended-lectures', {
     }, localStorage.getItem('token'),).then((response)=>{

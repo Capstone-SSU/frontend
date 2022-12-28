@@ -154,13 +154,19 @@ const LecturesList = () => {
             $('#n1').css('background', 'linear-gradient(90deg, #FCD53F ' + starList[4] + '%, rgb(210, 210, 210) 0%, rgb(210, 210, 210) ' + (100-starList[4]) +'%)')
 
             document.getElementById('lecturesList_imgLike').onclick = function () {
-                axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]) + '/likes', {
-                }, localStorage.getItem('token'),).then((response)=>{
-                    navigate('/')
-                    navigate('/lectures/' + parseInt(current.split("/")[6]))
-                }).catch((error) => { 
-                    alert('로그아웃 실패')
-                })
+
+                axios
+                    .post(
+                        'http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]) + '/likes', 
+                        {}, 
+                        localStorage.getItem('token'),)
+                    .then((response)=>{
+                        alert('좋아요 성공');
+                    })
+                    .catch((error) => { 
+                        alert('좋아요 실패');
+                    })
+
             }
 
         }).catch((error) => {
@@ -227,18 +233,53 @@ const LecturesList = () => {
 
             <div style={{ width: '100%', height: '70px', }}></div>
             <div id='lecturesList_masterButtonUD'>
+
                 {$('#header_login').val() == 3 ? <button class='lecturesList_master' onClick={() => {
                     axios.patch('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), {
                     }, localStorage.getItem('token'),).then((response)=>{
                         navigate("/lectures/" + parseInt(current.split("/")[6]))
                     }).catch((error) => { alert('강의 수정 실패') })
                 }}>수정</button>: <></>}
+
                 {$('#header_login').val() == 3 ? <button class='lecturesList_master' onClick={() => {
                     axios.delete('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), {
                     }, localStorage.getItem('token'),).then((response)=>{
                         navigate("/lectures/" + parseInt(current.split("/")[6]))
                     }).catch((error) => { alert('강의 삭제 실패') })
                 }}>삭제</button> : <></>}
+
+                <button 
+                    class='lecturesList_master' 
+                    onClick={() => {
+                        axios
+                            .patch(
+                                'http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), 
+                                {}, 
+                                localStorage.getItem('token'),)
+                            .then((response)=>{
+                                alert('강의 수정 성공') 
+                            })
+                            .catch((error) => { 
+                                alert('강의 수정 실패') 
+                            })
+                }}>수정</button>
+
+                <button 
+                    class='lecturesList_master' 
+                    onClick={() => {
+                        axios
+                            .delete(
+                                'http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[6]), 
+                                {}, 
+                                localStorage.getItem('token'),)
+                            .then((response)=>{
+                                alert('강의 삭제 성공') 
+                            })
+                            .catch((error) => { 
+                                alert('강의 삭제 실패') 
+                            })
+                }}>삭제</button>
+
             </div>
             <div id="lecturesList_list" style={{ width: '100%', height: 'auto', padding: '30px 0px', color: 'white', backgroundColor: '#17173D' }}></div>
 

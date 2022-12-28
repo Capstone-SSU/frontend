@@ -99,18 +99,24 @@ const StudiesUpdate = () => {
                 alert('빈 칸이 있습니다')
                 return
               }
-              axios.patch('http://54.180.150.167:8080/studies/' + parseInt(current.split("/")[6]), {
-                "studyCategoryName": $('#studiesUpdate_categoryInput').val(),
-                "studyContent": $('#studiesUpdate_descriptionInput').val(),
-                "studyLocation": $('#studiesUpdate_locationInput').val(),
-                "studyMaxReq": $('#studiesUpdate_max').val(),
-                "studyMinReq": $('#studiesUpdate_min').val(),
-                "studyTitle": $('#studiesUpdate_titleInput').val(),
-              }, localStorage.getItem('token'),).then(()=>{
-                navigate('/studies/' + parseInt(current.split("/")[6]))
-              }).catch((error) => {
-                alert('스터디 글수정 실패')
-              })
+
+              axios
+                .patch('/api/studies/' + parseInt(current.split("/")[6]), 
+                  {
+                    "studyCategoryName": studyCategoryName,
+                    "studyContent": studyContent,
+                    "studyLocation": studyLocation,
+                    "studyMaxReq": studyMaxReq,
+                    "studyMinReq": studyMinReq,
+                    "studyTitle": studyTitle,
+                  }, 
+                  localStorage.getItem('token'),)
+                .then(()=>{
+                  alert('스터디 글수정 성공')
+                })
+                .catch((error) => {
+                  alert('스터디 글수정 실패')
+                })
             }}>
               글수정
             </button>

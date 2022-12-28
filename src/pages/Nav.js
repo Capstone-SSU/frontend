@@ -15,8 +15,6 @@ function Nav() {
     }
     axios.get('http://54.180.150.167:8080/temp-login-success', {
     }, localStorage.getItem('token')).then((response) => {
-      // const element = document.getElementById('header_signinUsers')
-      // element.innerHTML = SigninUserF(response.data.message)
       $('#header_login').val(response.data.data.userId)
       $('#header_loginerror').val('')
     }).catch(() => {

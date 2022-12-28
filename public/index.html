@@ -247,6 +247,7 @@
         if (localStorage.getItem('token')) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
         }
+
         $.ajax({
           type: "DELETE",
           url: "http://54.180.150.167:8080/studies/"+ studyId + "/comments/" + a,
@@ -256,6 +257,7 @@
           success: ()=>{ location.replace("/pickit/#/"); location.replace("/pickit/#/studies/" + studyId); },
           error: ()=>{ alert('스터디 댓글삭제 실패') },
         })
+
       }
       function ReportF() {
         $('.studiesList_modal1').show()

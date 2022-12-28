@@ -26,6 +26,19 @@ function Main() {
       }
     );
 
+    axios
+      .delete(
+        '/api/studies/'+studyId,
+        {}, 
+        localStorage.getItem('token')
+      )
+      .then((response)=>{
+        alert("스터디 삭제 성공");
+      })
+      .catch(()=>{
+        alert("스터디 삭제 실패");
+      })
+
   }, []);
 
   return (

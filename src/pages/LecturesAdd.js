@@ -88,26 +88,30 @@ const LecturesAdd = () => {
             if (!linkR) {
               alert('링크확인을 체크해주세요'); return;
             }
-            // axios.post('http://54.180.150.167:8080/lectures/' + parseInt(current.split("/")[5]), {
-            //   "comment": $('#lecturesAdd_descriptionInput').val(),
-            //   "commentTitle": $('#lecturesAdd_titleInput').val(),
-            //   "hashtags": [
-            //     $('#lecturesAdd_hashtagInput1').val(),
-            //     $('#lecturesAdd_hashtagInput2').val(),
-            //     $('#lecturesAdd_hashtagInput3').val(),
-            //   ],
-            //   "lectureTitle": $('#lecturesAdd_mainTitleInput').val(),
-            //   "lectureUrl": $('#lecturesAdd_linkInput').val(),
-            //   "lecturer": $('#lecturesAdd_teacherInput').val(),
-            //   "rate": "",
-            //   "siteName": $('#lecturesAdd_siteInput').val(),
-            //   "thumbnailUrl": $('#lecturesAdd_linkInput').val(), //메인 이미지 링크
-            // }, localStorage.getItem('token'),).then((response)=>{
-                
-            // }).catch((error) => {
-            //     alert('강의평 글추가 실패')
-            //     navigate('/lectures')
-            // })
+            
+            axios
+              .post(
+                '/api/lectures/' + parseInt(current.split("/")[5]), 
+                {
+                  "lectureUrl": lectureUrl,
+                  "lectureTitle": lectureTitle,
+                  "lecturer": lecturer,
+                  "siteName": siteName,
+                  "hashtags": [
+                    hashtags[0],
+                    hashtags[1],
+                    hashtags[2],
+                  ],
+                  "rate": rate,
+                  "comment": comment,
+                  "commentTitle": commentTitle,
+                }, 
+                localStorage.getItem('token'),)
+              .then((response)=>{
+                alert('강의평 글추가 성공')
+              }).catch((error) => {
+                alert('강의평 글추가 실패')
+              })
 
           }}>글추가</button></div>
 
